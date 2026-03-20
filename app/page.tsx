@@ -1519,11 +1519,22 @@ export default function Home() {
     });
   };
 
+  const [isSpeaking, setIsSpeaking] = useState(false);
+
   const speak = (text: string, rate: number) => {
     if (typeof window === "undefined" || !("speechSynthesis" in window)) return;
     window.speechSynthesis.cancel();
     const u = new SpeechSynthesisUtterance(text); u.lang = "pt-BR"; u.rate = rate;
+    u.onstart = () => setIsSpeaking(true);
+    u.onend = () => setIsSpeaking(false);
+    u.onerror = () => setIsSpeaking(false);
     window.speechSynthesis.speak(u);
+  };
+
+  const stopSpeaking = () => {
+    if (typeof window === "undefined" || !("speechSynthesis" in window)) return;
+    window.speechSynthesis.cancel();
+    setIsSpeaking(false);
   };
 
   const checkDictation = () => {
@@ -1847,6 +1858,7 @@ export default function Home() {
                 <div style={{display:"flex",alignItems:"center",justifyContent:"space-between",marginBottom:28,flexWrap:"wrap" as const,gap:12}}>
                   <h3 style={{fontSize:20,fontWeight:700,margin:0,fontFamily:FONT}}>{selectedModule.readingTitle}</h3>
                   <button onClick={()=>speak(selectedModule.reading.join(" "),0.9)} style={{...glass,borderRadius:12,padding:"9px 16px",fontSize:13,color:TEXT_MID,border:`1px solid ${BORDER}`,cursor:"pointer",fontFamily:FONT,display:"flex",alignItems:"center",gap:8}}>🔊 Escuchar en portugués</button>
+                  {isSpeaking&&<button onClick={stopSpeaking} style={{...glass,borderRadius:12,padding:"9px 16px",fontSize:13,color:"#fb7185",border:"1px solid rgba(251,113,133,0.3)",cursor:"pointer",fontFamily:FONT,display:"flex",alignItems:"center",gap:8}}>⏹ Detener</button>}
                 </div>
                 <div style={{display:"flex",flexDirection:"column",gap:20}}>
                   {selectedModule.reading.map((para,i)=><p key={i} style={{lineHeight:1.9,color:"#cbd5e1",fontSize:15,margin:0,fontFamily:FONT}}>{para}</p>)}
@@ -1892,6 +1904,7 @@ export default function Home() {
                   <div style={{display:"flex",gap:8}}>
                     <button onClick={()=>speak(selectedModule.dictation,0.75)} style={{...glass,borderRadius:12,padding:"9px 16px",fontSize:13,color:TEXT_MID,border:`1px solid ${BORDER}`,cursor:"pointer",fontFamily:FONT}}>🔊 Lento</button>
                     <button onClick={()=>speak(selectedModule.dictation,1.0)} style={{...glass,borderRadius:12,padding:"9px 16px",fontSize:13,color:TEXT_MID,border:`1px solid ${BORDER}`,cursor:"pointer",fontFamily:FONT}}>▶ Normal</button>
+                    {isSpeaking&&<button onClick={stopSpeaking} style={{borderRadius:12,padding:"9px 16px",fontSize:13,color:"#fb7185",border:"1px solid rgba(251,113,133,0.3)",background:"rgba(251,113,133,0.08)",cursor:"pointer",fontFamily:FONT,fontWeight:600}}>⏹ Detener</button>}
                   </div>
                 </div>
                 <p style={{color:TEXT_MID,fontSize:14,marginBottom:20,lineHeight:1.6,fontFamily:FONT}}>Escuchá el audio en portugués y escribí la frase tal como la escuchaste. Podés repetirlo varias veces.</p>
