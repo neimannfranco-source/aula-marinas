@@ -88,7 +88,7 @@ export const MODULES: ModuleType[] = [
       question: "¿Cómo se dice 'Voy a verificar'?",
       options: ["Vou sair", "Vou verificar", "Vou pagar"],
       answer: "Vou verificar"
-    }
+    },
   ]
 }
 {
