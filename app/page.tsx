@@ -1,25 +1,3 @@
-"use client";
-
-import { useEffect, useState } from "react";
-import type { AppState, LoadStatus } from "@/lib/types";
-import { MODULES } from "@/lib/modules";
-import {
-  C, FONT, MONO, DISPLAY, CATEGORIES,
-  btnPrimary, btnGhost, btnDanger, catColor,
-  getInitial, normalize, PROFESSOR_PASSWORD, LS_KEY, input,
-} from "@/lib/constants";
-import { loadRemoteState, saveRemoteState } from "@/lib/supabase";
-
-import Login from "./components/Login";
-import ProfessorPanel from "./components/ProfessorPanel";
-import Sidebar from "./components/Sidebar";
-import ModuleView from "./components/ModuleView";
-import ProgressPanel from "./components/ProgressPanel";
-
-function createInitialState(): AppState {
-  return { students: [], currentStudentId: null, progress: {}, dictations: {} };
-}
-
 export type ModuleType = {
   id: string;
   title: string;
