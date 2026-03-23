@@ -1,7 +1,8 @@
 import type { ModuleType } from "./types";
 
 export const MODULES: ModuleType[] = [
-  id: "saudações",
+  {
+    id: "saudacoes",
   title: "Saludos",
   category: "Recepción",
   emoji: "🛎️",
