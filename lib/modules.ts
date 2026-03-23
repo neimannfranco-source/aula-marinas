@@ -782,7 +782,7 @@ export const MODULES: ModuleType[] = [
     { speaker: "Hóspede", pt: "O que tem de especial na suíte deluxe?", es: "¿Qué tiene de especial la suite deluxe?" },
     { speaker: "Colaborador", pt: "É nossa suíte mais completa! Hidromassagem, varanda privativa e vista direta ao lago", es: "¡Es nuestra suite más completa! Hidromasaje, terraza privada y vista directa al lago" },
     { speaker: "Hóspede", pt: "Tem frigobar e smart TV?", es: "¿Tiene frigobar y smart TV?" },
-    { speaker: "Colaborador", pt: "Sim! E também cofre digital, roupões e produtos de banho premium", yes: "¡Sí! Y también caja fuerte digital, albornoces y productos de baño premium" },
+    { speaker: "Colaborador", pt: "Sim! E também cofre digital, roupões e produtos de banho premium", es: "¡Sí! Y también caja fuerte digital, albornoces y productos de baño premium" },
     { speaker: "Hóspede", pt: "Pode ver o pôr do sol da suíte?", es: "¿Se puede ver el atardecer desde la suite?" },
     { speaker: "Colaborador", pt: "Sim, direto da cama ou da varanda. É impressionante!", es: "Sí, directo desde la cama o la terraza. ¡Es impresionante!" },
     { speaker: "Hóspede", pt: "Muitos hóspedes escolhem esta suíte?", es: "¿Muchos huéspedes eligen esta suite?" },
