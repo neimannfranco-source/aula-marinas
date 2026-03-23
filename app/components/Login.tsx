@@ -1,8 +1,17 @@
 "use client";
 import { useState } from "react";
-import type { AppState } from "@/lib/types";
-import { C, FONT, DISPLAY, MONO, input, btnPrimary, btnGhost, normalize, PROFESSOR_PASSWORD } from "@/lib/constants";
-
+import type { AppState } from "../../lib/types";
+import {
+  C,
+  FONT,
+  DISPLAY,
+  MONO,
+  input,
+  btnPrimary,
+  btnGhost,
+  normalize,
+  PROFESSOR_PASSWORD,
+} from "../../lib/constants";
 interface Props {
   appState: AppState;
   setAppState: (s: AppState | ((p: AppState) => AppState)) => void;
