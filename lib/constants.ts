@@ -78,34 +78,28 @@ export const btnDanger: CSSProperties = {
   cursor: "pointer",
   fontFamily: FONT,
 };
-
 export const CATEGORIES = [
   "Todos",
-  "Recepción",
   "Check-in",
   "Alojamiento",
-  "Restaurante",
-  "Desayuno",
+  "Gastronomía",
   "Reclamos",
   "Reservas",
-  "Comunicación",
   "Excursiones",
-  "Gastronomía",
+  "Comunicación",
 ];
 
 export const catColor = (cat: string): string => {
   const m: Record<string, string> = {
-    Recepción: "#4ade80",
-    "Check-in": "#34d399",
-    Alojamiento: "#86efac",
-    Restaurante: "#fbbf24",
-    Desayuno: "#fb923c",
-    Reclamos: "#fb7185",
-    Reservas: "#a78bfa",
-    Comunicación: "#60a5fa",
-    Excursiones: "#2dd4bf",
-    Gastronomía: "#f472b6",
-  };
+  "Check-in": "#34d399",
+  Alojamiento: "#86efac",
+  Gastronomía: "#f472b6",
+  Desayuno: "#fb923c",
+  Reclamos: "#fb7185",
+  Reservas: "#a78bfa",
+  Comunicación: "#60a5fa",
+  Excursiones: "#2dd4bf",
+};
   return m[cat] || C.textMid;
 };
 

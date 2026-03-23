@@ -5,7 +5,7 @@ export const MODULES: ModuleType[] = [
   {
   id: "saudacoes",
   title: "Saludos",
-  category: "Recepción",
+  category: "Comunicación",
   emoji: "🛎️",
   phrases: [
     { pt: "Bom dia", es: "Buenos días" },
@@ -77,7 +77,7 @@ export const MODULES: ModuleType[] = [
   {
   id: "reserva",
   title: "Reserva",
-  category: "Recepción",
+  category: "Reservas",
   emoji: "📋",
   phrases: [
     { pt: "O senhor tem uma reserva?", es: "¿Tiene una reserva?" },
@@ -146,10 +146,82 @@ export const MODULES: ModuleType[] = [
     { question: "¿Cómo se dice 'sitio web'?", options: ["aplicativo", "site", "sistema"], answer: "site" },
   ],
 },
+{
+  id: "modificar_reserva",
+  title: "Modificar o cancelar reserva",
+  category: "Reservas",
+  emoji: "🔄",
+  phrases: [
+    { pt: "Deseja modificar sua reserva?", es: "¿Desea modificar su reserva?" },
+    { pt: "Posso alterar as datas", es: "Puedo cambiar las fechas" },
+    { pt: "Também podemos mudar o tipo de acomodação", es: "También podemos cambiar el tipo de alojamiento" },
+    { pt: "Vou verificar a disponibilidade", es: "Voy a verificar la disponibilidad" },
+    { pt: "Há disponibilidade para essas datas", es: "Hay disponibilidad para esas fechas" },
+    { pt: "Infelizmente não temos disponibilidade", es: "Lamentablemente no tenemos disponibilidad" },
+    { pt: "Deseja cancelar a reserva?", es: "¿Desea cancelar la reserva?" },
+    { pt: "A política permite cancelamento sem custo", es: "La política permite cancelación sin costo" },
+    { pt: "Pode haver cobrança dependendo da data", es: "Puede haber cargo según la fecha" },
+    { pt: "Vou processar a alteração agora", es: "Voy a procesar el cambio ahora" },
+  ],
+  vocab: [
+    { pt: "modificar", es: "modificar" },
+    { pt: "cancelar", es: "cancelar" },
+    { pt: "alterar", es: "cambiar" },
+    { pt: "disponibilidade", es: "disponibilidad" },
+    { pt: "data", es: "fecha" },
+    { pt: "política", es: "política" },
+    { pt: "cobrança", es: "cargo" },
+    { pt: "processar", es: "procesar" },
+  ],
+  miniDialogues: [
+    { speaker: "Hóspede", pt: "Quero modificar minha reserva", es: "Quiero modificar mi reserva" },
+    { speaker: "Colaborador", pt: "Claro, posso verificar novas datas para o senhor", es: "Claro, puedo verificar nuevas fechas para usted" },
+    { speaker: "Hóspede", pt: "Também quero mudar para uma suíte", es: "También quiero cambiar a una suite" },
+    { speaker: "Colaborador", pt: "Perfeito, vou verificar a disponibilidade", es: "Perfecto, voy a verificar la disponibilidad" },
+  ],
+  quiz: [
+    { question: "¿Cómo se dice 'cancelar'?", options: ["modificar", "cancelar", "alterar"], answer: "cancelar" },
+    { question: "¿Cómo se dice 'disponibilidad'?", options: ["tempo", "disponibilidade", "agenda"], answer: "disponibilidade" },
+  ],
+},
+{
+  id: "confirmacion_reserva",
+  title: "Confirmación y pago",
+  category: "Reservas",
+  emoji: "💰",
+  phrases: [
+    { pt: "Sua reserva está confirmada", es: "Su reserva está confirmada" },
+    { pt: "Enviaremos um e-mail de confirmação", es: "Enviaremos un correo de confirmación" },
+    { pt: "É necessário um pagamento antecipado", es: "Se requiere un pago anticipado" },
+    { pt: "Pode pagar por transferência ou cartão", es: "Puede pagar por transferencia o tarjeta" },
+    { pt: "O valor será debitado agora", es: "El importe será debitado ahora" },
+    { pt: "Recebemos o pagamento com sucesso", es: "Hemos recibido el pago con éxito" },
+    { pt: "Sua reserva está garantida", es: "Su reserva está garantizada" },
+    { pt: "Qualquer alteração deve ser informada com antecedência", es: "Cualquier cambio debe informarse con anticipación" },
+  ],
+  vocab: [
+    { pt: "confirmar", es: "confirmar" },
+    { pt: "pagamento", es: "pago" },
+    { pt: "antecipado", es: "anticipado" },
+    { pt: "transferência", es: "transferencia" },
+    { pt: "cartão", es: "tarjeta" },
+    { pt: "garantida", es: "garantizada" },
+  ],
+  miniDialogues: [
+    { speaker: "Colaborador", pt: "Sua reserva está confirmada", es: "Su reserva está confirmada" },
+    { speaker: "Hóspede", pt: "Preciso pagar antecipado?", es: "¿Necesito pagar por adelantado?" },
+    { speaker: "Colaborador", pt: "Sim, pode ser por cartão ou transferência", es: "Sí, puede ser por tarjeta o transferencia" },
+    { speaker: "Hóspede", pt: "Perfeito, vou pagar agora", es: "Perfecto, voy a pagar ahora" },
+  ],
+  quiz: [
+    { question: "¿Cómo se dice 'pago anticipado'?", options: ["pagamento antecipado", "pagamento depois", "pagamento parcial"], answer: "pagamento antecipado" },
+    { question: "¿Cómo se dice 'confirmar'?", options: ["cancelar", "confirmar", "verificar"], answer: "confirmar" },
+  ],
+},
   {
   id: "documento",
-  title: "Documento e registro",
-  category: "Recepción",
+  title: "Documento y registro",
+  category: "Check-in",
   emoji: "🪪",
   phrases: [
     { pt: "Pode me mostrar seu documento?", es: "¿Puede mostrarme su documento?" },
@@ -220,8 +292,8 @@ export const MODULES: ModuleType[] = [
 },
   {
   id: "checkin_inicial",
-  title: "Check-in completo",
-  category: "Recepción",
+  title: "Proceso de check-in",
+  category: "Check-in",
   emoji: "🧾",
   phrases: [
     { pt: "Vamos fazer seu check-in", es: "Vamos a hacer su check-in" },
@@ -293,8 +365,8 @@ export const MODULES: ModuleType[] = [
 },
   {
   id: "check_out_basico",
-  title: "Check-out",
-  category: "Recepción",
+  title: "Proceso de salida",
+  category: "Check-in",
   emoji: "🧳",
   phrases: [
     { pt: "Vai fazer o check-out agora?", es: "¿Va a hacer el check-out ahora?" },
@@ -365,8 +437,8 @@ export const MODULES: ModuleType[] = [
 },
   {
   id: "pagamento_basico",
-  title: "Pago",
-  category: "Recepción",
+  title: "Gestión de pago",
+  category: "Check-in",
   emoji: "💳",
   phrases: [
     { pt: "Pode pagar com cartão", es: "Puede pagar con tarjeta" },
@@ -438,7 +510,7 @@ export const MODULES: ModuleType[] = [
   {
   id: "facturacion",
   title: "Facturación",
-  category: "Recepción",
+  category: "Check-in",
   emoji: "🧾",
   phrases: [
     { pt: "Precisa de fatura?", es: "¿Necesita factura?" },
@@ -510,7 +582,7 @@ export const MODULES: ModuleType[] = [
   {
   id: "despedida_premium",
   title: "Despedida",
-  category: "Recepción",
+  category: "Comunicación",
   emoji: "👋",
   phrases: [
     { pt: "Foi um prazer recebê-lo", es: "Fue un placer recibirlo" },
@@ -579,12 +651,206 @@ export const MODULES: ModuleType[] = [
     { question: "¿Cómo se dice 'pronto'?", options: ["agora", "breve", "depois"], answer: "breve" },
   ],
 },
-
+{
+  id: "comunicacion_atencion",
+  title: "Atención al huésped",
+  category: "Comunicación",
+  emoji: "💬",
+  phrases: [
+    { pt: "Como posso ajudar?", es: "¿Cómo puedo ayudar?" },
+    { pt: "Fico à sua disposição para o que precisar", es: "Quedo a su disposición para lo que necesite" },
+    { pt: "Com muito prazer", es: "Con mucho gusto" },
+    { pt: "Vou acompanhá-lo até a sua unidade", es: "Voy a acompañarlo hasta su unidad" },
+    { pt: "Se preferir, posso explicar tudo agora", es: "Si prefiere, puedo explicarle todo ahora" },
+    { pt: "Posso recomendar algumas opções", es: "Puedo recomendarle algunas opciones" },
+    { pt: "Estamos aqui para tornar sua estadia mais confortável", es: "Estamos aquí para hacer su estadía más confortable" },
+    { pt: "Se precisar de qualquer coisa, pode nos chamar", es: "Si necesita cualquier cosa, puede llamarnos" },
+    { pt: "Vou verificar isso com muito prazer", es: "Voy a verificarlo con mucho gusto" },
+    { pt: "Obrigado por nos avisar", es: "Gracias por avisarnos" },
+    { pt: "Em alguns minutos teremos uma resposta", es: "En algunos minutos tendremos una respuesta" },
+    { pt: "Posso ajudá-lo com mais alguma coisa?", es: "¿Puedo ayudarlo con algo más?" },
+    { pt: "Deseja que eu lhe mostre as instalações?", es: "¿Desea que le muestre las instalaciones?" },
+    { pt: "Será um prazer orientá-lo", es: "Será un placer orientarlo" },
+    { pt: "Esperamos que se sinta em casa", es: "Esperamos que se sienta como en casa" },
+  ],
+  vocab: [
+    { pt: "ajudar", es: "ayudar" },
+    { pt: "disposição", es: "disposición" },
+    { pt: "prazer", es: "gusto / placer" },
+    { pt: "acompanhar", es: "acompañar" },
+    { pt: "explicar", es: "explicar" },
+    { pt: "recomendar", es: "recomendar" },
+    { pt: "confortável", es: "confortable" },
+    { pt: "avisar", es: "avisar" },
+    { pt: "resposta", es: "respuesta" },
+    { pt: "instalações", es: "instalaciones" },
+    { pt: "orientar", es: "orientar" },
+    { pt: "hóspede", es: "huésped" },
+  ],
+  miniDialogues: [
+    { speaker: "Hóspede", pt: "É a nossa primeira vez aqui", es: "Es nuestra primera vez aquí" },
+    { speaker: "Colaborador", pt: "Sejam muito bem-vindos. Será um prazer orientá-los", es: "Sean muy bienvenidos. Será un placer orientarlos" },
+    { speaker: "Hóspede", pt: "Pode nos explicar os serviços do hotel?", es: "¿Puede explicarnos los servicios del hotel?" },
+    { speaker: "Colaborador", pt: "Claro. Posso explicar tudo agora e também mostrar as instalações", es: "Claro. Puedo explicarlo todo ahora y también mostrar las instalaciones" },
+    { speaker: "Hóspede", pt: "Muito obrigado", es: "Muchas gracias" },
+    { speaker: "Colaborador", pt: "Com muito prazer. Fico à disposição para o que precisarem", es: "Con mucho gusto. Quedo a su disposición para lo que necesiten" },
+  ],
+  quiz: [
+    { question: "¿Cómo se dice 'Quedo a su disposición'?", options: ["Estou ocupado", "Fico à sua disposição", "Já volto"], answer: "Fico à sua disposição" },
+    { question: "¿Cómo se dice 'acompañar'?", options: ["acompanhar", "esperar", "mostrar"], answer: "acompanhar" },
+    { question: "¿Cómo se dice 'instalaciones'?", options: ["serviços", "instalações", "unidades"], answer: "instalações" },
+    { question: "¿Cómo se dice 'Con mucho gusto'?", options: ["Com licença", "Com muito prazer", "Sem problema"], answer: "Com muito prazer" },
+    { question: "¿Cómo se dice 'orientar'?", options: ["explicar", "orientar", "entrar"], answer: "orientar" },
+    { question: "¿Cómo se dice 'respuesta'?", options: ["pergunta", "resposta", "solução"], answer: "resposta" },
+  ],
+},
+{
+  id: "orientacion_hotel",
+  title: "Orientación en el hotel",
+  category: "Comunicación",
+  emoji: "🧭",
+  phrases: [
+    { pt: "O restaurante fica à direita da recepção", es: "El restaurante está a la derecha de la recepción" },
+    { pt: "O café da manhã é no primeiro andar", es: "El desayuno es en el primer piso" },
+    { pt: "A piscina fica na área externa", es: "La piscina está en el área exterior" },
+    { pt: "O spa está aberto até as 20h", es: "El spa está abierto hasta las 20h" },
+    { pt: "O estacionamento fica atrás do hotel", es: "El estacionamiento está detrás del hotel" },
+    { pt: "Sua cabana fica a poucos metros do lago", es: "Su cabaña está a pocos metros del lago" },
+    { pt: "Posso acompanhá-lo até lá", es: "Puedo acompañarlo hasta allí" },
+    { pt: "É bem fácil de encontrar", es: "Es muy fácil de encontrar" },
+    { pt: "Se preferir, posso mostrar no mapa", es: "Si prefiere, puedo mostrarle en el mapa" },
+    { pt: "Está tudo bem sinalizado", es: "Está todo bien señalizado" },
+    { pt: "A recepção funciona 24 horas", es: "La recepción funciona las 24 horas" },
+    { pt: "Estamos sempre disponíveis para ajudar", es: "Estamos siempre disponibles para ayudar" },
+  ],
+  vocab: [
+    { pt: "direita", es: "derecha" },
+    { pt: "esquerda", es: "izquierda" },
+    { pt: "andar", es: "piso" },
+    { pt: "área externa", es: "área exterior" },
+    { pt: "spa", es: "spa" },
+    { pt: "estacionamento", es: "estacionamiento" },
+    { pt: "mapa", es: "mapa" },
+    { pt: "sinalizado", es: "señalizado" },
+  ],
+  miniDialogues: [
+    { speaker: "Hóspede", pt: "Onde fica o restaurante?", es: "¿Dónde está el restaurante?" },
+    { speaker: "Colaborador", pt: "À direita da recepção. Posso acompanhá-lo se quiser", es: "A la derecha de la recepción. Puedo acompañarlo si quiere" },
+    { speaker: "Hóspede", pt: "E a piscina?", es: "¿Y la piscina?" },
+    { speaker: "Colaborador", pt: "Na área externa, com vista para o lago", es: "En el área exterior, con vista al lago" },
+  ],
+  quiz: [
+    { question: "¿Cómo se dice 'derecha'?", options: ["esquerda", "direita", "frente"], answer: "direita" },
+    { question: "¿Cómo se dice 'piso'?", options: ["andar", "nível", "chão"], answer: "andar" },
+  ],
+},
+{
+  id: "mensagens_hospede",
+  title: "Mensajes y WhatsApp",
+  category: "Comunicación",
+  emoji: "📱",
+  phrases: [
+    { pt: "Vamos lhe enviar as informações por WhatsApp", es: "Le enviaremos la información por WhatsApp" },
+    { pt: "Já enviamos a confirmação da sua reserva", es: "Ya enviamos la confirmación de su reserva" },
+    { pt: "Avisaremos quando o quarto estiver pronto", es: "Le avisaremos cuando la habitación esté lista" },
+    { pt: "Se precisar de algo, pode nos escrever", es: "Si necesita algo, puede escribirnos" },
+    { pt: "Estamos disponíveis para qualquer consulta", es: "Estamos disponibles para cualquier consulta" },
+    { pt: "Vou lhe enviar a localização pelo WhatsApp", es: "Le enviaré la ubicación por WhatsApp" },
+    { pt: "Também podemos enviar recomendações", es: "También podemos enviarle recomendaciones" },
+    { pt: "Acabamos de enviar os detalhes da sua estadia", es: "Acabamos de enviar los detalles de su estadía" },
+    { pt: "Pode confirmar se recebeu a mensagem?", es: "¿Puede confirmar si recibió el mensaje?" },
+    { pt: "Qualquer dúvida, estamos à disposição", es: "Cualquier duda, estamos a su disposición" },
+    { pt: "Já enviamos o horário do café da manhã", es: "Ya enviamos el horario del desayuno" },
+    { pt: "Enviaremos lembretes importantes durante sua estadia", es: "Enviaremos recordatorios importantes durante su estadía" },
+    { pt: "Podemos nos comunicar por aqui durante toda a estadia", es: "Podemos comunicarnos por aquí durante toda la estadía" },
+    { pt: "Vou lhe enviar o contato direto da recepção", es: "Le enviaré el contacto directo de recepción" },
+    { pt: "Se preferir, posso lhe ligar", es: "Si prefiere, puedo llamarlo" },
+  ],
+  vocab: [
+    { pt: "mensagem", es: "mensaje" },
+    { pt: "WhatsApp", es: "WhatsApp" },
+    { pt: "confirmar", es: "confirmar" },
+    { pt: "aviso", es: "aviso" },
+    { pt: "localização", es: "ubicación" },
+    { pt: "detalhes", es: "detalles" },
+    { pt: "consulta", es: "consulta" },
+    { pt: "receber", es: "recibir" },
+    { pt: "dúvida", es: "duda" },
+    { pt: "lembrete", es: "recordatorio" },
+    { pt: "contato", es: "contacto" },
+    { pt: "ligar", es: "llamar" },
+  ],
+  miniDialogues: [
+    { speaker: "Colaborador", pt: "Vamos lhe enviar todas as informações por WhatsApp", es: "Le enviaremos toda la información por WhatsApp" },
+    { speaker: "Hóspede", pt: "Perfeito, obrigado", es: "Perfecto, gracias" },
+    { speaker: "Colaborador", pt: "Já enviamos a confirmação e os detalhes da sua estadia", es: "Ya enviamos la confirmación y los detalles de su estadía" },
+    { speaker: "Hóspede", pt: "Recebi, muito obrigado", es: "Recibí, muchas gracias" },
+    { speaker: "Colaborador", pt: "Qualquer dúvida, pode nos escrever por aqui", es: "Cualquier duda, puede escribirnos por aquí" },
+    { speaker: "Hóspede", pt: "Claro, obrigado pela atenção", es: "Claro, gracias por la atención" },
+  ],
+  quiz: [
+    { question: "¿Cómo se dice 'mensaje'?", options: ["mensagem", "recado", "aviso"], answer: "mensagem" },
+    { question: "¿Cómo se dice 'ubicación'?", options: ["lugar", "localização", "endereço"], answer: "localização" },
+    { question: "¿Cómo se dice 'recordatorio'?", options: ["lembrete", "nota", "alerta"], answer: "lembrete" },
+    { question: "¿Cómo se dice 'contacto'?", options: ["ligação", "contato", "número"], answer: "contato" },
+    { question: "¿Cómo se dice 'llamar'?", options: ["escrever", "ligar", "avisar"], answer: "ligar" },
+    { question: "¿Cómo se dice 'confirmar'?", options: ["confirmar", "verificar", "enviar"], answer: "confirmar" },
+  ],
+},
+{
+  id: "comunicacion_premium",
+  title: "Comunicación premium",
+  category: "Comunicación",
+  emoji: "💎",
+  phrases: [
+    { pt: "Será um prazer assisti-lo durante toda a sua estadia", es: "Será un placer asistirlo durante toda su estadía" },
+    { pt: "Estamos aqui para tornar sua experiência verdadeiramente especial", es: "Estamos aquí para hacer su experiencia verdaderamente especial" },
+    { pt: "Permita-me acompanhá-lo até sua acomodação", es: "Permítame acompañarlo hasta su alojamiento" },
+    { pt: "Faremos todo o possível para superar suas expectativas", es: "Haremos todo lo posible para superar sus expectativas" },
+    { pt: "A sua satisfação é a nossa prioridade", es: "Su satisfacción es nuestra prioridad" },
+    { pt: "Caso necessite de algo, não hesite em nos contatar", es: "Si necesita algo, no dude en contactarnos" },
+    { pt: "Será um prazer organizar isso para o senhor", es: "Será un placer organizarlo para usted" },
+    { pt: "Gostaria que sua estadia fosse absolutamente perfeita", es: "Nos gustaría que su estadía sea absolutamente perfecta" },
+    { pt: "Posso lhe sugerir algumas experiências exclusivas", es: "Puedo sugerirle algunas experiencias exclusivas" },
+    { pt: "Cuidaremos de cada detalhe da sua estadia", es: "Cuidaremos cada detalle de su estadía" },
+    { pt: "Estamos atentos a todas as suas necessidades", es: "Estamos atentos a todas sus necesidades" },
+    { pt: "Será um prazer recebê-lo novamente em breve", es: "Será un placer recibirlo nuevamente pronto" },
+    { pt: "Agradecemos profundamente a sua preferência", es: "Agradecemos profundamente su preferencia" },
+    { pt: "Esperamos que tenha uma experiência memorável", es: "Esperamos que tenga una experiencia memorable" },
+    { pt: "Estamos à sua inteira disposição", es: "Estamos a su entera disposición" },
+  ],
+  vocab: [
+    { pt: "assistir", es: "asistir" },
+    { pt: "experiência", es: "experiencia" },
+    { pt: "exclusivo", es: "exclusivo" },
+    { pt: "detalhe", es: "detalle" },
+    { pt: "satisfação", es: "satisfacción" },
+    { pt: "prioridade", es: "prioridad" },
+    { pt: "necessidade", es: "necesidad" },
+    { pt: "memorável", es: "memorable" },
+    { pt: "preferência", es: "preferencia" },
+    { pt: "disposição", es: "disposición" },
+  ],
+  miniDialogues: [
+    { speaker: "Colaborador", pt: "Será um prazer assisti-lo durante toda a sua estadia", es: "Será un placer asistirlo durante toda su estadía" },
+    { speaker: "Hóspede", pt: "Muito obrigado pela atenção", es: "Muchas gracias por la atención" },
+    { speaker: "Colaborador", pt: "Estamos aqui para tornar sua experiência especial e memorável", es: "Estamos aquí para hacer su experiencia especial y memorable" },
+    { speaker: "Hóspede", pt: "Isso é muito importante para nós", es: "Eso es muy importante para nosotros" },
+    { speaker: "Colaborador", pt: "Cuidaremos de cada detalhe. Estamos à sua inteira disposição", es: "Cuidaremos cada detalle. Estamos a su entera disposición" },
+  ],
+  quiz: [
+    { question: "¿Cómo se dice 'experiencia'?", options: ["experiência", "trabalho", "serviço"], answer: "experiência" },
+    { question: "¿Cómo se dice 'detalle'?", options: ["coisa", "detalhe", "parte"], answer: "detalhe" },
+    { question: "¿Cómo se dice 'prioridad'?", options: ["prioridade", "urgência", "ordem"], answer: "prioridade" },
+    { question: "¿Cómo se dice 'memorable'?", options: ["importante", "memorável", "especial"], answer: "memorável" },
+    { question: "¿Cómo se dice 'preferencia'?", options: ["preferência", "opção", "escolha"], answer: "preferência" },
+  ],
+},
   // ─── HABITACIONES ─────────────────────────────────────────────────────────
   {
   id: "cabanas",
   title: "Cabañas",
-  category: "Habitaciones",
+  category: "Alojamiento",
   emoji: "🏡",
   phrases: [
     { pt: "A cabana tem capacidade para 6 pessoas", es: "La cabaña tiene capacidad para 6 personas" },
@@ -656,7 +922,7 @@ export const MODULES: ModuleType[] = [
   {
   id: "loft",
   title: "Loft",
-  category: "Habitaciones",
+  category: "Alojamiento",
   emoji: "🛌",
   phrases: [
     { pt: "O loft tem vista panorâmica para o lago", es: "El loft tiene vista panorámica al lago" },
@@ -728,7 +994,7 @@ export const MODULES: ModuleType[] = [
   {
   id: "suite_deluxe",
   title: "Suite Deluxe",
-  category: "Habitaciones",
+  category: "Alojamiento",
   emoji: "🛏️",
   phrases: [
     { pt: "A suíte deluxe fica na parte superior", es: "La suite deluxe está en la parte superior" },
@@ -800,7 +1066,7 @@ export const MODULES: ModuleType[] = [
   {
   id: "suite_standard",
   title: "Suite Standard",
-  category: "Habitaciones",
+  category: "Alojamiento",
   emoji: "🛏️",
   phrases: [
     { pt: "A suíte standard fica no nível inferior", es: "La suite standard está en el nivel inferior" },
@@ -872,7 +1138,7 @@ export const MODULES: ModuleType[] = [
  {
   id: "cabana_8_pessoas",
   title: "Cabaña hasta 8 personas",
-  category: "Habitaciones",
+  category: "Alojamiento",
   emoji: "🏘️",
   phrases: [
     { pt: "Esta cabana acomoda até 8 pessoas", es: "Esta cabaña aloja hasta 8 personas" },
@@ -944,7 +1210,7 @@ export const MODULES: ModuleType[] = [
   {
   id: "cozinha_equipada",
   title: "Cocina equipada",
-  category: "Habitaciones",
+  category: "Alojamiento",
   emoji: "🍳",
   phrases: [
     { pt: "A cozinha está totalmente equipada", es: "La cocina está totalmente equipada" },
@@ -1016,7 +1282,7 @@ export const MODULES: ModuleType[] = [
   {
   id: "calefacao_lareira",
   title: "Calefacción y hogar a leña",
-  category: "Habitaciones",
+  category: "Alojamiento",
   emoji: "🔥",
   phrases: [
     { pt: "A unidade tem calefação central", es: "La unidad tiene calefacción central" },
@@ -1088,7 +1354,7 @@ export const MODULES: ModuleType[] = [
   {
   id: "hidromassagem_conforto",
   title: "Hidromasaje y confort",
-  category: "Habitaciones",
+  category: "Alojamiento",
   emoji: "🫧",
   phrases: [
     { pt: "A unidade tem hidromassagem privativa", es: "La unidad tiene hidromasaje privado" },
@@ -1160,7 +1426,7 @@ export const MODULES: ModuleType[] = [
   {
   id: "vista_lago",
   title: "Vista al lago",
-  category: "Habitaciones",
+  category: "Alojamiento",
   emoji: "🌊",
   phrases: [
     { pt: "Todas as unidades têm vista para o lago", es: "Todas las unidades tienen vista al lago" },
@@ -2240,7 +2506,7 @@ export const MODULES: ModuleType[] = [
   {
     id: "excursiones_general",
     title: "Excursiones",
-    category: "Experiencia",
+    category: "Excursiones",
     emoji: "🗺️",
     phrases: [
       { pt: "Podemos organizar excursões para você", es: "Podemos organizar excursiones para usted" },
@@ -2284,7 +2550,7 @@ export const MODULES: ModuleType[] = [
   {
     id: "cerro_bayo",
     title: "Cerro Bayo",
-    category: "Experiencia",
+    category: "Excursiones",
     emoji: "⛷️",
     phrases: [
       { pt: "O Cerro Bayo fica a apenas 3 km", es: "El Cerro Bayo está a solo 3 km" },
@@ -2328,7 +2594,7 @@ export const MODULES: ModuleType[] = [
   {
     id: "lago_passeios",
     title: "Paseos en lago",
-    category: "Experiencia",
+    category: "Excursiones",
     emoji: "🚤",
     phrases: [
       { pt: "Há passeios de barco incríveis", es: "Hay paseos en barco increíbles" },
@@ -2372,7 +2638,7 @@ export const MODULES: ModuleType[] = [
   {
     id: "trekking",
     title: "Trekking",
-    category: "Experiencia",
+    category: "Excursiones",
     emoji: "🥾",
     phrases: [
       { pt: "Há trilhas incríveis para caminhar", es: "Hay senderos increíbles para caminar" },
@@ -2416,7 +2682,7 @@ export const MODULES: ModuleType[] = [
   {
     id: "atividades_hotel",
     title: "Actividades del hotel",
-    category: "Experiencia",
+    category: "Excursiones",
     emoji: "🌄",
     phrases: [
       { pt: "Pode relaxar no hotel o dia todo", es: "Puede relajarse en el hotel todo el día" },
@@ -2462,7 +2728,7 @@ export const MODULES: ModuleType[] = [
   {
     id: "problema_wifi",
     title: "Problema con el WiFi",
-    category: "Problemas",
+    category: "Reclamos",
     emoji: "📶",
     phrases: [
       { pt: "O Wi-Fi não está funcionando?", es: "¿El WiFi no está funcionando?" },
@@ -2506,7 +2772,7 @@ export const MODULES: ModuleType[] = [
   {
     id: "problema_agua_quente",
     title: "Problema con agua caliente",
-    category: "Problemas",
+    category: "Reclamos",
     emoji: "🚿",
     phrases: [
       { pt: "Não tem água quente?", es: "¿No hay agua caliente?" },
@@ -2550,7 +2816,7 @@ export const MODULES: ModuleType[] = [
   {
     id: "problema_chave",
     title: "Problema con la llave",
-    category: "Problemas",
+    category: "Reclamos",
     emoji: "🔑",
     phrases: [
       { pt: "A chave não está funcionando?", es: "¿La llave no está funcionando?" },
@@ -2594,7 +2860,7 @@ export const MODULES: ModuleType[] = [
   {
     id: "pedido_toalhas",
     title: "Pedido de toallas y amenities",
-    category: "Problemas",
+    category: "Reclamos",
     emoji: "🧺",
     phrases: [
       { pt: "Precisa de mais toalhas?", es: "¿Necesita más toallas?" },
@@ -2638,7 +2904,7 @@ export const MODULES: ModuleType[] = [
   {
     id: "barulho",
     title: "Ruido o molestias",
-    category: "Problemas",
+    category: "Reclamos",
     emoji: "🔇",
     phrases: [
       { pt: "Está havendo muito barulho?", es: "¿Está habiendo mucho ruido?" },
