@@ -1,1709 +1,2187 @@
 import type { ModuleType } from "./types";
 
 export const MODULES: ModuleType[] = [
+  // ─── RECEPCIÓN ────────────────────────────────────────────────────────────
   {
     id: "saudacoes",
-  title: "Saludos",
-  category: "Recepción",
-  emoji: "🛎️",
-  phrases: [
-    { pt: "Bom dia", es: "Buenos días" },
-    { pt: "Boa tarde", es: "Buenas tardes" },
-    { pt: "Boa noite", es: "Buenas noches" },
-    { pt: "Bem-vindo ao hotel", es: "Bienvenido al hotel" },
-    { pt: "Como está?", es: "¿Cómo está?" },
-    { pt: "É um prazer recebê-lo", es: "Es un placer recibirlo" },
-    { pt: "Tudo bem?", es: "¿Todo bien?" },
-    { pt: "Como posso ajudar?", es: "¿Cómo puedo ayudar?" }
-  ],
-  vocab: [
-    { pt: "hotel", es: "hotel" },
-    { pt: "hóspede", es: "huésped" },
-    { pt: "recepção", es: "recepción" },
-    { pt: "reserva", es: "reserva" },
-    { pt: "chave", es: "llave" },
-    { pt: "quarto", es: "habitación" },
-    { pt: "serviço", es: "servicio" },
-    { pt: "entrada", es: "entrada" }
-  ],
-  miniDialogues: [
-    {
-      speaker: "Hóspede",
-      pt: "Bom dia",
-      es: "Buenos días"
-    },
-    {
-      speaker: "Colaborador",
-      pt: "Bom dia, bem-vindo ao hotel",
-      es: "Buenos días, bienvenido al hotel"
-    }
-  ],
-  quiz: [
-    {
-      question: "¿Cómo se dice 'Buenas tardes'?",
-      options: ["Bom dia", "Boa tarde", "Boa noite"],
-      answer: "Boa tarde"
-    }
-  ]
-},
-{
-  id: "reserva",
-  title: "Reserva",
-  category: "Recepción",
-  emoji: "📋",
-  phrases: [
-    { pt: "O senhor tem uma reserva?", es: "¿Tiene una reserva?" },
-    { pt: "Em nome de quem?", es: "¿A nombre de quién?" },
-    { pt: "Vou verificar", es: "Voy a verificar" },
-    { pt: "Aqui está sua reserva", es: "Aquí está su reserva" },
-    { pt: "Está tudo correto", es: "Está todo correcto" },
-    { pt: "Para quantas noites?", es: "¿Para cuántas noches?" },
-    { pt: "Quantas pessoas?", es: "¿Cuántas personas?" },
-    { pt: "Perfeito", es: "Perfecto" }
-  ],
-  vocab: [
-    { pt: "noite", es: "noche" },
-    { pt: "pessoa", es: "persona" },
-    { pt: "nome", es: "nombre" },
-    { pt: "dados", es: "datos" },
-    { pt: "confirmação", es: "confirmación" },
-    { pt: "entrada", es: "check-in" },
-    { pt: "saída", es: "check-out" },
-    { pt: "hotel", es: "hotel" }
-  ],
-  miniDialogues: [
-    {
-      speaker: "Hóspede",
-      pt: "Tenho uma reserva",
-      es: "Tengo una reserva"
-    },
-    {
-      speaker: "Colaborador",
-      pt: "Perfeito, vou verificar",
-      es: "Perfecto, voy a verificar"
-    }
-  ],
-  quiz: [
-    {
-      question: "¿Cómo se dice 'Voy a verificar'?",
-      options: ["Vou sair", "Vou verificar", "Vou pagar"],
-      answer: "Vou verificar"
-    }
-  ]
-},
-{
-  id: "documento",
-  title: "Documento",
-  category: "Recepción",
-  emoji: "🪪",
-  phrases: [
-    { pt: "Pode me mostrar seu documento?", es: "¿Puede mostrarme su documento?" },
-    { pt: "Preciso do seu passaporte", es: "Necesito su pasaporte" },
-    { pt: "Só um momento", es: "Un momento" },
-    { pt: "Obrigado", es: "Gracias" },
-    { pt: "Está tudo certo", es: "Está todo bien" },
-    { pt: "Vou fazer o registro", es: "Voy a hacer el registro" },
-    { pt: "Assine aqui", es: "Firme aquí" },
-    { pt: "Perfeito", es: "Perfecto" }
-  ],
-  vocab: [
-    { pt: "documento", es: "documento" },
-    { pt: "passaporte", es: "pasaporte" },
-    { pt: "registro", es: "registro" },
-    { pt: "assinatura", es: "firma" },
-    { pt: "dados", es: "datos" },
-    { pt: "sistema", es: "sistema" },
-    { pt: "recepção", es: "recepción" },
-    { pt: "check-in", es: "check-in" }
-  ],
-  miniDialogues: [
-    {
-      speaker: "Colaborador",
-      pt: "Pode me mostrar seu documento?",
-      es: "¿Puede mostrarme su documento?"
-    },
-    {
-      speaker: "Hóspede",
-      pt: "Claro",
-      es: "Claro"
-    }
-  ],
-  quiz: [
-    {
-      question: "¿Cómo se dice 'documento'?",
-      options: ["papel", "documento", "arquivo"],
-      answer: "documento"
-    }
-  ]
-},
-{
-  id: "cabanas",
-  title: "Cabañas",
-  category: "Habitaciones",
-  emoji: "🏡",
-  phrases: [
-    { pt: "A cabana tem capacidade para 6 pessoas", es: "La cabaña tiene capacidad para 6 personas" },
-    { pt: "Está distribuída em três andares", es: "Está distribuida en tres plantas" },
-    { pt: "Possui cozinha equipada", es: "Tiene cocina equipada" },
-    { pt: "Conta com calefação central", es: "Cuenta con calefacción central" },
-    { pt: "Possui lareira a lenha", es: "Tiene hogar a leña" },
-    { pt: "Tem deck com churrasqueira", es: "Tiene deck con parrilla" },
-    { pt: "Tem Wi-Fi", es: "Tiene WiFi" },
-    { pt: "A limpeza é diária", es: "La limpieza es diaria" }
-  ],
-  vocab: [
-    { pt: "cabana", es: "cabaña" },
-    { pt: "cozinha", es: "cocina" },
-    { pt: "churrasqueira", es: "parrilla" },
-    { pt: "lenha", es: "leña" },
-    { pt: "calefação", es: "calefacción" },
-    { pt: "andar", es: "planta/piso" },
-    { pt: "quarto", es: "habitación" },
-    { pt: "banheiro", es: "baño" }
-  ],
-  miniDialogues: [
-    {
-      speaker: "Hóspede",
-      pt: "A cabana tem cozinha?",
-      es: "¿La cabaña tiene cocina?"
-    },
-    {
-      speaker: "Colaborador",
-      pt: "Sim, totalmente equipada",
-      es: "Sí, totalmente equipada"
-    }
-  ],
-  quiz: [
-    {
-      question: "¿Cómo se dice 'parrilla'?",
-      options: ["forno", "churrasqueira", "fogão"],
-      answer: "churrasqueira"
-    }
-  ]
-},
-{
-  id: "loft",
-  title: "Loft",
-  category: "Habitaciones",
-  emoji: "🛌",
-  phrases: [
-    { pt: "O loft tem vista para o lago", es: "El loft tiene vista al lago" },
-    { pt: "Tem cama king size", es: "Tiene cama king size" },
-    { pt: "Possui hidromassagem", es: "Tiene hidromasaje" },
-    { pt: "Tem ar condicionado", es: "Tiene aire acondicionado" },
-    { pt: "Tem cozinha equipada", es: "Tiene cocina equipada" },
-    { pt: "É ideal para casais", es: "Es ideal para parejas" },
-    { pt: "Tem deck privativo", es: "Tiene deck privado" },
-    { pt: "Muito confortável", es: "Muy cómodo" }
-  ],
-  vocab: [
-    { pt: "loft", es: "loft" },
-    { pt: "vista", es: "vista" },
-    { pt: "lago", es: "lago" },
-    { pt: "cama", es: "cama" },
-    { pt: "hidromassagem", es: "hidromasaje" },
-    { pt: "ar", es: "aire" },
-    { pt: "casal", es: "pareja" },
-    { pt: "conforto", es: "confort" }
-  ],
-  miniDialogues: [
-    {
-      speaker: "Colaborador",
-      pt: "O loft tem vista incrível",
-      es: "El loft tiene vista increíble"
-    },
-    {
-      speaker: "Hóspede",
-      pt: "Perfeito",
-      es: "Perfecto"
-    }
-  ],
-  quiz: [
-    {
-      question: "¿Cómo se dice 'vista al lago'?",
-      options: ["vista para o lago", "vista do quarto", "vista geral"],
-      answer: "vista para o lago"
-    }
-  ]
-},
-{
-  id: "suite_deluxe",
-  title: "Suite Deluxe",
-  category: "Habitaciones",
-  emoji: "🛏️",
-  phrases: [
-    { pt: "A suíte deluxe fica na parte superior", es: "La suite deluxe está en la parte superior" },
-    { pt: "Tem vista para o lago", es: "Tiene vista al lago" },
-    { pt: "Possui hidromassagem", es: "Tiene hidromasaje" },
-    { pt: "Tem cama queen", es: "Tiene cama queen" },
-    { pt: "É muito confortável", es: "Es muy cómoda" },
-    { pt: "Tem frigobar", es: "Tiene frigobar" },
-    { pt: "Inclui Wi-Fi", es: "Incluye WiFi" },
-    { pt: "É ideal para descanso", es: "Es ideal para descansar" }
-  ],
-  vocab: [
-    { pt: "suíte", es: "suite" },
-    { pt: "vista", es: "vista" },
-    { pt: "lago", es: "lago" },
-    { pt: "cama", es: "cama" },
-    { pt: "banheiro", es: "baño" },
-    { pt: "hidromassagem", es: "hidromasaje" },
-    { pt: "conforto", es: "confort" },
-    { pt: "frigobar", es: "frigobar" }
-  ],
-  miniDialogues: [
-    { speaker: "Colaborador", pt: "A suíte tem vista para o lago", es: "La suite tiene vista al lago" },
-    { speaker: "Hóspede", pt: "Perfeito", es: "Perfecto" }
-  ],
-  quiz: [
-    {
-      question: "¿Cómo se dice 'suite'?",
-      options: ["quarto", "suíte", "cama"],
-      answer: "suíte"
-    }
-  ]
-},
-{
-  id: "desayuno",
-  title: "Desayuno",
-  category: "Gastronomía",
-  emoji: "☕",
-  phrases: [
-    { pt: "O café da manhã está incluído", es: "El desayuno está incluido" },
-    { pt: "É servido das 7 às 10", es: "Se sirve de 7 a 10" },
-    { pt: "É buffet", es: "Es buffet" },
-    { pt: "Tem café, chá e sucos", es: "Tiene café, té y jugos" },
-    { pt: "Também frutas e pães", es: "También frutas y panes" },
-    { pt: "Fica no restaurante", es: "Está en el restaurante" },
-    { pt: "Pode ir quando quiser", es: "Puede ir cuando quiera" },
-    { pt: "Bom apetite", es: "Buen provecho" }
-  ],
-  vocab: [
-    { pt: "café", es: "café" },
-    { pt: "manhã", es: "mañana" },
-    { pt: "suco", es: "jugo" },
-    { pt: "fruta", es: "fruta" },
-    { pt: "pão", es: "pan" },
-    { pt: "leite", es: "leche" },
-    { pt: "chá", es: "té" },
-    { pt: "buffet", es: "buffet" }
-  ],
-  miniDialogues: [
-    { speaker: "Hóspede", pt: "O café está incluído?", es: "¿El desayuno está incluido?" },
-    { speaker: "Colaborador", pt: "Sim, está incluído", es: "Sí, está incluido" }
-  ],
-  quiz: [
-    {
-      question: "¿Cómo se dice 'desayuno'?",
-      options: ["jantar", "café da manhã", "almoço"],
-      answer: "café da manhã"
-    }
-  ]
-},
-{
-  id: "wifi",
-  title: "WiFi",
-  category: "Servicios",
-  emoji: "📶",
-  phrases: [
-    { pt: "O Wi-Fi é gratuito", es: "El WiFi es gratuito" },
-    { pt: "Funciona em todo o hotel", es: "Funciona en todo el hotel" },
-    { pt: "A senha é esta", es: "La contraseña es esta" },
-    { pt: "Se precisar, avise", es: "Si necesita, avise" },
-    { pt: "Pode usar livremente", es: "Puede usarlo libremente" },
-    { pt: "É rápido", es: "Es rápido" },
-    { pt: "Está incluído", es: "Está incluido" },
-    { pt: "Qualquer dúvida me avise", es: "Cualquier duda avíseme" }
-  ],
-  vocab: [
-    { pt: "senha", es: "contraseña" },
-    { pt: "internet", es: "internet" },
-    { pt: "rede", es: "red" },
-    { pt: "sinal", es: "señal" },
-    { pt: "acesso", es: "acceso" },
-    { pt: "conexão", es: "conexión" },
-    { pt: "rápido", es: "rápido" },
-    { pt: "grátis", es: "gratis" }
-  ],
-  miniDialogues: [
-    { speaker: "Hóspede", pt: "Qual é a senha?", es: "¿Cuál es la contraseña?" },
-    { speaker: "Colaborador", pt: "A senha é esta", es: "La contraseña es esta" }
-  ],
-  quiz: [
-    {
-      question: "¿Cómo se dice 'contraseña'?",
-      options: ["senha", "rede", "wifi"],
-      answer: "senha"
-    }
-  ]
-},
-{
-  id: "ubicacion",
-  title: "Ubicación",
-  category: "Información",
-  emoji: "📍",
-  phrases: [
-    { pt: "Estamos em Puerto Manzano", es: "Estamos en Puerto Manzano" },
-    { pt: "A 7 km do centro", es: "A 7 km del centro" },
-    { pt: "Perto do lago", es: "Cerca del lago" },
-    { pt: "A vista é incrível", es: "La vista es increíble" },
-    { pt: "É uma zona tranquila", es: "Es una zona tranquila" },
-    { pt: "Tem acesso fácil", es: "Tiene acceso fácil" },
-    { pt: "É seguro", es: "Es seguro" },
-    { pt: "Muito bonito", es: "Muy lindo" }
-  ],
-  vocab: [
-    { pt: "centro", es: "centro" },
-    { pt: "lago", es: "lago" },
-    { pt: "zona", es: "zona" },
-    { pt: "tranquilo", es: "tranquilo" },
-    { pt: "acesso", es: "acceso" },
-    { pt: "rua", es: "calle" },
-    { pt: "cidade", es: "ciudad" },
-    { pt: "localização", es: "ubicación" }
-  ],
-  miniDialogues: [
-    { speaker: "Hóspede", pt: "É longe do centro?", es: "¿Está lejos del centro?" },
-    { speaker: "Colaborador", pt: "Apenas 7 km", es: "Solo 7 km" }
-  ],
-  quiz: [
-    {
-      question: "¿Cómo se dice 'centro'?",
-      options: ["zona", "centro", "bairro"],
-      answer: "centro"
-    }
-  ]
-},
-{
-  id: "transfer",
-  title: "Transfer",
-  category: "Servicios",
-  emoji: "🚐",
-  phrases: [
-    { pt: "Oferecemos transfer", es: "Ofrecemos transfer" },
-    { pt: "Podemos organizar", es: "Podemos organizar" },
-    { pt: "É com custo adicional", es: "Es con costo adicional" },
-    { pt: "Para o aeroporto", es: "Al aeropuerto" },
-    { pt: "Para o centro", es: "Al centro" },
-    { pt: "Horário combinado", es: "Horario acordado" },
-    { pt: "Precisa reservar antes", es: "Debe reservar antes" },
-    { pt: "Quer que eu reserve?", es: "¿Quiere que lo reserve?" }
-  ],
-  vocab: [
-    { pt: "transfer", es: "transfer" },
-    { pt: "aeroporto", es: "aeropuerto" },
-    { pt: "reserva", es: "reserva" },
-    { pt: "horário", es: "horario" },
-    { pt: "carro", es: "auto" },
-    { pt: "motorista", es: "chofer" },
-    { pt: "viagem", es: "viaje" },
-    { pt: "serviço", es: "servicio" }
-  ],
-  miniDialogues: [
-    { speaker: "Colaborador", pt: "Quer transfer?", es: "¿Quiere transfer?" },
-    { speaker: "Hóspede", pt: "Sim", es: "Sí" }
-  ],
-  quiz: [
-    {
-      question: "¿Cómo se dice 'aeropuerto'?",
-      options: ["rodoviária", "aeroporto", "terminal"],
-      answer: "aeroporto"
-    }
-  ]
-},
-{
-  id: "suite_standard",
-  title: "Suite Standard",
-  category: "Habitaciones",
-  emoji: "🛏️",
-  phrases: [
-    { pt: "A suíte standard fica no nível inferior", es: "La suite standard está en el nivel inferior" },
-    { pt: "Tem vista para o lago", es: "Tiene vista al lago" },
-    { pt: "Possui cama queen size", es: "Tiene cama queen size" },
-    { pt: "O banheiro tem hidromassagem", es: "El baño tiene hidromasaje" },
-    { pt: "Também tem box de ducha", es: "También tiene box de ducha" },
-    { pt: "Inclui Wi-Fi", es: "Incluye WiFi" },
-    { pt: "Tem TV com canais", es: "Tiene TV con canales" },
-    { pt: "É uma opção muito confortável", es: "Es una opción muy cómoda" }
-  ],
-  vocab: [
-    { pt: "nível inferior", es: "nivel inferior" },
-    { pt: "suíte", es: "suite" },
-    { pt: "vista", es: "vista" },
-    { pt: "banheiro", es: "baño" },
-    { pt: "ducha", es: "ducha" },
-    { pt: "hidromassagem", es: "hidromasaje" },
-    { pt: "televisão", es: "televisión" },
-    { pt: "confortável", es: "cómoda" }
-  ],
-  miniDialogues: [
-    { speaker: "Hóspede", pt: "A suíte standard tem hidromassagem?", es: "¿La suite standard tiene hidromasaje?" },
-    { speaker: "Colaborador", pt: "Sim, no banheiro", es: "Sí, en el baño" }
-  ],
-  quiz: [
-    {
-      question: "¿Cómo se dice 'nivel inferior'?",
-      options: ["nível superior", "nível inferior", "andar alto"],
-      answer: "nível inferior"
-    }
-  ]
-},
-{
-  id: "checkin_inicial",
-  title: "Check-in inicial",
-  category: "Recepción",
-  emoji: "🧾",
-  phrases: [
-    { pt: "Vamos fazer seu check-in", es: "Vamos a hacer su check-in" },
-    { pt: "Preciso confirmar alguns dados", es: "Necesito confirmar algunos datos" },
-    { pt: "Sua reserva é para hoje", es: "Su reserva es para hoy" },
-    { pt: "A estadia é de duas noites", es: "La estadía es de dos noches" },
-    { pt: "O quarto já está disponível", es: "La habitación ya está disponible" },
-    { pt: "Vou entregar a chave", es: "Voy a entregar la llave" },
-    { pt: "Se precisar de ajuda, avise", es: "Si necesita ayuda, avise" },
-    { pt: "Desejo uma excelente estadia", es: "Le deseo una excelente estadía" }
-  ],
-  vocab: [
-    { pt: "check-in", es: "check-in" },
-    { pt: "estadia", es: "estadía" },
-    { pt: "dados", es: "datos" },
-    { pt: "disponível", es: "disponible" },
-    { pt: "chave", es: "llave" },
-    { pt: "ajuda", es: "ayuda" },
-    { pt: "hoje", es: "hoy" },
-    { pt: "noite", es: "noche" }
-  ],
-  miniDialogues: [
-    { speaker: "Colaborador", pt: "Vamos fazer seu check-in", es: "Vamos a hacer su check-in" },
-    { speaker: "Hóspede", pt: "Perfeito", es: "Perfecto" }
-  ],
-  quiz: [
-    {
-      question: "¿Cómo se dice 'estadía'?",
-      options: ["reserva", "estadia", "entrada"],
-      answer: "estadia"
-    }
-  ]
-},
-{
-  id: "explicacao_hotel",
-  title: "Explicación del hotel",
-  category: "Información",
-  emoji: "🏨",
-  phrases: [
-    { pt: "Somos um complexo com cabanas, loft e suítes", es: "Somos un complejo con cabañas, loft y suites" },
-    { pt: "Todas as unidades têm vista para o lago", es: "Todas las unidades tienen vista al lago" },
-    { pt: "Estamos a 7 km do centro", es: "Estamos a 7 km del centro" },
-    { pt: "Estamos perto do Cerro Bayo", es: "Estamos cerca del Cerro Bayo" },
-    { pt: "Oferecemos atendimento personalizado", es: "Ofrecemos atención personalizada" },
-    { pt: "O ambiente é familiar e acolhedor", es: "El ambiente es familiar y acogedor" },
-    { pt: "Aqui o hóspede pode descansar", es: "Aquí el huésped puede descansar" },
-    { pt: "É um lugar muito especial", es: "Es un lugar muy especial" }
-  ],
-  vocab: [
-    { pt: "complexo", es: "complejo" },
-    { pt: "cabana", es: "cabaña" },
-    { pt: "suíte", es: "suite" },
-    { pt: "vista", es: "vista" },
-    { pt: "lago", es: "lago" },
-    { pt: "centro", es: "centro" },
-    { pt: "acolhedor", es: "acogedor" },
-    { pt: "descansar", es: "descansar" }
-  ],
-  miniDialogues: [
-    { speaker: "Hóspede", pt: "O hotel fica perto do centro?", es: "¿El hotel queda cerca del centro?" },
-    { speaker: "Colaborador", pt: "Estamos a 7 km", es: "Estamos a 7 km" }
-  ],
-  quiz: [
-    {
-      question: "¿Cómo se dice 'acogedor'?",
-      options: ["acolhedor", "barulhento", "frio"],
-      answer: "acolhedor"
-    }
-  ]
-},
-{
-  id: "horarios_servicos",
-  title: "Horarios y servicios",
-  category: "Servicios",
-  emoji: "⏰",
-  phrases: [
-    { pt: "O check-out é até as 10 da manhã", es: "El check-out es hasta las 10 de la mañana" },
-    { pt: "A recepção está à disposição", es: "La recepción está a disposición" },
-    { pt: "O café é servido pela manhã", es: "El desayuno se sirve por la mañana" },
-    { pt: "A limpeza é diária", es: "La limpieza es diaria" },
-    { pt: "A reposição de lenha é diária", es: "La reposición de leña es diaria" },
-    { pt: "O estacionamento é descoberto", es: "El estacionamiento es descubierto" },
-    { pt: "O Wi-Fi é livre", es: "El WiFi es libre" },
-    { pt: "Se precisar de algo, avise", es: "Si necesita algo, avise" }
-  ],
-  vocab: [
-    { pt: "horário", es: "horario" },
-    { pt: "manhã", es: "mañana" },
-    { pt: "limpeza", es: "limpieza" },
-    { pt: "lenha", es: "leña" },
-    { pt: "estacionamento", es: "estacionamiento" },
-    { pt: "recepção", es: "recepción" },
-    { pt: "serviço", es: "servicio" },
-    { pt: "disposição", es: "disposición" }
-  ],
-  miniDialogues: [
-    { speaker: "Hóspede", pt: "Até que horas é o check-out?", es: "¿Hasta qué hora es el check-out?" },
-    { speaker: "Colaborador", pt: "Até as 10 da manhã", es: "Hasta las 10 de la mañana" }
-  ],
-  quiz: [
-    {
-      question: "¿Cómo se dice 'limpieza'?",
-      options: ["limpeza", "lavagem", "ordem"],
-      answer: "limpeza"
-    }
-  ]
-},
-{
-  id: "cabana_8_pessoas",
-  title: "Cabaña hasta 8 personas",
-  category: "Habitaciones",
-  emoji: "🏘️",
-  phrases: [
-    { pt: "Esta cabana acomoda até 8 pessoas", es: "Esta cabaña aloja hasta 8 personas" },
-    { pt: "Tem uma suíte extra", es: "Tiene una suite extra" },
-    { pt: "Há um toilette na entrada", es: "Hay un toilette en la entrada" },
-    { pt: "A sala tem divãs-cama", es: "La sala tiene divanes-cama" },
-    { pt: "No andar superior há dois quartos", es: "En la planta superior hay dos habitaciones" },
-    { pt: "A hidromassagem tem vista para o lago", es: "El hidromasaje tiene vista al lago" },
-    { pt: "É ideal para famílias grandes", es: "Es ideal para familias grandes" },
-    { pt: "Também tem limpeza diária", es: "También tiene limpieza diaria" }
-  ],
-  vocab: [
-    { pt: "até", es: "hasta" },
-    { pt: "suíte extra", es: "suite extra" },
-    { pt: "toilette", es: "toilette" },
-    { pt: "sala", es: "sala" },
-    { pt: "divã", es: "diván" },
-    { pt: "quarto", es: "habitación" },
-    { pt: "família", es: "familia" },
-    { pt: "grande", es: "grande" }
-  ],
-  miniDialogues: [
-    { speaker: "Hóspede", pt: "A cabana é para quantas pessoas?", es: "¿La cabaña es para cuántas personas?" },
-    { speaker: "Colaborador", pt: "Até 8 pessoas", es: "Hasta 8 personas" }
-  ],
-  quiz: [
-    {
-      question: "¿Cómo se dice 'familia grande'?",
-      options: ["família grande", "grupo curto", "casal pequeno"],
-      answer: "família grande"
-    }
-  ]
-},
-{
-  id: "cozinha_equipada",
-  title: "Cocina equipada",
-  category: "Habitaciones",
-  emoji: "🍳",
-  phrases: [
-    { pt: "A cozinha está totalmente equipada", es: "La cocina está totalmente equipada" },
-    { pt: "Tem forno elétrico", es: "Tiene horno eléctrico" },
-    { pt: "Tem micro-ondas", es: "Tiene microondas" },
-    { pt: "Tem cafeteira elétrica", es: "Tiene cafetera eléctrica" },
-    { pt: "Também tem chaleira elétrica", es: "También tiene jarra eléctrica" },
-    { pt: "Há geladeira e louça completa", es: "Hay heladera y vajilla completa" },
-    { pt: "Está pronta para uso", es: "Está lista para usar" },
-    { pt: "É muito prática para famílias", es: "Es muy práctica para familias" }
-  ],
-  vocab: [
-    { pt: "cozinha", es: "cocina" },
-    { pt: "forno", es: "horno" },
-    { pt: "micro-ondas", es: "microondas" },
-    { pt: "cafeteira", es: "cafetera" },
-    { pt: "chaleira", es: "jarra eléctrica" },
-    { pt: "geladeira", es: "heladera" },
-    { pt: "louça", es: "vajilla" },
-    { pt: "uso", es: "uso" }
-  ],
-  miniDialogues: [
-    { speaker: "Hóspede", pt: "A cabana tem micro-ondas?", es: "¿La cabaña tiene microondas?" },
-    { speaker: "Colaborador", pt: "Sim, a cozinha é completa", es: "Sí, la cocina es completa" }
-  ],
-  quiz: [
-    {
-      question: "¿Cómo se dice 'heladera'?",
-      options: ["geladeira", "fogão", "pia"],
-      answer: "geladeira"
-    }
-  ]
-},
-{
-  id: "calefacao_lareira",
-  title: "Calefacción y hogar a leña",
-  category: "Habitaciones",
-  emoji: "🔥",
-  phrases: [
-    { pt: "A unidade tem calefação central", es: "La unidad tiene calefacción central" },
-    { pt: "Funciona em todos os ambientes", es: "Funciona en todos los ambientes" },
-    { pt: "Também há lareira a lenha", es: "También hay hogar a leña" },
-    { pt: "A lenha é reposta todos os dias", es: "La leña se repone todos los días" },
-    { pt: "É ideal para o inverno", es: "Es ideal para el invierno" },
-    { pt: "Mantém o ambiente quente", es: "Mantiene el ambiente cálido" },
-    { pt: "Se precisar de mais lenha, avise", es: "Si necesita más leña, avise" },
-    { pt: "É muito aconchegante", es: "Es muy acogedor" }
-  ],
-  vocab: [
-    { pt: "calefação", es: "calefacción" },
-    { pt: "central", es: "central" },
-    { pt: "ambiente", es: "ambiente" },
-    { pt: "lareira", es: "hogar" },
-    { pt: "lenha", es: "leña" },
-    { pt: "inverno", es: "invierno" },
-    { pt: "quente", es: "cálido" },
-    { pt: "aconchegante", es: "acogedor" }
-  ],
-  miniDialogues: [
-    { speaker: "Hóspede", pt: "Tem lareira?", es: "¿Tiene hogar a leña?" },
-    { speaker: "Colaborador", pt: "Sim, e a lenha é reposta diariamente", es: "Sí, y la leña se repone diariamente" }
-  ],
-  quiz: [
-    {
-      question: "¿Cómo se dice 'leña'?",
-      options: ["madeira", "lenha", "fogo"],
-      answer: "lenha"
-    }
-  ]
-},
-{
-  id: "limpeza_servicos",
-  title: "Limpieza y servicios",
-  category: "Servicios",
-  emoji: "🧹",
-  phrases: [
-    { pt: "O serviço de limpeza é diário", es: "El servicio de limpieza es diario" },
-    { pt: "Também há reposição de toalhas", es: "También hay reposición de toallas" },
-    { pt: "A lenha é reposta todos os dias", es: "La leña se repone todos los días" },
-    { pt: "Se precisar de algo extra, avise", es: "Si necesita algo extra, avise" },
-    { pt: "Podemos ajudar com amenidades", es: "Podemos ayudar con amenities" },
-    { pt: "Queremos que sua estadia seja confortável", es: "Queremos que su estadía sea cómoda" },
-    { pt: "Estamos à disposição", es: "Estamos a disposición" },
-    { pt: "Com muito prazer", es: "Con mucho gusto" }
-  ],
-  vocab: [
-    { pt: "limpeza", es: "limpieza" },
-    { pt: "toalha", es: "toalla" },
-    { pt: "amenidades", es: "amenities" },
-    { pt: "diário", es: "diario" },
-    { pt: "extra", es: "extra" },
-    { pt: "confortável", es: "cómoda" },
-    { pt: "ajudar", es: "ayudar" },
-    { pt: "prazer", es: "gusto" }
-  ],
-  miniDialogues: [
-    { speaker: "Hóspede", pt: "A limpeza é todos os dias?", es: "¿La limpieza es todos los días?" },
-    { speaker: "Colaborador", pt: "Sim, diariamente", es: "Sí, diariamente" }
-  ],
-  quiz: [
-    {
-      question: "¿Cómo se dice 'toalla'?",
-      options: ["sabão", "toalha", "cobertor"],
-      answer: "toalha"
-    }
-  ]
-},
-{
-  id: "hidromassagem_conforto",
-  title: "Hidromasaje y confort",
-  category: "Habitaciones",
-  emoji: "🫧",
-  phrases: [
-    { pt: "A unidade tem hidromassagem", es: "La unidad tiene hidromasaje" },
-    { pt: "É ideal para relaxar", es: "Es ideal para relajarse" },
-    { pt: "O banheiro é espaçoso", es: "El baño es espacioso" },
-    { pt: "Há muito conforto", es: "Hay mucho confort" },
-    { pt: "É uma experiência especial", es: "Es una experiencia especial" },
-    { pt: "Muitos hóspedes gostam muito", es: "A muchos huéspedes les gusta mucho" },
-    { pt: "É perfeita para casais", es: "Es perfecta para parejas" },
-    { pt: "Também tem vista linda", es: "También tiene vista linda" }
-  ],
-  vocab: [
-    { pt: "hidromassagem", es: "hidromasaje" },
-    { pt: "relaxar", es: "relajarse" },
-    { pt: "banheiro", es: "baño" },
-    { pt: "espaçoso", es: "espacioso" },
-    { pt: "conforto", es: "confort" },
-    { pt: "experiência", es: "experiencia" },
-    { pt: "casal", es: "pareja" },
-    { pt: "vista", es: "vista" }
-  ],
-  miniDialogues: [
-    { speaker: "Hóspede", pt: "A suíte tem hidromassagem para duas pessoas?", es: "¿La suite tiene hidromasaje para dos personas?" },
-    { speaker: "Colaborador", pt: "Sim, e é muito confortável", es: "Sí, y es muy cómoda" }
-  ],
-  quiz: [
-    {
-      question: "¿Cómo se dice 'relajarse'?",
-      options: ["descansar", "relaxar", "lavar"],
-      answer: "relaxar"
-    }
-  ]
-},
-{
-  id: "vista_lago",
-  title: "Vista al lago",
-  category: "Habitaciones",
-  emoji: "🌊",
-  phrases: [
-    { pt: "Todas as unidades têm vista para o lago", es: "Todas las unidades tienen vista al lago" },
-    { pt: "A vista é panorâmica", es: "La vista es panorámica" },
-    { pt: "É possível ver o Nahuel Huapi", es: "Es posible ver el Nahuel Huapi" },
-    { pt: "A paisagem é maravilhosa", es: "El paisaje es maravilloso" },
-    { pt: "Muitos hóspedes escolhem por isso", es: "Muchos huéspedes eligen por eso" },
-    { pt: "É uma das melhores vistas da região", es: "Es una de las mejores vistas de la zona" },
-    { pt: "Do quarto a vista é incrível", es: "Desde la habitación la vista es increíble" },
-    { pt: "Também do banheiro", es: "También desde el baño" }
-  ],
-  vocab: [
-    { pt: "vista", es: "vista" },
-    { pt: "lago", es: "lago" },
-    { pt: "paisagem", es: "paisaje" },
-    { pt: "maravilhosa", es: "maravilloso" },
-    { pt: "região", es: "región" },
-    { pt: "quarto", es: "habitación" },
-    { pt: "banheiro", es: "baño" },
-    { pt: "panorâmica", es: "panorámica" }
-  ],
-  miniDialogues: [
-    { speaker: "Hóspede", pt: "O quarto tem vista para o lago?", es: "¿La habitación tiene vista al lago?" },
-    { speaker: "Colaborador", pt: "Sim, todas as unidades têm", es: "Sí, todas las unidades tienen" }
-  ],
-  quiz: [
-    {
-      question: "¿Cómo se dice 'paisaje'?",
-      options: ["vista", "paisagem", "natureza"],
-      answer: "paisagem"
-    }
-  ]
-},
-{
-  id: "restaurante_tasca",
-  title: "Restaurante La Tasca",
-  category: "Gastronomía",
-  emoji: "🍽️",
-  phrases: [
-    { pt: "O restaurante se chama La Tasca", es: "El restaurante se llama La Tasca" },
-    { pt: "Aqui é servido o café da manhã", es: "Aquí se sirve el desayuno" },
-    { pt: "Também há opções para jantar", es: "También hay opciones para cenar" },
-    { pt: "É um ambiente acolhedor", es: "Es un ambiente acogedor" },
-    { pt: "Fica dentro do hotel", es: "Está dentro del hotel" },
-    { pt: "É muito conveniente", es: "Es muy conveniente" },
-    { pt: "Tem boa qualidade", es: "Tiene buena calidad" },
-    { pt: "Recomendamos muito", es: "Lo recomendamos mucho" }
-  ],
-  vocab: [
-    { pt: "restaurante", es: "restaurante" },
-    { pt: "jantar", es: "cena" },
-    { pt: "café", es: "desayuno" },
-    { pt: "ambiente", es: "ambiente" },
-    { pt: "hotel", es: "hotel" },
-    { pt: "comida", es: "comida" },
-    { pt: "qualidade", es: "calidad" },
-    { pt: "recomendar", es: "recomendar" }
-  ],
-  miniDialogues: [
-    { speaker: "Hóspede", pt: "Há restaurante no hotel?", es: "¿Hay restaurante en el hotel?" },
-    { speaker: "Colaborador", pt: "Sim, o La Tasca", es: "Sí, La Tasca" }
-  ],
-  quiz: [
-    {
-      question: "¿Cómo se dice 'cena'?",
-      options: ["almoço", "jantar", "café"],
-      answer: "jantar"
-    }
-  ]
-},
-{
-  id: "restaurante_praia",
-  title: "Restaurante de playa",
-  category: "Gastronomía",
-  emoji: "🏖️",
-  phrases: [
-    { pt: "Temos um restaurante na praia", es: "Tenemos un restaurante en la playa" },
-    { pt: "Funciona no verão", es: "Funciona en verano" },
-    { pt: "Fica junto ao lago", es: "Está junto al lago" },
-    { pt: "A vista é incrível", es: "La vista es increíble" },
-    { pt: "É um serviço terceirizado", es: "Es un servicio tercerizado" },
-    { pt: "Hóspedes têm benefícios", es: "Los huéspedes tienen beneficios" },
-    { pt: "Vale muito a pena", es: "Vale mucho la pena" },
-    { pt: "Podemos indicar", es: "Podemos recomendar" }
-  ],
-  vocab: [
-    { pt: "praia", es: "playa" },
-    { pt: "verão", es: "verano" },
-    { pt: "lago", es: "lago" },
-    { pt: "benefício", es: "beneficio" },
-    { pt: "serviço", es: "servicio" },
-    { pt: "vista", es: "vista" },
-    { pt: "indicar", es: "recomendar" },
-    { pt: "externo", es: "externo" }
-  ],
-  miniDialogues: [
-    { speaker: "Colaborador", pt: "No verão recomendamos o restaurante de praia", es: "En verano recomendamos el restaurante de playa" },
-    { speaker: "Hóspede", pt: "Perfeito", es: "Perfecto" }
-  ],
-  quiz: [
-    {
-      question: "¿Cómo se dice 'verano'?",
-      options: ["inverno", "verão", "outono"],
-      answer: "verão"
-    }
-  ]
-},
-{
-  id: "recomendacoes_gastronomia",
-  title: "Recomendaciones gastronómicas",
-  category: "Gastronomía",
-  emoji: "🍷",
-  phrases: [
-    { pt: "Posso recomendar um restaurante", es: "Puedo recomendar un restaurante" },
-    { pt: "Há opções perto daqui", es: "Hay opciones cerca de aquí" },
-    { pt: "Tem comida regional", es: "Tiene comida regional" },
-    { pt: "Também internacional", es: "También internacional" },
-    { pt: "É muito bem avaliado", es: "Está muy bien valorado" },
-    { pt: "Fica a poucos minutos", es: "Está a pocos minutos" },
-    { pt: "Posso fazer reserva", es: "Puedo hacer reserva" },
-    { pt: "Quer alguma recomendação?", es: "¿Quiere alguna recomendación?" }
-  ],
-  vocab: [
-    { pt: "recomendação", es: "recomendación" },
-    { pt: "comida", es: "comida" },
-    { pt: "regional", es: "regional" },
-    { pt: "internacional", es: "internacional" },
-    { pt: "perto", es: "cerca" },
-    { pt: "reserva", es: "reserva" },
-    { pt: "restaurante", es: "restaurante" },
-    { pt: "opção", es: "opción" }
-  ],
-  miniDialogues: [
-    { speaker: "Hóspede", pt: "Pode recomendar um lugar?", es: "¿Puede recomendar un lugar?" },
-    { speaker: "Colaborador", pt: "Claro, tenho várias opções", es: "Claro, tengo varias opciones" }
-  ],
-  quiz: [
-    {
-      question: "¿Cómo se dice 'cerca'?",
-      options: ["longe", "perto", "fora"],
-      answer: "perto"
-    }
-  ]
-},
-{
-  id: "dietas",
-  title: "Dietas y preferencias",
-  category: "Gastronomía",
-  emoji: "🥗",
-  phrases: [
-    { pt: "Tem alguma restrição alimentar?", es: "¿Tiene alguna restricción alimentaria?" },
-    { pt: "Podemos adaptar", es: "Podemos adaptar" },
-    { pt: "Há opções vegetarianas", es: "Hay opciones vegetarianas" },
-    { pt: "Também sem glúten", es: "También sin gluten" },
-    { pt: "Sem lactose", es: "Sin lactosa" },
-    { pt: "Vamos tentar ajudar", es: "Vamos a intentar ayudar" },
-    { pt: "Avise com antecedência", es: "Avise con anticipación" },
-    { pt: "Faremos o possível", es: "Haremos lo posible" }
-  ],
-  vocab: [
-    { pt: "restrição", es: "restricción" },
-    { pt: "vegetariano", es: "vegetariano" },
-    { pt: "glúten", es: "gluten" },
-    { pt: "lactose", es: "lactosa" },
-    { pt: "comida", es: "comida" },
-    { pt: "adaptar", es: "adaptar" },
-    { pt: "ajudar", es: "ayudar" },
-    { pt: "opção", es: "opción" }
-  ],
-  miniDialogues: [
-    { speaker: "Colaborador", pt: "Tem alguma restrição?", es: "¿Tiene alguna restricción?" },
-    { speaker: "Hóspede", pt: "Sou vegetariano", es: "Soy vegetariano" }
-  ],
-  quiz: [
-    {
-      question: "¿Cómo se dice 'sin gluten'?",
-      options: ["sem glúten", "sem leite", "sem açúcar"],
-      answer: "sem glúten"
-    }
-  ]
-},
-{
-  id: "indicacoes",
-  title: "Dar indicaciones",
-  category: "Servicios",
-  emoji: "🧭",
-  phrases: [
-    { pt: "Fica à direita", es: "Está a la derecha" },
-    { pt: "Depois à esquerda", es: "Luego a la izquierda" },
-    { pt: "Siga reto", es: "Siga derecho" },
-    { pt: "É perto daqui", es: "Está cerca de aquí" },
-    { pt: "Pode ir caminhando", es: "Puede ir caminando" },
-    { pt: "Também pode ir de carro", es: "También puede ir en auto" },
-    { pt: "É fácil de encontrar", es: "Es fácil de encontrar" },
-    { pt: "Se precisar, explico melhor", es: "Si necesita, explico mejor" }
-  ],
-  vocab: [
-    { pt: "direita", es: "derecha" },
-    { pt: "esquerda", es: "izquierda" },
-    { pt: "reto", es: "recto" },
-    { pt: "perto", es: "cerca" },
-    { pt: "carro", es: "auto" },
-    { pt: "caminhar", es: "caminar" },
-    { pt: "rua", es: "calle" },
-    { pt: "mapa", es: "mapa" }
-  ],
-  miniDialogues: [
-    { speaker: "Hóspede", pt: "Onde fica o restaurante?", es: "¿Dónde queda el restaurante?" },
-    { speaker: "Colaborador", pt: "À direita e depois reto", es: "A la derecha y luego recto" }
-  ],
-  quiz: [
-    {
-      question: "¿Cómo se dice 'izquierda'?",
-      options: ["direita", "esquerda", "frente"],
-      answer: "esquerda"
-    }
-  ]
-},
-{
-  id: "excursiones_general",
-  title: "Excursiones",
-  category: "Experiencia",
-  emoji: "🗺️",
-  phrases: [
-    { pt: "Podemos organizar excursões", es: "Podemos organizar excursiones" },
-    { pt: "Há várias opções", es: "Hay varias opciones" },
-    { pt: "Depende do clima", es: "Depende del clima" },
-    { pt: "São muito bonitas", es: "Son muy lindas" },
-    { pt: "Incluem transporte", es: "Incluyen transporte" },
-    { pt: "Recomendamos muito", es: "Las recomendamos mucho" },
-    { pt: "Quer que eu reserve?", es: "¿Quiere que reserve?" },
-    { pt: "É uma experiência incrível", es: "Es una experiencia increíble" }
-  ],
-  vocab: [
-    { pt: "excursão", es: "excursión" },
-    { pt: "clima", es: "clima" },
-    { pt: "opção", es: "opción" },
-    { pt: "transporte", es: "transporte" },
-    { pt: "reserva", es: "reserva" },
-    { pt: "atividade", es: "actividad" },
-    { pt: "natureza", es: "naturaleza" },
-    { pt: "passeio", es: "paseo" }
-  ],
-  miniDialogues: [
-    { speaker: "Colaborador", pt: "Quer fazer alguma excursão?", es: "¿Quiere hacer alguna excursión?" },
-    { speaker: "Hóspede", pt: "Sim, quais recomenda?", es: "Sí, ¿cuáles recomienda?" }
-  ],
-  quiz: [
-    {
-      question: "¿Cómo se dice 'excursión'?",
-      options: ["passeio", "excursão", "viagem"],
-      answer: "excursão"
-    }
-  ]
-},
-{
-  id: "cerro_bayo",
-  title: "Cerro Bayo",
-  category: "Experiencia",
-  emoji: "⛷️",
-  phrases: [
-    { pt: "O Cerro Bayo fica a 3 km", es: "El Cerro Bayo está a 3 km" },
-    { pt: "É ideal para esquiar", es: "Es ideal para esquiar" },
-    { pt: "Também para snowboard", es: "También para snowboard" },
-    { pt: "Tem pistas para todos os níveis", es: "Tiene pistas para todos los niveles" },
-    { pt: "Podemos organizar transporte", es: "Podemos organizar transporte" },
-    { pt: "É muito bonito no inverno", es: "Es muy lindo en invierno" },
-    { pt: "Vale muito a pena", es: "Vale mucho la pena" },
-    { pt: "Quer ir amanhã?", es: "¿Quiere ir mañana?" }
-  ],
-  vocab: [
-    { pt: "esqui", es: "esquí" },
-    { pt: "neve", es: "nieve" },
-    { pt: "montanha", es: "montaña" },
-    { pt: "inverno", es: "invierno" },
-    { pt: "pista", es: "pista" },
-    { pt: "nível", es: "nivel" },
-    { pt: "snowboard", es: "snowboard" },
-    { pt: "transporte", es: "transporte" }
-  ],
-  miniDialogues: [
-    { speaker: "Hóspede", pt: "É longe o Cerro Bayo?", es: "¿Está lejos el Cerro Bayo?" },
-    { speaker: "Colaborador", pt: "Apenas 3 km", es: "Solo 3 km" }
-  ],
-  quiz: [
-    {
-      question: "¿Cómo se dice 'nieve'?",
-      options: ["neve", "chuva", "vento"],
-      answer: "neve"
-    }
-  ]
-},
-{
-  id: "lago_passeios",
-  title: "Paseos en lago",
-  category: "Experiencia",
-  emoji: "🚤",
-  phrases: [
-    { pt: "Há passeios de barco", es: "Hay paseos en barco" },
-    { pt: "No lago Nahuel Huapi", es: "En el lago Nahuel Huapi" },
-    { pt: "São muito tranquilos", es: "Son muy tranquilos" },
-    { pt: "A vista é incrível", es: "La vista es increíble" },
-    { pt: "Duram algumas horas", es: "Duran algunas horas" },
-    { pt: "Incluem guia", es: "Incluyen guía" },
-    { pt: "Podemos reservar", es: "Podemos reservar" },
-    { pt: "É muito recomendado", es: "Es muy recomendado" }
-  ],
-  vocab: [
-    { pt: "barco", es: "barco" },
-    { pt: "lago", es: "lago" },
-    { pt: "guia", es: "guía" },
-    { pt: "passeio", es: "paseo" },
-    { pt: "água", es: "agua" },
-    { pt: "natureza", es: "naturaleza" },
-    { pt: "tranquilo", es: "tranquilo" },
-    { pt: "horas", es: "horas" }
-  ],
-  miniDialogues: [
-    { speaker: "Colaborador", pt: "Recomendamos passeio de barco", es: "Recomendamos paseo en barco" },
-    { speaker: "Hóspede", pt: "Parece ótimo", es: "Parece excelente" }
-  ],
-  quiz: [
-    {
-      question: "¿Cómo se dice 'barco'?",
-      options: ["barco", "navio", "canoa"],
-      answer: "barco"
-    }
-  ]
-},
-{
-  id: "trekking",
-  title: "Trekking",
-  category: "Experiencia",
-  emoji: "🥾",
-  phrases: [
-    { pt: "Há trilhas para caminhar", es: "Hay senderos para caminar" },
-    { pt: "São muito bonitas", es: "Son muy lindas" },
-    { pt: "Algumas são fáceis", es: "Algunas son fáciles" },
-    { pt: "Outras mais exigentes", es: "Otras más exigentes" },
-    { pt: "É importante usar calçado adequado", es: "Es importante usar calzado adecuado" },
-    { pt: "Levar água", es: "Llevar agua" },
-    { pt: "Podemos indicar trilhas", es: "Podemos recomendar senderos" },
-    { pt: "É uma ótima experiência", es: "Es una gran experiencia" }
-  ],
-  vocab: [
-    { pt: "trilha", es: "sendero" },
-    { pt: "caminhar", es: "caminar" },
-    { pt: "calçado", es: "calzado" },
-    { pt: "água", es: "agua" },
-    { pt: "natureza", es: "naturaleza" },
-    { pt: "fácil", es: "fácil" },
-    { pt: "difícil", es: "difícil" },
-    { pt: "montanha", es: "montaña" }
-  ],
-  miniDialogues: [
-    { speaker: "Hóspede", pt: "Há trilhas perto?", es: "¿Hay senderos cerca?" },
-    { speaker: "Colaborador", pt: "Sim, várias opções", es: "Sí, varias opciones" }
-  ],
-  quiz: [
-    {
-      question: "¿Cómo se dice 'sendero'?",
-      options: ["trilha", "rua", "estrada"],
-      answer: "trilha"
-    }
-  ]
-},
-{
-  id: "atividades_hotel",
-  title: "Actividades del hotel",
-  category: "Experiencia",
-  emoji: "🏨",
-  phrases: [
-    { pt: "Pode relaxar no hotel", es: "Puede relajarse en el hotel" },
-    { pt: "Aproveitar a vista", es: "Disfrutar la vista" },
-    { pt: "Usar o deck", es: "Usar el deck" },
-    { pt: "Fazer churrasco", es: "Hacer parrilla" },
-    { pt: "Descansar junto ao lago", es: "Descansar junto al lago" },
-    { pt: "Ler um livro", es: "Leer un libro" },
-    { pt: "Desconectar", es: "Desconectarse" },
-    { pt: "É um lugar para relaxar", es: "Es un lugar para relajarse" }
-  ],
-  vocab: [
-    { pt: "relaxar", es: "relajarse" },
-    { pt: "vista", es: "vista" },
-    { pt: "deck", es: "deck" },
-    { pt: "churrasco", es: "parrilla" },
-    { pt: "lago", es: "lago" },
-    { pt: "descansar", es: "descansar" },
-    { pt: "livro", es: "libro" },
-    { pt: "tranquilo", es: "tranquilo" }
-  ],
-  miniDialogues: [
-    { speaker: "Colaborador", pt: "Aqui é ideal para relaxar", es: "Aquí es ideal para relajarse" },
-    { speaker: "Hóspede", pt: "Sim, é lindo", es: "Sí, es hermoso" }
-  ],
-  quiz: [
-    {
-      question: "¿Cómo se dice 'relajarse'?",
-      options: ["trabalhar", "relaxar", "correr"],
-      answer: "relaxar"
-    }
-  ]
-},
-{
-  id: "problema_wifi",
-  title: "Problema con el WiFi",
-  category: "Problemas",
-  emoji: "📶",
-  phrases: [
-    { pt: "O Wi-Fi não está funcionando?", es: "¿El WiFi no está funcionando?" },
-    { pt: "Vou verificar agora", es: "Voy a verificar ahora" },
-    { pt: "Pode tentar novamente, por favor?", es: "¿Puede intentar nuevamente, por favor?" },
-    { pt: "Vou reiniciar o sistema", es: "Voy a reiniciar el sistema" },
-    { pt: "Em alguns minutos deve voltar", es: "En algunos minutos debería volver" },
-    { pt: "Se continuar sem sinal, me avise", es: "Si sigue sin señal, avíseme" },
-    { pt: "Peço desculpas pelo inconveniente", es: "Le pido disculpas por el inconveniente" },
-    { pt: "Vamos resolver isso", es: "Vamos a resolver esto" }
-  ],
-  vocab: [
-    { pt: "sinal", es: "señal" },
-    { pt: "senha", es: "contraseña" },
-    { pt: "sistema", es: "sistema" },
-    { pt: "reiniciar", es: "reiniciar" },
-    { pt: "conexão", es: "conexión" },
-    { pt: "internet", es: "internet" },
-    { pt: "funcionar", es: "funcionar" },
-    { pt: "inconveniente", es: "inconveniente" }
-  ],
-  miniDialogues: [
-    { speaker: "Hóspede", pt: "O Wi-Fi não funciona no meu quarto", es: "El WiFi no funciona en mi habitación" },
-    { speaker: "Colaborador", pt: "Vou verificar agora mesmo", es: "Voy a verificar ahora mismo" }
-  ],
-  quiz: [
-    {
-      question: "¿Cómo se dice 'reiniciar'?",
-      options: ["reiniciar", "desligar", "entrar"],
-      answer: "reiniciar"
-    }
-  ]
-},
-{
-  id: "problema_agua_quente",
-  title: "Problema con agua caliente",
-  category: "Problemas",
-  emoji: "🚿",
-  phrases: [
-    { pt: "Não tem água quente?", es: "¿No hay agua caliente?" },
-    { pt: "Vou avisar a manutenção", es: "Voy a avisar a mantenimiento" },
-    { pt: "Vamos verificar imediatamente", es: "Vamos a verificar inmediatamente" },
-    { pt: "Peço desculpas pelo transtorno", es: "Le pido disculpas por la molestia" },
-    { pt: "Pode levar alguns minutos", es: "Puede tardar algunos minutos" },
-    { pt: "Aviso assim que estiver resolvido", es: "Le aviso en cuanto esté resuelto" },
-    { pt: "Quer que eu envie alguém agora?", es: "¿Quiere que envíe a alguien ahora?" },
-    { pt: "Vamos fazer o possível", es: "Vamos a hacer lo posible" }
-  ],
-  vocab: [
-    { pt: "água quente", es: "agua caliente" },
-    { pt: "manutenção", es: "mantenimiento" },
-    { pt: "transtorno", es: "molestia" },
-    { pt: "resolver", es: "resolver" },
-    { pt: "verificar", es: "verificar" },
-    { pt: "imediatamente", es: "inmediatamente" },
-    { pt: "banheiro", es: "baño" },
-    { pt: "ducha", es: "ducha" }
-  ],
-  miniDialogues: [
-    { speaker: "Hóspede", pt: "Não sai água quente", es: "No sale agua caliente" },
-    { speaker: "Colaborador", pt: "Vou avisar a manutenção agora", es: "Voy a avisar a mantenimiento ahora" }
-  ],
-  quiz: [
-    {
-      question: "¿Cómo se dice 'agua caliente'?",
-      options: ["água fria", "água quente", "água limpa"],
-      answer: "água quente"
-    }
-  ]
-},
-{
-  id: "problema_chave",
-  title: "Problema con la llave",
-  category: "Problemas",
-  emoji: "🔑",
-  phrases: [
-    { pt: "A chave não funciona?", es: "¿La llave no funciona?" },
-    { pt: "Vou trocar por outra", es: "Voy a cambiarla por otra" },
-    { pt: "Só um momento, por favor", es: "Un momento, por favor" },
-    { pt: "Vou verificar a fechadura", es: "Voy a verificar la cerradura" },
-    { pt: "Pode me acompanhar?", es: "¿Puede acompañarme?" },
-    { pt: "Se preferir, enviamos alguém", es: "Si prefiere, enviamos a alguien" },
-    { pt: "Já estou resolvendo", es: "Ya lo estoy resolviendo" },
-    { pt: "Desculpe o inconveniente", es: "Disculpe el inconveniente" }
-  ],
-  vocab: [
-    { pt: "chave", es: "llave" },
-    { pt: "fechadura", es: "cerradura" },
-    { pt: "trocar", es: "cambiar" },
-    { pt: "porta", es: "puerta" },
-    { pt: "abrir", es: "abrir" },
-    { pt: "fechar", es: "cerrar" },
-    { pt: "acompanhar", es: "acompañar" },
-    { pt: "resolver", es: "resolver" }
-  ],
-  miniDialogues: [
-    { speaker: "Hóspede", pt: "A chave não abre a porta", es: "La llave no abre la puerta" },
-    { speaker: "Colaborador", pt: "Vou trocar por outra agora", es: "Voy a cambiarla por otra ahora" }
-  ],
-  quiz: [
-    {
-      question: "¿Cómo se dice 'cerradura'?",
-      options: ["janela", "fechadura", "maçaneta"],
-      answer: "fechadura"
-    }
-  ]
-},
-{
-  id: "pedido_toalhas",
-  title: "Pedido de toallas y amenities",
-  category: "Problemas",
-  emoji: "🧺",
-  phrases: [
-    { pt: "Precisa de mais toalhas?", es: "¿Necesita más toallas?" },
-    { pt: "Podemos enviar agora", es: "Podemos enviarlas ahora" },
-    { pt: "Também sabonete e shampoo", es: "También jabón y shampoo" },
-    { pt: "Mais travesseiros também?", es: "¿Más almohadas también?" },
-    { pt: "Vou solicitar ao setor", es: "Voy a solicitarlo al sector" },
-    { pt: "Chega em alguns minutos", es: "Llega en algunos minutos" },
-    { pt: "Com muito prazer", es: "Con mucho gusto" },
-    { pt: "Mais alguma coisa?", es: "¿Algo más?" }
-  ],
-  vocab: [
-    { pt: "toalha", es: "toalla" },
-    { pt: "sabonete", es: "jabón" },
-    { pt: "shampoo", es: "shampoo" },
-    { pt: "travesseiro", es: "almohada" },
-    { pt: "cobertor", es: "manta" },
-    { pt: "amenidades", es: "amenities" },
-    { pt: "enviar", es: "enviar" },
-    { pt: "solicitar", es: "solicitar" }
-  ],
-  miniDialogues: [
-    { speaker: "Hóspede", pt: "Preciso de mais toalhas", es: "Necesito más toallas" },
-    { speaker: "Colaborador", pt: "Claro, vamos enviar agora", es: "Claro, vamos a enviarlas ahora" }
-  ],
-  quiz: [
-    {
-      question: "¿Cómo se dice 'almohada'?",
-      options: ["travesseiro", "toalha", "cama"],
-      answer: "travesseiro"
-    }
-  ]
-},
-{
-  id: "barulho",
-  title: "Ruido o molestias",
-  category: "Problemas",
-  emoji: "🔇",
-  phrases: [
-    { pt: "Há muito barulho?", es: "¿Hay mucho ruido?" },
-    { pt: "Vou verificar imediatamente", es: "Voy a verificar inmediatamente" },
-    { pt: "Pedimos desculpas", es: "Pedimos disculpas" },
-    { pt: "Vamos tentar resolver", es: "Vamos a intentar resolverlo" },
-    { pt: "Quer mudar de quarto?", es: "¿Quiere cambiar de habitación?" },
-    { pt: "Depende da disponibilidade", es: "Depende de la disponibilidad" },
-    { pt: "Quer que eu veja uma alternativa?", es: "¿Quiere que vea una alternativa?" },
-    { pt: "Vamos ajudá-lo", es: "Vamos a ayudarlo" }
-  ],
-  vocab: [
-    { pt: "barulho", es: "ruido" },
-    { pt: "silêncio", es: "silencio" },
-    { pt: "quarto", es: "habitación" },
-    { pt: "mudar", es: "cambiar" },
-    { pt: "disponibilidade", es: "disponibilidad" },
-    { pt: "alternativa", es: "alternativa" },
-    { pt: "moléstia", es: "molestia" },
-    { pt: "resolver", es: "resolver" }
-  ],
-  miniDialogues: [
-    { speaker: "Hóspede", pt: "Há muito barulho à noite", es: "Hay mucho ruido por la noche" },
-    { speaker: "Colaborador", pt: "Vou verificar imediatamente", es: "Voy a verificar inmediatamente" }
-  ],
-  quiz: [
-    {
-      question: "¿Cómo se dice 'ruido'?",
-      options: ["barulho", "som", "música"],
-      answer: "barulho"
-    }
-  ]
-},
-{
-  id: "atencao_criancas_familia",
-  title: "Atención a familias con niños",
-  category: "Familias",
-  emoji: "👨‍👩‍👧‍👦",
-  phrases: [
-    { pt: "É uma ótima opção para famílias", es: "Es una excelente opción para familias" },
-    { pt: "Tem espaço para todos", es: "Tiene espacio para todos" },
-    { pt: "As cabanas são muito práticas", es: "Las cabañas son muy prácticas" },
-    { pt: "A cozinha ajuda bastante", es: "La cocina ayuda mucho" },
-    { pt: "Podemos preparar tudo para sua chegada", es: "Podemos preparar todo para su llegada" },
-    { pt: "Quer berço para o bebê?", es: "¿Quiere cuna para el bebé?" },
-    { pt: "Também podemos orientar passeios em família", es: "También podemos orientar paseos en familia" },
-    { pt: "Queremos que todos estejam confortáveis", es: "Queremos que todos estén cómodos" }
-  ],
-  vocab: [
-    { pt: "família", es: "familia" },
-    { pt: "criança", es: "niño" },
-    { pt: "bebê", es: "bebé" },
-    { pt: "berço", es: "cuna" },
-    { pt: "espaço", es: "espacio" },
-    { pt: "cozinha", es: "cocina" },
-    { pt: "confortável", es: "cómodo" },
-    { pt: "passeio", es: "paseo" }
-  ],
-  miniDialogues: [
-    { speaker: "Colaborador", pt: "Viajam com crianças?", es: "¿Viajan con niños?" },
-    { speaker: "Hóspede", pt: "Sim, com duas", es: "Sí, con dos" }
-  ],
-  quiz: [
-    {
-      question: "¿Cómo se dice 'cuna'?",
-      options: ["berço", "cama", "sofá"],
-      answer: "berço"
-    }
-  ]
-},
-{
-  id: "casais_romantico",
-  title: "Atención a parejas",
-  category: "Ventas",
-  emoji: "❤️",
-  phrases: [
-    { pt: "O loft é ideal para casais", es: "El loft es ideal para parejas" },
-    { pt: "A suíte deluxe também", es: "La suite deluxe también" },
-    { pt: "Tem hidromassagem para dois", es: "Tiene hidromasaje para dos" },
-    { pt: "A vista é muito romântica", es: "La vista es muy romántica" },
-    { pt: "É perfeito para descansar", es: "Es perfecto para descansar" },
-    { pt: "Muitos casais escolhem esta opção", es: "Muchas parejas eligen esta opción" },
-    { pt: "Quer uma sugestão especial?", es: "¿Quiere una sugerencia especial?" },
-    { pt: "É uma experiência inesquecível", es: "Es una experiencia inolvidable" }
-  ],
-  vocab: [
-    { pt: "casal", es: "pareja" },
-    { pt: "romântico", es: "romántico" },
-    { pt: "especial", es: "especial" },
-    { pt: "hidromassagem", es: "hidromasaje" },
-    { pt: "descansar", es: "descansar" },
-    { pt: "vista", es: "vista" },
-    { pt: "sugestão", es: "sugerencia" },
-    { pt: "inesquecível", es: "inolvidable" }
-  ],
-  miniDialogues: [
-    { speaker: "Hóspede", pt: "Queremos algo romântico", es: "Queremos algo romántico" },
-    { speaker: "Colaborador", pt: "Recomendo o loft ou a suíte deluxe", es: "Recomiendo el loft o la suite deluxe" }
-  ],
-  quiz: [
-    {
-      question: "¿Cómo se dice 'romántico'?",
-      options: ["romântico", "bonito", "tranquilo"],
-      answer: "romântico"
-    }
-  ]
-},
-{
-  id: "estacionamento",
-  title: "Estacionamiento",
-  category: "Servicios",
-  emoji: "🚗",
-  phrases: [
-    { pt: "O estacionamento é descoberto", es: "El estacionamiento es descubierto" },
-    { pt: "Fica perto da unidade", es: "Está cerca de la unidad" },
-    { pt: "É gratuito para hóspedes", es: "Es gratuito para huéspedes" },
-    { pt: "Pode estacionar aqui", es: "Puede estacionar aquí" },
-    { pt: "Se precisar de ajuda, avise", es: "Si necesita ayuda, avise" },
-    { pt: "Tem espaço suficiente", es: "Hay espacio suficiente" },
-    { pt: "É de fácil acesso", es: "Es de fácil acceso" },
-    { pt: "Bem-vindo", es: "Bienvenido" }
-  ],
-  vocab: [
-    { pt: "estacionamento", es: "estacionamiento" },
-    { pt: "carro", es: "auto" },
-    { pt: "gratuito", es: "gratuito" },
-    { pt: "acesso", es: "acceso" },
-    { pt: "vaga", es: "espacio" },
-    { pt: "perto", es: "cerca" },
-    { pt: "ajuda", es: "ayuda" },
-    { pt: "entrada", es: "entrada" }
-  ],
-  miniDialogues: [
-    { speaker: "Hóspede", pt: "Onde posso estacionar?", es: "¿Dónde puedo estacionar?" },
-    { speaker: "Colaborador", pt: "Perto da sua unidade", es: "Cerca de su unidad" }
-  ],
-  quiz: [
-    {
-      question: "¿Cómo se dice 'gratuito'?",
-      options: ["gratuito", "caro", "reservado"],
-      answer: "gratuito"
-    }
-  ]
-},
-{
-  id: "check_out_basico",
-  title: "Check-out básico",
-  category: "Recepción",
-  emoji: "🧳",
-  phrases: [
-    { pt: "Vai fazer o check-out agora?", es: "¿Va a hacer el check-out ahora?" },
-    { pt: "Espero que tenha gostado da estadia", es: "Espero que haya disfrutado la estadía" },
-    { pt: "Vou verificar a conta", es: "Voy a verificar la cuenta" },
-    { pt: "Está tudo em ordem", es: "Está todo en orden" },
-    { pt: "Pode deixar a chave aqui", es: "Puede dejar la llave aquí" },
-    { pt: "Muito obrigado pela visita", es: "Muchas gracias por la visita" },
-    { pt: "Esperamos vê-lo novamente", es: "Esperamos verlo nuevamente" },
-    { pt: "Boa viagem", es: "Buen viaje" }
-  ],
-  vocab: [
-    { pt: "check-out", es: "check-out" },
-    { pt: "conta", es: "cuenta" },
-    { pt: "chave", es: "llave" },
-    { pt: "visita", es: "visita" },
-    { pt: "viagem", es: "viaje" },
-    { pt: "ordem", es: "orden" },
-    { pt: "agora", es: "ahora" },
-    { pt: "novamente", es: "nuevamente" }
-  ],
-  miniDialogues: [
-    { speaker: "Colaborador", pt: "Vai fazer o check-out agora?", es: "¿Va a hacer el check-out ahora?" },
-    { speaker: "Hóspede", pt: "Sim", es: "Sí" }
-  ],
-  quiz: [
-    {
-      question: "¿Cómo se dice 'cuenta'?",
-      options: ["fatura", "conta", "registro"],
-      answer: "conta"
-    }
-  ]
-},
-{
-  id: "pagamento_basico",
-  title: "Pago básico",
-  category: "Recepción",
-  emoji: "💳",
-  phrases: [
-    { pt: "Pode pagar com cartão", es: "Puede pagar con tarjeta" },
-    { pt: "Também aceitamos dinheiro", es: "También aceptamos efectivo" },
-    { pt: "Vou emitir o comprovante", es: "Voy a emitir el comprobante" },
-    { pt: "Só um momento", es: "Un momento" },
-    { pt: "O pagamento foi aprovado", es: "El pago fue aprobado" },
-    { pt: "Aqui está seu comprovante", es: "Aquí está su comprobante" },
-    { pt: "Muito obrigado", es: "Muchas gracias" },
-    { pt: "Tenha uma ótima viagem", es: "Que tenga un excelente viaje" }
-  ],
-  vocab: [
-    { pt: "cartão", es: "tarjeta" },
-    { pt: "dinheiro", es: "efectivo" },
-    { pt: "pagamento", es: "pago" },
-    { pt: "comprovante", es: "comprobante" },
-    { pt: "aprovar", es: "aprobar" },
-    { pt: "emitir", es: "emitir" },
-    { pt: "valor", es: "importe" },
-    { pt: "caixa", es: "caja" }
-  ],
-  miniDialogues: [
-    { speaker: "Hóspede", pt: "Posso pagar com cartão?", es: "¿Puedo pagar con tarjeta?" },
-    { speaker: "Colaborador", pt: "Sim, claro", es: "Sí, claro" }
-  ],
-  quiz: [
-    {
-      question: "¿Cómo se dice 'efectivo'?",
-      options: ["dinheiro", "cartão", "troco"],
-      answer: "dinheiro"
-    }
-  ]
-},
-{
-  id: "facturacion",
-  title: "Facturación",
-  category: "Recepción",
-  emoji: "🧾",
-  phrases: [
-    { pt: "Precisa de fatura?", es: "¿Necesita factura?" },
-    { pt: "Podemos emitir agora", es: "Podemos emitirla ahora" },
-    { pt: "Preciso dos seus dados", es: "Necesito sus datos" },
-    { pt: "Nome e CPF ou CNPJ", es: "Nombre y documento fiscal" },
-    { pt: "Será enviada por e-mail", es: "Será enviada por email" },
-    { pt: "Também pode ser impressa", es: "También puede ser impresa" },
-    { pt: "Está tudo correto?", es: "¿Está todo correcto?" },
-    { pt: "Aqui está sua fatura", es: "Aquí está su factura" }
-  ],
-  vocab: [
-    { pt: "fatura", es: "factura" },
-    { pt: "dados", es: "datos" },
-    { pt: "email", es: "email" },
-    { pt: "impressa", es: "impresa" },
-    { pt: "nome", es: "nombre" },
-    { pt: "documento", es: "documento" },
-    { pt: "emitir", es: "emitir" },
-    { pt: "correto", es: "correcto" }
-  ],
-  miniDialogues: [
-    { speaker: "Hóspede", pt: "Preciso de fatura", es: "Necesito factura" },
-    { speaker: "Colaborador", pt: "Claro, vamos emitir agora", es: "Claro, vamos a emitirla ahora" }
-  ],
-  quiz: [
-    {
-      question: "¿Cómo se dice 'factura'?",
-      options: ["recibo", "fatura", "nota"],
-      answer: "fatura"
-    }
-  ]
-},
-{
-  id: "atencao_personalizada",
-  title: "Atención personalizada",
-  category: "Premium",
-  emoji: "⭐",
-  phrases: [
-    { pt: "Queremos oferecer a melhor experiência", es: "Queremos ofrecer la mejor experiencia" },
-    { pt: "Estamos à sua disposição", es: "Estamos a su disposición" },
-    { pt: "Se precisar de algo, é só avisar", es: "Si necesita algo, solo avise" },
-    { pt: "Podemos ajudar com tudo", es: "Podemos ayudar con todo" },
-    { pt: "É um prazer atendê-lo", es: "Es un placer atenderlo" },
-    { pt: "Sua satisfação é importante", es: "Su satisfacción es importante" },
-    { pt: "Estamos aqui para você", es: "Estamos aquí para usted" },
-    { pt: "Conte conosco", es: "Cuente con nosotros" }
-  ],
-  vocab: [
-    { pt: "experiência", es: "experiencia" },
-    { pt: "disposição", es: "disposición" },
-    { pt: "ajudar", es: "ayudar" },
-    { pt: "prazer", es: "placer" },
-    { pt: "satisfação", es: "satisfacción" },
-    { pt: "importante", es: "importante" },
-    { pt: "cliente", es: "cliente" },
-    { pt: "serviço", es: "servicio" }
-  ],
-  miniDialogues: [
-    { speaker: "Colaborador", pt: "Estamos à sua disposição", es: "Estamos a su disposición" },
-    { speaker: "Hóspede", pt: "Muito obrigado", es: "Muchas gracias" }
-  ],
-  quiz: [
-    {
-      question: "¿Cómo se dice 'placer'?",
-      options: ["prazer", "gosto", "alegria"],
-      answer: "prazer"
-    }
-  ]
-},
-{
-  id: "recomendacao_personalizada",
-  title: "Recomendación personalizada",
-  category: "Ventas",
-  emoji: "🎯",
-  phrases: [
-    { pt: "Posso recomendar algo especial", es: "Puedo recomendar algo especial" },
-    { pt: "Depende do que você procura", es: "Depende de lo que busca" },
-    { pt: "Para relaxar ou aventura?", es: "¿Para relajarse o aventura?" },
-    { pt: "Temos várias opções", es: "Tenemos varias opciones" },
-    { pt: "Posso adaptar para você", es: "Puedo adaptarlo para usted" },
-    { pt: "É uma sugestão personalizada", es: "Es una sugerencia personalizada" },
-    { pt: "Quer que eu organize?", es: "¿Quiere que lo organice?" },
-    { pt: "Vai gostar muito", es: "Le va a gustar mucho" }
-  ],
-  vocab: [
-    { pt: "sugestão", es: "sugerencia" },
-    { pt: "especial", es: "especial" },
-    { pt: "relaxar", es: "relajarse" },
-    { pt: "aventura", es: "aventura" },
-    { pt: "adaptar", es: "adaptar" },
-    { pt: "organizar", es: "organizar" },
-    { pt: "opção", es: "opción" },
-    { pt: "gostar", es: "gustar" }
-  ],
-  miniDialogues: [
-    { speaker: "Colaborador", pt: "Posso recomendar algo especial?", es: "¿Puedo recomendar algo especial?" },
-    { speaker: "Hóspede", pt: "Sim, por favor", es: "Sí, por favor" }
-  ],
-  quiz: [
-    {
-      question: "¿Cómo se dice 'aventura'?",
-      options: ["descanso", "aventura", "viagem"],
-      answer: "aventura"
-    }
-  ]
-},
-{
-  id: "resolucao_problemas",
-  title: "Resolución de problemas",
-  category: "Premium",
-  emoji: "🛠️",
-  phrases: [
-    { pt: "Vamos resolver isso imediatamente", es: "Vamos a resolver esto inmediatamente" },
-    { pt: "Peço desculpas pelo ocorrido", es: "Le pido disculpas por lo ocurrido" },
-    { pt: "Estamos cuidando disso", es: "Estamos ocupándonos de esto" },
-    { pt: "Agradecemos sua compreensão", es: "Agradecemos su comprensión" },
-    { pt: "Queremos melhorar sua experiência", es: "Queremos mejorar su experiencia" },
-    { pt: "Pode contar conosco", es: "Puede contar con nosotros" },
-    { pt: "Faremos o possível", es: "Haremos lo posible" },
-    { pt: "Vamos acompanhar o caso", es: "Vamos a hacer seguimiento" }
-  ],
-  vocab: [
-    { pt: "resolver", es: "resolver" },
-    { pt: "problema", es: "problema" },
-    { pt: "imediatamente", es: "inmediatamente" },
-    { pt: "compreensão", es: "comprensión" },
-    { pt: "melhorar", es: "mejorar" },
-    { pt: "experiência", es: "experiencia" },
-    { pt: "caso", es: "caso" },
-    { pt: "acompanhar", es: "seguir" }
-  ],
-  miniDialogues: [
-    { speaker: "Colaborador", pt: "Vamos resolver agora mesmo", es: "Vamos a resolver ahora mismo" },
-    { speaker: "Hóspede", pt: "Obrigado", es: "Gracias" }
-  ],
-  quiz: [
-    {
-      question: "¿Cómo se dice 'problema'?",
-      options: ["erro", "problema", "falha"],
-      answer: "problema"
-    }
-  ]
-},
-{
-  id: "despedida_premium",
-  title: "Despedida premium",
-  category: "Recepción",
-  emoji: "👋",
-  phrases: [
-    { pt: "Foi um prazer recebê-lo", es: "Fue un placer recibirlo" },
-    { pt: "Esperamos vê-lo novamente", es: "Esperamos verlo nuevamente" },
-    { pt: "Tenha uma ótima viagem", es: "Que tenga un excelente viaje" },
-    { pt: "Volte sempre", es: "Vuelva siempre" },
-    { pt: "Obrigado pela preferência", es: "Gracias por su preferencia" },
-    { pt: "Até a próxima", es: "Hasta la próxima" },
-    { pt: "Desejamos tudo de bom", es: "Le deseamos todo lo mejor" },
-    { pt: "Foi uma alegria recebê-lo", es: "Fue una alegría recibirlo" }
-  ],
-  vocab: [
-    { pt: "prazer", es: "placer" },
-    { pt: "viagem", es: "viaje" },
-    { pt: "voltar", es: "volver" },
-    { pt: "preferência", es: "preferencia" },
-    { pt: "próxima", es: "próxima" },
-    { pt: "alegria", es: "alegría" },
-    { pt: "receber", es: "recibir" },
-    { pt: "cliente", es: "cliente" }
-  ],
-  miniDialogues: [
-    { speaker: "Colaborador", pt: "Foi um prazer recebê-lo", es: "Fue un placer recibirlo" },
-    { speaker: "Hóspede", pt: "Igualmente", es: "Igualmente" }
-  ],
-  quiz: [
-    {
-      question: "¿Cómo se dice 'volver'?",
-      options: ["ir", "voltar", "ficar"],
-      answer: "voltar"
-    }
-  ]
-}
+    title: "Saludos",
+    category: "Recepción",
+    emoji: "🛎️",
+    phrases: [
+      { pt: "Bom dia", es: "Buenos días" },
+      { pt: "Boa tarde", es: "Buenas tardes" },
+      { pt: "Boa noite", es: "Buenas noches" },
+      { pt: "Bem-vindo ao hotel", es: "Bienvenido al hotel" },
+      { pt: "Como está?", es: "¿Cómo está?" },
+      { pt: "É um prazer recebê-lo", es: "Es un placer recibirlo" },
+      { pt: "Tudo bem?", es: "¿Todo bien?" },
+      { pt: "Como posso ajudar?", es: "¿Cómo puedo ayudar?" },
+      { pt: "Seja bem-vindo à nossa propriedade", es: "Sea bienvenido a nuestra propiedad" },
+      { pt: "Estamos felizes em recebê-lo", es: "Estamos felices de recibirlo" },
+      { pt: "Meu nome é…, fico à disposição", es: "Mi nombre es…, quedo a su disposición" },
+      { pt: "Pode falar comigo a qualquer momento", es: "Puede hablar conmigo en cualquier momento" },
+    ],
+    vocab: [
+      { pt: "hotel", es: "hotel" },
+      { pt: "hóspede", es: "huésped" },
+      { pt: "recepção", es: "recepción" },
+      { pt: "reserva", es: "reserva" },
+      { pt: "chave", es: "llave" },
+      { pt: "quarto", es: "habitación" },
+      { pt: "serviço", es: "servicio" },
+      { pt: "entrada", es: "entrada" },
+      { pt: "boas-vindas", es: "bienvenida" },
+      { pt: "colaborador", es: "colaborador" },
+      { pt: "atendimento", es: "atención" },
+      { pt: "nome", es: "nombre" },
+    ],
+    miniDialogues: [
+      { speaker: "Hóspede", pt: "Bom dia", es: "Buenos días" },
+      { speaker: "Colaborador", pt: "Bom dia, bem-vindo ao hotel! Como posso ajudar?", es: "Buenos días, ¡bienvenido al hotel! ¿Cómo puedo ayudar?" },
+      { speaker: "Hóspede", pt: "Tenho uma reserva", es: "Tengo una reserva" },
+      { speaker: "Colaborador", pt: "Perfeito, vou verificar agora mesmo", es: "Perfecto, voy a verificar ahora mismo" },
+    ],
+    quiz: [
+      { question: "¿Cómo se dice 'Buenas tardes'?", options: ["Bom dia", "Boa tarde", "Boa noite"], answer: "Boa tarde" },
+      { question: "¿Cómo se dice 'bienvenida'?", options: ["boas-vindas", "despedida", "saída"], answer: "boas-vindas" },
+    ],
+  },
+  {
+    id: "reserva",
+    title: "Reserva",
+    category: "Recepción",
+    emoji: "📋",
+    phrases: [
+      { pt: "O senhor tem uma reserva?", es: "¿Tiene una reserva?" },
+      { pt: "Em nome de quem?", es: "¿A nombre de quién?" },
+      { pt: "Vou verificar no sistema", es: "Voy a verificar en el sistema" },
+      { pt: "Aqui está sua reserva", es: "Aquí está su reserva" },
+      { pt: "Está tudo correto", es: "Está todo correcto" },
+      { pt: "Para quantas noites?", es: "¿Para cuántas noches?" },
+      { pt: "Quantas pessoas?", es: "¿Cuántas personas?" },
+      { pt: "Perfeito, tudo em ordem", es: "Perfecto, todo en orden" },
+      { pt: "A reserva foi confirmada", es: "La reserva fue confirmada" },
+      { pt: "Qual é o número da reserva?", es: "¿Cuál es el número de reserva?" },
+      { pt: "Posso confirmar o e-mail?", es: "¿Puedo confirmar el email?" },
+      { pt: "A reserva inclui café da manhã", es: "La reserva incluye desayuno" },
+      { pt: "A data de entrada é hoje", es: "La fecha de entrada es hoy" },
+      { pt: "A data de saída é…", es: "La fecha de salida es…" },
+    ],
+    vocab: [
+      { pt: "noite", es: "noche" },
+      { pt: "pessoa", es: "persona" },
+      { pt: "nome", es: "nombre" },
+      { pt: "dados", es: "datos" },
+      { pt: "confirmação", es: "confirmación" },
+      { pt: "entrada", es: "check-in" },
+      { pt: "saída", es: "check-out" },
+      { pt: "sistema", es: "sistema" },
+      { pt: "número", es: "número" },
+      { pt: "e-mail", es: "email" },
+      { pt: "data", es: "fecha" },
+      { pt: "incluído", es: "incluido" },
+    ],
+    miniDialogues: [
+      { speaker: "Hóspede", pt: "Tenho uma reserva para duas noites", es: "Tengo una reserva para dos noches" },
+      { speaker: "Colaborador", pt: "Perfeito, vou verificar no sistema. Em nome de quem?", es: "Perfecto, voy a verificar en el sistema. ¿A nombre de quién?" },
+      { speaker: "Hóspede", pt: "Em nome de García", es: "A nombre de García" },
+      { speaker: "Colaborador", pt: "Encontrei. Está tudo correto", es: "Encontré. Está todo correcto" },
+    ],
+    quiz: [
+      { question: "¿Cómo se dice 'Voy a verificar en el sistema'?", options: ["Vou sair agora", "Vou verificar no sistema", "Vou pagar a conta"], answer: "Vou verificar no sistema" },
+      { question: "¿Cómo se dice 'fecha'?", options: ["hora", "data", "turno"], answer: "data" },
+    ],
+  },
+  {
+    id: "documento",
+    title: "Documento e registro",
+    category: "Recepción",
+    emoji: "🪪",
+    phrases: [
+      { pt: "Pode me mostrar seu documento?", es: "¿Puede mostrarme su documento?" },
+      { pt: "Preciso do seu passaporte", es: "Necesito su pasaporte" },
+      { pt: "Só um momento", es: "Un momento" },
+      { pt: "Obrigado, está tudo certo", es: "Gracias, está todo bien" },
+      { pt: "Vou fazer o registro", es: "Voy a hacer el registro" },
+      { pt: "Assine aqui, por favor", es: "Firme aquí, por favor" },
+      { pt: "Preciso de um segundo documento", es: "Necesito un segundo documento" },
+      { pt: "Pode ser documento de identidade", es: "Puede ser documento de identidad" },
+      { pt: "Vou digitalizar o documento", es: "Voy a escanear el documento" },
+      { pt: "Em breve devolvo", es: "En un momento se lo devuelvo" },
+      { pt: "Os dados estão corretos?", es: "¿Los datos están correctos?" },
+      { pt: "Vou imprimir o formulário", es: "Voy a imprimir el formulario" },
+    ],
+    vocab: [
+      { pt: "documento", es: "documento" },
+      { pt: "passaporte", es: "pasaporte" },
+      { pt: "registro", es: "registro" },
+      { pt: "assinatura", es: "firma" },
+      { pt: "dados", es: "datos" },
+      { pt: "identidade", es: "identidad" },
+      { pt: "digitalizar", es: "escanear" },
+      { pt: "formulário", es: "formulario" },
+      { pt: "imprimir", es: "imprimir" },
+      { pt: "correto", es: "correcto" },
+      { pt: "devolver", es: "devolver" },
+      { pt: "check-in", es: "check-in" },
+    ],
+    miniDialogues: [
+      { speaker: "Colaborador", pt: "Pode me mostrar seu documento?", es: "¿Puede mostrarme su documento?" },
+      { speaker: "Hóspede", pt: "Claro, aqui está", es: "Claro, aquí tiene" },
+      { speaker: "Colaborador", pt: "Obrigado. Vou fazer o registro agora", es: "Gracias. Voy a hacer el registro ahora" },
+      { speaker: "Hóspede", pt: "Perfeito", es: "Perfecto" },
+    ],
+    quiz: [
+      { question: "¿Cómo se dice 'pasaporte'?", options: ["papel", "passaporte", "cartão"], answer: "passaporte" },
+      { question: "¿Cómo se dice 'firma'?", options: ["carimbo", "assinatura", "registro"], answer: "assinatura" },
+    ],
+  },
+  {
+    id: "checkin_inicial",
+    title: "Check-in completo",
+    category: "Recepción",
+    emoji: "🧾",
+    phrases: [
+      { pt: "Vamos fazer seu check-in", es: "Vamos a hacer su check-in" },
+      { pt: "Preciso confirmar alguns dados", es: "Necesito confirmar algunos datos" },
+      { pt: "Sua reserva é para hoje", es: "Su reserva es para hoy" },
+      { pt: "A estadia é de duas noites", es: "La estadía es de dos noches" },
+      { pt: "O quarto já está disponível", es: "La habitación ya está disponible" },
+      { pt: "Vou entregar a chave agora", es: "Voy a entregar la llave ahora" },
+      { pt: "Se precisar de ajuda, avise", es: "Si necesita ayuda, avise" },
+      { pt: "Desejo uma excelente estadia", es: "Le deseo una excelente estadía" },
+      { pt: "O café da manhã está incluído", es: "El desayuno está incluido" },
+      { pt: "É servido das 7 às 10", es: "Se sirve de 7 a 10" },
+      { pt: "O Wi-Fi é gratuito", es: "El WiFi es gratuito" },
+      { pt: "A senha está no cartão da chave", es: "La contraseña está en la tarjeta de la llave" },
+      { pt: "O estacionamento é gratuito", es: "El estacionamiento es gratuito" },
+      { pt: "Posso explicar o funcionamento?", es: "¿Puedo explicarle el funcionamiento?" },
+    ],
+    vocab: [
+      { pt: "check-in", es: "check-in" },
+      { pt: "estadia", es: "estadía" },
+      { pt: "dados", es: "datos" },
+      { pt: "disponível", es: "disponible" },
+      { pt: "chave", es: "llave" },
+      { pt: "ajuda", es: "ayuda" },
+      { pt: "incluído", es: "incluido" },
+      { pt: "gratuito", es: "gratuito" },
+      { pt: "senha", es: "contraseña" },
+      { pt: "cartão", es: "tarjeta" },
+      { pt: "funcionamento", es: "funcionamiento" },
+      { pt: "horário", es: "horario" },
+    ],
+    miniDialogues: [
+      { speaker: "Colaborador", pt: "Vamos fazer seu check-in. Preciso confirmar alguns dados", es: "Vamos a hacer su check-in. Necesito confirmar algunos datos" },
+      { speaker: "Hóspede", pt: "Claro, pode falar", es: "Claro, adelante" },
+      { speaker: "Colaborador", pt: "O café da manhã está incluído, das 7 às 10", es: "El desayuno está incluido, de 7 a 10" },
+      { speaker: "Hóspede", pt: "Ótimo, obrigado!", es: "Excelente, ¡gracias!" },
+    ],
+    quiz: [
+      { question: "¿Cómo se dice 'estadía'?", options: ["reserva", "estadia", "entrada"], answer: "estadia" },
+      { question: "¿Cómo se dice 'disponible'?", options: ["ocupado", "disponível", "reservado"], answer: "disponível" },
+    ],
+  },
+  {
+    id: "check_out_basico",
+    title: "Check-out",
+    category: "Recepción",
+    emoji: "🧳",
+    phrases: [
+      { pt: "Vai fazer o check-out agora?", es: "¿Va a hacer el check-out ahora?" },
+      { pt: "Espero que tenha gostado da estadia", es: "Espero que haya disfrutado la estadía" },
+      { pt: "Vou verificar a conta", es: "Voy a verificar la cuenta" },
+      { pt: "Está tudo em ordem", es: "Está todo en orden" },
+      { pt: "Pode deixar a chave aqui", es: "Puede dejar la llave aquí" },
+      { pt: "Muito obrigado pela visita", es: "Muchas gracias por la visita" },
+      { pt: "Esperamos vê-lo novamente", es: "Esperamos verlo nuevamente" },
+      { pt: "Boa viagem!", es: "¡Buen viaje!" },
+      { pt: "Tem alguma observação sobre a estadia?", es: "¿Tiene alguna observación sobre la estadía?" },
+      { pt: "Posso pedir um táxi para o senhor?", es: "¿Puedo pedir un taxi para usted?" },
+      { pt: "O check-out é até as 10 da manhã", es: "El check-out es hasta las 10 de la mañana" },
+      { pt: "Precisa de ajuda com a bagagem?", es: "¿Necesita ayuda con el equipaje?" },
+    ],
+    vocab: [
+      { pt: "check-out", es: "check-out" },
+      { pt: "conta", es: "cuenta" },
+      { pt: "chave", es: "llave" },
+      { pt: "visita", es: "visita" },
+      { pt: "viagem", es: "viaje" },
+      { pt: "bagagem", es: "equipaje" },
+      { pt: "táxi", es: "taxi" },
+      { pt: "novamente", es: "nuevamente" },
+      { pt: "observação", es: "observación" },
+      { pt: "ordem", es: "orden" },
+      { pt: "manhã", es: "mañana" },
+      { pt: "ajuda", es: "ayuda" },
+    ],
+    miniDialogues: [
+      { speaker: "Hóspede", pt: "Gostaria de fazer o check-out", es: "Quisiera hacer el check-out" },
+      { speaker: "Colaborador", pt: "Claro, vou verificar a conta. Tem alguma observação?", es: "Claro, voy a verificar la cuenta. ¿Tiene alguna observación?" },
+      { speaker: "Hóspede", pt: "Tudo ótimo, muito obrigado", es: "Todo excelente, muchas gracias" },
+      { speaker: "Colaborador", pt: "Boa viagem! Esperamos vê-lo novamente", es: "¡Buen viaje! Esperamos verlo nuevamente" },
+    ],
+    quiz: [
+      { question: "¿Cómo se dice 'equipaje'?", options: ["mala", "bagagem", "bolsa"], answer: "bagagem" },
+      { question: "¿Cómo se dice 'cuenta'?", options: ["fatura", "conta", "recibo"], answer: "conta" },
+    ],
+  },
+  {
+    id: "pagamento_basico",
+    title: "Pago",
+    category: "Recepción",
+    emoji: "💳",
+    phrases: [
+      { pt: "Pode pagar com cartão", es: "Puede pagar con tarjeta" },
+      { pt: "Também aceitamos dinheiro", es: "También aceptamos efectivo" },
+      { pt: "Vou emitir o comprovante", es: "Voy a emitir el comprobante" },
+      { pt: "Só um momento", es: "Un momento" },
+      { pt: "O pagamento foi aprovado", es: "El pago fue aprobado" },
+      { pt: "Aqui está seu comprovante", es: "Aquí está su comprobante" },
+      { pt: "Muito obrigado", es: "Muchas gracias" },
+      { pt: "Aceitamos cartão de crédito e débito", es: "Aceptamos tarjeta de crédito y débito" },
+      { pt: "O valor total é…", es: "El importe total es…" },
+      { pt: "Deseja parcelar?", es: "¿Desea pagar en cuotas?" },
+      { pt: "Há desconto para pagamento em dinheiro", es: "Hay descuento por pago en efectivo" },
+      { pt: "Posso ver a conta detalhada?", es: "¿Puedo ver la cuenta detallada?" },
+    ],
+    vocab: [
+      { pt: "cartão", es: "tarjeta" },
+      { pt: "dinheiro", es: "efectivo" },
+      { pt: "pagamento", es: "pago" },
+      { pt: "comprovante", es: "comprobante" },
+      { pt: "crédito", es: "crédito" },
+      { pt: "débito", es: "débito" },
+      { pt: "valor", es: "importe" },
+      { pt: "parcela", es: "cuota" },
+      { pt: "desconto", es: "descuento" },
+      { pt: "detalhada", es: "detallada" },
+      { pt: "aprovar", es: "aprobar" },
+      { pt: "caixa", es: "caja" },
+    ],
+    miniDialogues: [
+      { speaker: "Hóspede", pt: "Posso pagar com cartão de crédito?", es: "¿Puedo pagar con tarjeta de crédito?" },
+      { speaker: "Colaborador", pt: "Sim, claro. O valor total é…", es: "Sí, claro. El importe total es…" },
+      { speaker: "Hóspede", pt: "Pode parcelar em 3 vezes?", es: "¿Puede dividirlo en 3 cuotas?" },
+      { speaker: "Colaborador", pt: "Claro, sem problema", es: "Claro, sin problema" },
+    ],
+    quiz: [
+      { question: "¿Cómo se dice 'efectivo'?", options: ["dinheiro", "cartão", "troco"], answer: "dinheiro" },
+      { question: "¿Cómo se dice 'descuento'?", options: ["desconto", "taxa", "multa"], answer: "desconto" },
+    ],
+  },
+  {
+    id: "facturacion",
+    title: "Facturación",
+    category: "Recepción",
+    emoji: "🧾",
+    phrases: [
+      { pt: "Precisa de fatura?", es: "¿Necesita factura?" },
+      { pt: "Podemos emitir agora", es: "Podemos emitirla ahora" },
+      { pt: "Preciso dos seus dados", es: "Necesito sus datos" },
+      { pt: "Nome e CPF ou CNPJ", es: "Nombre y documento fiscal" },
+      { pt: "Será enviada por e-mail", es: "Será enviada por email" },
+      { pt: "Também pode ser impressa", es: "También puede ser impresa" },
+      { pt: "Está tudo correto?", es: "¿Está todo correcto?" },
+      { pt: "Aqui está sua fatura", es: "Aquí está su factura" },
+      { pt: "A fatura inclui todos os serviços", es: "La factura incluye todos los servicios" },
+      { pt: "Serviços de quarto estão discriminados", es: "Los servicios de habitación están discriminados" },
+      { pt: "Posso enviar por WhatsApp?", es: "¿Puedo enviarlo por WhatsApp?" },
+      { pt: "Guarde para o reembolso", es: "Guárdela para el reembolso" },
+    ],
+    vocab: [
+      { pt: "fatura", es: "factura" },
+      { pt: "dados", es: "datos" },
+      { pt: "e-mail", es: "email" },
+      { pt: "impressa", es: "impresa" },
+      { pt: "nome", es: "nombre" },
+      { pt: "documento", es: "documento" },
+      { pt: "emitir", es: "emitir" },
+      { pt: "discriminado", es: "discriminado" },
+      { pt: "reembolso", es: "reembolso" },
+      { pt: "WhatsApp", es: "WhatsApp" },
+      { pt: "correto", es: "correcto" },
+      { pt: "serviços", es: "servicios" },
+    ],
+    miniDialogues: [
+      { speaker: "Hóspede", pt: "Preciso de fatura para a empresa", es: "Necesito factura para la empresa" },
+      { speaker: "Colaborador", pt: "Claro, preciso do nome e CNPJ", es: "Claro, necesito el nombre y el número fiscal" },
+      { speaker: "Hóspede", pt: "Pode enviar por e-mail?", es: "¿Puede enviarlo por email?" },
+      { speaker: "Colaborador", pt: "Sim, em instantes", es: "Sí, en instantes" },
+    ],
+    quiz: [
+      { question: "¿Cómo se dice 'factura'?", options: ["recibo", "fatura", "nota"], answer: "fatura" },
+      { question: "¿Cómo se dice 'reembolso'?", options: ["desconto", "reembolso", "taxa"], answer: "reembolso" },
+    ],
+  },
+  {
+    id: "despedida_premium",
+    title: "Despedida",
+    category: "Recepción",
+    emoji: "👋",
+    phrases: [
+      { pt: "Foi um prazer recebê-lo", es: "Fue un placer recibirlo" },
+      { pt: "Esperamos vê-lo novamente", es: "Esperamos verlo nuevamente" },
+      { pt: "Tenha uma ótima viagem", es: "Que tenga un excelente viaje" },
+      { pt: "Volte sempre!", es: "¡Vuelva siempre!" },
+      { pt: "Obrigado pela preferência", es: "Gracias por su preferencia" },
+      { pt: "Até a próxima", es: "Hasta la próxima" },
+      { pt: "Desejamos tudo de bom", es: "Le deseamos todo lo mejor" },
+      { pt: "Foi uma alegria recebê-lo", es: "Fue una alegría recibirlo" },
+      { pt: "Ficamos felizes com sua visita", es: "Nos alegró mucho su visita" },
+      { pt: "Deixe sua avaliação se puder", es: "Deje su reseña si puede" },
+      { pt: "Conte conosco para a próxima visita", es: "Cuente con nosotros para la próxima visita" },
+      { pt: "Cuide-se!", es: "¡Cuídese!" },
+    ],
+    vocab: [
+      { pt: "prazer", es: "placer" },
+      { pt: "viagem", es: "viaje" },
+      { pt: "voltar", es: "volver" },
+      { pt: "preferência", es: "preferencia" },
+      { pt: "próxima", es: "próxima" },
+      { pt: "alegria", es: "alegría" },
+      { pt: "avaliação", es: "reseña" },
+      { pt: "visita", es: "visita" },
+      { pt: "receber", es: "recibir" },
+      { pt: "felizes", es: "felices" },
+      { pt: "cuidar", es: "cuidar" },
+      { pt: "cliente", es: "cliente" },
+    ],
+    miniDialogues: [
+      { speaker: "Colaborador", pt: "Foi um prazer recebê-lo! Deixe sua avaliação se puder", es: "Fue un placer recibirlo. ¡Deje su reseña si puede!" },
+      { speaker: "Hóspede", pt: "Claro, com certeza!", es: "Claro, ¡con gusto!" },
+      { speaker: "Colaborador", pt: "Volte sempre. Até a próxima!", es: "¡Vuelva siempre! ¡Hasta la próxima!" },
+      { speaker: "Hóspede", pt: "Obrigado a todos", es: "Gracias a todos" },
+    ],
+    quiz: [
+      { question: "¿Cómo se dice 'volver'?", options: ["ir", "voltar", "ficar"], answer: "voltar" },
+      { question: "¿Cómo se dice 'reseña'?", options: ["avaliação", "nota", "pontuação"], answer: "avaliação" },
+    ],
+  },
+
+  // ─── HABITACIONES ─────────────────────────────────────────────────────────
+  {
+    id: "cabanas",
+    title: "Cabañas",
+    category: "Habitaciones",
+    emoji: "🏡",
+    phrases: [
+      { pt: "A cabana tem capacidade para 6 pessoas", es: "La cabaña tiene capacidad para 6 personas" },
+      { pt: "Está distribuída em três andares", es: "Está distribuida en tres plantas" },
+      { pt: "Possui cozinha totalmente equipada", es: "Tiene cocina totalmente equipada" },
+      { pt: "Conta com calefação central", es: "Cuenta con calefacción central" },
+      { pt: "Possui lareira a lenha", es: "Tiene hogar a leña" },
+      { pt: "Tem deck com churrasqueira", es: "Tiene deck con parrilla" },
+      { pt: "Tem Wi-Fi em todos os ambientes", es: "Tiene WiFi en todos los ambientes" },
+      { pt: "A limpeza é diária", es: "La limpieza es diaria" },
+      { pt: "Tem vista para o lago Nahuel Huapi", es: "Tiene vista al lago Nahuel Huapi" },
+      { pt: "Cada quarto tem sua própria casa de banho", es: "Cada habitación tiene su propio baño" },
+      { pt: "Há espaço externo para relaxar", es: "Hay espacio exterior para relajarse" },
+      { pt: "A cabana é ideal para grupos e famílias", es: "La cabaña es ideal para grupos y familias" },
+    ],
+    vocab: [
+      { pt: "cabana", es: "cabaña" },
+      { pt: "cozinha", es: "cocina" },
+      { pt: "churrasqueira", es: "parrilla" },
+      { pt: "lenha", es: "leña" },
+      { pt: "calefação", es: "calefacción" },
+      { pt: "andar", es: "planta/piso" },
+      { pt: "quarto", es: "habitación" },
+      { pt: "banheiro", es: "baño" },
+      { pt: "deck", es: "deck" },
+      { pt: "vista", es: "vista" },
+      { pt: "externo", es: "exterior" },
+      { pt: "grupo", es: "grupo" },
+    ],
+    miniDialogues: [
+      { speaker: "Hóspede", pt: "A cabana tem churrasqueira?", es: "¿La cabaña tiene parrilla?" },
+      { speaker: "Colaborador", pt: "Sim, no deck externo com vista para o lago", es: "Sí, en el deck exterior con vista al lago" },
+      { speaker: "Hóspede", pt: "Perfeito para o grupo!", es: "¡Perfecto para el grupo!" },
+      { speaker: "Colaborador", pt: "A lenha é reposta todos os dias", es: "La leña se repone todos los días" },
+    ],
+    quiz: [
+      { question: "¿Cómo se dice 'parrilla'?", options: ["forno", "churrasqueira", "fogão"], answer: "churrasqueira" },
+      { question: "¿Cómo se dice 'planta/piso'?", options: ["andar", "nível", "parte"], answer: "andar" },
+    ],
+  },
+  {
+    id: "loft",
+    title: "Loft",
+    category: "Habitaciones",
+    emoji: "🛌",
+    phrases: [
+      { pt: "O loft tem vista panorâmica para o lago", es: "El loft tiene vista panorámica al lago" },
+      { pt: "Tem cama king size", es: "Tiene cama king size" },
+      { pt: "Possui hidromassagem privativa", es: "Tiene hidromasaje privado" },
+      { pt: "Tem ar condicionado", es: "Tiene aire acondicionado" },
+      { pt: "Tem cozinha equipada", es: "Tiene cocina equipada" },
+      { pt: "É ideal para casais", es: "Es ideal para parejas" },
+      { pt: "Tem deck privativo com espreguiçadeiras", es: "Tiene deck privado con reposeras" },
+      { pt: "Muito confortável e moderno", es: "Muy cómodo y moderno" },
+      { pt: "O banheiro tem box de ducha e hidromassagem", es: "El baño tiene ducha y hidromasaje" },
+      { pt: "Inclui smart TV", es: "Incluye smart TV" },
+      { pt: "A decoração é muito aconchegante", es: "La decoración es muy acogedora" },
+      { pt: "É a unidade mais romântica", es: "Es la unidad más romántica" },
+    ],
+    vocab: [
+      { pt: "loft", es: "loft" },
+      { pt: "panorâmica", es: "panorámica" },
+      { pt: "lago", es: "lago" },
+      { pt: "cama", es: "cama" },
+      { pt: "hidromassagem", es: "hidromasaje" },
+      { pt: "espreguiçadeira", es: "reposera" },
+      { pt: "casal", es: "pareja" },
+      { pt: "moderno", es: "moderno" },
+      { pt: "decoração", es: "decoración" },
+      { pt: "aconchegante", es: "acogedor" },
+      { pt: "romântico", es: "romántico" },
+      { pt: "privativo", es: "privado" },
+    ],
+    miniDialogues: [
+      { speaker: "Hóspede", pt: "O loft tem alguma coisa especial?", es: "¿El loft tiene algo especial?" },
+      { speaker: "Colaborador", pt: "Sim, hidromassagem e vista panorâmica para o lago", es: "Sí, hidromasaje y vista panorámica al lago" },
+      { speaker: "Hóspede", pt: "É ideal para nós dois", es: "Es ideal para nosotros dos" },
+      { speaker: "Colaborador", pt: "É a opção mais romântica que temos", es: "Es la opción más romántica que tenemos" },
+    ],
+    quiz: [
+      { question: "¿Cómo se dice 'vista panorámica al lago'?", options: ["vista para o lago", "vista panorâmica para o lago", "vista geral"], answer: "vista panorâmica para o lago" },
+      { question: "¿Cómo se dice 'reposera'?", options: ["sofá", "espreguiçadeira", "cadeira"], answer: "espreguiçadeira" },
+    ],
+  },
+  {
+    id: "suite_deluxe",
+    title: "Suite Deluxe",
+    category: "Habitaciones",
+    emoji: "🛏️",
+    phrases: [
+      { pt: "A suíte deluxe fica na parte superior", es: "La suite deluxe está en la parte superior" },
+      { pt: "Tem vista direta para o lago", es: "Tiene vista directa al lago" },
+      { pt: "Possui hidromassagem com vista panorâmica", es: "Tiene hidromasaje con vista panorámica" },
+      { pt: "Tem cama queen tamanho extra", es: "Tiene cama queen tamaño extra" },
+      { pt: "É muito confortável e espaçosa", es: "Es muy cómoda y espaciosa" },
+      { pt: "Tem frigobar com bebidas", es: "Tiene frigobar con bebidas" },
+      { pt: "Inclui Wi-Fi e smart TV", es: "Incluye WiFi y smart TV" },
+      { pt: "É ideal para descanso total", es: "Es ideal para descanso total" },
+      { pt: "A roupa de cama é de alta qualidade", es: "La ropa de cama es de alta calidad" },
+      { pt: "Tem aquecedor elétrico extra", es: "Tiene calefactor eléctrico extra" },
+      { pt: "O banheiro é completo e moderno", es: "El baño es completo y moderno" },
+      { pt: "Há roupões e chinelos disponíveis", es: "Hay albornoces y pantuflas disponibles" },
+    ],
+    vocab: [
+      { pt: "suíte", es: "suite" },
+      { pt: "superior", es: "superior" },
+      { pt: "direta", es: "directa" },
+      { pt: "frigobar", es: "frigobar" },
+      { pt: "roupa de cama", es: "ropa de cama" },
+      { pt: "roupão", es: "albornoz" },
+      { pt: "chinelo", es: "pantufla" },
+      { pt: "aquecedor", es: "calefactor" },
+      { pt: "espaçosa", es: "espaciosa" },
+      { pt: "qualidade", es: "calidad" },
+      { pt: "hidromassagem", es: "hidromasaje" },
+      { pt: "moderno", es: "moderno" },
+    ],
+    miniDialogues: [
+      { speaker: "Hóspede", pt: "O que tem de especial na suíte deluxe?", es: "¿Qué tiene de especial la suite deluxe?" },
+      { speaker: "Colaborador", pt: "Hidromassagem, vista direta ao lago e roupões", es: "Hidromasaje, vista directa al lago y albornoces" },
+      { speaker: "Hóspede", pt: "Tem frigobar?", es: "¿Tiene frigobar?" },
+      { speaker: "Colaborador", pt: "Sim, com bebidas incluídas", es: "Sí, con bebidas incluidas" },
+    ],
+    quiz: [
+      { question: "¿Cómo se dice 'albornoz'?", options: ["toalha", "roupão", "cobertor"], answer: "roupão" },
+      { question: "¿Cómo se dice 'ropa de cama'?", options: ["roupa de cama", "toalha", "cobertor"], answer: "roupa de cama" },
+    ],
+  },
+  {
+    id: "suite_standard",
+    title: "Suite Standard",
+    category: "Habitaciones",
+    emoji: "🛏️",
+    phrases: [
+      { pt: "A suíte standard fica no nível inferior", es: "La suite standard está en el nivel inferior" },
+      { pt: "Tem vista para o lago Nahuel Huapi", es: "Tiene vista al lago Nahuel Huapi" },
+      { pt: "Possui cama queen size", es: "Tiene cama queen size" },
+      { pt: "O banheiro tem hidromassagem", es: "El baño tiene hidromasaje" },
+      { pt: "Também tem box de ducha separado", es: "También tiene ducha separada" },
+      { pt: "Inclui Wi-Fi e smart TV", es: "Incluye WiFi y smart TV" },
+      { pt: "Tem aquecedor e ar condicionado", es: "Tiene calefactor y aire acondicionado" },
+      { pt: "É uma opção muito confortável", es: "Es una opción muy cómoda" },
+      { pt: "Ideal para quem busca tranquilidade", es: "Ideal para quienes buscan tranquilidad" },
+      { pt: "Tem roupa de cama de qualidade", es: "Tiene ropa de cama de calidad" },
+      { pt: "O quarto tem muito silêncio", es: "La habitación tiene mucho silencio" },
+      { pt: "Fica perto da recepção", es: "Está cerca de la recepción" },
+    ],
+    vocab: [
+      { pt: "nível inferior", es: "nivel inferior" },
+      { pt: "suíte", es: "suite" },
+      { pt: "vista", es: "vista" },
+      { pt: "banheiro", es: "baño" },
+      { pt: "ducha", es: "ducha" },
+      { pt: "hidromassagem", es: "hidromasaje" },
+      { pt: "aquecedor", es: "calefactor" },
+      { pt: "tranquilidade", es: "tranquilidad" },
+      { pt: "silêncio", es: "silencio" },
+      { pt: "qualidade", es: "calidad" },
+      { pt: "separado", es: "separado" },
+      { pt: "confortável", es: "cómoda" },
+    ],
+    miniDialogues: [
+      { speaker: "Hóspede", pt: "A suíte standard tem hidromassagem?", es: "¿La suite standard tiene hidromasaje?" },
+      { speaker: "Colaborador", pt: "Sim, no banheiro, e também tem ducha separada", es: "Sí, en el baño, y también tiene ducha separada" },
+      { speaker: "Hóspede", pt: "Tem vista para o lago também?", es: "¿Tiene vista al lago también?" },
+      { speaker: "Colaborador", pt: "Sim, todas as unidades têm", es: "Sí, todas las unidades tienen" },
+    ],
+    quiz: [
+      { question: "¿Cómo se dice 'nivel inferior'?", options: ["nível superior", "nível inferior", "andar alto"], answer: "nível inferior" },
+      { question: "¿Cómo se dice 'tranquilidad'?", options: ["silêncio", "tranquilidade", "conforto"], answer: "tranquilidade" },
+    ],
+  },
+  {
+    id: "cabana_8_pessoas",
+    title: "Cabaña hasta 8 personas",
+    category: "Habitaciones",
+    emoji: "🏘️",
+    phrases: [
+      { pt: "Esta cabana acomoda até 8 pessoas", es: "Esta cabaña aloja hasta 8 personas" },
+      { pt: "Tem uma suíte extra no nível inferior", es: "Tiene una suite extra en el nivel inferior" },
+      { pt: "Há um toilette na entrada", es: "Hay un toilette en la entrada" },
+      { pt: "A sala tem divãs-cama", es: "La sala tiene divanes-cama" },
+      { pt: "No andar superior há dois quartos", es: "En la planta superior hay dos habitaciones" },
+      { pt: "A hidromassagem tem vista para o lago", es: "El hidromasaje tiene vista al lago" },
+      { pt: "É ideal para famílias grandes ou grupos", es: "Es ideal para familias grandes o grupos" },
+      { pt: "Tem limpeza diária incluída", es: "Tiene limpieza diaria incluida" },
+      { pt: "A cozinha acomoda toda a família", es: "La cocina tiene capacidad para toda la familia" },
+      { pt: "Tem mesa de jantar grande", es: "Tiene mesa de comedor grande" },
+      { pt: "Há churrasqueira e deck espaçoso", es: "Hay parrilla y deck espacioso" },
+      { pt: "É a maior unidade do complexo", es: "Es la unidad más grande del complejo" },
+    ],
+    vocab: [
+      { pt: "até", es: "hasta" },
+      { pt: "suíte extra", es: "suite extra" },
+      { pt: "toilette", es: "toilette" },
+      { pt: "sala", es: "sala" },
+      { pt: "divã", es: "diván" },
+      { pt: "quarto", es: "habitación" },
+      { pt: "família", es: "familia" },
+      { pt: "grande", es: "grande" },
+      { pt: "grupo", es: "grupo" },
+      { pt: "mesa", es: "mesa" },
+      { pt: "espaçoso", es: "espacioso" },
+      { pt: "maior", es: "más grande" },
+    ],
+    miniDialogues: [
+      { speaker: "Hóspede", pt: "Somos 7 pessoas. Tem opção?", es: "Somos 7 personas. ¿Hay opción?" },
+      { speaker: "Colaborador", pt: "Sim, a cabana maior acomoda até 8 pessoas", es: "Sí, la cabaña más grande aloja hasta 8 personas" },
+      { speaker: "Hóspede", pt: "Tem churrasqueira?", es: "¿Tiene parrilla?" },
+      { speaker: "Colaborador", pt: "Sim, deck espaçoso com churrasqueira e vista ao lago", es: "Sí, deck espacioso con parrilla y vista al lago" },
+    ],
+    quiz: [
+      { question: "¿Cómo se dice 'familia grande'?", options: ["família grande", "grupo curto", "casal pequeno"], answer: "família grande" },
+      { question: "¿Cómo se dice 'más grande'?", options: ["maior", "melhor", "menor"], answer: "maior" },
+    ],
+  },
+  {
+    id: "cozinha_equipada",
+    title: "Cocina equipada",
+    category: "Habitaciones",
+    emoji: "🍳",
+    phrases: [
+      { pt: "A cozinha está totalmente equipada", es: "La cocina está totalmente equipada" },
+      { pt: "Tem forno elétrico e micro-ondas", es: "Tiene horno eléctrico y microondas" },
+      { pt: "Tem cafeteira elétrica e chaleira", es: "Tiene cafetera eléctrica y jarra eléctrica" },
+      { pt: "Há geladeira completa", es: "Hay heladera completa" },
+      { pt: "Louça, talheres e copos completos", es: "Vajilla, cubiertos y vasos completos" },
+      { pt: "Tem fogão com 4 bocas", es: "Tiene cocina de 4 hornallas" },
+      { pt: "Está pronta para usar desde a chegada", es: "Está lista para usar desde la llegada" },
+      { pt: "É muito prática para famílias", es: "Es muy práctica para familias" },
+      { pt: "Tem panelas, frigideiras e utensílios", es: "Tiene ollas, sartenes y utensilios" },
+      { pt: "Há um manual de uso dos eletrodomésticos", es: "Hay un manual de uso de los electrodomésticos" },
+      { pt: "A lenha para lareira fica ao lado da cozinha", es: "La leña para el hogar está al lado de la cocina" },
+      { pt: "Tem extintor de incêndio disponível", es: "Tiene extintor de incendios disponible" },
+    ],
+    vocab: [
+      { pt: "cozinha", es: "cocina" },
+      { pt: "forno", es: "horno" },
+      { pt: "micro-ondas", es: "microondas" },
+      { pt: "cafeteira", es: "cafetera" },
+      { pt: "chaleira", es: "jarra eléctrica" },
+      { pt: "geladeira", es: "heladera" },
+      { pt: "louça", es: "vajilla" },
+      { pt: "talheres", es: "cubiertos" },
+      { pt: "panela", es: "olla" },
+      { pt: "frigideira", es: "sartén" },
+      { pt: "fogão", es: "cocina/hornalla" },
+      { pt: "extintor", es: "extintor" },
+    ],
+    miniDialogues: [
+      { speaker: "Hóspede", pt: "A cabana tem fogão e forno?", es: "¿La cabaña tiene cocina y horno?" },
+      { speaker: "Colaborador", pt: "Sim, fogão de 4 bocas, forno elétrico e micro-ondas", es: "Sí, cocina de 4 hornallas, horno eléctrico y microondas" },
+      { speaker: "Hóspede", pt: "Tem tudo para cozinhar!", es: "¡Tiene todo para cocinar!" },
+      { speaker: "Colaborador", pt: "Sim, panelas, talheres e louça completos", es: "Sí, ollas, cubiertos y vajilla completos" },
+    ],
+    quiz: [
+      { question: "¿Cómo se dice 'heladera'?", options: ["geladeira", "fogão", "pia"], answer: "geladeira" },
+      { question: "¿Cómo se dice 'cubiertos'?", options: ["talheres", "louça", "pratos"], answer: "talheres" },
+    ],
+  },
+  {
+    id: "calefacao_lareira",
+    title: "Calefacción y hogar a leña",
+    category: "Habitaciones",
+    emoji: "🔥",
+    phrases: [
+      { pt: "A unidade tem calefação central", es: "La unidad tiene calefacción central" },
+      { pt: "Funciona em todos os ambientes", es: "Funciona en todos los ambientes" },
+      { pt: "Também há lareira a lenha", es: "También hay hogar a leña" },
+      { pt: "A lenha é reposta todos os dias", es: "La leña se repone todos los días" },
+      { pt: "É ideal para o inverno patagônico", es: "Es ideal para el invierno patagónico" },
+      { pt: "Mantém o ambiente muito quente", es: "Mantiene el ambiente muy cálido" },
+      { pt: "Se precisar de mais lenha, avise", es: "Si necesita más leña, avise" },
+      { pt: "É muito aconchegante com o fogo", es: "Es muy acogedor con el fuego" },
+      { pt: "A calefação tem termostato regulável", es: "La calefacción tiene termostato regulable" },
+      { pt: "Pode regular a temperatura no painel", es: "Puede regular la temperatura en el panel" },
+      { pt: "A lareira nunca deve ser deixada acesa sozinha", es: "El hogar nunca debe quedar encendido solo" },
+      { pt: "A lenha fica na lateral da cabana", es: "La leña está al costado de la cabaña" },
+    ],
+    vocab: [
+      { pt: "calefação", es: "calefacción" },
+      { pt: "central", es: "central" },
+      { pt: "ambiente", es: "ambiente" },
+      { pt: "lareira", es: "hogar" },
+      { pt: "lenha", es: "leña" },
+      { pt: "inverno", es: "invierno" },
+      { pt: "quente", es: "cálido" },
+      { pt: "aconchegante", es: "acogedor" },
+      { pt: "termostato", es: "termostato" },
+      { pt: "temperatura", es: "temperatura" },
+      { pt: "painel", es: "panel" },
+      { pt: "lateral", es: "costado/lateral" },
+    ],
+    miniDialogues: [
+      { speaker: "Hóspede", pt: "Tem lareira? Vai fazer muito frio", es: "¿Tiene hogar a leña? Va a hacer mucho frío" },
+      { speaker: "Colaborador", pt: "Sim, lareira a lenha e calefação central", es: "Sí, hogar a leña y calefacción central" },
+      { speaker: "Hóspede", pt: "A lenha é fornecida?", es: "¿La leña está incluida?" },
+      { speaker: "Colaborador", pt: "Sim, reposta diariamente sem custo extra", es: "Sí, se repone diariamente sin costo extra" },
+    ],
+    quiz: [
+      { question: "¿Cómo se dice 'leña'?", options: ["madeira", "lenha", "fogo"], answer: "lenha" },
+      { question: "¿Cómo se dice 'termostato'?", options: ["termostato", "aquecedor", "ventilador"], answer: "termostato" },
+    ],
+  },
+  {
+    id: "hidromassagem_conforto",
+    title: "Hidromasaje y confort",
+    category: "Habitaciones",
+    emoji: "🫧",
+    phrases: [
+      { pt: "A unidade tem hidromassagem privativa", es: "La unidad tiene hidromasaje privado" },
+      { pt: "É ideal para relaxar após excursões", es: "Es ideal para relajarse tras las excursiones" },
+      { pt: "O banheiro é espaçoso e moderno", es: "El baño es espacioso y moderno" },
+      { pt: "Há muito conforto em cada detalhe", es: "Hay mucho confort en cada detalle" },
+      { pt: "É uma experiência verdadeiramente especial", es: "Es una experiencia verdaderamente especial" },
+      { pt: "Muitos hóspedes adoram a hidromassagem", es: "Muchos huéspedes adoran el hidromasaje" },
+      { pt: "É perfeita para casais em lua de mel", es: "Es perfecta para parejas en luna de miel" },
+      { pt: "Também tem vista linda da banheira", es: "También tiene vista linda desde la bañera" },
+      { pt: "Os roupões e chinelos estão disponíveis", es: "Los albornoces y pantuflas están disponibles" },
+      { pt: "A água quente é constante", es: "El agua caliente es constante" },
+      { pt: "Pode regular a temperatura da hidromassagem", es: "Puede regular la temperatura del hidromasaje" },
+      { pt: "Os produtos de banho são de qualidade", es: "Los productos de baño son de calidad" },
+    ],
+    vocab: [
+      { pt: "hidromassagem", es: "hidromasaje" },
+      { pt: "relaxar", es: "relajarse" },
+      { pt: "banheiro", es: "baño" },
+      { pt: "espaçoso", es: "espacioso" },
+      { pt: "conforto", es: "confort" },
+      { pt: "lua de mel", es: "luna de miel" },
+      { pt: "roupão", es: "albornoz" },
+      { pt: "chinelo", es: "pantufla" },
+      { pt: "temperatura", es: "temperatura" },
+      { pt: "produtos de banho", es: "productos de baño" },
+      { pt: "banheira", es: "bañera" },
+      { pt: "constante", es: "constante" },
+    ],
+    miniDialogues: [
+      { speaker: "Hóspede", pt: "A suíte tem hidromassagem para duas pessoas?", es: "¿La suite tiene hidromasaje para dos personas?" },
+      { speaker: "Colaborador", pt: "Sim, e tem vista linda. É perfeita para lua de mel", es: "Sí, y tiene vista linda. Es perfecta para luna de miel" },
+      { speaker: "Hóspede", pt: "Tem roupão também?", es: "¿Tiene albornoz también?" },
+      { speaker: "Colaborador", pt: "Sim, roupões e chinelos para os dois", es: "Sí, albornoces y pantuflas para los dos" },
+    ],
+    quiz: [
+      { question: "¿Cómo se dice 'relajarse'?", options: ["descansar", "relaxar", "lavar"], answer: "relaxar" },
+      { question: "¿Cómo se dice 'luna de miel'?", options: ["férias", "lua de mel", "casamento"], answer: "lua de mel" },
+    ],
+  },
+  {
+    id: "vista_lago",
+    title: "Vista al lago",
+    category: "Habitaciones",
+    emoji: "🌊",
+    phrases: [
+      { pt: "Todas as unidades têm vista para o lago", es: "Todas las unidades tienen vista al lago" },
+      { pt: "A vista é completamente panorâmica", es: "La vista es completamente panorámica" },
+      { pt: "É possível ver o Nahuel Huapi ao amanhecer", es: "Es posible ver el Nahuel Huapi al amanecer" },
+      { pt: "A paisagem é maravilhosa em qualquer estação", es: "El paisaje es maravilloso en cualquier estación" },
+      { pt: "Muitos hóspedes escolhem por causa da vista", es: "Muchos huéspedes eligen por la vista" },
+      { pt: "É uma das melhores vistas da região", es: "Es una de las mejores vistas de la zona" },
+      { pt: "Do quarto a vista é incrível ao entardecer", es: "Desde la habitación la vista es increíble al atardecer" },
+      { pt: "Também do banheiro com hidromassagem", es: "También desde el baño con hidromasaje" },
+      { pt: "No inverno o lago fica com névoa", es: "En invierno el lago tiene niebla" },
+      { pt: "No verão brilha muito com o sol", es: "En verano brilla mucho con el sol" },
+      { pt: "O cerro e o lago juntos são únicos", es: "El cerro y el lago juntos son únicos" },
+      { pt: "Recomendamos levar câmera fotográfica", es: "Recomendamos llevar cámara fotográfica" },
+    ],
+    vocab: [
+      { pt: "vista", es: "vista" },
+      { pt: "lago", es: "lago" },
+      { pt: "paisagem", es: "paisaje" },
+      { pt: "maravilhosa", es: "maravilloso" },
+      { pt: "amanhecer", es: "amanecer" },
+      { pt: "entardecer", es: "atardecer" },
+      { pt: "névoa", es: "niebla" },
+      { pt: "brilhar", es: "brillar" },
+      { pt: "câmera", es: "cámara" },
+      { pt: "estação", es: "estación" },
+      { pt: "cerro", es: "cerro" },
+      { pt: "panorâmica", es: "panorámica" },
+    ],
+    miniDialogues: [
+      { speaker: "Hóspede", pt: "O quarto tem vista para o lago?", es: "¿La habitación tiene vista al lago?" },
+      { speaker: "Colaborador", pt: "Sim, todas as unidades têm vista panorâmica", es: "Sí, todas las unidades tienen vista panorámica" },
+      { speaker: "Hóspede", pt: "É muito bonito ao entardecer?", es: "¿Es muy bonito al atardecer?" },
+      { speaker: "Colaborador", pt: "É impressionante! Recomendamos ter a câmera pronta", es: "¡Es impresionante! Recomendamos tener la cámara lista" },
+    ],
+    quiz: [
+      { question: "¿Cómo se dice 'paisaje'?", options: ["vista", "paisagem", "natureza"], answer: "paisagem" },
+      { question: "¿Cómo se dice 'amanecer'?", options: ["entardecer", "amanhecer", "noite"], answer: "amanhecer" },
+    ],
+  },
+
+  // ─── GASTRONOMÍA ──────────────────────────────────────────────────────────
+  {
+    id: "desayuno",
+    title: "Desayuno",
+    category: "Gastronomía",
+    emoji: "☕",
+    phrases: [
+      { pt: "O café da manhã está incluído na reserva", es: "El desayuno está incluido en la reserva" },
+      { pt: "É servido das 7 às 10 da manhã", es: "Se sirve de 7 a 10 de la mañana" },
+      { pt: "É no formato buffet", es: "Es en formato buffet" },
+      { pt: "Tem café, chá, mate e sucos naturais", es: "Tiene café, té, mate y jugos naturales" },
+      { pt: "Tem frutas frescas da região", es: "Tiene frutas frescas de la región" },
+      { pt: "Tem pão artesanal e croissant", es: "Tiene pan artesanal y croissant" },
+      { pt: "Fica no restaurante La Tasca", es: "Está en el restaurante La Tasca" },
+      { pt: "Bom apetite!", es: "¡Buen provecho!" },
+      { pt: "Tem frios: presunto, queijo e salame", es: "Tiene fiambres: jamón, queso y salame" },
+      { pt: "Tem iogurte, granola e cereais", es: "Tiene yogur, granola y cereales" },
+      { pt: "Ovos estão disponíveis sob pedido", es: "Los huevos están disponibles a pedido" },
+      { pt: "Tem manteiga, mel e geleia artesanal", es: "Tiene mantequilla, miel y mermelada artesanal" },
+      { pt: "O leite é integral e desnatado", es: "La leche es entera y descremada" },
+      { pt: "Tem opções sem glúten", es: "Hay opciones sin gluten" },
+    ],
+    vocab: [
+      { pt: "café da manhã", es: "desayuno" },
+      { pt: "buffet", es: "buffet" },
+      { pt: "suco", es: "jugo" },
+      { pt: "fruta", es: "fruta" },
+      { pt: "pão", es: "pan" },
+      { pt: "croissant", es: "croissant" },
+      { pt: "frios", es: "fiambres" },
+      { pt: "queijo", es: "queso" },
+      { pt: "presunto", es: "jamón" },
+      { pt: "iogurte", es: "yogur" },
+      { pt: "mel", es: "miel" },
+      { pt: "geleia", es: "mermelada" },
+      { pt: "manteiga", es: "mantequilla" },
+      { pt: "ovo", es: "huevo" },
+    ],
+    miniDialogues: [
+      { speaker: "Hóspede", pt: "O café está incluído? O que tem?", es: "¿El desayuno está incluido? ¿Qué hay?" },
+      { speaker: "Colaborador", pt: "Sim! Buffet completo: frios, frutas, pão artesanal, ovos e bebidas", es: "¡Sí! Buffet completo: fiambres, frutas, pan artesanal, huevos y bebidas" },
+      { speaker: "Hóspede", pt: "Tem opção sem glúten?", es: "¿Hay opción sin gluten?" },
+      { speaker: "Colaborador", pt: "Sim, temos pão e cereais sem glúten", es: "Sí, tenemos pan y cereales sin gluten" },
+    ],
+    quiz: [
+      { question: "¿Cómo se dice 'desayuno'?", options: ["jantar", "café da manhã", "almoço"], answer: "café da manhã" },
+      { question: "¿Cómo se dice 'mermelada'?", options: ["geleia", "manteiga", "mel"], answer: "geleia" },
+    ],
+  },
+  {
+    id: "alimentos_basicos",
+    title: "Alimentos básicos",
+    category: "Gastronomía",
+    emoji: "🥩",
+    phrases: [
+      { pt: "Temos carne bovina, frango e peixe", es: "Tenemos carne vacuna, pollo y pescado" },
+      { pt: "O asado patagônico é nossa especialidade", es: "El asado patagónico es nuestra especialidad" },
+      { pt: "Servimos trucha fresca do lago", es: "Servimos trucha fresca del lago" },
+      { pt: "O cordeiro patagônico é delicioso", es: "El cordero patagónico es delicioso" },
+      { pt: "Temos legumes frescos da região", es: "Tenemos verduras frescas de la región" },
+      { pt: "Massa, arroz e batata disponíveis", es: "Pasta, arroz y papa disponibles" },
+      { pt: "As empanadas são feitas na hora", es: "Las empanadas son hechas al momento" },
+      { pt: "Chorizo e morcilla no assado", es: "Chorizo y morcilla en el asado" },
+      { pt: "Temos churrasco completo com acompanhamentos", es: "Tenemos asado completo con guarniciones" },
+      { pt: "A carne é de origem local", es: "La carne es de origen local" },
+      { pt: "Pode pedir o ponto da carne", es: "Puede pedir el punto de la carne" },
+      { pt: "Bem passado, ao ponto ou mal passado", es: "Bien cocida, a punto o jugosa" },
+      { pt: "Servimos com salada verde", es: "Servimos con ensalada verde" },
+      { pt: "Também temos opções vegetarianas", es: "También tenemos opciones vegetarianas" },
+    ],
+    vocab: [
+      { pt: "carne", es: "carne" },
+      { pt: "frango", es: "pollo" },
+      { pt: "peixe", es: "pescado" },
+      { pt: "trucha", es: "trucha" },
+      { pt: "cordeiro", es: "cordero" },
+      { pt: "asado", es: "asado" },
+      { pt: "empanada", es: "empanada" },
+      { pt: "chorizo", es: "chorizo" },
+      { pt: "morcilla", es: "morcilla" },
+      { pt: "legumes", es: "verduras" },
+      { pt: "massa", es: "pasta" },
+      { pt: "arroz", es: "arroz" },
+      { pt: "batata", es: "papa" },
+      { pt: "salada", es: "ensalada" },
+    ],
+    miniDialogues: [
+      { speaker: "Hóspede", pt: "O que tem de carne hoje?", es: "¿Qué hay de carne hoy?" },
+      { speaker: "Colaborador", pt: "Asado patagônico com chorizo, morcilla e trucha do lago", es: "Asado patagónico con chorizo, morcilla y trucha del lago" },
+      { speaker: "Hóspede", pt: "Como prefere o ponto?", es: "¿Cómo prefiere el punto?" },
+      { speaker: "Colaborador", pt: "Ao ponto, por favor", es: "A punto, por favor" },
+    ],
+    quiz: [
+      { question: "¿Cómo se dice 'pollo'?", options: ["peixe", "frango", "carne"], answer: "frango" },
+      { question: "¿Cómo se dice 'trucha'?", options: ["salmão", "trucha", "atum"], answer: "trucha" },
+    ],
+  },
+  {
+    id: "bebidas",
+    title: "Bebidas",
+    category: "Gastronomía",
+    emoji: "🍷",
+    phrases: [
+      { pt: "Temos vinhos patagônicos selecionados", es: "Tenemos vinos patagónicos seleccionados" },
+      { pt: "Cerveja artesanal local também disponível", es: "Cerveza artesanal local también disponible" },
+      { pt: "Café espresso, cappuccino e café com leite", es: "Café espresso, cappuccino y café con leche" },
+      { pt: "Chocolate quente especial da casa", es: "Chocolate caliente especial de la casa" },
+      { pt: "Mate com erva argentina", es: "Mate con yerba argentina" },
+      { pt: "Sucos naturais de frutas da região", es: "Jugos naturales de frutas de la región" },
+      { pt: "Água com e sem gás", es: "Agua con y sin gas" },
+      { pt: "Refrigerantes e bebidas sem álcool", es: "Gaseosas y bebidas sin alcohol" },
+      { pt: "Chá de ervas locais", es: "Té de hierbas locales" },
+      { pt: "Temos a carta de vinhos disponível", es: "Tenemos la carta de vinos disponible" },
+      { pt: "Vinho tinto Malbec da Patagônia", es: "Vino tinto Malbec de la Patagonia" },
+      { pt: "Posso recomendar um vinho para harmonizar?", es: "¿Puedo recomendar un vino para maridar?" },
+    ],
+    vocab: [
+      { pt: "vinho", es: "vino" },
+      { pt: "cerveja", es: "cerveza" },
+      { pt: "café", es: "café" },
+      { pt: "cappuccino", es: "cappuccino" },
+      { pt: "chocolate quente", es: "chocolate caliente" },
+      { pt: "mate", es: "mate" },
+      { pt: "suco", es: "jugo" },
+      { pt: "água", es: "agua" },
+      { pt: "refrigerante", es: "gaseosa" },
+      { pt: "chá", es: "té" },
+      { pt: "Malbec", es: "Malbec" },
+      { pt: "harmonizar", es: "maridar" },
+    ],
+    miniDialogues: [
+      { speaker: "Hóspede", pt: "Que vinho recomenda para o asado?", es: "¿Qué vino recomienda para el asado?" },
+      { speaker: "Colaborador", pt: "Um Malbec patagônico vai perfeitamente", es: "Un Malbec patagónico va perfectamente" },
+      { speaker: "Hóspede", pt: "E para depois, um café?", es: "¿Y para después, un café?" },
+      { speaker: "Colaborador", pt: "Temos espresso, cappuccino e chocolate quente", es: "Tenemos espresso, cappuccino y chocolate caliente" },
+    ],
+    quiz: [
+      { question: "¿Cómo se dice 'gaseosa'?", options: ["suco", "refrigerante", "água"], answer: "refrigerante" },
+      { question: "¿Cómo se dice 'chocolate caliente'?", options: ["café quente", "chocolate quente", "leite quente"], answer: "chocolate quente" },
+    ],
+  },
+  {
+    id: "frutas_sobremesas",
+    title: "Frutas y postres",
+    category: "Gastronomía",
+    emoji: "🍓",
+    phrases: [
+      { pt: "Temos torta de frutos do bosque", es: "Tenemos torta de frutos del bosque" },
+      { pt: "Mousse de chocolate artesanal", es: "Mousse de chocolate artesanal" },
+      { pt: "Sorvete artesanal de sabores locais", es: "Helado artesanal de sabores locales" },
+      { pt: "Morango, mirtilo e framboesa frescos", es: "Frutillas, arándanos y frambuesas frescas" },
+      { pt: "Doce de leite patagônico", es: "Dulce de leche patagónico" },
+      { pt: "Alfajor artesanal de chocolate", es: "Alfajor artesanal de chocolate" },
+      { pt: "Panquecas com frutas e chantilly", es: "Panqueques con frutas y crema" },
+      { pt: "Frutas de temporada da região", es: "Frutas de temporada de la región" },
+      { pt: "Tarta de maçã caseira", es: "Tarta de manzana casera" },
+      { pt: "Sorvete de dulce de leche e baunilha", es: "Helado de dulce de leche y vainilla" },
+      { pt: "Pode pedir para compartilhar", es: "Puede pedirlo para compartir" },
+      { pt: "Os postres são feitos todos os dias", es: "Los postres se hacen todos los días" },
+    ],
+    vocab: [
+      { pt: "frutos do bosque", es: "frutos del bosque" },
+      { pt: "morango", es: "frutilla" },
+      { pt: "mirtilo", es: "arándano" },
+      { pt: "framboesa", es: "frambuesa" },
+      { pt: "doce de leite", es: "dulce de leche" },
+      { pt: "alfajor", es: "alfajor" },
+      { pt: "sorvete", es: "helado" },
+      { pt: "mousse", es: "mousse" },
+      { pt: "panqueca", es: "panqueque" },
+      { pt: "chantilly", es: "crema" },
+      { pt: "maçã", es: "manzana" },
+      { pt: "temporada", es: "temporada" },
+    ],
+    miniDialogues: [
+      { speaker: "Hóspede", pt: "Que sobremesas têm?", es: "¿Qué postres tienen?" },
+      { speaker: "Colaborador", pt: "Torta de frutos do bosque, mousse de chocolate e sorvete artesanal", es: "Torta de frutos del bosque, mousse de chocolate y helado artesanal" },
+      { speaker: "Hóspede", pt: "Tem doce de leite?", es: "¿Hay dulce de leche?" },
+      { speaker: "Colaborador", pt: "Sim! Doce de leite patagônico e alfajor artesanal", es: "¡Sí! Dulce de leche patagónico y alfajor artesanal" },
+    ],
+    quiz: [
+      { question: "¿Cómo se dice 'frutilla'?", options: ["mirtilo", "morango", "framboesa"], answer: "morango" },
+      { question: "¿Cómo se dice 'helado'?", options: ["sorvete", "gelado", "frio"], answer: "sorvete" },
+    ],
+  },
+  {
+    id: "restaurante_tasca",
+    title: "Restaurante La Tasca",
+    category: "Gastronomía",
+    emoji: "🍽️",
+    phrases: [
+      { pt: "O restaurante se chama La Tasca", es: "El restaurante se llama La Tasca" },
+      { pt: "Aqui é servido o café da manhã", es: "Aquí se sirve el desayuno" },
+      { pt: "Também há opções para jantar", es: "También hay opciones para cenar" },
+      { pt: "É um ambiente acolhedor com vista ao lago", es: "Es un ambiente acogedor con vista al lago" },
+      { pt: "Fica dentro do complexo hoteleiro", es: "Está dentro del complejo hotelero" },
+      { pt: "O chef usa produtos regionais frescos", es: "El chef utiliza productos regionales frescos" },
+      { pt: "Tem menu degustação disponível", es: "Tiene menú degustación disponible" },
+      { pt: "Recomendamos reservar para o jantar", es: "Recomendamos reservar para la cena" },
+      { pt: "A carta muda conforme a estação", es: "La carta cambia según la temporada" },
+      { pt: "Tem opções para vegetarianos e celíacos", es: "Tiene opciones para vegetarianos y celíacos" },
+      { pt: "O horário do jantar é das 20 às 23", es: "El horario de la cena es de 20 a 23" },
+      { pt: "Hóspedes têm prioridade na reserva", es: "Los huéspedes tienen prioridad en la reserva" },
+    ],
+    vocab: [
+      { pt: "restaurante", es: "restaurante" },
+      { pt: "jantar", es: "cena" },
+      { pt: "chef", es: "chef" },
+      { pt: "menu degustação", es: "menú degustación" },
+      { pt: "carta", es: "carta" },
+      { pt: "estação", es: "temporada" },
+      { pt: "reserva", es: "reserva" },
+      { pt: "regional", es: "regional" },
+      { pt: "celíaco", es: "celíaco" },
+      { pt: "prioridade", es: "prioridad" },
+      { pt: "horário", es: "horario" },
+      { pt: "ambiente", es: "ambiente" },
+    ],
+    miniDialogues: [
+      { speaker: "Hóspede", pt: "Posso jantar no La Tasca?", es: "¿Puedo cenar en La Tasca?" },
+      { speaker: "Colaborador", pt: "Sim! Das 20 às 23. Recomendo reservar antes", es: "¡Sí! De 20 a 23. Le recomiendo reservar antes" },
+      { speaker: "Hóspede", pt: "Tem opção vegetariana?", es: "¿Tiene opción vegetariana?" },
+      { speaker: "Colaborador", pt: "Sim, e o chef usa produtos regionais frescos", es: "Sí, y el chef usa productos regionales frescos" },
+    ],
+    quiz: [
+      { question: "¿Cómo se dice 'cena'?", options: ["almoço", "jantar", "café"], answer: "jantar" },
+      { question: "¿Cómo se dice 'menú degustación'?", options: ["menu fixo", "menu degustação", "cardápio"], answer: "menu degustação" },
+    ],
+  },
+  {
+    id: "restaurante_praia",
+    title: "Restaurante de playa",
+    category: "Gastronomía",
+    emoji: "🏖️",
+    phrases: [
+      { pt: "Temos um restaurante na beira do lago", es: "Tenemos un restaurante a orillas del lago" },
+      { pt: "Funciona principalmente no verão", es: "Funciona principalmente en verano" },
+      { pt: "Fica junto à praia privativa", es: "Está junto a la playa privada" },
+      { pt: "A vista é incrível durante o almoço", es: "La vista es increíble durante el almuerzo" },
+      { pt: "É um serviço parcialmente terceirizado", es: "Es un servicio parcialmente tercerizado" },
+      { pt: "Hóspedes têm desconto especial", es: "Los huéspedes tienen descuento especial" },
+      { pt: "Vale muito a pena no verão", es: "Vale mucho la pena en verano" },
+      { pt: "Serve frutos do mar e grelhados", es: "Sirve mariscos y grillados" },
+      { pt: "Há música ao vivo aos fins de semana", es: "Hay música en vivo los fines de semana" },
+      { pt: "Pode ir de short e sandálias", es: "Puede ir en short y sandalias" },
+      { pt: "É ideal para almoçar à beira da água", es: "Es ideal para almorzar a la orilla del agua" },
+      { pt: "Posso orientar como chegar lá", es: "Puedo orientarle cómo llegar" },
+    ],
+    vocab: [
+      { pt: "beira do lago", es: "orilla del lago" },
+      { pt: "verão", es: "verano" },
+      { pt: "praia", es: "playa" },
+      { pt: "almoço", es: "almuerzo" },
+      { pt: "frutos do mar", es: "mariscos" },
+      { pt: "grelhado", es: "grillado" },
+      { pt: "música ao vivo", es: "música en vivo" },
+      { pt: "desconto", es: "descuento" },
+      { pt: "fins de semana", es: "fines de semana" },
+      { pt: "sandálias", es: "sandalias" },
+      { pt: "privativa", es: "privada" },
+      { pt: "terceirizado", es: "tercerizado" },
+    ],
+    miniDialogues: [
+      { speaker: "Hóspede", pt: "Tem restaurante na praia?", es: "¿Hay restaurante en la playa?" },
+      { speaker: "Colaborador", pt: "Sim! Fica na beira do lago, com frutos do mar e música ao vivo nos fins de semana", es: "¡Sí! Está a orillas del lago, con mariscos y música en vivo los fines de semana" },
+      { speaker: "Hóspede", pt: "Hóspedes têm desconto?", es: "¿Los huéspedes tienen descuento?" },
+      { speaker: "Colaborador", pt: "Sim, desconto especial. Apresente o cartão do hotel", es: "Sí, descuento especial. Presente la tarjeta del hotel" },
+    ],
+    quiz: [
+      { question: "¿Cómo se dice 'verano'?", options: ["inverno", "verão", "outono"], answer: "verão" },
+      { question: "¿Cómo se dice 'mariscos'?", options: ["peixe", "frutos do mar", "camarão"], answer: "frutos do mar" },
+    ],
+  },
+  {
+    id: "recomendacoes_gastronomia",
+    title: "Recomendaciones gastronómicas",
+    category: "Gastronomía",
+    emoji: "🫕",
+    phrases: [
+      { pt: "Posso recomendar um restaurante externo", es: "Puedo recomendar un restaurante externo" },
+      { pt: "Há opções a poucos minutos do hotel", es: "Hay opciones a pocos minutos del hotel" },
+      { pt: "Tem comida regional patagônica", es: "Tiene comida regional patagónica" },
+      { pt: "O cordeiro ao forno é imperdível", es: "El cordero al horno es imperdible" },
+      { pt: "A trucha defumada é muito apreciada", es: "La trucha ahumada es muy apreciada" },
+      { pt: "Fondue de queijo no inverno é incrível", es: "La fondue de queso en invierno es increíble" },
+      { pt: "Também tem comida internacional", es: "También tiene comida internacional" },
+      { pt: "É muito bem avaliado pelos hóspedes", es: "Está muy bien valorado por los huéspedes" },
+      { pt: "Fica a poucos minutos de carro", es: "Está a pocos minutos en auto" },
+      { pt: "Posso fazer a reserva para o senhor", es: "Puedo hacer la reserva para usted" },
+      { pt: "Quer alguma recomendação especial?", es: "¿Quiere alguna recomendación especial?" },
+      { pt: "Qual é o seu tipo de comida favorita?", es: "¿Cuál es su tipo de comida favorita?" },
+    ],
+    vocab: [
+      { pt: "recomendação", es: "recomendación" },
+      { pt: "regional", es: "regional" },
+      { pt: "cordeiro", es: "cordero" },
+      { pt: "defumado", es: "ahumado" },
+      { pt: "fondue", es: "fondue" },
+      { pt: "internacional", es: "internacional" },
+      { pt: "externo", es: "externo" },
+      { pt: "apreciado", es: "apreciado" },
+      { pt: "imperdível", es: "imperdible" },
+      { pt: "reserva", es: "reserva" },
+      { pt: "especial", es: "especial" },
+      { pt: "favorito", es: "favorito" },
+    ],
+    miniDialogues: [
+      { speaker: "Hóspede", pt: "O que recomenda para jantar fora?", es: "¿Qué recomienda para cenar afuera?" },
+      { speaker: "Colaborador", pt: "O cordeiro patagônico ao forno é imperdível aqui na região", es: "El cordero patagónico al horno es imperdible en la región" },
+      { speaker: "Hóspede", pt: "E se for no inverno?", es: "¿Y si es en invierno?" },
+      { speaker: "Colaborador", pt: "Fondue de queijo! É incrível com neve", es: "¡Fondue de queso! Es increíble con nieve" },
+    ],
+    quiz: [
+      { question: "¿Cómo se dice 'imperdible'?", options: ["barato", "imperdível", "caro"], answer: "imperdível" },
+      { question: "¿Cómo se dice 'ahumado'?", options: ["defumado", "grelhado", "assado"], answer: "defumado" },
+    ],
+  },
+  {
+    id: "dietas",
+    title: "Dietas y preferencias",
+    category: "Gastronomía",
+    emoji: "🥗",
+    phrases: [
+      { pt: "Tem alguma restrição alimentar?", es: "¿Tiene alguna restricción alimentaria?" },
+      { pt: "Podemos adaptar os pratos", es: "Podemos adaptar los platos" },
+      { pt: "Há opções vegetarianas disponíveis", es: "Hay opciones vegetarianas disponibles" },
+      { pt: "Também temos opções veganas", es: "También tenemos opciones veganas" },
+      { pt: "Sem glúten: temos pão e massas adequadas", es: "Sin gluten: tenemos pan y pastas adecuadas" },
+      { pt: "Temos opções sem lactose", es: "Tenemos opciones sin lactosa" },
+      { pt: "Alergia a frutos do mar: avisaremos a cozinha", es: "Alergia a mariscos: avisaremos a la cocina" },
+      { pt: "Avise com antecedência para prepararmos", es: "Avise con anticipación para que preparemos" },
+      { pt: "Faremos o possível para atendê-lo", es: "Haremos lo posible para atenderle" },
+      { pt: "O café da manhã tem opções sem glúten", es: "El desayuno tiene opciones sin gluten" },
+      { pt: "Posso indicar os ingredientes de cada prato", es: "Puedo indicarle los ingredientes de cada plato" },
+      { pt: "Sua saúde e conforto são nossa prioridade", es: "Su salud y confort son nuestra prioridad" },
+    ],
+    vocab: [
+      { pt: "restrição", es: "restricción" },
+      { pt: "vegetariano", es: "vegetariano" },
+      { pt: "vegano", es: "vegano" },
+      { pt: "glúten", es: "gluten" },
+      { pt: "lactose", es: "lactosa" },
+      { pt: "alergia", es: "alergia" },
+      { pt: "ingrediente", es: "ingrediente" },
+      { pt: "prato", es: "plato" },
+      { pt: "cozinha", es: "cocina" },
+      { pt: "adaptar", es: "adaptar" },
+      { pt: "celíaco", es: "celíaco" },
+      { pt: "saúde", es: "salud" },
+    ],
+    miniDialogues: [
+      { speaker: "Colaborador", pt: "Tem alguma restrição alimentar?", es: "¿Tiene alguna restricción alimentaria?" },
+      { speaker: "Hóspede", pt: "Sou celíaco e minha esposa é vegana", es: "Soy celíaco y mi esposa es vegana" },
+      { speaker: "Colaborador", pt: "Anotamos! Preparamos opções sem glúten e veganas", es: "¡Anotamos! Preparamos opciones sin gluten y veganas" },
+      { speaker: "Hóspede", pt: "Muito obrigado pela atenção", es: "Muchas gracias por la atención" },
+    ],
+    quiz: [
+      { question: "¿Cómo se dice 'sin gluten'?", options: ["sem glúten", "sem leite", "sem açúcar"], answer: "sem glúten" },
+      { question: "¿Cómo se dice 'alergia'?", options: ["alergia", "doença", "intolerância"], answer: "alergia" },
+    ],
+  },
+  {
+    id: "vocabulario_cozinha",
+    title: "Vocabulario de cocina",
+    category: "Gastronomía",
+    emoji: "🧑‍🍳",
+    phrases: [
+      { pt: "O azeite e o vinagre estão na despensa", es: "El aceite y el vinagre están en la despensa" },
+      { pt: "Sal, pimenta e temperos disponíveis", es: "Sal, pimienta y condimentos disponibles" },
+      { pt: "Temos papel alumínio e pano de prato", es: "Tenemos papel aluminio y repasador" },
+      { pt: "O saca-rolhas está na gaveta", es: "El sacacorchos está en el cajón" },
+      { pt: "A tábua de corte está na bancada", es: "La tabla de cortar está en la mesada" },
+      { pt: "O lixo deve ser separado para reciclagem", es: "La basura debe separarse para reciclaje" },
+      { pt: "O carvão para o assado está no deck", es: "El carbón para el asado está en el deck" },
+      { pt: "O extintor está na parede da cozinha", es: "El extintor está en la pared de la cocina" },
+      { pt: "Em caso de emergência, ligue para a recepção", es: "En caso de emergencia, llame a la recepción" },
+      { pt: "A faca de pão está no bloco de facas", es: "El cuchillo de pan está en el bloque" },
+      { pt: "O descascador e a colher de pau estão disponíveis", es: "El pelador y la cuchara de madera están disponibles" },
+      { pt: "O fogão é elétrico, não a gás", es: "La cocina es eléctrica, no a gas" },
+    ],
+    vocab: [
+      { pt: "azeite", es: "aceite" },
+      { pt: "vinagre", es: "vinagre" },
+      { pt: "sal", es: "sal" },
+      { pt: "pimenta", es: "pimienta" },
+      { pt: "tempero", es: "condimento" },
+      { pt: "saca-rolhas", es: "sacacorchos" },
+      { pt: "tábua", es: "tabla" },
+      { pt: "carvão", es: "carbón" },
+      { pt: "extintor", es: "extintor" },
+      { pt: "reciclagem", es: "reciclaje" },
+      { pt: "faca", es: "cuchillo" },
+      { pt: "gaveta", es: "cajón" },
+    ],
+    miniDialogues: [
+      { speaker: "Hóspede", pt: "Onde está o saca-rolhas?", es: "¿Dónde está el sacacorchos?" },
+      { speaker: "Colaborador", pt: "Na gaveta ao lado da pia", es: "En el cajón al lado de la pileta" },
+      { speaker: "Hóspede", pt: "E o carvão para o assado?", es: "¿Y el carbón para el asado?" },
+      { speaker: "Colaborador", pt: "No deck, ao lado da churrasqueira", es: "En el deck, al lado de la parrilla" },
+    ],
+    quiz: [
+      { question: "¿Cómo se dice 'sacacorchos'?", options: ["saca-rolhas", "abridor", "faca"], answer: "saca-rolhas" },
+      { question: "¿Cómo se dice 'carbón'?", options: ["lenha", "carvão", "fogo"], answer: "carvão" },
+    ],
+  },
+
+  // ─── SERVICIOS ────────────────────────────────────────────────────────────
+  {
+    id: "wifi",
+    title: "WiFi",
+    category: "Servicios",
+    emoji: "📶",
+    phrases: [
+      { pt: "O Wi-Fi é completamente gratuito", es: "El WiFi es completamente gratuito" },
+      { pt: "Funciona em todo o hotel e cabanas", es: "Funciona en todo el hotel y las cabañas" },
+      { pt: "A senha está no cartão da chave", es: "La contraseña está en la tarjeta de la llave" },
+      { pt: "Se precisar, avise na recepção", es: "Si necesita, avise en la recepción" },
+      { pt: "Pode usar livremente sem limite", es: "Puede usarlo libremente sin límite" },
+      { pt: "A conexão é rápida e estável", es: "La conexión es rápida y estable" },
+      { pt: "Está incluído em todas as acomodações", es: "Está incluido en todos los alojamientos" },
+      { pt: "Qualquer dúvida, me avise", es: "Cualquier duda, avíseme" },
+      { pt: "A rede se chama HotelLago_Guest", es: "La red se llama HotelLago_Guest" },
+      { pt: "Se não funcionar, reinicie o roteador", es: "Si no funciona, reinicie el router" },
+      { pt: "Tem cobertura também no deck externo", es: "Tiene cobertura también en el deck exterior" },
+      { pt: "Suporte técnico disponível na recepção", es: "Soporte técnico disponible en la recepción" },
+    ],
+    vocab: [
+      { pt: "senha", es: "contraseña" },
+      { pt: "internet", es: "internet" },
+      { pt: "rede", es: "red" },
+      { pt: "sinal", es: "señal" },
+      { pt: "acesso", es: "acceso" },
+      { pt: "conexão", es: "conexión" },
+      { pt: "rápido", es: "rápido" },
+      { pt: "grátis", es: "gratis" },
+      { pt: "roteador", es: "router" },
+      { pt: "cobertura", es: "cobertura" },
+      { pt: "estável", es: "estable" },
+      { pt: "suporte", es: "soporte" },
+    ],
+    miniDialogues: [
+      { speaker: "Hóspede", pt: "Qual é a senha do Wi-Fi?", es: "¿Cuál es la contraseña del WiFi?" },
+      { speaker: "Colaborador", pt: "Está no cartão da chave. Rede HotelLago_Guest", es: "Está en la tarjeta de la llave. Red HotelLago_Guest" },
+      { speaker: "Hóspede", pt: "E se não conectar?", es: "¿Y si no conecta?" },
+      { speaker: "Colaborador", pt: "Avise na recepção, resolvemos na hora", es: "Avise en la recepción, lo resolvemos en el momento" },
+    ],
+    quiz: [
+      { question: "¿Cómo se dice 'contraseña'?", options: ["senha", "rede", "wifi"], answer: "senha" },
+      { question: "¿Cómo se dice 'router'?", options: ["modem", "roteador", "antena"], answer: "roteador" },
+    ],
+  },
+  {
+    id: "transfer",
+    title: "Transfer",
+    category: "Servicios",
+    emoji: "🚐",
+    phrases: [
+      { pt: "Oferecemos serviço de transfer", es: "Ofrecemos servicio de transfer" },
+      { pt: "Podemos organizar com antecedência", es: "Podemos organizarlo con anticipación" },
+      { pt: "Tem custo adicional", es: "Tiene costo adicional" },
+      { pt: "Para o aeroporto de Bariloche", es: "Al aeropuerto de Bariloche" },
+      { pt: "Para o centro da cidade", es: "Al centro de la ciudad" },
+      { pt: "Horário e ponto combinados", es: "Horario y punto acordados" },
+      { pt: "Precisa reservar com pelo menos 12 horas", es: "Debe reservar con al menos 12 horas" },
+      { pt: "Quer que eu organize agora?", es: "¿Quiere que lo organice ahora?" },
+      { pt: "Temos motoristas confiáveis", es: "Tenemos choferes confiables" },
+      { pt: "O carro passa na porta da cabana", es: "El auto pasa por la puerta de la cabaña" },
+      { pt: "Pode ser para grupos também", es: "Puede ser para grupos también" },
+      { pt: "Posso dar uma estimativa de preço", es: "Puedo darle un estimado de precio" },
+    ],
+    vocab: [
+      { pt: "transfer", es: "transfer" },
+      { pt: "aeroporto", es: "aeropuerto" },
+      { pt: "reserva", es: "reserva" },
+      { pt: "horário", es: "horario" },
+      { pt: "motorista", es: "chofer" },
+      { pt: "carro", es: "auto" },
+      { pt: "viagem", es: "viaje" },
+      { pt: "antecedência", es: "anticipación" },
+      { pt: "confiável", es: "confiable" },
+      { pt: "estimativa", es: "estimado" },
+      { pt: "grupo", es: "grupo" },
+      { pt: "porta", es: "puerta" },
+    ],
+    miniDialogues: [
+      { speaker: "Hóspede", pt: "Preciso de transfer para o aeroporto amanhã às 6", es: "Necesito transfer al aeropuerto mañana a las 6" },
+      { speaker: "Colaborador", pt: "Perfeito. Posso organizar agora. Quantas pessoas?", es: "Perfecto. Puedo organizarlo ahora. ¿Cuántas personas?" },
+      { speaker: "Hóspede", pt: "Três pessoas e duas malas grandes", es: "Tres personas y dos maletas grandes" },
+      { speaker: "Colaborador", pt: "Anotado! O carro passa na porta às 5:45", es: "¡Anotado! El auto pasa por la puerta a las 5:45" },
+    ],
+    quiz: [
+      { question: "¿Cómo se dice 'aeropuerto'?", options: ["rodoviária", "aeroporto", "terminal"], answer: "aeroporto" },
+      { question: "¿Cómo se dice 'chofer'?", options: ["motorista", "guia", "piloto"], answer: "motorista" },
+    ],
+  },
+  {
+    id: "estacionamento",
+    title: "Estacionamiento",
+    category: "Servicios",
+    emoji: "🚗",
+    phrases: [
+      { pt: "O estacionamento é descoberto", es: "El estacionamiento es descubierto" },
+      { pt: "Fica perto de cada unidade", es: "Está cerca de cada unidad" },
+      { pt: "É completamente gratuito para hóspedes", es: "Es completamente gratuito para huéspedes" },
+      { pt: "Pode estacionar aqui com tranquilidade", es: "Puede estacionar aquí con tranquilidad" },
+      { pt: "Se precisar de ajuda para estacionar, avise", es: "Si necesita ayuda para estacionar, avise" },
+      { pt: "Tem espaço suficiente para todos", es: "Hay espacio suficiente para todos" },
+      { pt: "É de fácil acesso pela entrada principal", es: "Es de fácil acceso por la entrada principal" },
+      { pt: "Bem-vindo!", es: "¡Bienvenido!" },
+      { pt: "No inverno pode ter neve no pátio", es: "En invierno puede haber nieve en el patio" },
+      { pt: "Recomendamos não deixar objetos no carro", es: "Recomendamos no dejar objetos en el auto" },
+      { pt: "O hotel não se responsabiliza por furtos", es: "El hotel no se responsabiliza por robos" },
+      { pt: "Tem iluminação noturna no estacionamento", es: "Tiene iluminación nocturna en el estacionamiento" },
+    ],
+    vocab: [
+      { pt: "estacionamento", es: "estacionamiento" },
+      { pt: "carro", es: "auto" },
+      { pt: "gratuito", es: "gratuito" },
+      { pt: "acesso", es: "acceso" },
+      { pt: "vaga", es: "espacio" },
+      { pt: "perto", es: "cerca" },
+      { pt: "neve", es: "nieve" },
+      { pt: "iluminação", es: "iluminación" },
+      { pt: "furto", es: "robo" },
+      { pt: "pátio", es: "patio" },
+      { pt: "principal", es: "principal" },
+      { pt: "entrada", es: "entrada" },
+    ],
+    miniDialogues: [
+      { speaker: "Hóspede", pt: "Onde posso estacionar o carro?", es: "¿Dónde puedo estacionar el auto?" },
+      { speaker: "Colaborador", pt: "Perto da sua unidade. É gratuito e tem iluminação noturna", es: "Cerca de su unidad. Es gratuito y tiene iluminación nocturna" },
+      { speaker: "Hóspede", pt: "É seguro?", es: "¿Es seguro?" },
+      { speaker: "Colaborador", pt: "Sim, mas recomendamos não deixar objetos visíveis no carro", es: "Sí, pero recomendamos no dejar objetos visibles en el auto" },
+    ],
+    quiz: [
+      { question: "¿Cómo se dice 'gratuito'?", options: ["gratuito", "caro", "reservado"], answer: "gratuito" },
+      { question: "¿Cómo se dice 'iluminación'?", options: ["luz", "iluminação", "lâmpada"], answer: "iluminação" },
+    ],
+  },
+  {
+    id: "horarios_servicos",
+    title: "Horarios y servicios",
+    category: "Servicios",
+    emoji: "⏰",
+    phrases: [
+      { pt: "O check-out é até as 10 da manhã", es: "El check-out es hasta las 10 de la mañana" },
+      { pt: "A recepção está sempre à disposição", es: "La recepción siempre está a disposición" },
+      { pt: "O café é servido das 7 às 10 da manhã", es: "El desayuno se sirve de 7 a 10 de la mañana" },
+      { pt: "A limpeza é diária, geralmente pela manhã", es: "La limpieza es diaria, generalmente por la mañana" },
+      { pt: "A reposição de lenha é todas as tardes", es: "La reposición de leña es todas las tardes" },
+      { pt: "O estacionamento é descoberto e gratuito", es: "El estacionamiento es descubierto y gratuito" },
+      { pt: "O Wi-Fi é livre 24 horas", es: "El WiFi es libre las 24 horas" },
+      { pt: "Se precisar de algo a qualquer hora, avise", es: "Si necesita algo a cualquier hora, avise" },
+      { pt: "O silêncio noturno é a partir das 23 horas", es: "El silencio nocturno es a partir de las 23 horas" },
+      { pt: "O late check-out deve ser solicitado antes", es: "El late check-out debe solicitarse con anticipación" },
+      { pt: "A lavanderia está disponível sob consulta", es: "La lavandería está disponible bajo consulta" },
+      { pt: "Serviço de quarto mediante pedido especial", es: "Servicio de habitación mediante pedido especial" },
+    ],
+    vocab: [
+      { pt: "horário", es: "horario" },
+      { pt: "manhã", es: "mañana" },
+      { pt: "tarde", es: "tarde" },
+      { pt: "limpeza", es: "limpieza" },
+      { pt: "lenha", es: "leña" },
+      { pt: "recepção", es: "recepción" },
+      { pt: "silêncio", es: "silencio" },
+      { pt: "lavanderia", es: "lavandería" },
+      { pt: "disposição", es: "disposición" },
+      { pt: "noturno", es: "nocturno" },
+      { pt: "solicitado", es: "solicitado" },
+      { pt: "24 horas", es: "24 horas" },
+    ],
+    miniDialogues: [
+      { speaker: "Hóspede", pt: "A que horas posso fazer o check-out?", es: "¿A qué hora puedo hacer el check-out?" },
+      { speaker: "Colaborador", pt: "Até as 10 da manhã. Se precisar de mais tempo, avise antes", es: "Hasta las 10 de la mañana. Si necesita más tiempo, avise antes" },
+      { speaker: "Hóspede", pt: "E a limpeza, a que horas entra?", es: "¿Y la limpieza, a qué hora entra?" },
+      { speaker: "Colaborador", pt: "Geralmente entre 10 e 12 da manhã", es: "Generalmente entre las 10 y las 12 de la mañana" },
+    ],
+    quiz: [
+      { question: "¿Cómo se dice 'limpieza'?", options: ["limpeza", "lavagem", "ordem"], answer: "limpeza" },
+      { question: "¿Cómo se dice 'lavandería'?", options: ["lavanderia", "limpeza", "serviço"], answer: "lavanderia" },
+    ],
+  },
+  {
+    id: "limpeza_servicos",
+    title: "Limpieza y servicios",
+    category: "Servicios",
+    emoji: "🧹",
+    phrases: [
+      { pt: "O serviço de limpeza é diário", es: "El servicio de limpieza es diario" },
+      { pt: "Também há reposição de toalhas", es: "También hay reposición de toallas" },
+      { pt: "A lenha é reposta todos os dias", es: "La leña se repone todos los días" },
+      { pt: "Se precisar de algo extra, avise", es: "Si necesita algo extra, avise" },
+      { pt: "Podemos ajudar com mais amenidades", es: "Podemos ayudar con más amenities" },
+      { pt: "Queremos que sua estadia seja confortável", es: "Queremos que su estadía sea cómoda" },
+      { pt: "Estamos sempre à disposição", es: "Siempre estamos a disposición" },
+      { pt: "Com muito prazer!", es: "¡Con mucho gusto!" },
+      { pt: "A equipe de limpeza é discreta", es: "El equipo de limpieza es discreto" },
+      { pt: "Se não quiser limpeza, coloque o aviso na porta", es: "Si no quiere limpieza, ponga el aviso en la puerta" },
+      { pt: "Trocamos as toalhas a cada dois dias", es: "Cambiamos las toallas cada dos días" },
+      { pt: "Pode solicitar troca extra sem custo", es: "Puede solicitar cambio extra sin costo" },
+    ],
+    vocab: [
+      { pt: "limpeza", es: "limpieza" },
+      { pt: "toalha", es: "toalla" },
+      { pt: "amenidades", es: "amenities" },
+      { pt: "equipe", es: "equipo" },
+      { pt: "discreta", es: "discreta" },
+      { pt: "aviso", es: "aviso" },
+      { pt: "porta", es: "puerta" },
+      { pt: "extra", es: "extra" },
+      { pt: "troca", es: "cambio" },
+      { pt: "confortável", es: "cómoda" },
+      { pt: "diário", es: "diario" },
+      { pt: "prazer", es: "gusto" },
+    ],
+    miniDialogues: [
+      { speaker: "Hóspede", pt: "A limpeza é todos os dias?", es: "¿La limpieza es todos los días?" },
+      { speaker: "Colaborador", pt: "Sim, diariamente. E trocamos as toalhas a cada dois dias", es: "Sí, diariamente. Y cambiamos las toallas cada dos días" },
+      { speaker: "Hóspede", pt: "Posso pedir toalha extra?", es: "¿Puedo pedir toalla extra?" },
+      { speaker: "Colaborador", pt: "Claro, sem custo adicional. É só avisar", es: "Claro, sin costo adicional. Solo avise" },
+    ],
+    quiz: [
+      { question: "¿Cómo se dice 'toalla'?", options: ["sabão", "toalha", "cobertor"], answer: "toalha" },
+      { question: "¿Cómo se dice 'cambio'?", options: ["troca", "serviço", "pedido"], answer: "troca" },
+    ],
+  },
+  {
+    id: "indicacoes",
+    title: "Dar indicaciones",
+    category: "Servicios",
+    emoji: "🧭",
+    phrases: [
+      { pt: "Fica à direita ao sair da recepção", es: "Está a la derecha al salir de la recepción" },
+      { pt: "Depois vire à esquerda no semáforo", es: "Luego doble a la izquierda en el semáforo" },
+      { pt: "Siga em frente por 500 metros", es: "Siga recto por 500 metros" },
+      { pt: "É perto daqui, uns 10 minutos a pé", es: "Está cerca, unos 10 minutos caminando" },
+      { pt: "Pode ir caminhando tranquilamente", es: "Puede ir caminando tranquilamente" },
+      { pt: "Também pode ir de carro", es: "También puede ir en auto" },
+      { pt: "É fácil de encontrar", es: "Es fácil de encontrar" },
+      { pt: "Se precisar, explico melhor ou busco no mapa", es: "Si necesita, explico mejor o busco en el mapa" },
+      { pt: "Fica na rua principal do centro", es: "Está en la calle principal del centro" },
+      { pt: "É a segunda rua à direita", es: "Es la segunda calle a la derecha" },
+      { pt: "Tem como referência o supermercado", es: "Tiene como referencia el supermercado" },
+      { pt: "Posso mostrar no Google Maps", es: "Puedo mostrarle en Google Maps" },
+    ],
+    vocab: [
+      { pt: "direita", es: "derecha" },
+      { pt: "esquerda", es: "izquierda" },
+      { pt: "reto/frente", es: "recto/adelante" },
+      { pt: "perto", es: "cerca" },
+      { pt: "longe", es: "lejos" },
+      { pt: "caminhar", es: "caminar" },
+      { pt: "semáforo", es: "semáforo" },
+      { pt: "rua", es: "calle" },
+      { pt: "mapa", es: "mapa" },
+      { pt: "referência", es: "referencia" },
+      { pt: "metros", es: "metros" },
+      { pt: "principal", es: "principal" },
+    ],
+    miniDialogues: [
+      { speaker: "Hóspede", pt: "Como chego ao centro?", es: "¿Cómo llego al centro?" },
+      { speaker: "Colaborador", pt: "Siga em frente e vire à esquerda no semáforo. São 7 km", es: "Siga recto y doble a la izquierda en el semáforo. Son 7 km" },
+      { speaker: "Hóspede", pt: "Posso ir a pé?", es: "¿Puedo ir caminando?" },
+      { speaker: "Colaborador", pt: "De carro é melhor. São uns 10 minutos", es: "En auto es mejor. Son unos 10 minutos" },
+    ],
+    quiz: [
+      { question: "¿Cómo se dice 'izquierda'?", options: ["direita", "esquerda", "frente"], answer: "esquerda" },
+      { question: "¿Cómo se dice 'semáforo'?", options: ["sinal", "semáforo", "cruzamento"], answer: "semáforo" },
+    ],
+  },
+
+  // ─── INFORMACIÓN ──────────────────────────────────────────────────────────
+  {
+    id: "ubicacion",
+    title: "Ubicación",
+    category: "Información",
+    emoji: "📍",
+    phrases: [
+      { pt: "Estamos em Puerto Manzano", es: "Estamos en Puerto Manzano" },
+      { pt: "A 7 km do centro de Villa La Angostura", es: "A 7 km del centro de Villa La Angostura" },
+      { pt: "Pertinho do lago Nahuel Huapi", es: "Muy cerca del lago Nahuel Huapi" },
+      { pt: "A vista é absolutamente incrível", es: "La vista es absolutamente increíble" },
+      { pt: "É uma zona muito tranquila e segura", es: "Es una zona muy tranquila y segura" },
+      { pt: "Tem acesso fácil pela ruta 231", es: "Tiene acceso fácil por la ruta 231" },
+      { pt: "A 3 km do Cerro Bayo para esquiar", es: "A 3 km del Cerro Bayo para esquiar" },
+      { pt: "Muito bonito em qualquer época do ano", es: "Muy lindo en cualquier época del año" },
+      { pt: "Bariloche fica a 80 km daqui", es: "Bariloche está a 80 km de aquí" },
+      { pt: "O aeroporto mais próximo é o de Bariloche", es: "El aeropuerto más cercano es el de Bariloche" },
+      { pt: "Estamos no coração da Patagônia", es: "Estamos en el corazón de la Patagonia" },
+      { pt: "A localização é privilegiada", es: "La ubicación es privilegiada" },
+    ],
+    vocab: [
+      { pt: "centro", es: "centro" },
+      { pt: "lago", es: "lago" },
+      { pt: "zona", es: "zona" },
+      { pt: "tranquilo", es: "tranquilo" },
+      { pt: "ruta", es: "ruta" },
+      { pt: "Bariloche", es: "Bariloche" },
+      { pt: "aeroporto", es: "aeropuerto" },
+      { pt: "Patagônia", es: "Patagonia" },
+      { pt: "privilegiada", es: "privilegiada" },
+      { pt: "coração", es: "corazón" },
+      { pt: "acesso", es: "acceso" },
+      { pt: "localização", es: "ubicación" },
+    ],
+    miniDialogues: [
+      { speaker: "Hóspede", pt: "Onde exatamente ficamos?", es: "¿Dónde exactamente estamos?" },
+      { speaker: "Colaborador", pt: "Em Puerto Manzano, 7 km do centro e 3 km do Cerro Bayo", es: "En Puerto Manzano, 7 km del centro y 3 km del Cerro Bayo" },
+      { speaker: "Hóspede", pt: "E Bariloche, fica longe?", es: "¿Y Bariloche, queda lejos?" },
+      { speaker: "Colaborador", pt: "A 80 km, cerca de uma hora de carro", es: "A 80 km, cerca de una hora en auto" },
+    ],
+    quiz: [
+      { question: "¿Cómo se dice 'centro'?", options: ["zona", "centro", "bairro"], answer: "centro" },
+      { question: "¿Cómo se dice 'ubicación'?", options: ["lugar", "localização", "endereço"], answer: "localização" },
+    ],
+  },
+  {
+    id: "explicacao_hotel",
+    title: "Explicación del hotel",
+    category: "Información",
+    emoji: "🏨",
+    phrases: [
+      { pt: "Somos um complexo com cabanas, loft e suítes", es: "Somos un complejo con cabañas, loft y suites" },
+      { pt: "Todas as unidades têm vista para o lago", es: "Todas las unidades tienen vista al lago" },
+      { pt: "Estamos a 7 km do centro", es: "Estamos a 7 km del centro" },
+      { pt: "Estamos a 3 km do Cerro Bayo", es: "Estamos a 3 km del Cerro Bayo" },
+      { pt: "Oferecemos atendimento personalizado", es: "Ofrecemos atención personalizada" },
+      { pt: "O ambiente é familiar e acolhedor", es: "El ambiente es familiar y acogedor" },
+      { pt: "Aqui o hóspede pode descansar de verdade", es: "Aquí el huésped puede descansar de verdad" },
+      { pt: "É um lugar verdadeiramente especial", es: "Es un lugar verdaderamente especial" },
+      { pt: "Temos restaurante, estacionamento e Wi-Fi", es: "Tenemos restaurante, estacionamiento y WiFi" },
+      { pt: "Organizamos excursões e atividades", es: "Organizamos excursiones y actividades" },
+      { pt: "Cada unidade tem cozinha equipada", es: "Cada unidad tiene cocina equipada" },
+      { pt: "Somos pet-friendly em algumas unidades", es: "Somos pet-friendly en algunas unidades" },
+    ],
+    vocab: [
+      { pt: "complexo", es: "complejo" },
+      { pt: "cabana", es: "cabaña" },
+      { pt: "suíte", es: "suite" },
+      { pt: "acolhedor", es: "acogedor" },
+      { pt: "familiar", es: "familiar" },
+      { pt: "descansar", es: "descansar" },
+      { pt: "excursão", es: "excursión" },
+      { pt: "pet-friendly", es: "pet-friendly" },
+      { pt: "personalizado", es: "personalizado" },
+      { pt: "atividade", es: "actividad" },
+      { pt: "equipada", es: "equipada" },
+      { pt: "especial", es: "especial" },
+    ],
+    miniDialogues: [
+      { speaker: "Hóspede", pt: "Como é o hotel exatamente?", es: "¿Cómo es exactamente el hotel?" },
+      { speaker: "Colaborador", pt: "Um complexo com cabanas e suítes, todas com vista ao lago, em Puerto Manzano", es: "Un complejo con cabañas y suites, todas con vista al lago, en Puerto Manzano" },
+      { speaker: "Hóspede", pt: "É pet-friendly?", es: "¿Es pet-friendly?" },
+      { speaker: "Colaborador", pt: "Em algumas unidades sim. Pode me informar o tipo de animal?", es: "En algunas unidades sí. ¿Puede informarme el tipo de animal?" },
+    ],
+    quiz: [
+      { question: "¿Cómo se dice 'acogedor'?", options: ["acolhedor", "barulhento", "frio"], answer: "acolhedor" },
+      { question: "¿Cómo se dice 'actividad'?", options: ["evento", "atividade", "programa"], answer: "atividade" },
+    ],
+  },
+
+  // ─── EXPERIENCIA ──────────────────────────────────────────────────────────
+  {
+    id: "excursiones_general",
+    title: "Excursiones",
+    category: "Experiencia",
+    emoji: "🗺️",
+    phrases: [
+      { pt: "Podemos organizar excursões para você", es: "Podemos organizar excursiones para usted" },
+      { pt: "Há várias opções incríveis na região", es: "Hay varias opciones increíbles en la región" },
+      { pt: "Depende do clima e da temporada", es: "Depende del clima y la temporada" },
+      { pt: "São experiências muito bonitas", es: "Son experiencias muy lindas" },
+      { pt: "Incluem transporte e guia", es: "Incluyen transporte y guía" },
+      { pt: "Recomendamos muito a todos os hóspedes", es: "Las recomendamos mucho a todos los huéspedes" },
+      { pt: "Quer que eu reserve para você?", es: "¿Quiere que reserve para usted?" },
+      { pt: "É uma experiência inesquecível", es: "Es una experiencia inolvidable" },
+      { pt: "Há excursões para todos os gostos", es: "Hay excursiones para todos los gustos" },
+      { pt: "Para aventureiros e para quem busca tranquilidade", es: "Para aventureros y para quienes buscan tranquilidad" },
+      { pt: "Precisa reservar com um dia de antecedência", es: "Necesita reservar con un día de anticipación" },
+      { pt: "O preço varia conforme a excursão", es: "El precio varía según la excursión" },
+    ],
+    vocab: [
+      { pt: "excursão", es: "excursión" },
+      { pt: "clima", es: "clima" },
+      { pt: "temporada", es: "temporada" },
+      { pt: "guia", es: "guía" },
+      { pt: "transporte", es: "transporte" },
+      { pt: "aventura", es: "aventura" },
+      { pt: "inesquecível", es: "inolvidable" },
+      { pt: "reserva", es: "reserva" },
+      { pt: "preço", es: "precio" },
+      { pt: "antecedência", es: "anticipación" },
+      { pt: "região", es: "región" },
+      { pt: "gosto", es: "gusto" },
+    ],
+    miniDialogues: [
+      { speaker: "Colaborador", pt: "Quer fazer alguma excursão? Há opções incríveis", es: "¿Quiere hacer alguna excursión? Hay opciones increíbles" },
+      { speaker: "Hóspede", pt: "Sim! O que recomenda para amanhã?", es: "¡Sí! ¿Qué recomienda para mañana?" },
+      { speaker: "Colaborador", pt: "Passeio de barco no Nahuel Huapi ou trekking na floresta", es: "Paseo en barco en el Nahuel Huapi o trekking en el bosque" },
+      { speaker: "Hóspede", pt: "O barco! Pode reservar para dois?", es: "¡El barco! ¿Puede reservar para dos?" },
+    ],
+    quiz: [
+      { question: "¿Cómo se dice 'excursión'?", options: ["passeio", "excursão", "viagem"], answer: "excursão" },
+      { question: "¿Cómo se dice 'inolvidable'?", options: ["incrível", "inesquecível", "especial"], answer: "inesquecível" },
+    ],
+  },
+  {
+    id: "cerro_bayo",
+    title: "Cerro Bayo",
+    category: "Experiencia",
+    emoji: "⛷️",
+    phrases: [
+      { pt: "O Cerro Bayo fica a apenas 3 km", es: "El Cerro Bayo está a solo 3 km" },
+      { pt: "É ideal para esquiar e fazer snowboard", es: "Es ideal para esquiar y hacer snowboard" },
+      { pt: "Tem pistas para todos os níveis", es: "Tiene pistas para todos los niveles" },
+      { pt: "Principiantes, intermediários e avançados", es: "Principiantes, intermedios y avanzados" },
+      { pt: "Podemos organizar transporte", es: "Podemos organizar transporte" },
+      { pt: "É muito bonito no inverno com neve", es: "Es muy lindo en invierno con nieve" },
+      { pt: "Vale muito a pena visitar!", es: "¡Vale mucho la pena visitar!" },
+      { pt: "Quer ir amanhã? Posso reservar", es: "¿Quiere ir mañana? Puedo reservar" },
+      { pt: "Tem aluguel de equipamentos no local", es: "Hay alquiler de equipos en el lugar" },
+      { pt: "A temporada de neve é de junho a setembro", es: "La temporada de nieve es de junio a septiembre" },
+      { pt: "No verão tem downhill e mountain bike", es: "En verano hay downhill y mountain bike" },
+      { pt: "A vista do topo é espetacular", es: "La vista desde la cima es espectacular" },
+    ],
+    vocab: [
+      { pt: "esqui", es: "esquí" },
+      { pt: "neve", es: "nieve" },
+      { pt: "montanha", es: "montaña" },
+      { pt: "inverno", es: "invierno" },
+      { pt: "pista", es: "pista" },
+      { pt: "nível", es: "nivel" },
+      { pt: "principiante", es: "principiante" },
+      { pt: "equipamento", es: "equipo" },
+      { pt: "aluguel", es: "alquiler" },
+      { pt: "temporada", es: "temporada" },
+      { pt: "topo", es: "cima" },
+      { pt: "downhill", es: "downhill" },
+    ],
+    miniDialogues: [
+      { speaker: "Hóspede", pt: "O Cerro Bayo fica longe?", es: "¿El Cerro Bayo está lejos?" },
+      { speaker: "Colaborador", pt: "Apenas 3 km! É ótimo para todos os níveis", es: "¡Solo 3 km! Es excelente para todos los niveles" },
+      { speaker: "Hóspede", pt: "Preciso alugar equipamento?", es: "¿Necesito alquilar equipo?" },
+      { speaker: "Colaborador", pt: "Sim, tem aluguel de ski e snowboard no local", es: "Sí, hay alquiler de ski y snowboard en el lugar" },
+    ],
+    quiz: [
+      { question: "¿Cómo se dice 'nieve'?", options: ["neve", "chuva", "vento"], answer: "neve" },
+      { question: "¿Cómo se dice 'alquiler'?", options: ["compra", "aluguel", "empréstimo"], answer: "aluguel" },
+    ],
+  },
+  {
+    id: "lago_passeios",
+    title: "Paseos en lago",
+    category: "Experiencia",
+    emoji: "🚤",
+    phrases: [
+      { pt: "Há passeios de barco incríveis", es: "Hay paseos en barco increíbles" },
+      { pt: "No lago Nahuel Huapi", es: "En el lago Nahuel Huapi" },
+      { pt: "São muito tranquilos e relaxantes", es: "Son muy tranquilos y relajantes" },
+      { pt: "A vista é absolutamente incrível", es: "La vista es absolutamente increíble" },
+      { pt: "Duram entre 2 e 4 horas", es: "Duran entre 2 y 4 horas" },
+      { pt: "Incluem guia especializado", es: "Incluyen guía especializado" },
+      { pt: "Podemos fazer a reserva agora", es: "Podemos hacer la reserva ahora" },
+      { pt: "É muito recomendado para todas as idades", es: "Es muy recomendado para todas las edades" },
+      { pt: "Tem passeio até a Ilha Victoria", es: "Hay paseo hasta la Isla Victoria" },
+      { pt: "A floresta de arrayanes é única no mundo", es: "El bosque de arrayanes es único en el mundo" },
+      { pt: "Recomendamos levar casaco", es: "Recomendamos llevar abrigo" },
+      { pt: "Há kayak e stand-up paddle também", es: "Hay kayak y stand-up paddle también" },
+    ],
+    vocab: [
+      { pt: "barco", es: "barco" },
+      { pt: "lago", es: "lago" },
+      { pt: "guia", es: "guía" },
+      { pt: "passeio", es: "paseo" },
+      { pt: "ilha", es: "isla" },
+      { pt: "floresta", es: "bosque" },
+      { pt: "arrayanes", es: "arrayanes" },
+      { pt: "kayak", es: "kayak" },
+      { pt: "casaco", es: "abrigo" },
+      { pt: "relaxante", es: "relajante" },
+      { pt: "idades", es: "edades" },
+      { pt: "especializado", es: "especializado" },
+    ],
+    miniDialogues: [
+      { speaker: "Hóspede", pt: "Tem passeio de barco pelo lago?", es: "¿Hay paseo en barco por el lago?" },
+      { speaker: "Colaborador", pt: "Sim! Até a Ilha Victoria e a floresta de arrayanes", es: "¡Sí! Hasta la Isla Victoria y el bosque de arrayanes" },
+      { speaker: "Hóspede", pt: "Quanto tempo dura?", es: "¿Cuánto tiempo dura?" },
+      { speaker: "Colaborador", pt: "Umas 4 horas. Vale muito a pena", es: "Unas 4 horas. Vale mucho la pena" },
+    ],
+    quiz: [
+      { question: "¿Cómo se dice 'barco'?", options: ["barco", "navio", "canoa"], answer: "barco" },
+      { question: "¿Cómo se dice 'bosque'?", options: ["parque", "floresta", "jardim"], answer: "floresta" },
+    ],
+  },
+  {
+    id: "trekking",
+    title: "Trekking",
+    category: "Experiencia",
+    emoji: "🥾",
+    phrases: [
+      { pt: "Há trilhas incríveis para caminhar", es: "Hay senderos increíbles para caminar" },
+      { pt: "São muito bonitas em todas as estações", es: "Son muy lindas en todas las estaciones" },
+      { pt: "Algumas são fáceis, para qualquer pessoa", es: "Algunas son fáciles, para cualquier persona" },
+      { pt: "Outras são mais exigentes e longas", es: "Otras son más exigentes y largas" },
+      { pt: "É importante usar calçado adequado", es: "Es importante usar calzado adecuado" },
+      { pt: "Leve água, protetor solar e lanche", es: "Lleve agua, protector solar y merienda" },
+      { pt: "Podemos recomendar as melhores trilhas", es: "Podemos recomendar los mejores senderos" },
+      { pt: "É uma experiência única na natureza", es: "Es una experiencia única en la naturaleza" },
+      { pt: "A trilha do Cerro Bayo tem vista incrível", es: "El sendero del Cerro Bayo tiene vista increíble" },
+      { pt: "Tem trilhas com floresta de ciprestes", es: "Hay senderos con bosque de cipreses" },
+      { pt: "Pode encontrar fauna local no caminho", es: "Puede encontrar fauna local en el camino" },
+      { pt: "Recomendamos guia para trilhas avançadas", es: "Recomendamos guía para senderos avanzados" },
+    ],
+    vocab: [
+      { pt: "trilha", es: "sendero" },
+      { pt: "caminhar", es: "caminar" },
+      { pt: "calçado", es: "calzado" },
+      { pt: "protetor solar", es: "protector solar" },
+      { pt: "lanche", es: "merienda" },
+      { pt: "cipreste", es: "ciprés" },
+      { pt: "fauna", es: "fauna" },
+      { pt: "natureza", es: "naturaleza" },
+      { pt: "fácil", es: "fácil" },
+      { pt: "avançado", es: "avanzado" },
+      { pt: "estação", es: "estación" },
+      { pt: "montanha", es: "montaña" },
+    ],
+    miniDialogues: [
+      { speaker: "Hóspede", pt: "Há trilhas perto do hotel?", es: "¿Hay senderos cerca del hotel?" },
+      { speaker: "Colaborador", pt: "Sim, várias! Fáceis e avançadas. O que prefere?", es: "¡Sí, varios! Fáciles y avanzados. ¿Qué prefiere?" },
+      { speaker: "Hóspede", pt: "Somos família com crianças", es: "Somos familia con niños" },
+      { speaker: "Colaborador", pt: "Perfeito, temos trilhas fáceis com vista ao lago", es: "Perfecto, tenemos senderos fáciles con vista al lago" },
+    ],
+    quiz: [
+      { question: "¿Cómo se dice 'sendero'?", options: ["trilha", "rua", "estrada"], answer: "trilha" },
+      { question: "¿Cómo se dice 'protector solar'?", options: ["protetor solar", "bronzeador", "hidratante"], answer: "protetor solar" },
+    ],
+  },
+  {
+    id: "atividades_hotel",
+    title: "Actividades del hotel",
+    category: "Experiencia",
+    emoji: "🌄",
+    phrases: [
+      { pt: "Pode relaxar no hotel o dia todo", es: "Puede relajarse en el hotel todo el día" },
+      { pt: "Aproveitar a vista panorâmica", es: "Disfrutar la vista panorámica" },
+      { pt: "Usar o deck com espreguiçadeiras", es: "Usar el deck con reposeras" },
+      { pt: "Fazer churrasco com a família", es: "Hacer asado con la familia" },
+      { pt: "Descansar junto ao lago", es: "Descansar junto al lago" },
+      { pt: "Ler um livro com vista para a montanha", es: "Leer un libro con vista a la montaña" },
+      { pt: "Desconectar completamente do estresse", es: "Desconectarse completamente del estrés" },
+      { pt: "É um lugar ideal para relaxar", es: "Es un lugar ideal para relajarse" },
+      { pt: "Observar as estrelas à noite", es: "Observar las estrellas por la noche" },
+      { pt: "Fotografia da paisagem patagônica", es: "Fotografía del paisaje patagónico" },
+      { pt: "Tomar um mate na varanda", es: "Tomar un mate en la terraza" },
+      { pt: "Sentir a natureza patagônica", es: "Sentir la naturaleza patagónica" },
+    ],
+    vocab: [
+      { pt: "relaxar", es: "relajarse" },
+      { pt: "vista", es: "vista" },
+      { pt: "deck", es: "deck" },
+      { pt: "churrasco", es: "asado" },
+      { pt: "descansar", es: "descansar" },
+      { pt: "estrelas", es: "estrellas" },
+      { pt: "fotografia", es: "fotografía" },
+      { pt: "varanda", es: "terraza" },
+      { pt: "natureza", es: "naturaleza" },
+      { pt: "estresse", es: "estrés" },
+      { pt: "mate", es: "mate" },
+      { pt: "paisagem", es: "paisaje" },
+    ],
+    miniDialogues: [
+      { speaker: "Hóspede", pt: "Não sei o que fazer hoje, está chovendo", es: "No sé qué hacer hoy, está lloviendo" },
+      { speaker: "Colaborador", pt: "Dia perfeito para lareira, mate e a vista do lago", es: "Día perfecto para hogar a leña, mate y la vista del lago" },
+      { speaker: "Hóspede", pt: "Tem algo para fazer no hotel?", es: "¿Hay algo para hacer en el hotel?" },
+      { speaker: "Colaborador", pt: "Churrasco, leitura, fotografias. A paisagem é linda na chuva!", es: "Asado, lectura, fotografías. ¡El paisaje es lindo con la lluvia!" },
+    ],
+    quiz: [
+      { question: "¿Cómo se dice 'relajarse'?", options: ["trabalhar", "relaxar", "correr"], answer: "relaxar" },
+      { question: "¿Cómo se dice 'estrellas'?", options: ["lua", "estrelas", "sol"], answer: "estrelas" },
+    ],
+  },
+
+  // ─── PROBLEMAS ────────────────────────────────────────────────────────────
+  {
+    id: "problema_wifi",
+    title: "Problema con el WiFi",
+    category: "Problemas",
+    emoji: "📶",
+    phrases: [
+      { pt: "O Wi-Fi não está funcionando?", es: "¿El WiFi no está funcionando?" },
+      { pt: "Vou verificar agora mesmo", es: "Voy a verificar ahora mismo" },
+      { pt: "Pode tentar novamente, por favor?", es: "¿Puede intentar nuevamente, por favor?" },
+      { pt: "Vou reiniciar o roteador", es: "Voy a reiniciar el router" },
+      { pt: "Em alguns minutos deve voltar o sinal", es: "En algunos minutos debería volver la señal" },
+      { pt: "Se continuar sem sinal, me avise", es: "Si sigue sin señal, avíseme" },
+      { pt: "Peço desculpas pelo inconveniente", es: "Le pido disculpas por el inconveniente" },
+      { pt: "Vamos resolver isso agora", es: "Vamos a resolver esto ahora" },
+      { pt: "Tente esquecer a rede e conectar novamente", es: "Intente olvidar la red y conectarse nuevamente" },
+      { pt: "Verifique se está na rede correta", es: "Verifique si está en la red correcta" },
+      { pt: "A senha pode ter mudado recentemente", es: "La contraseña puede haber cambiado recientemente" },
+      { pt: "Posso ir até o quarto verificar pessoalmente", es: "Puedo ir hasta la habitación a verificar personalmente" },
+    ],
+    vocab: [
+      { pt: "sinal", es: "señal" },
+      { pt: "senha", es: "contraseña" },
+      { pt: "roteador", es: "router" },
+      { pt: "reiniciar", es: "reiniciar" },
+      { pt: "conexão", es: "conexión" },
+      { pt: "rede", es: "red" },
+      { pt: "inconveniente", es: "inconveniente" },
+      { pt: "verificar", es: "verificar" },
+      { pt: "esquecer", es: "olvidar" },
+      { pt: "pessoalmente", es: "personalmente" },
+      { pt: "recentemente", es: "recientemente" },
+      { pt: "funcionar", es: "funcionar" },
+    ],
+    miniDialogues: [
+      { speaker: "Hóspede", pt: "O Wi-Fi não funciona no meu quarto", es: "El WiFi no funciona en mi habitación" },
+      { speaker: "Colaborador", pt: "Vou verificar agora mesmo. Qual é o número da unidade?", es: "Voy a verificar ahora mismo. ¿Cuál es el número de la unidad?" },
+      { speaker: "Hóspede", pt: "Unidade 3", es: "Unidad 3" },
+      { speaker: "Colaborador", pt: "Perfeito, vou reiniciar o roteador e verificar o sinal", es: "Perfecto, voy a reiniciar el router y verificar la señal" },
+    ],
+    quiz: [
+      { question: "¿Cómo se dice 'reiniciar'?", options: ["reiniciar", "desligar", "entrar"], answer: "reiniciar" },
+      { question: "¿Cómo se dice 'router'?", options: ["modem", "roteador", "antena"], answer: "roteador" },
+    ],
+  },
+  {
+    id: "problema_agua_quente",
+    title: "Problema con agua caliente",
+    category: "Problemas",
+    emoji: "🚿",
+    phrases: [
+      { pt: "Não tem água quente?", es: "¿No hay agua caliente?" },
+      { pt: "Vou avisar a manutenção imediatamente", es: "Voy a avisar a mantenimiento inmediatamente" },
+      { pt: "Vamos verificar agora", es: "Vamos a verificar ahora" },
+      { pt: "Peço desculpas pelo transtorno", es: "Le pido disculpas por la molestia" },
+      { pt: "Pode levar alguns minutos para aquecer", es: "Puede tardar algunos minutos en calentar" },
+      { pt: "Aviso assim que estiver resolvido", es: "Le aviso en cuanto esté resuelto" },
+      { pt: "Quer que eu envie alguém agora?", es: "¿Quiere que envíe a alguien ahora?" },
+      { pt: "Vamos fazer o possível para resolver rápido", es: "Vamos a hacer lo posible para resolver rápido" },
+      { pt: "Pode ser o aquecedor que precisa ser ligado", es: "Puede ser que el calentador necesite encenderse" },
+      { pt: "Vou verificar o termostato do quarto", es: "Voy a verificar el termostato de la habitación" },
+      { pt: "Se persistir, trocaremos sua acomodação", es: "Si persiste, cambiaremos su alojamiento" },
+      { pt: "Sua satisfação é nossa prioridade", es: "Su satisfacción es nuestra prioridad" },
+    ],
+    vocab: [
+      { pt: "água quente", es: "agua caliente" },
+      { pt: "manutenção", es: "mantenimiento" },
+      { pt: "transtorno", es: "molestia" },
+      { pt: "resolver", es: "resolver" },
+      { pt: "aquecedor", es: "calentador" },
+      { pt: "termostato", es: "termostato" },
+      { pt: "verificar", es: "verificar" },
+      { pt: "persistir", es: "persistir" },
+      { pt: "trocar", es: "cambiar" },
+      { pt: "satisfação", es: "satisfacción" },
+      { pt: "prioridade", es: "prioridad" },
+      { pt: "rápido", es: "rápido" },
+    ],
+    miniDialogues: [
+      { speaker: "Hóspede", pt: "Não sai água quente na ducha", es: "No sale agua caliente en la ducha" },
+      { speaker: "Colaborador", pt: "Peço desculpas! Vou avisar a manutenção agora mesmo", es: "¡Le pido disculpas! Voy a avisar a mantenimiento ahora mismo" },
+      { speaker: "Hóspede", pt: "Preciso antes das 8 para sair", es: "Lo necesito antes de las 8 para salir" },
+      { speaker: "Colaborador", pt: "Entendido. Resolvemos antes disso, garantido", es: "Entendido. Lo resolvemos antes, garantizado" },
+    ],
+    quiz: [
+      { question: "¿Cómo se dice 'agua caliente'?", options: ["água fria", "água quente", "água limpa"], answer: "água quente" },
+      { question: "¿Cómo se dice 'mantenimiento'?", options: ["manutenção", "serviço", "reparação"], answer: "manutenção" },
+    ],
+  },
+  {
+    id: "problema_chave",
+    title: "Problema con la llave",
+    category: "Problemas",
+    emoji: "🔑",
+    phrases: [
+      { pt: "A chave não está funcionando?", es: "¿La llave no está funcionando?" },
+      { pt: "Vou trocar por outra agora", es: "Voy a cambiarla por otra ahora" },
+      { pt: "Só um momento, por favor", es: "Un momento, por favor" },
+      { pt: "Vou verificar a fechadura também", es: "Voy a verificar la cerradura también" },
+      { pt: "Pode me acompanhar até o quarto?", es: "¿Puede acompañarme hasta la habitación?" },
+      { pt: "Se preferir, enviamos alguém agora", es: "Si prefiere, enviamos a alguien ahora" },
+      { pt: "Já estou resolvendo", es: "Ya lo estoy resolviendo" },
+      { pt: "Desculpe o inconveniente", es: "Disculpe el inconveniente" },
+      { pt: "A chave pode ter desmagnetizado", es: "La llave puede haberse desmagnetizado" },
+      { pt: "Evite deixar perto do celular", es: "Evite dejarla cerca del celular" },
+      { pt: "Vou programar uma nova chave agora", es: "Voy a programar una nueva llave ahora" },
+      { pt: "Em dois minutos está resolvido", es: "En dos minutos está resuelto" },
+    ],
+    vocab: [
+      { pt: "chave", es: "llave" },
+      { pt: "fechadura", es: "cerradura" },
+      { pt: "trocar", es: "cambiar" },
+      { pt: "porta", es: "puerta" },
+      { pt: "magnetizar", es: "magnetizar" },
+      { pt: "programar", es: "programar" },
+      { pt: "celular", es: "celular" },
+      { pt: "abrir", es: "abrir" },
+      { pt: "fechar", es: "cerrar" },
+      { pt: "acompanhar", es: "acompañar" },
+      { pt: "resolver", es: "resolver" },
+      { pt: "inconveniente", es: "inconveniente" },
+    ],
+    miniDialogues: [
+      { speaker: "Hóspede", pt: "A chave não abre a porta da cabana", es: "La llave no abre la puerta de la cabaña" },
+      { speaker: "Colaborador", pt: "Vou programar uma nova agora. Já deve ter desmagnetizado", es: "Voy a programar una nueva ahora. Ya debe haberse desmagnetizado" },
+      { speaker: "Hóspede", pt: "Como isso acontece?", es: "¿Cómo sucede eso?" },
+      { speaker: "Colaborador", pt: "Fica perto do celular ou cartão de crédito. Em dois minutos resolvemos", es: "Queda cerca del celular o tarjeta de crédito. En dos minutos lo resolvemos" },
+    ],
+    quiz: [
+      { question: "¿Cómo se dice 'cerradura'?", options: ["janela", "fechadura", "maçaneta"], answer: "fechadura" },
+      { question: "¿Cómo se dice 'programar'?", options: ["configurar", "programar", "ajustar"], answer: "programar" },
+    ],
+  },
+  {
+    id: "pedido_toalhas",
+    title: "Pedido de toallas y amenities",
+    category: "Problemas",
+    emoji: "🧺",
+    phrases: [
+      { pt: "Precisa de mais toalhas?", es: "¿Necesita más toallas?" },
+      { pt: "Podemos enviar agora mesmo", es: "Podemos enviarlas ahora mismo" },
+      { pt: "Também sabonete, shampoo e condicionador", es: "También jabón, shampoo y acondicionador" },
+      { pt: "Mais travesseiros e cobertores também?", es: "¿Más almohadas y mantas también?" },
+      { pt: "Vou solicitar ao setor de arrumação", es: "Voy a solicitarlo al sector de mucamas" },
+      { pt: "Chega em cerca de 15 minutos", es: "Llega en aproximadamente 15 minutos" },
+      { pt: "Com muito prazer!", es: "¡Con mucho gusto!" },
+      { pt: "Mais alguma coisa que posso ajudar?", es: "¿Algo más en que pueda ayudar?" },
+      { pt: "Temos amenities premium disponíveis", es: "Tenemos amenities premium disponibles" },
+      { pt: "Dental kit, kit de costura disponíveis", es: "Kit dental, kit de costura disponibles" },
+      { pt: "Berço para bebê também disponível", es: "Cuna para bebé también disponible" },
+      { pt: "Tudo sem custo para os hóspedes", es: "Todo sin costo para los huéspedes" },
+    ],
+    vocab: [
+      { pt: "toalha", es: "toalla" },
+      { pt: "sabonete", es: "jabón" },
+      { pt: "shampoo", es: "shampoo" },
+      { pt: "condicionador", es: "acondicionador" },
+      { pt: "travesseiro", es: "almohada" },
+      { pt: "cobertor", es: "manta" },
+      { pt: "amenidades", es: "amenities" },
+      { pt: "berço", es: "cuna" },
+      { pt: "arrumação", es: "mucamas" },
+      { pt: "premium", es: "premium" },
+      { pt: "dental", es: "dental" },
+      { pt: "kit", es: "kit" },
+    ],
+    miniDialogues: [
+      { speaker: "Hóspede", pt: "Preciso de mais toalhas e shampoo", es: "Necesito más toallas y shampoo" },
+      { speaker: "Colaborador", pt: "Claro! Enviamos em 15 minutos. Precisa de mais alguma coisa?", es: "¡Claro! Enviamos en 15 minutos. ¿Necesita algo más?" },
+      { speaker: "Hóspede", pt: "Tem berço para bebê?", es: "¿Tiene cuna para bebé?" },
+      { speaker: "Colaborador", pt: "Sim, enviamos junto com as toalhas", es: "Sí, lo enviamos junto con las toallas" },
+    ],
+    quiz: [
+      { question: "¿Cómo se dice 'almohada'?", options: ["travesseiro", "toalha", "cama"], answer: "travesseiro" },
+      { question: "¿Cómo se dice 'acondicionador'?", options: ["shampoo", "sabonete", "condicionador"], answer: "condicionador" },
+    ],
+  },
+  {
+    id: "barulho",
+    title: "Ruido o molestias",
+    category: "Problemas",
+    emoji: "🔇",
+    phrases: [
+      { pt: "Está havendo muito barulho?", es: "¿Está habiendo mucho ruido?" },
+      { pt: "Vou verificar imediatamente", es: "Voy a verificar inmediatamente" },
+      { pt: "Pedimos sinceras desculpas", es: "Pedimos sinceras disculpas" },
+      { pt: "Vamos tentar resolver o mais rápido possível", es: "Vamos a intentar resolverlo lo más rápido posible" },
+      { pt: "Quer que eu mude sua acomodação?", es: "¿Quiere que cambie su alojamiento?" },
+      { pt: "Depende da disponibilidade no momento", es: "Depende de la disponibilidad en este momento" },
+      { pt: "Posso verificar se há outra unidade disponível", es: "Puedo verificar si hay otra unidad disponible" },
+      { pt: "Vamos ajudá-lo com certeza", es: "Vamos a ayudarlo con seguridad" },
+      { pt: "O silêncio é obrigatório após as 23 horas", es: "El silencio es obligatorio después de las 23 horas" },
+      { pt: "Vou comunicar aos outros hóspedes", es: "Voy a comunicarles a los otros huéspedes" },
+      { pt: "Se persistir, me avise novamente", es: "Si persiste, avíseme nuevamente" },
+      { pt: "Sua tranquilidade é muito importante para nós", es: "Su tranquilidad es muy importante para nosotros" },
+    ],
+    vocab: [
+      { pt: "barulho", es: "ruido" },
+      { pt: "silêncio", es: "silencio" },
+      { pt: "obrigatório", es: "obligatorio" },
+      { pt: "acomodação", es: "alojamiento" },
+      { pt: "mudar", es: "cambiar" },
+      { pt: "disponibilidade", es: "disponibilidad" },
+      { pt: "persistir", es: "persistir" },
+      { pt: "tranquilidade", es: "tranquilidad" },
+      { pt: "comunicar", es: "comunicar" },
+      { pt: "resolver", es: "resolver" },
+      { pt: "sincero", es: "sincero" },
+      { pt: "molestia", es: "molestia" },
+    ],
+    miniDialogues: [
+      { speaker: "Hóspede", pt: "Há muito barulho vindo do quarto ao lado", es: "Hay mucho ruido viniendo del cuarto de al lado" },
+      { speaker: "Colaborador", pt: "Peço sinceras desculpas. Vou verificar imediatamente", es: "Le pido sinceras disculpas. Voy a verificar inmediatamente" },
+      { speaker: "Hóspede", pt: "É muito tarde para tanto barulho", es: "Es muy tarde para tanto ruido" },
+      { speaker: "Colaborador", pt: "Concordo. Depois das 23 é obrigatório o silêncio", es: "De acuerdo. Después de las 23 el silencio es obligatorio" },
+    ],
+    quiz: [
+      { question: "¿Cómo se dice 'ruido'?", options: ["barulho", "som", "música"], answer: "barulho" },
+      { question: "¿Cómo se dice 'obligatorio'?", options: ["necessário", "obrigatório", "importante"], answer: "obrigatório" },
+    ],
+  },
+
+  // ─── FAMILIAS / VENTAS / PREMIUM ──────────────────────────────────────────
+  {
+    id: "atencao_criancas_familia",
+    title: "Atención a familias con niños",
+    category: "Familias",
+    emoji: "👨‍👩‍👧‍👦",
+    phrases: [
+      { pt: "É uma ótima opção para famílias", es: "Es una excelente opción para familias" },
+      { pt: "Tem espaço para todas as idades", es: "Tiene espacio para todas las edades" },
+      { pt: "As cabanas são muito práticas para crianças", es: "Las cabañas son muy prácticas para niños" },
+      { pt: "A cozinha equipada ajuda bastante", es: "La cocina equipada ayuda mucho" },
+      { pt: "Podemos preparar tudo antes da chegada", es: "Podemos preparar todo antes de la llegada" },
+      { pt: "Quer berço para o bebê?", es: "¿Quiere cuna para el bebé?" },
+      { pt: "Também temos cadeirão para refeições", es: "También tenemos silla de comer para bebé" },
+      { pt: "Orientamos passeios seguros para famílias", es: "Orientamos paseos seguros para familias" },
+      { pt: "A praia do lago é segura para crianças", es: "La playa del lago es segura para niños" },
+      { pt: "Trilhas fáceis para crianças disponíveis", es: "Senderos fáciles para niños disponibles" },
+      { pt: "Podemos indicar atividades para cada faixa etária", es: "Podemos indicar actividades para cada edad" },
+      { pt: "Queremos que toda a família esteja confortável", es: "Queremos que toda la familia esté cómoda" },
+    ],
+    vocab: [
+      { pt: "família", es: "familia" },
+      { pt: "criança", es: "niño" },
+      { pt: "bebê", es: "bebé" },
+      { pt: "berço", es: "cuna" },
+      { pt: "cadeirão", es: "silla de comer" },
+      { pt: "faixa etária", es: "grupo de edad" },
+      { pt: "espaço", es: "espacio" },
+      { pt: "seguro", es: "seguro" },
+      { pt: "praia", es: "playa" },
+      { pt: "trilha fácil", es: "sendero fácil" },
+      { pt: "atividade", es: "actividad" },
+      { pt: "confortável", es: "cómodo" },
+    ],
+    miniDialogues: [
+      { speaker: "Colaborador", pt: "Viajam com crianças?", es: "¿Viajan con niños?" },
+      { speaker: "Hóspede", pt: "Sim, um bebê de 1 ano e dois filhos de 5 e 8", es: "Sí, un bebé de 1 año y dos hijos de 5 y 8" },
+      { speaker: "Colaborador", pt: "Perfeito! Preparamos berço e cadeirão. Tem trilhas para todas as idades", es: "¡Perfecto! Preparamos cuna y silla de comer. Hay senderos para todas las edades" },
+      { speaker: "Hóspede", pt: "Ótimo! Eles vão adorar", es: "¡Excelente! Les va a encantar" },
+    ],
+    quiz: [
+      { question: "¿Cómo se dice 'cuna'?", options: ["berço", "cama", "sofá"], answer: "berço" },
+      { question: "¿Cómo se dice 'silla de comer'?", options: ["cadeirão", "cadeira", "banco"], answer: "cadeirão" },
+    ],
+  },
+  {
+    id: "casais_romantico",
+    title: "Atención a parejas",
+    category: "Ventas",
+    emoji: "❤️",
+    phrases: [
+      { pt: "O loft é ideal para casais", es: "El loft es ideal para parejas" },
+      { pt: "A suíte deluxe também é romântica", es: "La suite deluxe también es romántica" },
+      { pt: "Tem hidromassagem com vista ao lago", es: "Tiene hidromasaje con vista al lago" },
+      { pt: "A vista ao entardecer é muito romântica", es: "La vista al atardecer es muy romántica" },
+      { pt: "É perfeito para lua de mel", es: "Es perfecto para luna de miel" },
+      { pt: "Muitos casais escolhem esta opção", es: "Muchas parejas eligen esta opción" },
+      { pt: "Quer que eu prepare algo especial?", es: "¿Quiere que prepare algo especial?" },
+      { pt: "É uma experiência verdadeiramente inesquecível", es: "Es una experiencia verdaderamente inolvidable" },
+      { pt: "Podemos preparar surpresa de aniversário", es: "Podemos preparar sorpresa de aniversario" },
+      { pt: "Vinho e flores no quarto sob consulta", es: "Vino y flores en la habitación bajo consulta" },
+      { pt: "Mesa especial no restaurante para o jantar", es: "Mesa especial en el restaurante para la cena" },
+      { pt: "O ambiente é feito para o romance", es: "El ambiente está hecho para el romance" },
+    ],
+    vocab: [
+      { pt: "casal", es: "pareja" },
+      { pt: "romântico", es: "romántico" },
+      { pt: "lua de mel", es: "luna de miel" },
+      { pt: "aniversário", es: "aniversario" },
+      { pt: "surpresa", es: "sorpresa" },
+      { pt: "flores", es: "flores" },
+      { pt: "entardecer", es: "atardecer" },
+      { pt: "inesquecível", es: "inolvidable" },
+      { pt: "especial", es: "especial" },
+      { pt: "jantar", es: "cena" },
+      { pt: "hidromassagem", es: "hidromasaje" },
+      { pt: "romance", es: "romance" },
+    ],
+    miniDialogues: [
+      { speaker: "Hóspede", pt: "É nossa lua de mel. Queremos algo especial", es: "Es nuestra luna de miel. Queremos algo especial" },
+      { speaker: "Colaborador", pt: "Parabéns! O loft com hidromassagem e vista ao lago é perfeito", es: "¡Felicitaciones! El loft con hidromasaje y vista al lago es perfecto" },
+      { speaker: "Hóspede", pt: "Pode colocar flores e vinho no quarto?", es: "¿Puede poner flores y vino en la habitación?" },
+      { speaker: "Colaborador", pt: "Com muito prazer! Vou organizar tudo para a chegada", es: "¡Con mucho gusto! Lo organizaré todo para la llegada" },
+    ],
+    quiz: [
+      { question: "¿Cómo se dice 'romántico'?", options: ["romântico", "bonito", "tranquilo"], answer: "romântico" },
+      { question: "¿Cómo se dice 'aniversario'?", options: ["aniversário", "data", "festa"], answer: "aniversário" },
+    ],
+  },
+  {
+    id: "atencao_personalizada",
+    title: "Atención personalizada",
+    category: "Premium",
+    emoji: "⭐",
+    phrases: [
+      { pt: "Queremos oferecer a melhor experiência possível", es: "Queremos ofrecer la mejor experiencia posible" },
+      { pt: "Estamos sempre à sua disposição", es: "Siempre estamos a su disposición" },
+      { pt: "Se precisar de algo, é só avisar", es: "Si necesita algo, solo avise" },
+      { pt: "Podemos ajudar com praticamente tudo", es: "Podemos ayudar con prácticamente todo" },
+      { pt: "É um prazer atendê-lo pessoalmente", es: "Es un placer atenderlo personalmente" },
+      { pt: "Sua satisfação é muito importante para nós", es: "Su satisfacción es muy importante para nosotros" },
+      { pt: "Estamos aqui para tornar sua viagem especial", es: "Estamos aquí para hacer su viaje especial" },
+      { pt: "Pode contar conosco sempre", es: "Puede contar con nosotros siempre" },
+      { pt: "Qualquer preferência, nos informe antecipadamente", es: "Cualquier preferencia, infórmenos con anticipación" },
+      { pt: "Conhecemos bem a região e podemos orientar", es: "Conocemos bien la región y podemos orientarle" },
+      { pt: "Sua opinião nos ajuda a melhorar", es: "Su opinión nos ayuda a mejorar" },
+      { pt: "Tratamos cada hóspede de forma única", es: "Tratamos a cada huésped de forma única" },
+    ],
+    vocab: [
+      { pt: "experiência", es: "experiencia" },
+      { pt: "disposição", es: "disposición" },
+      { pt: "satisfação", es: "satisfacción" },
+      { pt: "preferência", es: "preferencia" },
+      { pt: "orientar", es: "orientar" },
+      { pt: "único", es: "único" },
+      { pt: "pessoalmente", es: "personalmente" },
+      { pt: "melhorar", es: "mejorar" },
+      { pt: "opinião", es: "opinión" },
+      { pt: "antecipadamente", es: "con anticipación" },
+      { pt: "prazer", es: "placer" },
+      { pt: "tratar", es: "tratar" },
+    ],
+    miniDialogues: [
+      { speaker: "Colaborador", pt: "Estamos à sua disposição para qualquer necessidade", es: "Estamos a su disposición para cualquier necesidad" },
+      { speaker: "Hóspede", pt: "Muito obrigado pelo atendimento!", es: "¡Muchas gracias por la atención!" },
+      { speaker: "Colaborador", pt: "O prazer é nosso. Sua satisfação é nossa prioridade", es: "El placer es nuestro. Su satisfacción es nuestra prioridad" },
+      { speaker: "Hóspede", pt: "Com certeza voltaremos", es: "Con seguridad volveremos" },
+    ],
+    quiz: [
+      { question: "¿Cómo se dice 'placer'?", options: ["prazer", "gosto", "alegria"], answer: "prazer" },
+      { question: "¿Cómo se dice 'con anticipación'?", options: ["depois", "antecipadamente", "agora"], answer: "antecipadamente" },
+    ],
+  },
+  {
+    id: "recomendacao_personalizada",
+    title: "Recomendación personalizada",
+    category: "Ventas",
+    emoji: "🎯",
+    phrases: [
+      { pt: "Posso recomendar algo especial para vocês", es: "Puedo recomendar algo especial para ustedes" },
+      { pt: "Depende do que vocês procuram", es: "Depende de lo que buscan" },
+      { pt: "Para relaxar ou para aventura?", es: "¿Para relajarse o para aventura?" },
+      { pt: "Temos várias opções diferentes", es: "Tenemos varias opciones diferentes" },
+      { pt: "Posso adaptar tudo para vocês", es: "Puedo adaptarlo todo para ustedes" },
+      { pt: "É uma sugestão personalizada", es: "Es una sugerencia personalizada" },
+      { pt: "Quer que eu organize o pacote?", es: "¿Quiere que organice el paquete?" },
+      { pt: "Vão gostar muito, com certeza", es: "Les va a gustar mucho, con seguridad" },
+      { pt: "Para grupos grandes temos opções especiais", es: "Para grupos grandes tenemos opciones especiales" },
+      { pt: "Posso combinar excursão, restaurante e spa", es: "Puedo combinar excursión, restaurante y spa" },
+      { pt: "Qual é o orçamento disponível?", es: "¿Cuál es el presupuesto disponible?" },
+      { pt: "O importante é que aproveitem ao máximo", es: "Lo importante es que aprovechen al máximo" },
+    ],
+    vocab: [
+      { pt: "sugestão", es: "sugerencia" },
+      { pt: "especial", es: "especial" },
+      { pt: "relaxar", es: "relajarse" },
+      { pt: "aventura", es: "aventura" },
+      { pt: "adaptar", es: "adaptar" },
+      { pt: "organizar", es: "organizar" },
+      { pt: "pacote", es: "paquete" },
+      { pt: "orçamento", es: "presupuesto" },
+      { pt: "máximo", es: "máximo" },
+      { pt: "combinar", es: "combinar" },
+      { pt: "diferente", es: "diferente" },
+      { pt: "gostar", es: "gustar" },
+    ],
+    miniDialogues: [
+      { speaker: "Colaborador", pt: "Posso recomendar algo especial?", es: "¿Puedo recomendar algo especial?" },
+      { speaker: "Hóspede", pt: "Sim! Buscamos aventura e gastronomia", es: "¡Sí! Buscamos aventura y gastronomía" },
+      { speaker: "Colaborador", pt: "Trekking pela manhã e cordeiro patagônico ao jantar?", es: "¿Trekking por la mañana y cordero patagónico en la cena?" },
+      { speaker: "Hóspede", pt: "Perfeito! Pode organizar?", es: "¡Perfecto! ¿Puede organizar?" },
+    ],
+    quiz: [
+      { question: "¿Cómo se dice 'aventura'?", options: ["descanso", "aventura", "viagem"], answer: "aventura" },
+      { question: "¿Cómo se dice 'presupuesto'?", options: ["conta", "orçamento", "preço"], answer: "orçamento" },
+    ],
+  },
+  {
+    id: "resolucao_problemas",
+    title: "Resolución de problemas",
+    category: "Premium",
+    emoji: "🛠️",
+    phrases: [
+      { pt: "Vamos resolver isso imediatamente", es: "Vamos a resolver esto inmediatamente" },
+      { pt: "Peço desculpas pelo ocorrido", es: "Le pido disculpas por lo ocurrido" },
+      { pt: "Estamos cuidando disso agora", es: "Estamos ocupándonos de esto ahora" },
+      { pt: "Agradecemos sua compreensão e paciência", es: "Agradecemos su comprensión y paciencia" },
+      { pt: "Queremos melhorar sua experiência", es: "Queremos mejorar su experiencia" },
+      { pt: "Pode contar conosco sempre", es: "Puede contar con nosotros siempre" },
+      { pt: "Faremos o máximo para compensar", es: "Haremos lo máximo para compensar" },
+      { pt: "Vamos acompanhar o caso pessoalmente", es: "Vamos a hacer seguimiento del caso personalmente" },
+      { pt: "Posso oferecer algo como cortesia?", es: "¿Puedo ofrecerle algo como cortesía?" },
+      { pt: "Um upgrade de quarto está disponível", es: "Un upgrade de habitación está disponible" },
+      { pt: "Suas críticas nos ajudam a melhorar", es: "Sus críticas nos ayudan a mejorar" },
+      { pt: "Sua satisfação é o que mais importa", es: "Su satisfacción es lo que más importa" },
+    ],
+    vocab: [
+      { pt: "resolver", es: "resolver" },
+      { pt: "problema", es: "problema" },
+      { pt: "imediatamente", es: "inmediatamente" },
+      { pt: "compreensão", es: "comprensión" },
+      { pt: "paciência", es: "paciencia" },
+      { pt: "compensar", es: "compensar" },
+      { pt: "cortesia", es: "cortesía" },
+      { pt: "upgrade", es: "upgrade" },
+      { pt: "crítica", es: "crítica" },
+      { pt: "melhorar", es: "mejorar" },
+      { pt: "caso", es: "caso" },
+      { pt: "satisfação", es: "satisfacción" },
+    ],
+    miniDialogues: [
+      { speaker: "Hóspede", pt: "Estou insatisfeito com o quarto", es: "Estoy insatisfecho con la habitación" },
+      { speaker: "Colaborador", pt: "Peço sinceras desculpas. O que posso fazer para melhorar?", es: "Le pido sinceras disculpas. ¿Qué puedo hacer para mejorar?" },
+      { speaker: "Hóspede", pt: "Gostaria de trocar de quarto se possível", es: "Me gustaría cambiar de habitación si es posible" },
+      { speaker: "Colaborador", pt: "Vou verificar disponibilidade agora e resolver imediatamente", es: "Voy a verificar disponibilidad ahora y resolverlo inmediatamente" },
+    ],
+    quiz: [
+      { question: "¿Cómo se dice 'problema'?", options: ["erro", "problema", "falha"], answer: "problema" },
+      { question: "¿Cómo se dice 'cortesía'?", options: ["desconto", "cortesia", "prêmio"], answer: "cortesia" },
+    ],
+  },
 ];
