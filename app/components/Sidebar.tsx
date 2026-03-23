@@ -1,130 +1,128 @@
 "use client";
+
 import type { AppState } from "@/lib/types";
 import { MODULES } from "@/lib/modules";
-import { C, FONT, MONO, catColor, catBg } from "@/lib/constants";
-import { MiniBar } from "./ui";
+import { C, FONT } from "@/lib/constants";
 
-interface Props {
+type Props = {
   appState: AppState;
   selectedModuleId: string;
-  setSelectedModuleId: (id: string) => void;
+  setSelectedModuleId: React.Dispatch<React.SetStateAction<string>>;
   activeCategory: string;
-}
+};
 
-export default function Sidebar({ appState, selectedModuleId, setSelectedModuleId, activeCategory }: Props) {
-  const currentStudentId = appState.currentStudentId!;
-  const studentProgress = appState.progress[currentStudentId] || {};
+export default function Sidebar({
+  appState,
+  selectedModuleId,
+  setSelectedModuleId,
+  activeCategory,
+}: Props) {
+  const currentStudent =
+    appState.students.find((s) => s.id === appState.currentStudentId) ?? null;
 
-  const filtered = activeCategory === "Todos"
-    ? MODULES
-    : MODULES.filter((m) => m.category === activeCategory);
-
-  const completed = filtered.filter((m) => studentProgress[m.id]).length;
+  const filteredModules =
+    activeCategory === "Todos"
+      ? MODULES
+      : MODULES.filter((m) => m.category === activeCategory);
 
   return (
-    <aside style={{ position: "sticky", top: 72 }}>
-      <div
-        style={{
-          background: C.bg2,
-          border: `1px solid ${C.border}`,
-          borderRadius: 20,
-          padding: 16,
-          maxHeight: "calc(100vh - 120px)",
-          overflowY: "auto",
-        }}
-      >
-        <div
-          style={{
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "space-between",
-            marginBottom: 14,
-            padding: "0 4px",
-          }}
-        >
-          <span
-            style={{
-              fontSize: 10,
-              fontWeight: 700,
-              letterSpacing: "0.09em",
-              color: C.textDim,
-              fontFamily: MONO,
-              textTransform: "uppercase",
-            }}
-          >
-            Módulos
-          </span>
-          <span style={{ fontSize: 11, color: C.textDim, fontFamily: MONO }}>
-            {completed}/{filtered.length}
-          </span>
+    <aside
+      style={{
+        background: C.bg2,
+        border: `1px solid ${C.border}`,
+        borderRadius: 24,
+        padding: 16,
+        fontFamily: FONT,
+        display: "grid",
+        gap: 12,
+        position: "sticky",
+        top: 76,
+      }}
+    >
+      <div>
+        <h3 style={{ margin: 0, fontSize: 18, color: C.text }}>Módulos</h3>
+        <div style={{ marginTop: 4, fontSize: 13, color: C.textDim }}>
+          {filteredModules.length} disponibles
         </div>
+      </div>
 
-        <div style={{ display: "flex", flexDirection: "column", gap: 2 }}>
-          {filtered.map((m) => {
-            const p = studentProgress[m.id];
-            const isActive = m.id === selectedModuleId;
+      <div style={{ display: "grid", gap: 10 }}>
+        {filteredModules.map((m) => {
+          const completed =
+            !!currentStudent &&
+            !!appState.progress?.[currentStudent.id]?.[m.id];
 
-            return (
-              <button
-                key={m.id}
-                onClick={() => setSelectedModuleId(m.id)}
+          const isActive = selectedModuleId === m.id;
+
+          return (
+            <button
+              key={m.id}
+              onClick={() => setSelectedModuleId(m.id)}
+              style={{
+                textAlign: "left",
+                border: `1px solid ${
+                  isActive ? "rgba(74,222,128,0.35)" : C.border
+                }`,
+                background: isActive
+                  ? "rgba(74,222,128,0.10)"
+                  : C.bg3,
+                borderRadius: 18,
+                padding: 14,
+                cursor: "pointer",
+                display: "grid",
+                gap: 6,
+              }}
+            >
+              <div
                 style={{
                   display: "flex",
                   alignItems: "center",
+                  justifyContent: "space-between",
                   gap: 10,
-                  borderRadius: 12,
-                  padding: "9px 10px",
-                  background: isActive ? catBg(m.category) : "transparent",
-                  border: `1px solid ${isActive ? catColor(m.category) + "33" : "transparent"}`,
-                  cursor: "pointer",
-                  textAlign: "left",
-                  width: "100%",
-                  fontFamily: FONT,
                 }}
               >
-                <span style={{ fontSize: 15, flexShrink: 0 }}>{m.emoji}</span>
-                <div style={{ flex: 1, minWidth: 0 }}>
-                  <div
+                <div
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    gap: 10,
+                    minWidth: 0,
+                  }}
+                >
+                  <span style={{ fontSize: 20 }}>{m.emoji}</span>
+                  <span
                     style={{
-                      fontSize: 13,
-                      fontWeight: isActive ? 700 : 500,
-                      color: isActive ? C.text : C.textMid,
-                      overflow: "hidden",
-                      textOverflow: "ellipsis",
-                      whiteSpace: "nowrap",
+                      fontSize: 14,
+                      fontWeight: 700,
+                      color: C.text,
+                      lineHeight: 1.2,
                     }}
                   >
                     {m.title}
-                  </div>
-                  <div style={{ display: "flex", alignItems: "center", gap: 4, marginTop: 1 }}>
-                    <div
-                      style={{
-                        width: 6,
-                        height: 6,
-                        borderRadius: "50%",
-                        background: catColor(m.category),
-                        flexShrink: 0,
-                      }}
-                    />
-                    <span style={{ fontSize: 10, color: C.textDim, fontFamily: MONO }}>{m.level}</span>
-                  </div>
+                  </span>
                 </div>
-                {p ? (
-                  <div style={{ flexShrink: 0, textAlign: "right" }}>
-                    <div style={{ fontFamily: MONO, fontSize: 11, fontWeight: 700, color: C.green }}>
-                      {p.score}/{p.total}
-                    </div>
-                    <div style={{ fontSize: 10, color: C.green }}>✓</div>
-                  </div>
-                ) : (
-                  <span style={{ color: C.textDim, fontSize: 14 }}>·</span>
+
+                {completed && (
+                  <span
+                    style={{
+                      fontSize: 12,
+                      fontWeight: 700,
+                      color: C.green,
+                      whiteSpace: "nowrap",
+                    }}
+                  >
+                    ✓
+                  </span>
                 )}
-              </button>
-            );
-          })}
-        </div>
+              </div>
+
+              <div style={{ fontSize: 12, color: C.textDim }}>
+                {m.category}
+              </div>
+            </button>
+          );
+        })}
       </div>
     </aside>
   );
 }
-
