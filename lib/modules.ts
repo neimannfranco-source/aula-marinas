@@ -45,7 +45,7 @@ export const MODULES: ModuleType[] = [
       answer: "Boa tarde"
     }
   ]
-}
+},
 {
   id: "reserva",
   title: "Reserva",
