@@ -135,7 +135,7 @@ export const MODULES: ModuleType[] = [
       answer: "documento"
     }
   ]
-}
+},
 {
   id: "cabanas",
   title: "Cabañas",
@@ -180,7 +180,7 @@ export const MODULES: ModuleType[] = [
       answer: "churrasqueira"
     }
   ]
-}
+},
 {
   id: "loft",
   title: "Loft",
@@ -225,7 +225,7 @@ export const MODULES: ModuleType[] = [
       answer: "vista para o lago"
     }
   ]
-}
+},
 {
   id: "suite_deluxe",
   title: "Suite Deluxe",
@@ -262,7 +262,7 @@ export const MODULES: ModuleType[] = [
       answer: "suíte"
     }
   ]
-}
+},
 {
   id: "desayuno",
   title: "Desayuno",
@@ -299,7 +299,7 @@ export const MODULES: ModuleType[] = [
       answer: "café da manhã"
     }
   ]
-}
+},
 {
   id: "wifi",
   title: "WiFi",
@@ -336,7 +336,7 @@ export const MODULES: ModuleType[] = [
       answer: "senha"
     }
   ]
-}
+},
 {
   id: "ubicacion",
   title: "Ubicación",
@@ -373,7 +373,7 @@ export const MODULES: ModuleType[] = [
       answer: "centro"
     }
   ]
-}
+},
 {
   id: "transfer",
   title: "Transfer",
@@ -410,7 +410,7 @@ export const MODULES: ModuleType[] = [
       answer: "aeroporto"
     }
   ]
-}
+},
 {
   id: "suite_standard",
   title: "Suite Standard",
@@ -780,7 +780,7 @@ export const MODULES: ModuleType[] = [
       answer: "paisagem"
     }
   ]
-}
+},
 {
   id: "restaurante_tasca",
   title: "Restaurante La Tasca",
@@ -965,7 +965,7 @@ export const MODULES: ModuleType[] = [
       answer: "esquerda"
     }
   ]
-}
+},
 {
   id: "excursiones_general",
   title: "Excursiones",
@@ -1150,7 +1150,7 @@ export const MODULES: ModuleType[] = [
       answer: "relaxar"
     }
   ]
-}
+},
 {
   id: "problema_wifi",
   title: "Problema con el WiFi",
@@ -1520,7 +1520,7 @@ export const MODULES: ModuleType[] = [
       answer: "dinheiro"
     }
   ]
-}
+},
 {
   id: "facturacion",
   title: "Facturación",
@@ -1706,3 +1706,4 @@ export const MODULES: ModuleType[] = [
     }
   ]
 }
+];
