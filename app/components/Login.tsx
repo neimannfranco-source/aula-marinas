@@ -8,10 +8,9 @@ import {
   MONO,
   input,
   btnPrimary,
-  btnGhost,
   normalize,
-  PROFESSOR_PASSWORD,
 } from "../../lib/constants";
+
 interface Props {
   appState: AppState;
   setAppState: (s: AppState | ((p: AppState) => AppState)) => void;
@@ -19,7 +18,12 @@ interface Props {
   showProfPanel: boolean;
 }
 
-export default function Login({ appState, setAppState, onProfessor, showProfPanel }: Props) {
+export default function Login({
+  appState,
+  setAppState,
+  onProfessor,
+  showProfPanel,
+}: Props) {
   const [name, setName] = useState("");
   const [code, setCode] = useState("");
   const [error, setError] = useState("");
@@ -30,10 +34,12 @@ export default function Login({ appState, setAppState, onProfessor, showProfPane
         normalize(s.name) === normalize(name) &&
         normalize(s.code) === normalize(code)
     );
+
     if (!found) {
-      setError("Nome ou senha incorretos.");
+      setError("Nombre o contraseña incorrectos.");
       return;
     }
+
     setAppState((prev) => ({ ...prev, currentStudentId: found.id }));
     setError("");
   };
@@ -64,7 +70,6 @@ export default function Login({ appState, setAppState, onProfessor, showProfPane
       `}</style>
 
       <div style={{ width: "100%", maxWidth: 420 }}>
-        {/* Logo */}
         <div style={{ textAlign: "center", marginBottom: 48 }}>
           <div
             style={{
@@ -82,6 +87,7 @@ export default function Login({ appState, setAppState, onProfessor, showProfPane
           >
             🏨
           </div>
+
           <h1
             style={{
               fontSize: 32,
@@ -94,6 +100,7 @@ export default function Login({ appState, setAppState, onProfessor, showProfPane
           >
             Aula Marinas
           </h1>
+
           <p
             style={{
               color: C.textMid,
@@ -102,8 +109,9 @@ export default function Login({ appState, setAppState, onProfessor, showProfPane
               fontFamily: FONT,
             }}
           >
-            Português hoteleiro profissional
+            Portugués hotelero profesional
           </p>
+
           <p
             style={{
               color: C.textDim,
@@ -116,7 +124,6 @@ export default function Login({ appState, setAppState, onProfessor, showProfPane
           </p>
         </div>
 
-        {/* Form */}
         <div
           style={{
             background: C.bg2,
@@ -138,12 +145,13 @@ export default function Login({ appState, setAppState, onProfessor, showProfPane
                 textTransform: "uppercase",
               }}
             >
-              Nome
+              Nombre
             </label>
+
             <input
               value={name}
               onChange={(e) => setName(e.target.value)}
-              placeholder="Seu nome completo"
+              placeholder="Tu nombre completo"
               style={input}
               onKeyDown={(e) => e.key === "Enter" && login()}
             />
@@ -162,8 +170,9 @@ export default function Login({ appState, setAppState, onProfessor, showProfPane
                 textTransform: "uppercase",
               }}
             >
-              Senha
+              Contraseña
             </label>
+
             <input
               value={code}
               onChange={(e) => setCode(e.target.value)}
@@ -190,8 +199,16 @@ export default function Login({ appState, setAppState, onProfessor, showProfPane
             </div>
           )}
 
-          <button onClick={login} style={{ ...btnPrimary, width: "100%", padding: "13px 24px", fontSize: 15 }}>
-            Entrar no aula →
+          <button
+            onClick={login}
+            style={{
+              ...btnPrimary,
+              width: "100%",
+              padding: "13px 24px",
+              fontSize: 15,
+            }}
+          >
+            Entrar a la plataforma →
           </button>
         </div>
 
@@ -210,10 +227,9 @@ export default function Login({ appState, setAppState, onProfessor, showProfPane
             fontFamily: FONT,
           }}
         >
-          👨‍🏫 Painel do professor
+          👨‍🏫 Panel del profesor
         </button>
       </div>
     </div>
   );
 }
-

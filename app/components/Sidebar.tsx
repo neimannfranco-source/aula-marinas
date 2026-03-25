@@ -28,8 +28,9 @@ export default function Sidebar({
   return (
     <aside
       style={{
-        background: C.bg2,
-        border: `1px solid ${C.border}`,
+        background: "rgba(6, 12, 10, 0.6)",
+        backdropFilter: "blur(10px)",
+        border: "1px solid rgba(255,255,255,0.06)",
         borderRadius: 24,
         padding: 16,
         fontFamily: FONT,
@@ -37,6 +38,7 @@ export default function Sidebar({
         gap: 12,
         position: "sticky",
         top: 76,
+        boxShadow: "0 8px 24px rgba(0,0,0,0.25)",
       }}
     >
       <div>
@@ -61,16 +63,19 @@ export default function Sidebar({
               style={{
                 textAlign: "left",
                 border: `1px solid ${
-                  isActive ? "rgba(74,222,128,0.35)" : C.border
+                  isActive
+                    ? "rgba(74,222,128,0.35)"
+                    : "rgba(255,255,255,0.05)"
                 }`,
                 background: isActive
                   ? "rgba(74,222,128,0.10)"
-                  : C.bg3,
+                  : "rgba(255,255,255,0.02)",
                 borderRadius: 18,
                 padding: 14,
                 cursor: "pointer",
                 display: "grid",
                 gap: 6,
+                transition: "all 0.2s ease",
               }}
             >
               <div

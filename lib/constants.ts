@@ -81,12 +81,13 @@ export const btnDanger: CSSProperties = {
 export const CATEGORIES = [
   "Todos",
   "Check-in",
+  "Comunicación",
   "Alojamiento",
   "Gastronomía",
   "Reclamos",
   "Reservas",
   "Excursiones",
-  "Comunicación",
+  "Premium",
 ];
 
 export const catColor = (cat: string): string => {

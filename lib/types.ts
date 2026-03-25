@@ -19,7 +19,6 @@ export type ModuleType = {
   category: string;
   emoji: string;
   phrases: { pt: string; es: string }[];
-  vocab: { pt: string; es: string }[];
   miniDialogues: {
     speaker: string;
     pt: string;

@@ -12,9 +12,7 @@ export default function ProgressPanel({ appState }: Props) {
   const currentStudent =
     appState.students.find((s) => s.id === appState.currentStudentId) ?? null;
 
-  if (!currentStudent) {
-    return null;
-  }
+  if (!currentStudent) return null;
 
   const progress = appState.progress?.[currentStudent.id] ?? {};
   const completed = Object.keys(progress).filter((key) => progress[key]).length;
@@ -22,37 +20,46 @@ export default function ProgressPanel({ appState }: Props) {
   const percent = total > 0 ? Math.round((completed / total) * 100) : 0;
 
   return (
-    <div
+    <aside
       style={{
-        background: C.bg2,
-        border: `1px solid ${C.border}`,
+        background: "rgba(6, 12, 10, 0.6)",
+        backdropFilter: "blur(10px)",
+        border: "1px solid rgba(255,255,255,0.06)",
         borderRadius: 24,
-        padding: 20,
+        padding: 18,
         fontFamily: FONT,
         display: "grid",
         gap: 16,
+        position: "sticky",
+        top: 76,
+        boxShadow: "0 8px 24px rgba(0,0,0,0.25)",
       }}
     >
+      {/* HEADER */}
       <div>
-        <h3 style={{ margin: 0, fontSize: 20, color: C.text }}>Progreso</h3>
-        <div style={{ marginTop: 6, fontSize: 13, color: C.textDim }}>
+        <h3 style={{ margin: 0, fontSize: 18, color: C.text }}>
+          Progreso
+        </h3>
+        <div style={{ marginTop: 4, fontSize: 13, color: C.textDim }}>
           {currentStudent.name}
         </div>
       </div>
 
+      {/* PROGRESS BAR */}
       <div
         style={{
-          background: C.bg3,
-          border: `1px solid ${C.border}`,
+          background: "rgba(255,255,255,0.02)",
+          border: "1px solid rgba(255,255,255,0.05)",
           borderRadius: 18,
-          padding: 16,
+          padding: 14,
+          display: "grid",
+          gap: 10,
         }}
       >
         <div
           style={{
             display: "flex",
             justifyContent: "space-between",
-            marginBottom: 10,
             fontSize: 14,
             fontWeight: 700,
             color: C.text,
@@ -68,7 +75,7 @@ export default function ProgressPanel({ appState }: Props) {
           style={{
             height: 12,
             borderRadius: 999,
-            background: "rgba(255,255,255,0.08)",
+            background: "rgba(255,255,255,0.06)",
             overflow: "hidden",
           }}
         >
@@ -76,31 +83,27 @@ export default function ProgressPanel({ appState }: Props) {
             style={{
               width: `${percent}%`,
               height: "100%",
-              background: C.green,
               borderRadius: 999,
+              background: "linear-gradient(135deg, #22c55e, #16a34a)",
+              transition: "width 0.3s ease",
             }}
           />
         </div>
 
-        <div
-          style={{
-            marginTop: 10,
-            fontSize: 13,
-            color: C.textDim,
-          }}
-        >
+        <div style={{ fontSize: 13, color: C.textDim }}>
           {percent}% completado
         </div>
       </div>
 
+      {/* STATUS */}
       <div
         style={{
-          background: C.bg3,
-          border: `1px solid ${C.border}`,
+          background: "rgba(255,255,255,0.02)",
+          border: "1px solid rgba(255,255,255,0.05)",
           borderRadius: 18,
-          padding: 16,
+          padding: 14,
           display: "grid",
-          gap: 10,
+          gap: 8,
         }}
       >
         <div style={{ fontSize: 14, fontWeight: 700, color: C.text }}>
@@ -119,6 +122,6 @@ export default function ProgressPanel({ appState }: Props) {
           Módulos pendientes: {Math.max(total - completed, 0)}
         </div>
       </div>
-    </div>
+    </aside>
   );
 }
