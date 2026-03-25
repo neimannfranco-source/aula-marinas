@@ -1,25 +1,35 @@
 import type { CSSProperties } from "react";
 
 export const C = {
-  bg: "#0a0f0d",
-  bg2: "#0f1710",
-  bg3: "#141f15",
+  // Fondos — tierra patagónica oscura
+  bg: "#0e1410",
+  bg2: "#141c16",
+  bg3: "#1a241d",
   surface: "rgba(255,255,255,0.03)",
-  border: "rgba(255,255,255,0.07)",
-  borderA: "rgba(74,222,128,0.28)",
-  green: "#4ade80",
-  greenDim: "#16a34a",
-  greenGlow: "rgba(74,222,128,0.10)",
-  text: "#f0fdf4",
-  textMid: "#86efac",
-  textDim: "#4b7a55",
-  accent: "#fbbf24",
-  accentDim: "rgba(251,191,36,0.12)",
-  red: "#fb7185",
-  redDim: "rgba(251,113,133,0.10)",
-  redBorder: "rgba(251,113,133,0.22)",
-  correct: "#4ade80",
-  wrong: "#fb7185",
+  border: "rgba(255,255,255,0.08)",
+  borderA: "rgba(200,169,110,0.35)",
+
+  // Acento principal — verde bosque patagónico
+  green: "#5a9e7a",
+  greenDim: "#2C4A3E",
+  greenGlow: "rgba(90,158,122,0.12)",
+
+  // Acento dorado — como la luz en el lago al atardecer
+  accent: "#C8A96E",
+  accentDim: "rgba(200,169,110,0.12)",
+  accentBright: "#E8D5A3",
+
+  // Textos
+  text: "#F5F0E8",
+  textMid: "#A8C4B0",
+  textDim: "#5A7A64",
+
+  // Estados
+  red: "#e07070",
+  redDim: "rgba(224,112,112,0.10)",
+  redBorder: "rgba(224,112,112,0.22)",
+  correct: "#5a9e7a",
+  wrong: "#e07070",
 };
 
 export const FONT = "'Plus Jakarta Sans', system-ui, sans-serif";
@@ -47,7 +57,19 @@ export const input: CSSProperties = {
 
 export const btnPrimary: CSSProperties = {
   background: `linear-gradient(135deg, ${C.green}, ${C.greenDim})`,
-  color: "#052e16",
+  color: "#F5F0E8",
+  border: "none",
+  borderRadius: 12,
+  padding: "11px 24px",
+  fontSize: 14,
+  fontWeight: 700,
+  cursor: "pointer",
+  fontFamily: FONT,
+};
+
+export const btnAccent: CSSProperties = {
+  background: `linear-gradient(135deg, ${C.accent}, #A0803A)`,
+  color: "#0e1410",
   border: "none",
   borderRadius: 12,
   padding: "11px 24px",
@@ -78,6 +100,7 @@ export const btnDanger: CSSProperties = {
   cursor: "pointer",
   fontFamily: FONT,
 };
+
 export const CATEGORIES = [
   "Todos",
   "Check-in",
@@ -92,21 +115,23 @@ export const CATEGORIES = [
 
 export const catColor = (cat: string): string => {
   const m: Record<string, string> = {
-  "Check-in": "#34d399",
-  Alojamiento: "#86efac",
-  Gastronomía: "#f472b6",
-  Desayuno: "#fb923c",
-  Reclamos: "#fb7185",
-  Reservas: "#a78bfa",
-  Comunicación: "#60a5fa",
-  Excursiones: "#2dd4bf",
-};
+    "Check-in":    "#5a9e7a",   // verde bosque
+    Alojamiento:   "#C8A96E",   // dorado lago
+    Gastronomía:   "#d4896a",   // terracota cálido
+    Reclamos:      "#e07070",   // rojo suave
+    Reservas:      "#8fa8d4",   // azul cielo patagónico
+    Comunicación:  "#7dc4a8",   // turquesa agua
+    Excursiones:   "#a3c47a",   // verde montaña
+    Premium:       "#C8A96E",   // dorado
+    Familias:      "#c48fa0",   // rosa suave
+    Ventas:        "#b4a87a",   // ocre
+  };
   return m[cat] || C.textMid;
 };
 
 export const catBg = (cat: string): string => {
   const c = catColor(cat);
-  return `${c}15`;
+  return `${c}18`;
 };
 
 export function getInitial(name: string): string {
@@ -150,4 +175,3 @@ export function normalize(value: string): string {
 export const PROFESSOR_PASSWORD = "pietromarinas";
 export const DB_ROW_ID = "global-app-state-marinas";
 export const LS_KEY = "aula-marinas-v1";
-
