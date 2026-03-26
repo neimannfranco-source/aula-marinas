@@ -460,9 +460,9 @@ export default function ModuleView({
                     ? "rgba(214,179,106,0.12)"
                     : "rgba(255,255,255,0.02)",
                 border:
-                  activeTab === tab.id
-                    ? `1px solid ${C.borderStrong ?? "rgba(214,179,106,0.22)"}`
-                    : "1px solid rgba(255,255,255,0.06)",
+  activeTab === tab.id
+    ? "1px solid rgba(214,179,106,0.22)"
+    : "1px solid rgba(255,255,255,0.06)",
                 color: activeTab === tab.id ? C.text : C.textDim,
                 fontSize: 13,
                 fontWeight: 600,

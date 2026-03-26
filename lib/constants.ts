@@ -8,6 +8,7 @@ export const C = {
   surface: "rgba(255,255,255,0.03)",
   border: "rgba(255,255,255,0.08)",
   borderA: "rgba(200,169,110,0.35)",
+  borderStrong: "rgba(200,169,110,0.22)",
 
   // Acento principal — verde bosque patagónico
   green: "#5a9e7a",
