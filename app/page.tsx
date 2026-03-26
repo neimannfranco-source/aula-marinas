@@ -541,17 +541,18 @@ await saveRemoteState(appState);
         </div>
       </div>
 
-      <button
+      ""<button
         onClick={() => {
-          setSelectedModuleId(lastPosition.moduleId);
-          setActiveCategory("Todos");
-          if (!sidebarOpen) setSidebarOpen(true);
-        }}
-        style={{
-          ...btnGhost,
-          fontWeight: 700,
-          whiteSpace: "nowrap",
-        }}
+  // forzar cambio para que React re-renderice
+  setSelectedModuleId("");
+
+  setTimeout(() => {
+    setSelectedModuleId(lastPosition.moduleId);
+  }, 0);
+
+  setActiveCategory("Todos");
+  if (!sidebarOpen) setSidebarOpen(true);
+}}
       >
         ▶ Continuar
       </button>
