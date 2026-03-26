@@ -614,10 +614,10 @@ setQuizIndex(saved.quizIndex ?? 0);
       {activeTab === "dialogue" && currentDialogue && (
         <div style={premiumPanel}>
           <div style={sectionLabel}>
-            Diálogo {dialogueIndex + 1} de {module.miniDialogues.length}
+            Diálogo {dialogueIndex + 1} de {module.dialogue?.length ?? 0}
           </div>
 
-          {progressDots(module.miniDialogues.length, dialogueIndex, setDialogueIndex)}
+          {progressDots(module.dialogue?.length ?? 0, dialogueIndex, setDialogueIndex)}
 
           <div style={{ textAlign: "center", marginTop: 18 }}>
             <span
