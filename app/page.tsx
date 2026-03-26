@@ -102,7 +102,8 @@ export default function Home() {
       } catch {}
 
       try {
-  await saveRemoteState(appState);
+  console.log("STATE BEFORE SAVE:", appState);
+await saveRemoteState(appState);
   console.log("REMOTE SAVE OK", appState);
 } catch (err) {
   console.error("SUPABASE SAVE ERROR:", err);
