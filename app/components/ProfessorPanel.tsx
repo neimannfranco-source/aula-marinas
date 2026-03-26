@@ -4,7 +4,10 @@ import type { AppState } from "@/lib/types";
 import { MODULES } from "@/lib/modules";
 import { C, FONT, DISPLAY, catColor } from "@/lib/constants";
 
-type Props = { appState: AppState };
+type Props = {
+  appState: AppState;
+  setAppState: React.Dispatch<React.SetStateAction<AppState>>;
+};
 
 const CATEGORIES = [
   "Comunicación",
