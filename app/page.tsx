@@ -49,36 +49,35 @@ export default function Home() {
   const [newPwd, setNewPwd] = useState("");
   const [confirmPwd, setConfirmPwd] = useState("");
   const [pwdMsg, setPwdMsg] = useState("");
+  const [resumeToken, setResumeToken] = useState(0);
 
   const currentStudent =
-  appState.students.find((s) => s.id === appState.currentStudentId) ?? null;
+    appState.students.find((s) => s.id === appState.currentStudentId) ?? null;
 
-const lastPosition = currentStudent
-  ? appState.lastPosition?.[currentStudent.id]
-  : null;
+  const lastPosition = currentStudent
+    ? appState.lastPosition?.[currentStudent.id]
+    : null;
+
   const continueModule = lastPosition
-  ? MODULES.find((m) => m.id === lastPosition.moduleId)
-  : null;
-
+    ? MODULES.find((m) => m.id === lastPosition.moduleId)
+    : null;
 
   useEffect(() => {
     let mounted = true;
 
     (async () => {
       try {
-  const remote = await loadRemoteState();
-  console.log("REMOTE LOAD:", remote);
+        const remote = await loadRemoteState();
+        if (!mounted) return;
 
-  if (!mounted) return;
-
-  if (remote) {
-    setAppState({ ...remote, currentStudentId: null });
-    setLoadStatus("ready");
-    return;
-  }
-} catch (err) {
-  console.error("SUPABASE LOAD ERROR:", err);
-}
+        if (remote) {
+          setAppState({ ...remote, currentStudentId: null });
+          setLoadStatus("ready");
+          return;
+        }
+      } catch (err) {
+        console.error("SUPABASE LOAD ERROR:", err);
+      }
 
       if (!mounted) return;
 
@@ -86,7 +85,11 @@ const lastPosition = currentStudent
         const saved = localStorage.getItem(LS_KEY);
         if (saved) {
           const parsed = JSON.parse(saved);
-          setAppState({ ...createInitialState(), ...parsed, currentStudentId: null });
+          setAppState({
+            ...createInitialState(),
+            ...parsed,
+            currentStudentId: null,
+          });
         } else {
           setAppState(createInitialState());
         }
@@ -111,12 +114,10 @@ const lastPosition = currentStudent
       } catch {}
 
       try {
-  console.log("STATE BEFORE SAVE:", appState);
-await saveRemoteState(appState);
-  console.log("REMOTE SAVE OK", appState);
-} catch (err) {
-  console.error("SUPABASE SAVE ERROR:", err);
-}
+        await saveRemoteState(appState);
+      } catch (err) {
+        console.error("SUPABASE SAVE ERROR:", err);
+      }
     }, 500);
 
     return () => clearTimeout(timer);
@@ -221,28 +222,35 @@ await saveRemoteState(appState);
   }
 
   if (!currentStudent) {
-  return (
-    <>
-      <Login
-        appState={appState}
-        setAppState={setAppState}
-        onProfessor={handleProfessorClick}
-        showProfPanel={showProfPanel}
-      />
-
-      {showProfPanel && profUnlocked && (
-        <ProfessorPanel
+    return (
+      <>
+        <Login
           appState={appState}
           setAppState={setAppState}
-          onClose={() => setShowProfPanel(false)}
+          onProfessor={handleProfessorClick}
+          showProfPanel={showProfPanel}
         />
-      )}
-    </>
-  );
-}
+
+        {showProfPanel && profUnlocked && (
+          <ProfessorPanel
+            appState={appState}
+            setAppState={setAppState}
+            onClose={() => setShowProfPanel(false)}
+          />
+        )}
+      </>
+    );
+  }
 
   return (
-    <div style={{ minHeight: "100vh", background: "transparent", color: C.text, fontFamily: FONT }}>
+    <div
+      style={{
+        minHeight: "100vh",
+        background: "transparent",
+        color: C.text,
+        fontFamily: FONT,
+      }}
+    >
       <style>{`
         @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
         * { box-sizing: border-box; }
@@ -274,7 +282,9 @@ await saveRemoteState(appState);
             gap: 12,
           }}
         >
-          <div style={{ display: "flex", alignItems: "center", gap: 8, marginRight: 4 }}>
+          <div
+            style={{ display: "flex", alignItems: "center", gap: 8, marginRight: 4 }}
+          >
             <span style={{ fontSize: 18 }}>🏨</span>
             <span
               style={{
@@ -368,13 +378,19 @@ await saveRemoteState(appState);
             </div>
 
             <button onClick={logout} style={btnDanger}>
-  Cerrar sesión
-</button>
+              Cerrar sesión
+            </button>
           </div>
         </div>
 
         {showChangePwd && (
-          <div style={{ background: C.bg2, borderTop: `1px solid ${C.border}`, padding: "14px 24px" }}>
+          <div
+            style={{
+              background: C.bg2,
+              borderTop: `1px solid ${C.border}`,
+              padding: "14px 24px",
+            }}
+          >
             <div
               style={{
                 maxWidth: 500,
@@ -431,12 +447,13 @@ await saveRemoteState(appState);
       </header>
 
       {showProfPanel && profUnlocked && (
-  <ProfessorPanel
-    appState={appState}
-    setAppState={setAppState}
-    onClose={() => setShowProfPanel(false)}
-  />
-)}
+        <ProfessorPanel
+          appState={appState}
+          setAppState={setAppState}
+          onClose={() => setShowProfPanel(false)}
+        />
+      )}
+
       <div
         style={{
           maxWidth: 1400,
@@ -484,93 +501,105 @@ await saveRemoteState(appState);
         )}
 
         <div>
-  {!sidebarOpen && (
-    <button
-      onClick={() => setSidebarOpen(true)}
-      style={{ ...btnGhost, marginBottom: 16, fontSize: 12 }}
-    >
-      ▶ Módulos
-    </button>
-  )}
+          {!sidebarOpen && (
+            <button
+              onClick={() => setSidebarOpen(true)}
+              style={{ ...btnGhost, marginBottom: 16, fontSize: 12 }}
+            >
+              ▶ Módulos
+            </button>
+          )}
 
-  {lastPosition && continueModule && (
-    <div
-      style={{
-        marginBottom: 16,
-        background: C.bg2,
-        border: `1px solid ${C.border}`,
-        borderRadius: 18,
-        padding: 16,
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "space-between",
-        gap: 16,
-        flexWrap: "wrap",
-      }}
-    >
-      <div>
-        <div
-          style={{
-            fontSize: 12,
-            color: C.textDim,
-            marginBottom: 4,
-            fontWeight: 600,
-          }}
-        >
-          Continuar donde dejaste
+          {lastPosition && continueModule && (
+            <div
+              style={{
+                marginBottom: 16,
+                background: C.bg2,
+                border: `1px solid ${C.border}`,
+                borderRadius: 18,
+                padding: 16,
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "space-between",
+                gap: 16,
+                flexWrap: "wrap",
+              }}
+            >
+              <div>
+                <div
+                  style={{
+                    fontSize: 12,
+                    color: C.textDim,
+                    marginBottom: 4,
+                    fontWeight: 600,
+                  }}
+                >
+                  Continuar donde dejaste
+                </div>
+
+                <div
+                  style={{
+                    fontSize: 18,
+                    fontWeight: 800,
+                    color: C.text,
+                    marginBottom: 4,
+                  }}
+                >
+                  {continueModule.emoji} {continueModule.title}
+                </div>
+
+                <div
+                  style={{
+                    fontSize: 13,
+                    color: C.textDim,
+                  }}
+                >
+                  {lastPosition.tab === "phrases" &&
+                    `Te quedaste en la frase ${lastPosition.phraseIndex + 1}`}
+                  {lastPosition.tab === "dialogue" &&
+                    `Te quedaste en el diálogo ${lastPosition.dialogueIndex + 1}`}
+                  {lastPosition.tab === "quiz" &&
+                    `Te quedaste en el quiz ${lastPosition.quizIndex + 1}`}
+                </div>
+              </div>
+
+              <button
+                onClick={() => {
+                  setResumeToken((v) => v + 1);
+                  setSelectedModuleId(lastPosition.moduleId);
+                  setActiveCategory("Todos");
+                  if (!sidebarOpen) setSidebarOpen(true);
+                }}
+                style={{
+                  background: "rgba(214,179,106,0.12)",
+                  color: "#E7D19A",
+                  border: "1px solid rgba(214,179,106,0.28)",
+                  borderRadius: 12,
+                  padding: "10px 14px",
+                  fontSize: 14,
+                  fontWeight: 700,
+                  cursor: "pointer",
+                  fontFamily: FONT,
+                }}
+              >
+                ▶ Continuar
+              </button>
+            </div>
+          )}
+
+          <ModuleView
+            key={`${selectedModuleId}-${resumeToken}`}
+            appState={appState}
+            setAppState={setAppState}
+            selectedModuleId={selectedModuleId}
+            onGoHome={() => {
+              setSelectedModuleId(MODULES[0]?.id ?? "");
+              setActiveCategory("Todos");
+              setShowProfPanel(false);
+              setSidebarOpen(true);
+            }}
+          />
         </div>
-
-        <div
-          style={{
-            fontSize: 18,
-            fontWeight: 800,
-            color: C.text,
-            marginBottom: 4,
-          }}
-        >
-          {continueModule.emoji} {continueModule.title}
-        </div>
-
-        <div
-          style={{
-            fontSize: 13,
-            color: C.textDim,
-          }}
-        >
-          Sección: {lastPosition.tab} · Frase {lastPosition.phraseIndex + 1} · Diálogo {lastPosition.dialogueIndex + 1} · Quiz {lastPosition.quizIndex + 1}
-        </div>
-      </div>
-
-      <button
-        onClick={() => {
-  // forzar cambio para que React re-renderice
-  setSelectedModuleId("");
-
-  setTimeout(() => {
-    setSelectedModuleId(lastPosition.moduleId);
-  }, 0);
-
-  setActiveCategory("Todos");
-  if (!sidebarOpen) setSidebarOpen(true);
-}}
-      >
-        ▶ Continuar
-      </button>
-    </div>
-  )}
-
-  <ModuleView
-    appState={appState}
-    setAppState={setAppState}
-    selectedModuleId={selectedModuleId}
-    onGoHome={() => {
-      setSelectedModuleId(MODULES[0]?.id ?? "");
-      setActiveCategory("Todos");
-      setShowProfPanel(false);
-      setSidebarOpen(true);
-    }}
-  />
-</div>
 
         <ProgressPanel appState={appState} />
       </div>

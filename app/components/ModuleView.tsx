@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { MODULES } from "@/lib/modules";
 import type { AppState, TabType } from "@/lib/types";
 import {
@@ -16,6 +16,7 @@ type Props = {
   appState: AppState;
   setAppState: React.Dispatch<React.SetStateAction<AppState>>;
   selectedModuleId: string;
+  resumeToken?: number;
   onGoHome?: () => void;
   onPositionChange?: (position: {
     moduleId: string;
@@ -30,6 +31,7 @@ export default function ModuleView({
   appState,
   setAppState,
   selectedModuleId,
+  resumeToken,
   onGoHome,
   onPositionChange,
 }: Props) {
@@ -45,6 +47,13 @@ export default function ModuleView({
   const [selectedAnswer, setSelectedAnswer] = useState<string | null>(null);
   const [showTranslation, setShowTranslation] = useState(true);
   const [speaking, setSpeaking] = useState(false);
+  const [didRestorePosition, setDidRestorePosition] = useState(false);
+
+  const stopSpeak = () => {
+    if (typeof window === "undefined") return;
+    window.speechSynthesis.cancel();
+    setSpeaking(false);
+  };
 
   useEffect(() => {
     if (typeof window === "undefined") return;
@@ -55,70 +64,98 @@ export default function ModuleView({
       speechSynthesis.onvoiceschanged = null;
     };
   }, []);
+
   useEffect(() => {
-  if (!module) return;
+    if (!module) return;
 
-  onPositionChange?.({
-    moduleId: module.id,
-    tab: activeTab,
-    phraseIndex,
-    dialogueIndex,
-    quizIndex,
-  });
-}, [module?.id, activeTab, phraseIndex, dialogueIndex, quizIndex, onPositionChange]);
-
-useEffect(() => {
-  const studentId = appState.currentStudentId;
-  if (!studentId || !module) return;
-
-  setAppState((prev) => {
-    const prevPosition = prev.lastPosition?.[studentId];
-
-    const nextPosition = {
+    onPositionChange?.({
       moduleId: module.id,
       tab: activeTab,
       phraseIndex,
-      vocabIndex: 0,
       dialogueIndex,
       quizIndex,
-    };
-
-    if (
-      prevPosition &&
-      prevPosition.moduleId === nextPosition.moduleId &&
-      prevPosition.tab === nextPosition.tab &&
-      prevPosition.phraseIndex === nextPosition.phraseIndex &&
-      prevPosition.vocabIndex === nextPosition.vocabIndex &&
-      prevPosition.dialogueIndex === nextPosition.dialogueIndex &&
-      prevPosition.quizIndex === nextPosition.quizIndex
-    ) {
-      return prev;
-    }
-
-    return {
-      ...prev,
-      lastPosition: {
-        ...prev.lastPosition,
-        [studentId]: nextPosition,
-      },
-    };
-  });
-}, [
-  appState.currentStudentId,
-  module?.id,
-  activeTab,
-  phraseIndex,
-  dialogueIndex,
-  quizIndex,
-  setAppState,
-]);
-  
+    });
+  }, [module?.id, activeTab, phraseIndex, dialogueIndex, quizIndex, onPositionChange]);
 
   useEffect(() => {
-  setSelectedAnswer(null);
-  setShowTranslation(true);
-  stopSpeak();
-}, [selectedModuleId]);
+    const studentId = appState.currentStudentId;
+    if (!studentId || !module) return;
+
+    const saved = appState.lastPosition?.[studentId];
+
+    if (saved && saved.moduleId === module.id) {
+      const safeTab: TabType =
+        saved.tab === "phrases" ||
+        saved.tab === "dialogue" ||
+        saved.tab === "quiz"
+          ? saved.tab
+          : "phrases";
+
+      setActiveTab(safeTab);
+      setPhraseIndex(saved.phraseIndex ?? 0);
+      setDialogueIndex(saved.dialogueIndex ?? 0);
+      setQuizIndex(saved.quizIndex ?? 0);
+    } else {
+      setActiveTab("phrases");
+      setPhraseIndex(0);
+      setDialogueIndex(0);
+      setQuizIndex(0);
+    }
+
+    setSelectedAnswer(null);
+    setShowTranslation(true);
+    stopSpeak();
+    setDidRestorePosition(true);
+  }, [appState.currentStudentId, appState.lastPosition, module?.id, resumeToken]);
+
+  useEffect(() => {
+    if (!didRestorePosition) return;
+
+    const studentId = appState.currentStudentId;
+    if (!studentId || !module) return;
+
+    setAppState((prev) => {
+      const prevPosition = prev.lastPosition?.[studentId];
+
+      const nextPosition = {
+        moduleId: module.id,
+        tab: activeTab,
+        phraseIndex,
+        vocabIndex: 0,
+        dialogueIndex,
+        quizIndex,
+      };
+
+      if (
+        prevPosition &&
+        prevPosition.moduleId === nextPosition.moduleId &&
+        prevPosition.tab === nextPosition.tab &&
+        prevPosition.phraseIndex === nextPosition.phraseIndex &&
+        prevPosition.vocabIndex === nextPosition.vocabIndex &&
+        prevPosition.dialogueIndex === nextPosition.dialogueIndex &&
+        prevPosition.quizIndex === nextPosition.quizIndex
+      ) {
+        return prev;
+      }
+
+      return {
+        ...prev,
+        lastPosition: {
+          ...prev.lastPosition,
+          [studentId]: nextPosition,
+        },
+      };
+    });
+  }, [
+    didRestorePosition,
+    appState.currentStudentId,
+    module?.id,
+    activeTab,
+    phraseIndex,
+    dialogueIndex,
+    quizIndex,
+    setAppState,
+  ]);
 
   useEffect(() => {
     stopSpeak();
@@ -158,12 +195,6 @@ useEffect(() => {
     synth.speak(utterance);
   };
 
-  const stopSpeak = () => {
-    if (typeof window === "undefined") return;
-    window.speechSynthesis.cancel();
-    setSpeaking(false);
-  };
-
   const markModuleDone = () => {
     const studentId = appState.currentStudentId;
     if (!studentId || !module) return;
@@ -184,22 +215,34 @@ useEffect(() => {
     const studentId = appState.currentStudentId;
     if (!studentId || !module) return;
 
+    setActiveTab("phrases");
     setPhraseIndex(0);
     setDialogueIndex(0);
     setQuizIndex(0);
     setSelectedAnswer(null);
     setShowTranslation(true);
-    setActiveTab("phrases");
     stopSpeak();
 
     setAppState((prev) => {
-      const next = { ...(prev.progress?.[studentId] ?? {}) };
-      delete next[module.id];
+      const nextProgress = { ...(prev.progress?.[studentId] ?? {}) };
+      delete nextProgress[module.id];
+
       return {
         ...prev,
         progress: {
           ...prev.progress,
-          [studentId]: next,
+          [studentId]: nextProgress,
+        },
+        lastPosition: {
+          ...prev.lastPosition,
+          [studentId]: {
+            moduleId: module.id,
+            tab: "phrases",
+            phraseIndex: 0,
+            vocabIndex: 0,
+            dialogueIndex: 0,
+            quizIndex: 0,
+          },
         },
       };
     });
@@ -299,7 +342,11 @@ useEffect(() => {
     color: C.textMid,
   };
 
-  const progressDots = (count: number, active: number, onSelect: (i: number) => void) => (
+  const progressDots = (
+    count: number,
+    active: number,
+    onSelect: (i: number) => void
+  ) => (
     <div style={{ display: "flex", justifyContent: "center", gap: 4, margin: "14px auto 0" }}>
       {Array.from({ length: count }).map((_, i) => (
         <div
@@ -342,7 +389,6 @@ useEffect(() => {
 
   return (
     <div style={{ display: "grid", gap: 16, fontFamily: FONT }}>
-      {/* HERO PREMIUM */}
       <div
         style={{
           position: "relative",
@@ -495,7 +541,6 @@ useEffect(() => {
         </div>
       </div>
 
-      {/* TABS + COMPLETE */}
       <div
         style={{
           display: "flex",
@@ -520,9 +565,9 @@ useEffect(() => {
                     ? "rgba(214,179,106,0.12)"
                     : "rgba(255,255,255,0.02)",
                 border:
-  activeTab === tab.id
-    ? "1px solid rgba(214,179,106,0.22)"
-    : "1px solid rgba(255,255,255,0.06)",
+                  activeTab === tab.id
+                    ? "1px solid rgba(214,179,106,0.22)"
+                    : "1px solid rgba(255,255,255,0.06)",
                 color: activeTab === tab.id ? C.text : C.textDim,
                 fontSize: 13,
                 fontWeight: 600,
@@ -554,7 +599,6 @@ useEffect(() => {
         </button>
       </div>
 
-      {/* PHRASES */}
       {activeTab === "phrases" && currentPhrase && (
         <div style={premiumPanel}>
           <div style={sectionLabel}>
@@ -586,7 +630,10 @@ useEffect(() => {
               🐢 Lento
             </button>
 
-            <button onClick={stopSpeak} style={{ ...btnDanger, borderRadius: 14, padding: "11px 16px" }}>
+            <button
+              onClick={stopSpeak}
+              style={{ ...btnDanger, borderRadius: 14, padding: "11px 16px" }}
+            >
               ⏹ Parar
             </button>
 
@@ -632,7 +679,6 @@ useEffect(() => {
         </div>
       )}
 
-      {/* DIALOGUE */}
       {activeTab === "dialogue" && currentDialogue && (
         <div style={premiumPanel}>
           <div style={sectionLabel}>
@@ -735,7 +781,6 @@ useEffect(() => {
         </div>
       )}
 
-      {/* QUIZ */}
       {activeTab === "quiz" && currentQuiz && (
         <div style={premiumPanel}>
           <div style={sectionLabel}>
