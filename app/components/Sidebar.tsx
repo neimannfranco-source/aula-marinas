@@ -7,7 +7,7 @@ import { C, FONT } from "@/lib/constants";
 type Props = {
   appState: AppState;
   selectedModuleId: string;
-  setSelectedModuleId: React.Dispatch<React.SetStateAction<string>>;
+  setSelectedModuleId: (moduleId: string) => void;
   activeCategory: string;
 };
 
