@@ -705,7 +705,7 @@ setQuizIndex(saved.quizIndex ?? 0);
                 )
               }
               style={btnAccent}
-              disabled={dialogueIndex === module.dialogue.length - 1}
+              disabled={dialogueIndex === (module.dialogue?.length ?? 1) - 1}
             >
               Siguiente →
             </button>
