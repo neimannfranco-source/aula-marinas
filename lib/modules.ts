@@ -55,7 +55,7 @@ export const MODULES: ModuleType[] = [
     { pt: "útil", es: "útil" },
     { pt: "licença", es: "permiso" },
   ],
-  miniDialogues: [
+  dialogue: [
     { speaker: "Hóspede", pt: "Bom dia", es: "Buenos días" },
     { speaker: "Colaborador", pt: "Bom dia! Bem-vindo ao hotel, é um prazer recebê-lo", es: "¡Buenos días! Bienvenido al hotel, es un placer recibirlo" },
     { speaker: "Hóspede", pt: "Obrigado, estou chegando agora", es: "Gracias, estoy llegando ahora" },
@@ -110,7 +110,7 @@ export const MODULES: ModuleType[] = [
     { pt: "orientar", es: "orientar" },
     { pt: "hóspede", es: "huésped" },
   ],
-  miniDialogues: [
+  dialogue: [
     { speaker: "Hóspede", pt: "É a nossa primeira vez aqui", es: "Es nuestra primera vez aquí" },
     { speaker: "Colaborador", pt: "Sejam muito bem-vindos. Será um prazer orientá-los", es: "Sean muy bienvenidos. Será un placer orientarlos" },
     { speaker: "Hóspede", pt: "Pode nos explicar os serviços do hotel?", es: "¿Puede explicarnos los servicios del hotel?" },
@@ -156,7 +156,7 @@ export const MODULES: ModuleType[] = [
     { pt: "mapa", es: "mapa" },
     { pt: "sinalizado", es: "señalizado" },
   ],
-  miniDialogues: [
+  dialogue: [
     { speaker: "Hóspede", pt: "Onde fica o restaurante?", es: "¿Dónde está el restaurante?" },
     { speaker: "Colaborador", pt: "À direita da recepção. Posso acompanhá-lo se quiser", es: "A la derecha de la recepción. Puedo acompañarlo si quiere" },
     { speaker: "Hóspede", pt: "E a piscina?", es: "¿Y la piscina?" },
@@ -203,7 +203,7 @@ export const MODULES: ModuleType[] = [
     { pt: "contato", es: "contacto" },
     { pt: "ligar", es: "llamar" },
   ],
-  miniDialogues: [
+  dialogue: [
     { speaker: "Colaborador", pt: "Vamos lhe enviar todas as informações por WhatsApp", es: "Le enviaremos toda la información por WhatsApp" },
     { speaker: "Hóspede", pt: "Perfeito, obrigado", es: "Perfecto, gracias" },
     { speaker: "Colaborador", pt: "Já enviamos a confirmação e os detalhes da sua estadia", es: "Ya enviamos la confirmación y los detalles de su estadía" },
@@ -273,7 +273,7 @@ export const MODULES: ModuleType[] = [
     { pt: "estacionamento", es: "estacionamiento" },
     { pt: "chegada", es: "llegada" },
   ],
-  miniDialogues: [
+  dialogue: [
     { speaker: "Hóspede", pt: "Tenho uma reserva para duas noites", es: "Tengo una reserva para dos noches" },
     { speaker: "Colaborador", pt: "Perfeito, vou verificar no sistema. Em nome de quem?", es: "Perfecto, voy a verificar en el sistema. ¿A nombre de quién?" },
     { speaker: "Hóspede", pt: "Em nome de García", es: "A nombre de García" },
@@ -319,7 +319,7 @@ export const MODULES: ModuleType[] = [
     { pt: "cobrança", es: "cargo" },
     { pt: "processar", es: "procesar" },
   ],
-  miniDialogues: [
+  dialogue: [
     { speaker: "Hóspede", pt: "Quero modificar minha reserva", es: "Quiero modificar mi reserva" },
     { speaker: "Colaborador", pt: "Claro, posso verificar novas datas para o senhor", es: "Claro, puedo verificar nuevas fechas para usted" },
     { speaker: "Hóspede", pt: "Também quero mudar para uma suíte", es: "También quiero cambiar a una suite" },
@@ -353,7 +353,7 @@ export const MODULES: ModuleType[] = [
     { pt: "cartão", es: "tarjeta" },
     { pt: "garantida", es: "garantizada" },
   ],
-  miniDialogues: [
+  dialogue: [
     { speaker: "Colaborador", pt: "Sua reserva está confirmada", es: "Su reserva está confirmada" },
     { speaker: "Hóspede", pt: "Preciso pagar antecipado?", es: "¿Necesito pagar por adelantado?" },
     { speaker: "Colaborador", pt: "Sim, pode ser por cartão ou transferência", es: "Sí, puede ser por tarjeta o transferencia" },
@@ -417,7 +417,7 @@ export const MODULES: ModuleType[] = [
     { pt: "endereço", es: "dirección" },
     { pt: "foto", es: "foto" },
   ],
-  miniDialogues: [
+  dialogue: [
     { speaker: "Colaborador", pt: "Pode me mostrar seu documento?", es: "¿Puede mostrarme su documento?" },
     { speaker: "Hóspede", pt: "Claro, aqui está meu passaporte", es: "Claro, aquí tiene mi pasaporte" },
     { speaker: "Colaborador", pt: "Obrigado. Pode soletrar seu sobrenome?", es: "Gracias. ¿Puede deletrear su apellido?" },
@@ -489,7 +489,7 @@ export const MODULES: ModuleType[] = [
     { pt: "unidade", es: "unidad" },
     { pt: "aproveitar", es: "disfrutar" },
   ],
-  miniDialogues: [
+  dialogue: [
     { speaker: "Colaborador", pt: "Vamos fazer seu check-in. Preciso confirmar alguns dados", es: "Vamos a hacer su check-in. Necesito confirmar algunos datos" },
     { speaker: "Hóspede", pt: "Claro, pode falar", es: "Claro, adelante" },
     { speaker: "Colaborador", pt: "A estadia é de duas noites, saída quinta às 10. Está correto?", es: "La estadía es de dos noches, salida el jueves a las 10. ¿Es correcto?" },
@@ -562,7 +562,7 @@ export const MODULES: ModuleType[] = [
     { pt: "caixa", es: "caja" },
     { pt: "serviços extras", es: "servicios extras" },
   ],
-  miniDialogues: [
+  dialogue: [
     { speaker: "Hóspede", pt: "Posso pagar com cartão de crédito?", es: "¿Puedo pagar con tarjeta de crédito?" },
     { speaker: "Colaborador", pt: "Sim, claro. O valor total é… Deseja parcelar?", es: "Sí, claro. El importe total es… ¿Desea pagar en cuotas?" },
     { speaker: "Hóspede", pt: "Pode parcelar em 3 vezes?", es: "¿Puede dividirlo en 3 cuotas?" },
@@ -634,7 +634,7 @@ export const MODULES: ModuleType[] = [
     { pt: "corrigir", es: "corregir" },
     { pt: "serviços", es: "servicios" },
   ],
-  miniDialogues: [
+  dialogue: [
     { speaker: "Hóspede", pt: "Preciso de fatura para a empresa", es: "Necesito factura para la empresa" },
     { speaker: "Colaborador", pt: "Claro! É para pessoa física ou jurídica?", es: "¡Claro! ¿Es para persona física o jurídica?" },
     { speaker: "Hóspede", pt: "Jurídica. Preciso do CNPJ e endereço da empresa", es: "Jurídica. Necesito el número fiscal y dirección de la empresa" },
@@ -669,7 +669,7 @@ export const MODULES: ModuleType[] = [
 
   vocab: [],
 
-  miniDialogues: [
+  dialogue: [
     {
       speaker: "Recepcionista",
       pt: "Temos uma suíte superior disponível com vista ao lago.",
@@ -716,7 +716,7 @@ export const MODULES: ModuleType[] = [
 
   vocab: [],
 
-  miniDialogues: [
+  dialogue: [
     { speaker: "Recepcionista", pt: "Temos uma experiência premium com spa incluído", es: "Tenemos una experiencia premium con spa incluido" },
     { speaker: "Hóspede", pt: "Interessante, pode me explicar?", es: "Interesante, ¿puede explicarme?" },
     { speaker: "Recepcionista", pt: "Inclui acesso exclusivo e serviços personalizados", es: "Incluye acceso exclusivo y servicios personalizados" },
@@ -751,7 +751,7 @@ export const MODULES: ModuleType[] = [
 
   vocab: [],
 
-  miniDialogues: [
+  dialogue: [
     { speaker: "Recepcionista", pt: "Bem-vindo de volta, senhor. É um prazer recebê-lo novamente", es: "Bienvenido de nuevo, señor. Es un placer recibirlo nuevamente" },
     { speaker: "Hóspede", pt: "Muito obrigado", es: "Muchas gracias" },
     { speaker: "Recepcionista", pt: "Preparamos sua suíte conforme sua preferência habitual", es: "Preparamos su suite según su preferencia habitual" },
@@ -785,7 +785,7 @@ export const MODULES: ModuleType[] = [
 
   vocab: [],
 
-  miniDialogues: [
+  dialogue: [
     { speaker: "Hóspede", pt: "Estou um pouco insatisfeito", es: "Estoy un poco insatisfecho" },
     { speaker: "Recepcionista", pt: "Compreendo perfeitamente. Vamos encontrar a melhor solução juntos", es: "Comprendo perfectamente. Vamos a encontrar la mejor solución juntos" },
   ],
@@ -815,7 +815,7 @@ export const MODULES: ModuleType[] = [
   ],
 
   vocab: [],
-  miniDialogues: [],
+  dialogue: [],
   quiz: []
 },
      {
@@ -871,7 +871,7 @@ export const MODULES: ModuleType[] = [
     { pt: "ordem", es: "orden" },
     { pt: "extras", es: "extras" },
   ],
-  miniDialogues: [
+  dialogue: [
     { speaker: "Hóspede", pt: "Gostaria de fazer o check-out", es: "Quisiera hacer el check-out" },
     { speaker: "Colaborador", pt: "Claro, vou verificar a conta. Houve algum consumo do frigobar?", es: "Claro, voy a verificar la cuenta. ¿Hubo algún consumo del frigobar?" },
     { speaker: "Hóspede", pt: "Sim, tomei duas águas", es: "Sí, tomé dos aguas" },
@@ -943,7 +943,7 @@ export const MODULES: ModuleType[] = [
     { pt: "especial", es: "especial" },
     { pt: "cliente", es: "cliente" },
   ],
-  miniDialogues: [
+  dialogue: [
     { speaker: "Colaborador", pt: "Foi um prazer recebê-lo! Espero que tenha gostado", es: "¡Fue un placer recibirlo! Espero que haya disfrutado" },
     { speaker: "Hóspede", pt: "Adoramos! Foi uma estadia incrível", es: "¡Nos encantó! Fue una estadía increíble" },
     { speaker: "Colaborador", pt: "Que bom! Sua opinião é muito importante. Deixe sua avaliação se puder", es: "¡Qué bueno! Su opinión es muy importante. Deje su reseña si puede" },
@@ -996,7 +996,7 @@ export const MODULES: ModuleType[] = [
     { pt: "preferência", es: "preferencia" },
     { pt: "disposição", es: "disposición" },
   ],
-  miniDialogues: [
+  dialogue: [
     { speaker: "Colaborador", pt: "Será um prazer assisti-lo durante toda a sua estadia", es: "Será un placer asistirlo durante toda su estadía" },
     { speaker: "Hóspede", pt: "Muito obrigado pela atenção", es: "Muchas gracias por la atención" },
     { speaker: "Colaborador", pt: "Estamos aqui para tornar sua experiência especial e memorável", es: "Estamos aquí para hacer su experiencia especial y memorable" },
@@ -1065,7 +1065,7 @@ export const MODULES: ModuleType[] = [
     { pt: "carvão", es: "carbón" },
     { pt: "celebração", es: "celebración" },
   ],
-  miniDialogues: [
+  dialogue: [
     { speaker: "Hóspede", pt: "Como é a cabana exatamente?", es: "¿Cómo es la cabaña exactamente?" },
     { speaker: "Colaborador", pt: "Tem 3 andares, cozinha equipada, lareira e deck com churrasqueira", es: "Tiene 3 plantas, cocina equipada, hogar a leña y deck con parrilla" },
     { speaker: "Hóspede", pt: "Quantos quartos e banheiros tem?", es: "¿Cuántas habitaciones y baños tiene?" },
@@ -1137,7 +1137,7 @@ export const MODULES: ModuleType[] = [
     { pt: "lua de mel", es: "luna de miel" },
     { pt: "exclusivo", es: "exclusivo" },
   ],
-  miniDialogues: [
+  dialogue: [
     { speaker: "Hóspede", pt: "O loft tem algo especial?", es: "¿El loft tiene algo especial?" },
     { speaker: "Colaborador", pt: "É nossa unidade mais exclusiva! Hidromassagem com vista ao lago e deck privativo", es: "¡Es nuestra unidad más exclusiva! Hidromasaje con vista al lago y deck privado" },
     { speaker: "Hóspede", pt: "Como é a distribuição do espaço?", es: "¿Cómo es la distribución del espacio?" },
@@ -1209,7 +1209,7 @@ export const MODULES: ModuleType[] = [
     { pt: "upgrade", es: "upgrade" },
     { pt: "completa", es: "completa" },
   ],
-  miniDialogues: [
+  dialogue: [
     { speaker: "Hóspede", pt: "O que tem de especial na suíte deluxe?", es: "¿Qué tiene de especial la suite deluxe?" },
     { speaker: "Colaborador", pt: "É nossa suíte mais completa! Hidromassagem, varanda privativa e vista direta ao lago", es: "¡Es nuestra suite más completa! Hidromasaje, terraza privada y vista directa al lago" },
     { speaker: "Hóspede", pt: "Tem frigobar e smart TV?", es: "¿Tiene frigobar y smart TV?" },
@@ -1281,7 +1281,7 @@ export const MODULES: ModuleType[] = [
     { pt: "jardim", es: "jardín" },
     { pt: "relação preço qualidade", es: "relación precio calidad" },
   ],
-  miniDialogues: [
+  dialogue: [
     { speaker: "Hóspede", pt: "Como é a suíte standard?", es: "¿Cómo es la suite standard?" },
     { speaker: "Colaborador", pt: "Cama queen, hidromassagem, smart TV e vista ao lago. Muito confortável!", es: "Cama queen, hidromasaje, smart TV y vista al lago. ¡Muy cómoda!" },
     { speaker: "Hóspede", pt: "Tem ducha separada também?", es: "¿Tiene ducha separada también?" },
@@ -1353,7 +1353,7 @@ export const MODULES: ModuleType[] = [
     { pt: "crianças", es: "niños" },
     { pt: "amigos", es: "amigos" },
   ],
-  miniDialogues: [
+  dialogue: [
     { speaker: "Hóspede", pt: "Somos 8 pessoas, tem opção para todos?", es: "Somos 8 personas, ¿hay opción para todos?" },
     { speaker: "Colaborador", pt: "Sim! Nossa cabana maior acomoda exatamente 8 pessoas", es: "¡Sí! Nuestra cabaña más grande aloja exactamente 8 personas" },
     { speaker: "Hóspede", pt: "Como é a distribuição dos quartos?", es: "¿Cómo es la distribución de las habitaciones?" },
@@ -1425,7 +1425,7 @@ export const MODULES: ModuleType[] = [
     { pt: "filtro de água", es: "filtro de agua" },
     { pt: "mercado", es: "supermercado" },
   ],
-  miniDialogues: [
+  dialogue: [
     { speaker: "Hóspede", pt: "A cozinha tem tudo para cozinhar?", es: "¿La cocina tiene todo para cocinar?" },
     { speaker: "Colaborador", pt: "Sim! Fogão de 4 bocas, forno, micro-ondas, panelas e louça completa", es: "¡Sí! Cocina de 4 hornallas, horno, microondas, ollas y vajilla completa" },
     { speaker: "Hóspede", pt: "Tem temperos e azeite?", es: "¿Tiene condimentos y aceite?" },
@@ -1497,7 +1497,7 @@ export const MODULES: ModuleType[] = [
     { pt: "acender", es: "encender" },
     { pt: "frio", es: "frío" },
   ],
-  miniDialogues: [
+  dialogue: [
     { speaker: "Hóspede", pt: "Como funciona a calefação?", es: "¿Cómo funciona la calefacción?" },
     { speaker: "Colaborador", pt: "Liga automaticamente. Pode regular no painel, ideal entre 20 e 22 graus", es: "Se enciende automáticamente. Puede regular en el panel, ideal entre 20 y 22 grados" },
     { speaker: "Hóspede", pt: "E a lareira, como acendo?", es: "¿Y el hogar, cómo lo enciendo?" },
@@ -1569,7 +1569,7 @@ export const MODULES: ModuleType[] = [
     { pt: "destaque", es: "lo mejor" },
     { pt: "noite especial", es: "noche especial" },
   ],
-  miniDialogues: [
+  dialogue: [
     { speaker: "Hóspede", pt: "Como funciona a hidromassagem?", es: "¿Cómo funciona el hidromasaje?" },
     { speaker: "Colaborador", pt: "Tem jatos reguláveis e temperatura ajustável. Pode usar quando quiser", es: "Tiene chorros regulables y temperatura ajustable. Puede usarlo cuando quiera" },
     { speaker: "Hóspede", pt: "A banheira é grande? Somos dois", es: "¿La bañera es grande? Somos dos" },
@@ -1641,7 +1641,7 @@ export const MODULES: ModuleType[] = [
     { pt: "refletir", es: "reflejar" },
     { pt: "admirar", es: "admirar" },
   ],
-  miniDialogues: [
+  dialogue: [
     { speaker: "Hóspede", pt: "A vista para o lago é realmente boa?", es: "¿La vista al lago es realmente buena?" },
     { speaker: "Colaborador", pt: "É espetacular! Panorâmica, de todas as unidades. É impossível não se apaixonar", es: "¡Es espectacular! Panorámica, desde todas las unidades. Es imposible no enamorarse" },
     { speaker: "Hóspede", pt: "Como é a vista de manhã?", es: "¿Cómo es la vista por la mañana?" },
@@ -1715,7 +1715,7 @@ export const MODULES: ModuleType[] = [
     { pt: "garrafa térmica", es: "termo" },
     { pt: "temporada", es: "temporada" },
   ],
-  miniDialogues: [
+  dialogue: [
     { speaker: "Hóspede", pt: "O café da manhã está incluído? O que tem?", es: "¿El desayuno está incluido? ¿Qué hay?" },
     { speaker: "Colaborador", pt: "Sim! Buffet completo: frios, frutas, pão artesanal, ovos e bebidas", es: "¡Sí! Buffet completo: fiambres, frutas, pan artesanal, huevos y bebidas" },
     { speaker: "Hóspede", pt: "Tem opção sem glúten?", es: "¿Hay opción sin gluten?" },
@@ -1787,7 +1787,7 @@ export const MODULES: ModuleType[] = [
     { pt: "chimichurri", es: "chimichurri" },
     { pt: "cebola", es: "cebolla" },
   ],
-  miniDialogues: [
+  dialogue: [
     { speaker: "Hóspede", pt: "O que tem de carne hoje?", es: "¿Qué hay de carne hoy?" },
     { speaker: "Colaborador", pt: "Asado patagônico com chorizo, morcilla, vazio e trucha do lago", es: "Asado patagónico con chorizo, morcilla, vacío y trucha del lago" },
     { speaker: "Hóspede", pt: "Como prefere o ponto da carne?", es: "¿Cómo prefiere el punto de la carne?" },
@@ -1859,7 +1859,7 @@ export const MODULES: ModuleType[] = [
     { pt: "biscoito", es: "galletita" },
     { pt: "cremoso", es: "cremoso" },
   ],
-  miniDialogues: [
+  dialogue: [
     { speaker: "Hóspede", pt: "Que vinho recomenda para o asado?", es: "¿Qué vino recomienda para el asado?" },
     { speaker: "Colaborador", pt: "Um Malbec patagônico vai perfeitamente. Temos excelentes opções", es: "Un Malbec patagónico va perfectamente. Tenemos excelentes opciones" },
     { speaker: "Hóspede", pt: "Tem cerveja artesanal local?", es: "¿Tiene cerveza artesanal local?" },
@@ -1931,7 +1931,7 @@ export const MODULES: ModuleType[] = [
     { pt: "vegano", es: "vegano" },
     { pt: "colhido", es: "cosechado" },
   ],
-  miniDialogues: [
+  dialogue: [
     { speaker: "Hóspede", pt: "Que sobremesas têm hoje?", es: "¿Qué postres tienen hoy?" },
     { speaker: "Colaborador", pt: "Torta de frutos do bosque, mousse de chocolate, brownie e sorvete artesanal", es: "Torta de frutos del bosque, mousse de chocolate, brownie y helado artesanal" },
     { speaker: "Hóspede", pt: "Recomenda alguma em especial?", es: "¿Recomienda alguno en especial?" },
@@ -2003,7 +2003,7 @@ export const MODULES: ModuleType[] = [
     { pt: "prato principal", es: "plato principal" },
     { pt: "para viagem", es: "para llevar" },
   ],
-  miniDialogues: [
+  dialogue: [
     { speaker: "Hóspede", pt: "Posso jantar no La Tasca hoje?", es: "¿Puedo cenar en La Tasca hoy?" },
     { speaker: "Colaborador", pt: "Sim! Das 20 às 23. Recomendo reservar, hóspedes têm prioridade", es: "¡Sí! De 20 a 23. Recomiendo reservar, los huéspedes tienen prioridad" },
     { speaker: "Hóspede", pt: "Qual é a especialidade da casa?", es: "¿Cuál es la especialidad de la casa?" },
@@ -2075,7 +2075,7 @@ export const MODULES: ModuleType[] = [
     { pt: "pôr do sol", es: "atardecer" },
     { pt: "programa", es: "plan" },
   ],
-  miniDialogues: [
+  dialogue: [
     { speaker: "Hóspede", pt: "Tem restaurante na praia do hotel?", es: "¿Hay restaurante en la playa del hotel?" },
     { speaker: "Colaborador", pt: "Sim! Na beira do lago, a 5 minutos caminhando. Só no verão", es: "¡Sí! A orillas del lago, a 5 minutos caminando. Solo en verano" },
     { speaker: "Hóspede", pt: "O que serve lá?", es: "¿Qué sirven allí?" },
@@ -2147,7 +2147,7 @@ export const MODULES: ModuleType[] = [
     { pt: "parrillero", es: "parrilla" },
     { pt: "gosto", es: "gusto" },
   ],
-  miniDialogues: [
+  dialogue: [
     { speaker: "Hóspede", pt: "Pode recomendar um restaurante no centro?", es: "¿Puede recomendar un restaurante en el centro?" },
     { speaker: "Colaborador", pt: "Claro! Para carne, o parrillero do centro é ótimo. Cordeiro ao forno é imperdível", es: "¡Claro! Para carne, la parrilla del centro es excelente. El cordero al horno es imperdible" },
     { speaker: "Hóspede", pt: "E para o inverno, tem algo especial?", es: "¿Y para el invierno, hay algo especial?" },
@@ -2219,7 +2219,7 @@ export const MODULES: ModuleType[] = [
     { pt: "solto", es: "en libertad" },
     { pt: "anotado", es: "anotado" },
   ],
-  miniDialogues: [
+  dialogue: [
     { speaker: "Colaborador", pt: "Tem alguma restrição alimentar?", es: "¿Tiene alguna restricción alimentaria?" },
     { speaker: "Hóspede", pt: "Sou celíaco e minha esposa é vegana", es: "Soy celíaco y mi esposa es vegana" },
     { speaker: "Colaborador", pt: "Anotamos! Preparamos opções sem glúten e veganas para os dois", es: "¡Anotamos! Preparamos opciones sin gluten y veganas para los dos" },
@@ -2291,7 +2291,7 @@ export const MODULES: ModuleType[] = [
     { pt: "detergente", es: "detergente" },
     { pt: "timer", es: "timer" },
   ],
-  miniDialogues: [
+  dialogue: [
     { speaker: "Hóspede", pt: "Onde está o saca-rolhas?", es: "¿Dónde está el sacacorchos?" },
     { speaker: "Colaborador", pt: "Na primeira gaveta ao lado da pia, junto com o abridor de latas", es: "En el primer cajón al lado de la pileta, junto con el abrelatas" },
     { speaker: "Hóspede", pt: "E o carvão para o assado?", es: "¿Y el carbón para el asado?" },
@@ -2345,7 +2345,7 @@ export const MODULES: ModuleType[] = [
       { pt: "estável", es: "estable" },
       { pt: "suporte", es: "soporte" },
     ],
-    miniDialogues: [
+    dialogue: [
       { speaker: "Hóspede", pt: "Qual é a senha do Wi-Fi?", es: "¿Cuál es la contraseña del WiFi?" },
       { speaker: "Colaborador", pt: "Está no cartão da chave. Rede HotelLago_Guest", es: "Está en la tarjeta de la llave. Red HotelLago_Guest" },
       { speaker: "Hóspede", pt: "E se não conectar?", es: "¿Y si no conecta?" },
@@ -2389,7 +2389,7 @@ export const MODULES: ModuleType[] = [
       { pt: "grupo", es: "grupo" },
       { pt: "porta", es: "puerta" },
     ],
-    miniDialogues: [
+    dialogue: [
       { speaker: "Hóspede", pt: "Preciso de transfer para o aeroporto amanhã às 6", es: "Necesito transfer al aeropuerto mañana a las 6" },
       { speaker: "Colaborador", pt: "Perfeito. Posso organizar agora. Quantas pessoas?", es: "Perfecto. Puedo organizarlo ahora. ¿Cuántas personas?" },
       { speaker: "Hóspede", pt: "Três pessoas e duas malas grandes", es: "Tres personas y dos maletas grandes" },
@@ -2433,7 +2433,7 @@ export const MODULES: ModuleType[] = [
       { pt: "principal", es: "principal" },
       { pt: "entrada", es: "entrada" },
     ],
-    miniDialogues: [
+    dialogue: [
       { speaker: "Hóspede", pt: "Onde posso estacionar o carro?", es: "¿Dónde puedo estacionar el auto?" },
       { speaker: "Colaborador", pt: "Perto da sua unidade. É gratuito e tem iluminação noturna", es: "Cerca de su unidad. Es gratuito y tiene iluminación nocturna" },
       { speaker: "Hóspede", pt: "É seguro?", es: "¿Es seguro?" },
@@ -2477,7 +2477,7 @@ export const MODULES: ModuleType[] = [
       { pt: "solicitado", es: "solicitado" },
       { pt: "24 horas", es: "24 horas" },
     ],
-    miniDialogues: [
+    dialogue: [
       { speaker: "Hóspede", pt: "A que horas posso fazer o check-out?", es: "¿A qué hora puedo hacer el check-out?" },
       { speaker: "Colaborador", pt: "Até as 10 da manhã. Se precisar de mais tempo, avise antes", es: "Hasta las 10 de la mañana. Si necesita más tiempo, avise antes" },
       { speaker: "Hóspede", pt: "E a limpeza, a que horas entra?", es: "¿Y la limpieza, a qué hora entra?" },
@@ -2521,7 +2521,7 @@ export const MODULES: ModuleType[] = [
       { pt: "diário", es: "diario" },
       { pt: "prazer", es: "gusto" },
     ],
-    miniDialogues: [
+    dialogue: [
       { speaker: "Hóspede", pt: "A limpeza é todos os dias?", es: "¿La limpieza es todos los días?" },
       { speaker: "Colaborador", pt: "Sim, diariamente. E trocamos as toalhas a cada dois dias", es: "Sí, diariamente. Y cambiamos las toallas cada dos días" },
       { speaker: "Hóspede", pt: "Posso pedir toalha extra?", es: "¿Puedo pedir toalla extra?" },
@@ -2565,7 +2565,7 @@ export const MODULES: ModuleType[] = [
       { pt: "metros", es: "metros" },
       { pt: "principal", es: "principal" },
     ],
-    miniDialogues: [
+    dialogue: [
       { speaker: "Hóspede", pt: "Como chego ao centro?", es: "¿Cómo llego al centro?" },
       { speaker: "Colaborador", pt: "Siga em frente e vire à esquerda no semáforo. São 7 km", es: "Siga recto y doble a la izquierda en el semáforo. Son 7 km" },
       { speaker: "Hóspede", pt: "Posso ir a pé?", es: "¿Puedo ir caminando?" },
@@ -2611,7 +2611,7 @@ export const MODULES: ModuleType[] = [
       { pt: "acesso", es: "acceso" },
       { pt: "localização", es: "ubicación" },
     ],
-    miniDialogues: [
+    dialogue: [
       { speaker: "Hóspede", pt: "Onde exatamente ficamos?", es: "¿Dónde exactamente estamos?" },
       { speaker: "Colaborador", pt: "Em Puerto Manzano, 7 km do centro e 3 km do Cerro Bayo", es: "En Puerto Manzano, 7 km del centro y 3 km del Cerro Bayo" },
       { speaker: "Hóspede", pt: "E Bariloche, fica longe?", es: "¿Y Bariloche, queda lejos?" },
@@ -2655,7 +2655,7 @@ export const MODULES: ModuleType[] = [
       { pt: "equipada", es: "equipada" },
       { pt: "especial", es: "especial" },
     ],
-    miniDialogues: [
+    dialogue: [
       { speaker: "Hóspede", pt: "Como é o hotel exatamente?", es: "¿Cómo es exactamente el hotel?" },
       { speaker: "Colaborador", pt: "Um complexo com cabanas e suítes, todas com vista ao lago, em Puerto Manzano", es: "Un complejo con cabañas y suites, todas con vista al lago, en Puerto Manzano" },
       { speaker: "Hóspede", pt: "É pet-friendly?", es: "¿Es pet-friendly?" },
@@ -2701,7 +2701,7 @@ export const MODULES: ModuleType[] = [
       { pt: "região", es: "región" },
       { pt: "gosto", es: "gusto" },
     ],
-    miniDialogues: [
+    dialogue: [
       { speaker: "Colaborador", pt: "Quer fazer alguma excursão? Há opções incríveis", es: "¿Quiere hacer alguna excursión? Hay opciones increíbles" },
       { speaker: "Hóspede", pt: "Sim! O que recomenda para amanhã?", es: "¡Sí! ¿Qué recomienda para mañana?" },
       { speaker: "Colaborador", pt: "Passeio de barco no Nahuel Huapi ou trekking na floresta", es: "Paseo en barco en el Nahuel Huapi o trekking en el bosque" },
@@ -2745,7 +2745,7 @@ export const MODULES: ModuleType[] = [
       { pt: "topo", es: "cima" },
       { pt: "downhill", es: "downhill" },
     ],
-    miniDialogues: [
+    dialogue: [
       { speaker: "Hóspede", pt: "O Cerro Bayo fica longe?", es: "¿El Cerro Bayo está lejos?" },
       { speaker: "Colaborador", pt: "Apenas 3 km! É ótimo para todos os níveis", es: "¡Solo 3 km! Es excelente para todos los niveles" },
       { speaker: "Hóspede", pt: "Preciso alugar equipamento?", es: "¿Necesito alquilar equipo?" },
@@ -2789,7 +2789,7 @@ export const MODULES: ModuleType[] = [
       { pt: "idades", es: "edades" },
       { pt: "especializado", es: "especializado" },
     ],
-    miniDialogues: [
+    dialogue: [
       { speaker: "Hóspede", pt: "Tem passeio de barco pelo lago?", es: "¿Hay paseo en barco por el lago?" },
       { speaker: "Colaborador", pt: "Sim! Até a Ilha Victoria e a floresta de arrayanes", es: "¡Sí! Hasta la Isla Victoria y el bosque de arrayanes" },
       { speaker: "Hóspede", pt: "Quanto tempo dura?", es: "¿Cuánto tiempo dura?" },
@@ -2833,7 +2833,7 @@ export const MODULES: ModuleType[] = [
       { pt: "estação", es: "estación" },
       { pt: "montanha", es: "montaña" },
     ],
-    miniDialogues: [
+    dialogue: [
       { speaker: "Hóspede", pt: "Há trilhas perto do hotel?", es: "¿Hay senderos cerca del hotel?" },
       { speaker: "Colaborador", pt: "Sim, várias! Fáceis e avançadas. O que prefere?", es: "¡Sí, varios! Fáciles y avanzados. ¿Qué prefiere?" },
       { speaker: "Hóspede", pt: "Somos família com crianças", es: "Somos familia con niños" },
@@ -2877,7 +2877,7 @@ export const MODULES: ModuleType[] = [
       { pt: "mate", es: "mate" },
       { pt: "paisagem", es: "paisaje" },
     ],
-    miniDialogues: [
+    dialogue: [
       { speaker: "Hóspede", pt: "Não sei o que fazer hoje, está chovendo", es: "No sé qué hacer hoy, está lloviendo" },
       { speaker: "Colaborador", pt: "Dia perfeito para lareira, mate e a vista do lago", es: "Día perfecto para hogar a leña, mate y la vista del lago" },
       { speaker: "Hóspede", pt: "Tem algo para fazer no hotel?", es: "¿Hay algo para hacer en el hotel?" },
@@ -2923,7 +2923,7 @@ export const MODULES: ModuleType[] = [
       { pt: "recentemente", es: "recientemente" },
       { pt: "funcionar", es: "funcionar" },
     ],
-    miniDialogues: [
+    dialogue: [
       { speaker: "Hóspede", pt: "O Wi-Fi não funciona no meu quarto", es: "El WiFi no funciona en mi habitación" },
       { speaker: "Colaborador", pt: "Vou verificar agora mesmo. Qual é o número da unidade?", es: "Voy a verificar ahora mismo. ¿Cuál es el número de la unidad?" },
       { speaker: "Hóspede", pt: "Unidade 3", es: "Unidad 3" },
@@ -2967,7 +2967,7 @@ export const MODULES: ModuleType[] = [
       { pt: "prioridade", es: "prioridad" },
       { pt: "rápido", es: "rápido" },
     ],
-    miniDialogues: [
+    dialogue: [
       { speaker: "Hóspede", pt: "Não sai água quente na ducha", es: "No sale agua caliente en la ducha" },
       { speaker: "Colaborador", pt: "Peço desculpas! Vou avisar a manutenção agora mesmo", es: "¡Le pido disculpas! Voy a avisar a mantenimiento ahora mismo" },
       { speaker: "Hóspede", pt: "Preciso antes das 8 para sair", es: "Lo necesito antes de las 8 para salir" },
@@ -3011,7 +3011,7 @@ export const MODULES: ModuleType[] = [
       { pt: "resolver", es: "resolver" },
       { pt: "inconveniente", es: "inconveniente" },
     ],
-    miniDialogues: [
+    dialogue: [
       { speaker: "Hóspede", pt: "A chave não abre a porta da cabana", es: "La llave no abre la puerta de la cabaña" },
       { speaker: "Colaborador", pt: "Vou programar uma nova agora. Já deve ter desmagnetizado", es: "Voy a programar una nueva ahora. Ya debe haberse desmagnetizado" },
       { speaker: "Hóspede", pt: "Como isso acontece?", es: "¿Cómo sucede eso?" },
@@ -3055,7 +3055,7 @@ export const MODULES: ModuleType[] = [
       { pt: "dental", es: "dental" },
       { pt: "kit", es: "kit" },
     ],
-    miniDialogues: [
+    dialogue: [
       { speaker: "Hóspede", pt: "Preciso de mais toalhas e shampoo", es: "Necesito más toallas y shampoo" },
       { speaker: "Colaborador", pt: "Claro! Enviamos em 15 minutos. Precisa de mais alguma coisa?", es: "¡Claro! Enviamos en 15 minutos. ¿Necesita algo más?" },
       { speaker: "Hóspede", pt: "Tem berço para bebê?", es: "¿Tiene cuna para bebé?" },
@@ -3099,7 +3099,7 @@ export const MODULES: ModuleType[] = [
       { pt: "sincero", es: "sincero" },
       { pt: "molestia", es: "molestia" },
     ],
-    miniDialogues: [
+    dialogue: [
       { speaker: "Hóspede", pt: "Há muito barulho vindo do quarto ao lado", es: "Hay mucho ruido viniendo del cuarto de al lado" },
       { speaker: "Colaborador", pt: "Peço sinceras desculpas. Vou verificar imediatamente", es: "Le pido sinceras disculpas. Voy a verificar inmediatamente" },
       { speaker: "Hóspede", pt: "É muito tarde para tanto barulho", es: "Es muy tarde para tanto ruido" },
@@ -3145,7 +3145,7 @@ export const MODULES: ModuleType[] = [
       { pt: "atividade", es: "actividad" },
       { pt: "confortável", es: "cómodo" },
     ],
-    miniDialogues: [
+    dialogue: [
       { speaker: "Colaborador", pt: "Viajam com crianças?", es: "¿Viajan con niños?" },
       { speaker: "Hóspede", pt: "Sim, um bebê de 1 ano e dois filhos de 5 e 8", es: "Sí, un bebé de 1 año y dos hijos de 5 y 8" },
       { speaker: "Colaborador", pt: "Perfeito! Preparamos berço e cadeirão. Tem trilhas para todas as idades", es: "¡Perfecto! Preparamos cuna y silla de comer. Hay senderos para todas las edades" },
@@ -3189,7 +3189,7 @@ export const MODULES: ModuleType[] = [
       { pt: "hidromassagem", es: "hidromasaje" },
       { pt: "romance", es: "romance" },
     ],
-    miniDialogues: [
+    dialogue: [
       { speaker: "Hóspede", pt: "É nossa lua de mel. Queremos algo especial", es: "Es nuestra luna de miel. Queremos algo especial" },
       { speaker: "Colaborador", pt: "Parabéns! O loft com hidromassagem e vista ao lago é perfeito", es: "¡Felicitaciones! El loft con hidromasaje y vista al lago es perfecto" },
       { speaker: "Hóspede", pt: "Pode colocar flores e vinho no quarto?", es: "¿Puede poner flores y vino en la habitación?" },
@@ -3233,7 +3233,7 @@ export const MODULES: ModuleType[] = [
       { pt: "prazer", es: "placer" },
       { pt: "tratar", es: "tratar" },
     ],
-    miniDialogues: [
+    dialogue: [
       { speaker: "Colaborador", pt: "Estamos à sua disposição para qualquer necessidade", es: "Estamos a su disposición para cualquier necesidad" },
       { speaker: "Hóspede", pt: "Muito obrigado pelo atendimento!", es: "¡Muchas gracias por la atención!" },
       { speaker: "Colaborador", pt: "O prazer é nosso. Sua satisfação é nossa prioridade", es: "El placer es nuestro. Su satisfacción es nuestra prioridad" },
@@ -3277,7 +3277,7 @@ export const MODULES: ModuleType[] = [
       { pt: "diferente", es: "diferente" },
       { pt: "gostar", es: "gustar" },
     ],
-    miniDialogues: [
+    dialogue: [
       { speaker: "Colaborador", pt: "Posso recomendar algo especial?", es: "¿Puedo recomendar algo especial?" },
       { speaker: "Hóspede", pt: "Sim! Buscamos aventura e gastronomia", es: "¡Sí! Buscamos aventura y gastronomía" },
       { speaker: "Colaborador", pt: "Trekking pela manhã e cordeiro patagônico ao jantar?", es: "¿Trekking por la mañana y cordero patagónico en la cena?" },
@@ -3321,7 +3321,7 @@ export const MODULES: ModuleType[] = [
       { pt: "caso", es: "caso" },
       { pt: "satisfação", es: "satisfacción" },
     ],
-    miniDialogues: [
+    dialogue: [
       { speaker: "Hóspede", pt: "Estou insatisfeito com o quarto", es: "Estoy insatisfecho con la habitación" },
       { speaker: "Colaborador", pt: "Peço sinceras desculpas. O que posso fazer para melhorar?", es: "Le pido sinceras disculpas. ¿Qué puedo hacer para mejorar?" },
       { speaker: "Hóspede", pt: "Gostaria de trocar de quarto se possível", es: "Me gustaría cambiar de habitación si es posible" },
@@ -3387,7 +3387,7 @@ export const MODULES: ModuleType[] = [
     { pt: "caixa", es: "caja" },
     { pt: "bom apetite", es: "buen provecho" },
   ],
-  miniDialogues: [
+  dialogue: [
     { speaker: "Colaborador", pt: "Boa noite! Sua mesa está pronta. Aqui está o cardápio", es: "¡Buenas noches! Su mesa está lista. Aquí está el menú" },
     { speaker: "Hóspede", pt: "Obrigado. Pode nos trazer a carta de bebidas também?", es: "Gracias. ¿Puede traernos también la carta de bebidas?" },
     { speaker: "Colaborador", pt: "Claro, já trago. Já escolheram o prato principal?", es: "Claro, ya les traigo. ¿Ya eligieron el plato principal?" },
@@ -3460,7 +3460,7 @@ export const MODULES: ModuleType[] = [
     { pt: "amostra", es: "muestra" },
     { pt: "premiado", es: "premiado" },
   ],
-  miniDialogues: [
+  dialogue: [
     { speaker: "Colaborador", pt: "Posso recomendar um vinho para acompanhar o asado?", es: "¿Puedo recomendarle un vino para acompañar el asado?" },
     { speaker: "Hóspede", pt: "Sim, por favor. Prefiro tinto", es: "Sí, por favor. Prefiero tinto" },
     { speaker: "Colaborador", pt: "Para carnes vermelhas, nosso Malbec patagônico é perfeito. É encorpado com notas de frutas vermelhas", es: "Para carnes rojas, nuestro Malbec patagónico es perfecto. Es con cuerpo y con notas de frutas rojas" },
