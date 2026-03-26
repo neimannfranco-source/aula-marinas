@@ -55,8 +55,12 @@ export default function Home() {
   const currentStudent =
     appState.students.find((s) => s.id === appState.currentStudentId) ?? null;
 
-  const lastPosition = currentStudent
-  ? appState.lastPosition?.[currentStudent.id]?.[selectedModuleId] ?? null
+  const lastVisitedId = currentStudent
+  ? appState.lastVisitedModuleId?.[currentStudent.id] ?? selectedModuleId
+  : selectedModuleId;
+
+const lastPosition = currentStudent
+  ? appState.lastPosition?.[currentStudent.id]?.[lastVisitedId] ?? null
   : null;
 
 const continueModule = lastPosition
@@ -132,6 +136,17 @@ const continueModule = lastPosition
     setShowChangePwd(false);
     setPwdMsg("");
   };
+  const handleSelectModule = (moduleId: string) => {
+  setSelectedModuleId(moduleId);
+  if (!appState.currentStudentId) return;
+  setAppState((prev) => ({
+    ...prev,
+    lastVisitedModuleId: {
+      ...prev.lastVisitedModuleId,
+      [prev.currentStudentId!]: moduleId,
+    },
+  }));
+};
 
   const handleProfessorClick = () => {
     if (profUnlocked) {
@@ -493,11 +508,11 @@ const continueModule = lastPosition
             </button>
 
             <Sidebar
-              appState={appState}
-              selectedModuleId={selectedModuleId}
-              setSelectedModuleId={setSelectedModuleId}
-              activeCategory={activeCategory}
-            />
+  appState={appState}
+  selectedModuleId={selectedModuleId}
+  setSelectedModuleId={handleSelectModule}
+  activeCategory={activeCategory}
+/>
           </div>
         )}
 
@@ -566,11 +581,11 @@ const continueModule = lastPosition
 
               <button
                 onClick={() => {
-                  setResumeToken((v) => v + 1);
-                  setSelectedModuleId(lastPosition.moduleId);
-                  setActiveCategory("Todos");
-                  if (!sidebarOpen) setSidebarOpen(true);
-                }}
+  setResumeToken((v) => v + 1);
+  handleSelectModule(lastPosition.moduleId);
+  setActiveCategory("Todos");
+  if (!sidebarOpen) setSidebarOpen(true);
+}}
                 style={{
                   background: "rgba(214,179,106,0.12)",
                   color: "#E7D19A",
@@ -594,11 +609,11 @@ const continueModule = lastPosition
             setAppState={setAppState}
             selectedModuleId={selectedModuleId}
             onGoHome={() => {
-              setSelectedModuleId(MODULES[0]?.id ?? "");
-              setActiveCategory("Todos");
-              setShowProfPanel(false);
-              setSidebarOpen(true);
-            }}
+  handleSelectModule(MODULES[0]?.id ?? "");
+  setActiveCategory("Todos");
+  setShowProfPanel(false);
+  setSidebarOpen(true);
+}}
           />
         </div>
 
