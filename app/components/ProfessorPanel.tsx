@@ -159,6 +159,20 @@ export default function ProfessorPanel({
   };
 
   const completedCount = Object.values(currentProgress).filter(Boolean).length;
+  const studentSummaries = appState.students.map((student) => {
+  const studentProgress = appState.progress?.[student.id] ?? {};
+  const completed = Object.values(studentProgress).filter(Boolean).length;
+  const total = MODULES.length;
+  const percent = total > 0 ? Math.round((completed / total) * 100) : 0;
+
+  return {
+    id: student.id,
+    name: student.name,
+    completed,
+    total,
+    percent,
+  };
+});
 
   return (
     <div
@@ -543,6 +557,94 @@ export default function ProfessorPanel({
             Eliminar alumno
           </button>
         </div>
+        <div
+  style={{
+    background: "rgba(255,255,255,0.02)",
+    border: `1px solid ${C.border}`,
+    borderRadius: 20,
+    padding: 16,
+    marginBottom: 16,
+  }}
+>
+  <div
+    style={{
+      fontSize: 11,
+      color: C.textDim,
+      textTransform: "uppercase",
+      letterSpacing: "0.08em",
+      marginBottom: 14,
+      fontWeight: 700,
+    }}
+  >
+    Dashboard del hotel
+  </div>
+
+  <div style={{ display: "grid", gap: 10 }}>
+    {studentSummaries.map((student) => (
+      <div
+        key={student.id}
+        style={{
+          background: "rgba(255,255,255,0.025)",
+          border: `1px solid ${C.border}`,
+          borderRadius: 16,
+          padding: 14,
+        }}
+      >
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "center",
+            gap: 12,
+            marginBottom: 10,
+          }}
+        >
+          <div style={{ color: C.text, fontWeight: 700 }}>
+            {student.name}
+          </div>
+
+          <div
+            style={{
+              color: C.textDim,
+              fontSize: 12,
+              fontWeight: 600,
+            }}
+          >
+            {student.completed}/{student.total}
+          </div>
+        </div>
+
+        <div
+          style={{
+            height: 6,
+            borderRadius: 999,
+            background: "rgba(255,255,255,0.08)",
+            overflow: "hidden",
+          }}
+        >
+          <div
+            style={{
+              width: `${student.percent}%`,
+              height: "100%",
+              borderRadius: 999,
+              background: "linear-gradient(90deg, #D6B36A, #E4C98E)",
+            }}
+          />
+        </div>
+
+        <div
+          style={{
+            marginTop: 8,
+            fontSize: 12,
+            color: C.textDim,
+          }}
+        >
+          {student.percent}% completado
+        </div>
+      </div>
+    ))}
+  </div>
+</div>
 
         <div
           style={{

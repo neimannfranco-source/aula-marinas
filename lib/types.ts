@@ -9,6 +9,16 @@ export type AppState = {
   currentStudentId: string | null;
   progress: Record<string, Record<string, boolean>>;
   dictations: Record<string, string>;
+  lastPosition?: Record<
+    string,
+    {
+      moduleId: string;
+      tab: "phrases" | "dialogue" | "quiz";
+      phraseIndex: number;
+      dialogueIndex: number;
+      quizIndex: number;
+    }
+  >;
 };
 
 export type LoadStatus = "loading" | "ready";

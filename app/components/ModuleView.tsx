@@ -17,6 +17,13 @@ type Props = {
   setAppState: React.Dispatch<React.SetStateAction<AppState>>;
   selectedModuleId: string;
   onGoHome?: () => void;
+  onPositionChange?: (position: {
+    moduleId: string;
+    tab: "phrases" | "dialogue" | "quiz";
+    phraseIndex: number;
+    dialogueIndex: number;
+    quizIndex: number;
+  }) => void;
 };
 
 type TabType = "phrases" | "dialogue" | "quiz";
@@ -49,6 +56,28 @@ export default function ModuleView({
       speechSynthesis.onvoiceschanged = null;
     };
   }, []);
+  useEffect(() => {
+  if (!module) return;
+
+  onPositionChange?.({
+    moduleId: module.id,
+    tab: activeTab,
+    phraseIndex,
+    dialogueIndex,
+    quizIndex,
+  });
+}, [module?.id, activeTab, phraseIndex, dialogueIndex, quizIndex, onPositionChange]);
+useEffect(() => {
+  if (!module) return;
+
+  onPositionChange?.({
+    moduleId: module.id,
+    tab: activeTab,
+    phraseIndex,
+    dialogueIndex,
+    quizIndex,
+  });
+}, [module?.id, activeTab, phraseIndex, dialogueIndex, quizIndex, onPositionChange]);
 
   useEffect(() => {
     setActiveTab("phrases");

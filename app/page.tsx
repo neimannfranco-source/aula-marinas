@@ -31,6 +31,7 @@ function createInitialState(): AppState {
     currentStudentId: null,
     progress: {},
     dictations: {},
+    lastPosition: {},
   };
 }
 
@@ -51,6 +52,14 @@ export default function Home() {
 
   const currentStudent =
     appState.students.find((s) => s.id === appState.currentStudentId) ?? null;
+    useEffect(() => {
+  if (!currentStudent) return;
+
+  const saved = appState.lastPosition?.[currentStudent.id];
+  if (saved?.moduleId) {
+    setSelectedModuleId(saved.moduleId);
+  }
+}, [currentStudent?.id, appState.lastPosition]);
 
   useEffect(() => {
     let mounted = true;
