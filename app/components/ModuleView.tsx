@@ -609,22 +609,24 @@ if (saved) {
           ))}
         </div>
 
-        <button
-          onClick={markModuleDone}
-          style={{
-            ...btnAccent,
-            ...(isCompleted
-              ? {
-                  background: `${C.green}18`,
-                  color: C.green,
-                  border: `1px solid ${C.green}44`,
-                  boxShadow: "none",
-                }
-              : {}),
-          }}
-        >
-          {isCompleted ? "✓ Completado" : "Marcar completo"}
-        </button>
+        {(activeTab !== "phrases" || phraseIndex !== module.phrases.length - 1) && (
+          <button
+            onClick={markModuleDone}
+            style={{
+              ...btnAccent,
+              ...(isCompleted
+                ? {
+                    background: `${C.green}18`,
+                    color: C.green,
+                    border: `1px solid ${C.green}44`,
+                    boxShadow: "none",
+                  }
+                : {}),
+            }}
+          >
+            {isCompleted ? "✓ Completado" : "Marcar completo"}
+          </button>
+        )}
       </div>
 
       {activeTab === "phrases" && currentPhrase && (
