@@ -57,15 +57,19 @@ export default function Home() {
 
     (async () => {
       try {
-        const remote = await loadRemoteState();
-        if (!mounted) return;
+  const remote = await loadRemoteState();
+  console.log("REMOTE LOAD:", remote);
 
-        if (remote) {
-          setAppState({ ...remote, currentStudentId: null });
-          setLoadStatus("ready");
-          return;
-        }
-      } catch {}
+  if (!mounted) return;
+
+  if (remote) {
+    setAppState({ ...remote, currentStudentId: null });
+    setLoadStatus("ready");
+    return;
+  }
+} catch (err) {
+  console.error("SUPABASE LOAD ERROR:", err);
+}
 
       if (!mounted) return;
 
@@ -98,8 +102,11 @@ export default function Home() {
       } catch {}
 
       try {
-        await saveRemoteState(appState);
-      } catch {}
+  await saveRemoteState(appState);
+  console.log("REMOTE SAVE OK", appState);
+} catch (err) {
+  console.error("SUPABASE SAVE ERROR:", err);
+}
     }, 500);
 
     return () => clearTimeout(timer);
