@@ -48,6 +48,7 @@ export default function ModuleView({
   const [showTranslation, setShowTranslation] = useState(true);
   const [speaking, setSpeaking] = useState(false);
   const [didRestorePosition, setDidRestorePosition] = useState(false);
+const [showCelebration, setShowCelebration] = useState(false);
 
   const stopSpeak = () => {
     if (typeof window === "undefined") return;
@@ -211,6 +212,9 @@ if (saved) {
         },
       },
     }));
+
+    setShowCelebration(true);
+    setTimeout(() => setShowCelebration(false), 3000);
   };
 
   const resetModule = () => {
@@ -394,6 +398,25 @@ if (saved) {
 
   return (
     <div style={{ display: "grid", gap: 16, fontFamily: FONT }}>
+      <style>{`
+        @keyframes fadeSlideIn {
+          from { opacity: 0; transform: translateY(8px); }
+          to   { opacity: 1; transform: translateY(0); }
+        }
+        .phrase-animate {
+          animation: fadeSlideIn 0.28s ease both;
+        }
+      `}</style>
+
+      {showCelebration && (
+        <div style={{ position: "fixed", inset: 0, zIndex: 999, display: "flex", alignItems: "center", justifyContent: "center", pointerEvents: "none", background: "rgba(0,0,0,0.45)", backdropFilter: "blur(4px)" }}>
+          <div style={{ background: "linear-gradient(135deg, rgba(11,31,24,0.97), rgba(9,24,20,0.99))", border: "1px solid rgba(74,222,128,0.35)", borderRadius: 28, padding: "40px 56px", textAlign: "center", boxShadow: "0 32px 80px rgba(0,0,0,0.5)", animation: "fadeSlideIn 0.35s ease both" }}>
+            <div style={{ fontSize: 56, marginBottom: 12 }}>🎉</div>
+            <div style={{ fontFamily: DISPLAY, fontSize: 32, fontWeight: 800, color: C.green, marginBottom: 8 }}>¡Módulo completado!</div>
+            <div style={{ fontSize: 16, color: "rgba(232,225,214,0.75)" }}>{module.emoji} {module.title}</div>
+          </div>
+        </div>
+      )}
       <div
         style={{
           position: "relative",
@@ -612,9 +635,9 @@ if (saved) {
 
           {progressDots(module.phrases.length, phraseIndex, setPhraseIndex)}
 
-          <div style={bigPt}>{currentPhrase.pt}</div>
+          <div key={`pt-${phraseIndex}`} className="phrase-animate" style={bigPt}>{currentPhrase.pt}</div>
 
-          <div style={esText}>
+          <div key={`es-${phraseIndex}`} className="phrase-animate" style={{ ...esText, animationDelay: "0.06s" }}>
             {showTranslation ? currentPhrase.es : "· · · · · · · · · · · · ·"}
           </div>
 
@@ -709,9 +732,9 @@ if (saved) {
             </span>
           </div>
 
-          <div style={bigPt}>{currentDialogue.pt}</div>
+          <div key={`pt-d-${dialogueIndex}`} className="phrase-animate" style={bigPt}>{currentDialogue.pt}</div>
 
-          <div style={esText}>
+          <div key={`es-d-${dialogueIndex}`} className="phrase-animate" style={{ ...esText, animationDelay: "0.06s" }}>
             {showTranslation ? currentDialogue.es : "· · · · · · · · · · · · ·"}
           </div>
 

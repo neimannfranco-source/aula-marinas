@@ -530,72 +530,71 @@ const continueModule = lastPosition
             <div
               style={{
                 marginBottom: 16,
-                background: C.bg2,
-                border: `1px solid ${C.border}`,
                 borderRadius: 18,
-                padding: 16,
+                border: `1px solid ${C.border}`,
+                overflow: "hidden",
+                position: "relative",
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "space-between",
                 gap: 16,
                 flexWrap: "wrap",
+                padding: 20,
               }}
             >
-              <div>
-                <div
-                  style={{
-                    fontSize: 12,
-                    color: C.textDim,
-                    marginBottom: 4,
-                    fontWeight: 600,
-                  }}
-                >
+              <img
+                src="/villa.jpg"
+                style={{
+                  position: "absolute",
+                  inset: 0,
+                  width: "100%",
+                  height: "100%",
+                  objectFit: "cover",
+                  filter: "brightness(0.28) blur(2px)",
+                  transform: "scale(1.04)",
+                }}
+              />
+              <div
+                style={{
+                  position: "absolute",
+                  inset: 0,
+                  background: "linear-gradient(90deg, rgba(6,17,26,0.82) 0%, rgba(6,17,26,0.40) 100%)",
+                }}
+              />
+
+              <div style={{ position: "relative" }}>
+                <div style={{ fontSize: 12, color: C.textDim, marginBottom: 4, fontWeight: 600 }}>
                   Continuar donde dejaste
                 </div>
-
-                <div
-                  style={{
-                    fontSize: 18,
-                    fontWeight: 800,
-                    color: C.text,
-                    marginBottom: 4,
-                  }}
-                >
+                <div style={{ fontSize: 18, fontWeight: 800, color: C.text, marginBottom: 4 }}>
                   {continueModule.emoji} {continueModule.title}
                 </div>
-
-                <div
-                  style={{
-                    fontSize: 13,
-                    color: C.textDim,
-                  }}
-                >
-                  {lastPosition.tab === "phrases" &&
-                    `Te quedaste en la frase ${lastPosition.phraseIndex + 1}`}
-                  {lastPosition.tab === "dialogue" &&
-                    `Te quedaste en el diálogo ${lastPosition.dialogueIndex + 1}`}
-                  {lastPosition.tab === "quiz" &&
-                    `Te quedaste en el quiz ${lastPosition.quizIndex + 1}`}
+                <div style={{ fontSize: 13, color: C.textDim }}>
+                  {lastPosition.tab === "phrases" && `Te quedaste en la frase ${lastPosition.phraseIndex + 1}`}
+                  {lastPosition.tab === "dialogue" && `Te quedaste en el diálogo ${lastPosition.dialogueIndex + 1}`}
+                  {lastPosition.tab === "quiz" && `Te quedaste en el quiz ${lastPosition.quizIndex + 1}`}
                 </div>
               </div>
 
               <button
                 onClick={() => {
-  setResumeToken((v) => v + 1);
-  handleSelectModule(lastPosition.moduleId);
-  setActiveCategory("Todos");
-  if (!sidebarOpen) setSidebarOpen(true);
-}}
+                  setResumeToken((v) => v + 1);
+                  handleSelectModule(lastPosition.moduleId);
+                  setActiveCategory("Todos");
+                  if (!sidebarOpen) setSidebarOpen(true);
+                }}
                 style={{
-                  background: "rgba(214,179,106,0.12)",
+                  position: "relative",
+                  background: "rgba(214,179,106,0.18)",
                   color: "#E7D19A",
-                  border: "1px solid rgba(214,179,106,0.28)",
+                  border: "1px solid rgba(214,179,106,0.40)",
                   borderRadius: 12,
-                  padding: "10px 14px",
+                  padding: "10px 18px",
                   fontSize: 14,
                   fontWeight: 700,
                   cursor: "pointer",
                   fontFamily: FONT,
+                  backdropFilter: "blur(8px)",
                 }}
               >
                 ▶ Continuar
