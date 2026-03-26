@@ -45,7 +45,9 @@ export default function ModuleView({
     const synth = window.speechSynthesis;
     synth.getVoices();
     speechSynthesis.onvoiceschanged = () => synth.getVoices();
-    return () => { speechSynthesis.onvoiceschanged = null; };
+    return () => {
+      speechSynthesis.onvoiceschanged = null;
+    };
   }, []);
 
   useEffect(() => {
@@ -54,10 +56,13 @@ export default function ModuleView({
     setDialogueIndex(0);
     setQuizIndex(0);
     setSelectedAnswer(null);
+    setShowTranslation(true);
     stopSpeak();
   }, [selectedModuleId]);
 
-  useEffect(() => { stopSpeak(); }, [phraseIndex, dialogueIndex, activeTab]);
+  useEffect(() => {
+    stopSpeak();
+  }, [phraseIndex, dialogueIndex, activeTab]);
 
   const currentPhrase = module?.phrases?.[phraseIndex];
   const currentDialogue = module?.miniDialogues?.[dialogueIndex];
@@ -67,19 +72,28 @@ export default function ModuleView({
     if (typeof window === "undefined" || !window.speechSynthesis) return;
     const synth = window.speechSynthesis;
     synth.cancel();
+
     const utterance = new SpeechSynthesisUtterance(text);
     const voices = synth.getVoices();
+
     const ptVoice =
       voices.find((v) => v.lang?.toLowerCase() === "pt-br") ||
       voices.find((v) => v.lang?.toLowerCase().startsWith("pt")) ||
       voices.find((v) => v.name?.toLowerCase().includes("portugu")) ||
       null;
-    if (ptVoice) { utterance.voice = ptVoice; utterance.lang = ptVoice.lang; }
-    else { utterance.lang = "pt-BR"; }
+
+    if (ptVoice) {
+      utterance.voice = ptVoice;
+      utterance.lang = ptVoice.lang;
+    } else {
+      utterance.lang = "pt-BR";
+    }
+
     utterance.rate = slow ? 0.78 : 0.95;
     utterance.pitch = 1;
     utterance.onend = () => setSpeaking(false);
     utterance.onerror = () => setSpeaking(false);
+
     setSpeaking(true);
     synth.speak(utterance);
   };
@@ -93,11 +107,15 @@ export default function ModuleView({
   const markModuleDone = () => {
     const studentId = appState.currentStudentId;
     if (!studentId || !module) return;
+
     setAppState((prev) => ({
       ...prev,
       progress: {
         ...prev.progress,
-        [studentId]: { ...(prev.progress?.[studentId] ?? {}), [module.id]: true },
+        [studentId]: {
+          ...(prev.progress?.[studentId] ?? {}),
+          [module.id]: true,
+        },
       },
     }));
   };
@@ -105,12 +123,25 @@ export default function ModuleView({
   const resetModule = () => {
     const studentId = appState.currentStudentId;
     if (!studentId || !module) return;
-    setPhraseIndex(0); setDialogueIndex(0); setQuizIndex(0);
-    setSelectedAnswer(null); setActiveTab("phrases"); stopSpeak();
+
+    setPhraseIndex(0);
+    setDialogueIndex(0);
+    setQuizIndex(0);
+    setSelectedAnswer(null);
+    setShowTranslation(true);
+    setActiveTab("phrases");
+    stopSpeak();
+
     setAppState((prev) => {
       const next = { ...(prev.progress?.[studentId] ?? {}) };
       delete next[module.id];
-      return { ...prev, progress: { ...prev.progress, [studentId]: next } };
+      return {
+        ...prev,
+        progress: {
+          ...prev.progress,
+          [studentId]: next,
+        },
+      };
     });
   };
 
@@ -125,184 +156,319 @@ export default function ModuleView({
     { id: "quiz", label: "Quiz" },
   ];
 
-  // Shared styles
-  const card: React.CSSProperties = {
-    background: C.bg2,
+  const color = catColor(module?.category ?? "");
+
+  const premiumPanel: React.CSSProperties = {
+    background:
+      "linear-gradient(180deg, rgba(11,31,24,0.96), rgba(9,24,20,0.98))",
     border: `1px solid ${C.border}`,
-    borderRadius: 20,
-    padding: 24,
+    borderRadius: 28,
+    padding: "30px 32px 24px",
+    boxShadow: "0 24px 70px rgba(0,0,0,0.34)",
+    backdropFilter: "blur(10px)",
+  };
+
+  const sectionLabel: React.CSSProperties = {
+    fontSize: 11,
+    color: C.textDim,
+    textAlign: "center",
+    letterSpacing: "0.08em",
+    textTransform: "uppercase",
   };
 
   const bigPt: React.CSSProperties = {
     fontFamily: DISPLAY,
-    fontSize: 28,
+    fontSize: 54,
     fontWeight: 700,
-    lineHeight: 1.25,
-    color: C.text,
-    marginBottom: 10,
+    lineHeight: 1.04,
+    color: "#FFF8ED",
     textAlign: "center",
+    marginTop: 28,
+    letterSpacing: "-0.03em",
   };
 
   const esText: React.CSSProperties = {
-    fontSize: 17,
-    lineHeight: 1.5,
-    color: C.textMid,
+    fontSize: 24,
+    lineHeight: 1.3,
+    color: "rgba(232,225,214,0.82)",
     textAlign: "center",
-    minHeight: 28,
+    marginTop: 10,
+    minHeight: 32,
   };
 
-  // Accent button (golden)
   const btnAccent: React.CSSProperties = {
-    background: `linear-gradient(135deg, ${C.accent}, #9a7230)`,
-    color: "#0e1410",
-    border: "none",
-    borderRadius: 10,
-    padding: "10px 20px",
-    fontSize: 13,
+    background: "linear-gradient(180deg, #D6B36A, #B88B3A)",
+    color: "#16110A",
+    border: "1px solid rgba(255,255,255,0.10)",
+    borderRadius: 14,
+    padding: "12px 18px",
+    fontSize: 14,
     fontWeight: 700,
     cursor: "pointer",
     fontFamily: FONT,
+    boxShadow: "0 10px 24px rgba(184,139,58,0.18)",
+    transition: "all 0.22s ease",
   };
 
   const btnPrimary: React.CSSProperties = {
     background: `linear-gradient(135deg, ${C.green}, ${C.greenDim})`,
     color: "#F5F0E8",
-    border: "none",
-    borderRadius: 10,
-    padding: "10px 20px",
+    border: "1px solid rgba(255,255,255,0.08)",
+    borderRadius: 14,
+    padding: "11px 16px",
     fontSize: 13,
     fontWeight: 700,
     cursor: "pointer",
     fontFamily: FONT,
+    transition: "all 0.22s ease",
   };
 
-  const navBtn: React.CSSProperties = { ...btnGhost, minWidth: 110 };
+  const navBtn: React.CSSProperties = {
+    ...btnGhost,
+    minWidth: 116,
+    borderRadius: 14,
+    padding: "11px 16px",
+    fontSize: 13,
+    fontWeight: 600,
+  };
 
-  const color = catColor(module?.category ?? "");
+  const smallDarkBtn: React.CSSProperties = {
+    ...navBtn,
+    background: "rgba(255,255,255,0.03)",
+    border: "1px solid rgba(255,255,255,0.08)",
+    color: C.textMid,
+  };
+
+  const progressDots = (count: number, active: number, onSelect: (i: number) => void) => (
+    <div style={{ display: "flex", justifyContent: "center", gap: 4, margin: "14px auto 0" }}>
+      {Array.from({ length: count }).map((_, i) => (
+        <div
+          key={i}
+          onClick={() => onSelect(i)}
+          style={{
+            width: i === active ? 18 : 5,
+            height: 5,
+            borderRadius: 999,
+            background:
+              i === active
+                ? "linear-gradient(90deg, #D6B36A, #E4C98E)"
+                : i < active
+                ? "rgba(214,179,106,0.35)"
+                : "rgba(255,255,255,0.08)",
+            cursor: "pointer",
+            transition: "all 0.22s ease",
+          }}
+        />
+      ))}
+    </div>
+  );
 
   if (!module) {
     return (
-      <div style={card}>
-        <div style={{ color: C.text }}>No hay módulos disponibles.</div>
+      <div
+        style={{
+          background: C.bg2,
+          border: `1px solid ${C.border}`,
+          borderRadius: 20,
+          padding: 24,
+          color: C.text,
+          fontFamily: FONT,
+        }}
+      >
+        No hay módulos disponibles.
       </div>
     );
   }
 
   return (
     <div style={{ display: "grid", gap: 16, fontFamily: FONT }}>
-
-      {/* ── Module hero ── */}
+      {/* HERO PREMIUM */}
       <div
         style={{
           position: "relative",
-          width: "100%",
-          height: 240,
-          borderRadius: 20,
           overflow: "hidden",
+          borderRadius: 28,
           border: `1px solid ${C.border}`,
+          boxShadow: "0 24px 70px rgba(0,0,0,0.34)",
+          minHeight: 300,
+          background: "#0C1C1A",
         }}
       >
         <img
           src="/villa.jpg"
-          alt="Villa"
-          style={{ display: "block", width: "100%", height: "100%", objectFit: "cover" }}
+          alt={module.title}
+          style={{
+            display: "block",
+            width: "100%",
+            height: 300,
+            objectFit: "cover",
+            filter: "brightness(0.82) contrast(1.05) saturate(1.03)",
+          }}
         />
-        {/* gradient overlay */}
+
         <div
           style={{
             position: "absolute",
             inset: 0,
-            background: "linear-gradient(to top, rgba(10,18,14,0.90) 0%, rgba(10,18,14,0.25) 55%, transparent 100%)",
+            background: `
+              linear-gradient(180deg, rgba(5,12,18,0.06) 0%, rgba(5,12,18,0.20) 30%, rgba(5,12,18,0.72) 100%),
+              linear-gradient(90deg, rgba(6,17,26,0.60) 0%, rgba(6,17,26,0.18) 50%, rgba(6,17,26,0.50) 100%)
+            `,
           }}
         />
-        {/* action buttons top-right */}
+
         <div
           style={{
             position: "absolute",
-            top: 14,
-            right: 14,
+            top: 16,
+            right: 16,
             display: "flex",
             gap: 8,
+            flexWrap: "wrap",
           }}
         >
           {onGoHome && (
-            <button onClick={onGoHome} style={{ ...btnGhost, fontSize: 12, padding: "6px 12px", background: "rgba(10,18,14,0.7)" }}>
+            <button
+              onClick={onGoHome}
+              style={{
+                ...btnGhost,
+                fontSize: 12,
+                padding: "8px 12px",
+                borderRadius: 999,
+                background: "rgba(9,18,24,0.40)",
+                color: "rgba(255,248,237,0.88)",
+                border: "1px solid rgba(255,255,255,0.10)",
+                backdropFilter: "blur(8px)",
+              }}
+            >
               🏠 Inicio
             </button>
           )}
+
           <button
             onClick={resetModule}
-            style={{ ...btnDanger, fontSize: 12, padding: "6px 12px", background: "rgba(10,18,14,0.7)" }}
+            style={{
+              ...btnDanger,
+              fontSize: 12,
+              padding: "8px 12px",
+              borderRadius: 999,
+              background: "rgba(9,18,24,0.40)",
+              color: "#F2C6BF",
+              border: "1px solid rgba(255,255,255,0.10)",
+              backdropFilter: "blur(8px)",
+            }}
           >
             ↺ Reset
           </button>
         </div>
-        {/* bottom content */}
-        <div style={{ position: "absolute", left: 20, bottom: 18, right: 20 }}>
-          <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 6 }}>
+
+        <div
+          style={{
+            position: "absolute",
+            left: 24,
+            right: 24,
+            bottom: 20,
+          }}
+        >
+          <div
+            style={{
+              display: "flex",
+              flexWrap: "wrap",
+              gap: 8,
+              marginBottom: 10,
+            }}
+          >
             <span
               style={{
+                display: "inline-flex",
+                alignItems: "center",
+                gap: 8,
+                padding: "6px 10px",
+                borderRadius: 999,
+                background: "rgba(255,248,237,0.08)",
+                border: "1px solid rgba(255,255,255,0.10)",
+                color: "rgba(255,248,237,0.90)",
+                backdropFilter: "blur(8px)",
                 fontSize: 11,
                 fontWeight: 600,
-                letterSpacing: "0.06em",
-                padding: "3px 10px",
-                borderRadius: 20,
-                background: `${color}22`,
-                color: color,
-                border: `1px solid ${color}44`,
               }}
             >
               {module.category}
             </span>
+
             <span
               style={{
+                display: "inline-flex",
+                alignItems: "center",
+                gap: 8,
+                padding: "6px 10px",
+                borderRadius: 999,
+                background: "rgba(255,248,237,0.08)",
+                border: "1px solid rgba(255,255,255,0.10)",
+                color: "rgba(255,248,237,0.90)",
+                backdropFilter: "blur(8px)",
                 fontSize: 11,
-                color: "rgba(255,255,255,0.5)",
-                background: "rgba(255,255,255,0.1)",
-                padding: "3px 10px",
-                borderRadius: 20,
-                border: "1px solid rgba(255,255,255,0.12)",
               }}
             >
               {module.phrases?.length ?? 0} frases · {module.quiz?.length ?? 0} quiz
             </span>
           </div>
+
           <div
             style={{
-              fontFamily: DISPLAY,
-              fontSize: 26,
+              color: "#FFF8ED",
+              fontSize: 46,
               fontWeight: 700,
-              color: "#F5F0E8",
-              lineHeight: 1.2,
+              lineHeight: 1,
+              letterSpacing: "-0.03em",
+              fontFamily: DISPLAY,
+              textShadow: "0 4px 18px rgba(0,0,0,0.35)",
               display: "flex",
               alignItems: "center",
-              gap: 10,
+              gap: 12,
+              flexWrap: "wrap",
             }}
           >
-            <span style={{ fontSize: 22 }}>{module.emoji}</span>
+            <span style={{ fontSize: 28 }}>{module.emoji}</span>
             {module.title}
           </div>
         </div>
       </div>
 
-      {/* ── Tabs + complete button ── */}
-      <div style={{ display: "flex", alignItems: "center", gap: 8, flexWrap: "wrap" }}>
-        <div style={{ display: "flex", gap: 4, flex: 1 }}>
+      {/* TABS + COMPLETE */}
+      <div
+        style={{
+          display: "flex",
+          alignItems: "center",
+          gap: 12,
+          flexWrap: "wrap",
+        }}
+      >
+        <div style={{ display: "flex", gap: 8, flex: 1, flexWrap: "wrap" }}>
           {tabs.map((tab) => (
             <button
               key={tab.id}
-              onClick={() => { stopSpeak(); setActiveTab(tab.id); }}
+              onClick={() => {
+                stopSpeak();
+                setActiveTab(tab.id);
+              }}
               style={{
-                borderRadius: 20,
-                padding: "8px 18px",
+                padding: "10px 16px",
+                borderRadius: 999,
+                background:
+                  activeTab === tab.id
+                    ? "rgba(214,179,106,0.12)"
+                    : "rgba(255,255,255,0.02)",
+                border:
+                  activeTab === tab.id
+                    ? `1px solid ${C.borderStrong ?? "rgba(214,179,106,0.22)"}`
+                    : "1px solid rgba(255,255,255,0.06)",
+                color: activeTab === tab.id ? C.text : C.textDim,
                 fontSize: 13,
                 fontWeight: 600,
-                border: activeTab === tab.id ? `1px solid ${C.accent}55` : `1px solid ${C.border}`,
                 cursor: "pointer",
                 fontFamily: FONT,
-                background: activeTab === tab.id ? `${C.accent}18` : "transparent",
-                color: activeTab === tab.id ? C.accent : C.textDim,
-                letterSpacing: "0.02em",
+                transition: "all 0.22s ease",
               }}
             >
               {tab.label}
@@ -315,7 +481,12 @@ export default function ModuleView({
           style={{
             ...btnAccent,
             ...(isCompleted
-              ? { background: `${C.green}20`, color: C.green, border: `1px solid ${C.green}44` }
+              ? {
+                  background: `${C.green}18`,
+                  color: C.green,
+                  border: `1px solid ${C.green}44`,
+                  boxShadow: "none",
+                }
               : {}),
           }}
         >
@@ -323,76 +494,99 @@ export default function ModuleView({
         </button>
       </div>
 
-      {/* ── Phrases tab ── */}
+      {/* PHRASES */}
       {activeTab === "phrases" && currentPhrase && (
-        <div style={card}>
-          <div style={{ fontSize: 12, color: C.textDim, textAlign: "center", marginBottom: 20, letterSpacing: "0.06em" }}>
+        <div style={premiumPanel}>
+          <div style={sectionLabel}>
             Frase {phraseIndex + 1} de {module.phrases.length}
           </div>
 
-          {/* Progress dots */}
-          <div style={{ display: "flex", justifyContent: "center", gap: 4, marginBottom: 24 }}>
-            {module.phrases.map((_, i) => (
-              <div
-                key={i}
-                onClick={() => setPhraseIndex(i)}
-                style={{
-                  width: i === phraseIndex ? 20 : 6,
-                  height: 6,
-                  borderRadius: 99,
-                  background: i === phraseIndex ? C.accent : i < phraseIndex ? `${C.accent}50` : C.bg3,
-                  cursor: "pointer",
-                  transition: "all 0.2s ease",
-                  border: `1px solid ${i === phraseIndex ? C.accent : C.border}`,
-                }}
-              />
-            ))}
-          </div>
+          {progressDots(module.phrases.length, phraseIndex, setPhraseIndex)}
 
           <div style={bigPt}>{currentPhrase.pt}</div>
+
           <div style={esText}>
             {showTranslation ? currentPhrase.es : "· · · · · · · · · · · · ·"}
           </div>
 
-          <div style={{ display: "flex", justifyContent: "center", gap: 8, flexWrap: "wrap", marginTop: 24 }}>
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              gap: 10,
+              marginTop: 26,
+              flexWrap: "wrap",
+            }}
+          >
             <button onClick={() => speak(currentPhrase.pt)} style={btnPrimary}>
               🔊 Escuchar
             </button>
-            <button onClick={() => speak(currentPhrase.pt, true)} style={navBtn}>
+
+            <button onClick={() => speak(currentPhrase.pt, true)} style={smallDarkBtn}>
               🐢 Lento
             </button>
-            <button onClick={stopSpeak} style={btnDanger}>
+
+            <button onClick={stopSpeak} style={{ ...btnDanger, borderRadius: 14, padding: "11px 16px" }}>
               ⏹ Parar
             </button>
-            <button onClick={() => setShowTranslation((v) => !v)} style={{ ...navBtn, color: C.accent, borderColor: `${C.accent}44` }}>
+
+            <button
+              onClick={() => setShowTranslation((v) => !v)}
+              style={{
+                ...smallDarkBtn,
+                color: C.accent,
+                border: `1px solid ${C.accent}44`,
+              }}
+            >
               {showTranslation ? "Ocultar ES" : "Mostrar ES"}
             </button>
           </div>
 
-          <div style={{ display: "flex", justifyContent: "space-between", gap: 10, marginTop: 24 }}>
-            <button onClick={() => setPhraseIndex((i) => Math.max(i - 1, 0))} style={navBtn} disabled={phraseIndex === 0}>
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "space-between",
+              gap: 12,
+              marginTop: 26,
+              flexWrap: "wrap",
+            }}
+          >
+            <button
+              onClick={() => setPhraseIndex((i) => Math.max(i - 1, 0))}
+              style={smallDarkBtn}
+              disabled={phraseIndex === 0}
+            >
               ← Anterior
             </button>
-            <button onClick={() => setPhraseIndex((i) => Math.min(i + 1, module.phrases.length - 1))} style={btnAccent} disabled={phraseIndex === module.phrases.length - 1}>
+
+            <button
+              onClick={() =>
+                setPhraseIndex((i) => Math.min(i + 1, module.phrases.length - 1))
+              }
+              style={btnAccent}
+              disabled={phraseIndex === module.phrases.length - 1}
+            >
               Siguiente →
             </button>
           </div>
         </div>
       )}
 
-      {/* ── Dialogue tab ── */}
+      {/* DIALOGUE */}
       {activeTab === "dialogue" && currentDialogue && (
-        <div style={card}>
-          <div style={{ fontSize: 12, color: C.textDim, textAlign: "center", marginBottom: 16, letterSpacing: "0.06em" }}>
+        <div style={premiumPanel}>
+          <div style={sectionLabel}>
             Diálogo {dialogueIndex + 1} de {module.miniDialogues.length}
           </div>
 
-          <div style={{ textAlign: "center", marginBottom: 16 }}>
+          {progressDots(module.miniDialogues.length, dialogueIndex, setDialogueIndex)}
+
+          <div style={{ textAlign: "center", marginTop: 18 }}>
             <span
               style={{
                 display: "inline-block",
-                padding: "5px 14px",
-                borderRadius: 20,
+                padding: "6px 14px",
+                borderRadius: 999,
                 background: `${color}18`,
                 color: color,
                 fontWeight: 600,
@@ -405,51 +599,105 @@ export default function ModuleView({
           </div>
 
           <div style={bigPt}>{currentDialogue.pt}</div>
+
           <div style={esText}>
             {showTranslation ? currentDialogue.es : "· · · · · · · · · · · · ·"}
           </div>
 
-          <div style={{ display: "flex", justifyContent: "center", gap: 8, flexWrap: "wrap", marginTop: 24 }}>
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              gap: 10,
+              marginTop: 26,
+              flexWrap: "wrap",
+            }}
+          >
             <button onClick={() => speak(currentDialogue.pt)} style={btnPrimary}>
               🔊 Escuchar
             </button>
-            <button onClick={() => speak(currentDialogue.pt, true)} style={navBtn}>
+
+            <button
+              onClick={() => speak(currentDialogue.pt, true)}
+              style={smallDarkBtn}
+            >
               🐢 Lento
             </button>
-            <button onClick={stopSpeak} style={btnDanger}>
+
+            <button
+              onClick={stopSpeak}
+              style={{ ...btnDanger, borderRadius: 14, padding: "11px 16px" }}
+            >
               ⏹ Parar
             </button>
-            <button onClick={() => setShowTranslation((v) => !v)} style={{ ...navBtn, color: C.accent, borderColor: `${C.accent}44` }}>
+
+            <button
+              onClick={() => setShowTranslation((v) => !v)}
+              style={{
+                ...smallDarkBtn,
+                color: C.accent,
+                border: `1px solid ${C.accent}44`,
+              }}
+            >
               {showTranslation ? "Ocultar ES" : "Mostrar ES"}
             </button>
           </div>
 
-          <div style={{ display: "flex", justifyContent: "space-between", gap: 10, marginTop: 24 }}>
-            <button onClick={() => setDialogueIndex((i) => Math.max(i - 1, 0))} style={navBtn} disabled={dialogueIndex === 0}>
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "space-between",
+              gap: 12,
+              marginTop: 26,
+              flexWrap: "wrap",
+            }}
+          >
+            <button
+              onClick={() => setDialogueIndex((i) => Math.max(i - 1, 0))}
+              style={smallDarkBtn}
+              disabled={dialogueIndex === 0}
+            >
               ← Anterior
             </button>
-            <button onClick={() => setDialogueIndex((i) => Math.min(i + 1, module.miniDialogues.length - 1))} style={btnAccent} disabled={dialogueIndex === module.miniDialogues.length - 1}>
+
+            <button
+              onClick={() =>
+                setDialogueIndex((i) =>
+                  Math.min(i + 1, module.miniDialogues.length - 1)
+                )
+              }
+              style={btnAccent}
+              disabled={dialogueIndex === module.miniDialogues.length - 1}
+            >
               Siguiente →
             </button>
           </div>
         </div>
       )}
 
-      {/* ── Quiz tab ── */}
+      {/* QUIZ */}
       {activeTab === "quiz" && currentQuiz && (
-        <div style={card}>
-          <div style={{ fontSize: 12, color: C.textDim, textAlign: "center", marginBottom: 16, letterSpacing: "0.06em" }}>
+        <div style={premiumPanel}>
+          <div style={sectionLabel}>
             Quiz {quizIndex + 1} de {module.quiz.length}
           </div>
 
-          {/* Quiz progress bar */}
-          <div style={{ height: 3, background: C.bg3, borderRadius: 99, marginBottom: 24, overflow: "hidden" }}>
+          <div
+            style={{
+              height: 4,
+              width: 220,
+              background: "rgba(255,255,255,0.08)",
+              borderRadius: 999,
+              margin: "14px auto 0",
+              overflow: "hidden",
+            }}
+          >
             <div
               style={{
                 width: `${((quizIndex + 1) / module.quiz.length) * 100}%`,
                 height: "100%",
-                background: C.accent,
-                borderRadius: 99,
+                background: "linear-gradient(90deg, #D6B36A, #E4C98E)",
+                borderRadius: 999,
                 transition: "width 0.3s ease",
               }}
             />
@@ -458,12 +706,13 @@ export default function ModuleView({
           <div
             style={{
               fontFamily: DISPLAY,
-              fontSize: 22,
+              fontSize: 30,
               fontWeight: 700,
-              lineHeight: 1.35,
-              color: C.text,
+              lineHeight: 1.25,
+              color: "#FFF8ED",
               textAlign: "center",
-              marginBottom: 24,
+              margin: "30px 0 24px",
+              letterSpacing: "-0.02em",
             }}
           >
             {currentQuiz.question}
@@ -473,24 +722,27 @@ export default function ModuleView({
             {currentQuiz.options.map((opt) => {
               const isCorrect = !!selectedAnswer && opt === currentQuiz.answer;
               const isWrong = selectedAnswer === opt && opt !== currentQuiz.answer;
+
               return (
                 <button
                   key={opt}
                   onClick={() => setSelectedAnswer(opt)}
                   style={{
                     textAlign: "left",
-                    borderRadius: 14,
-                    padding: "13px 16px",
+                    borderRadius: 16,
+                    padding: "14px 16px",
                     border: `1px solid ${
-                      isCorrect ? `${C.green}60`
-                      : isWrong ? `${C.red}60`
-                      : C.border
+                      isCorrect
+                        ? `${C.green}60`
+                        : isWrong
+                        ? `${C.red}60`
+                        : "rgba(255,255,255,0.08)"
                     }`,
                     background: isCorrect
                       ? `${C.green}12`
                       : isWrong
                       ? `${C.red}12`
-                      : C.bg3,
+                      : "rgba(255,255,255,0.03)",
                     color: isCorrect ? C.green : isWrong ? C.red : C.textMid,
                     cursor: "pointer",
                     fontWeight: 600,
@@ -499,7 +751,7 @@ export default function ModuleView({
                     display: "flex",
                     alignItems: "center",
                     gap: 10,
-                    transition: "all 0.15s",
+                    transition: "all 0.18s ease",
                   }}
                 >
                   <span
@@ -507,7 +759,9 @@ export default function ModuleView({
                       width: 20,
                       height: 20,
                       borderRadius: "50%",
-                      border: `1.5px solid ${isCorrect ? C.green : isWrong ? C.red : C.border}`,
+                      border: `1.5px solid ${
+                        isCorrect ? C.green : isWrong ? C.red : C.border
+                      }`,
                       display: "flex",
                       alignItems: "center",
                       justifyContent: "center",
@@ -528,12 +782,20 @@ export default function ModuleView({
               style={{
                 marginTop: 16,
                 padding: "12px 16px",
-                borderRadius: 12,
-                background: selectedAnswer === currentQuiz.answer ? `${C.green}10` : `${C.red}10`,
-                border: `1px solid ${selectedAnswer === currentQuiz.answer ? `${C.green}40` : `${C.red}40`}`,
+                borderRadius: 14,
+                background:
+                  selectedAnswer === currentQuiz.answer
+                    ? `${C.green}10`
+                    : `${C.red}10`,
+                border: `1px solid ${
+                  selectedAnswer === currentQuiz.answer
+                    ? `${C.green}40`
+                    : `${C.red}40`
+                }`,
                 fontSize: 14,
                 fontWeight: 600,
-                color: selectedAnswer === currentQuiz.answer ? C.green : C.red,
+                color:
+                  selectedAnswer === currentQuiz.answer ? C.green : C.red,
                 textAlign: "center",
               }}
             >
@@ -543,16 +805,31 @@ export default function ModuleView({
             </div>
           )}
 
-          <div style={{ display: "flex", justifyContent: "space-between", gap: 10, marginTop: 20 }}>
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "space-between",
+              gap: 12,
+              marginTop: 24,
+              flexWrap: "wrap",
+            }}
+          >
             <button
-              onClick={() => { setSelectedAnswer(null); setQuizIndex((i) => Math.max(i - 1, 0)); }}
-              style={navBtn}
+              onClick={() => {
+                setSelectedAnswer(null);
+                setQuizIndex((i) => Math.max(i - 1, 0));
+              }}
+              style={smallDarkBtn}
               disabled={quizIndex === 0}
             >
               ← Anterior
             </button>
+
             <button
-              onClick={() => { setSelectedAnswer(null); setQuizIndex((i) => Math.min(i + 1, module.quiz.length - 1)); }}
+              onClick={() => {
+                setSelectedAnswer(null);
+                setQuizIndex((i) => Math.min(i + 1, module.quiz.length - 1));
+              }}
               style={btnAccent}
               disabled={quizIndex === module.quiz.length - 1}
             >
