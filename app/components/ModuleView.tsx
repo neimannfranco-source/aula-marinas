@@ -103,7 +103,7 @@ setQuizIndex(saved.quizIndex ?? 0);
   }, [phraseIndex, dialogueIndex, activeTab]);
 
   const currentPhrase = module?.phrases?.[phraseIndex];
-  const currentDialogue = module?.miniDialogues?.[dialogueIndex];
+  const currentDialogue = module?.dialogue?.[dialogueIndex];
   const currentQuiz = module?.quiz?.[quizIndex];
 
   const speak = (text: string, slow = false) => {
