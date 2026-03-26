@@ -694,15 +694,29 @@ if (saved) {
               ← Anterior
             </button>
 
-            <button
-              onClick={() =>
-                setPhraseIndex((i) => Math.min(i + 1, module.phrases.length - 1))
-              }
-              style={btnAccent}
-              disabled={phraseIndex === module.phrases.length - 1}
-            >
-              Siguiente →
-            </button>
+            {phraseIndex === module.phrases.length - 1 ? (
+              <button
+                onClick={markModuleDone}
+                style={{
+                  ...btnAccent,
+                  ...(isCompleted ? {
+                    background: `${C.green}18`,
+                    color: C.green,
+                    border: `1px solid ${C.green}44`,
+                    boxShadow: "none",
+                  } : {}),
+                }}
+              >
+                {isCompleted ? "✓ Completado" : "✅ Marcar completo"}
+              </button>
+            ) : (
+              <button
+                onClick={() => setPhraseIndex((i) => i + 1)}
+                style={btnAccent}
+              >
+                Siguiente →
+              </button>
+            )}
           </div>
         </div>
       )}
