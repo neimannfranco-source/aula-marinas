@@ -19,7 +19,7 @@ type Props = {
   onGoHome?: () => void;
   onPositionChange?: (position: {
     moduleId: string;
-    tab: "phrases" | "dialogue" | "quiz";
+    tab: TabType;
     phraseIndex: number;
     dialogueIndex: number;
     quizIndex: number;
