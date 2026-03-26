@@ -57,6 +57,30 @@ export default function ModuleView({
       speechSynthesis.onvoiceschanged = null;
     };
   }, []);
+  useEffect(() => {
+  if (!module) return;
+
+  onPositionChange?.({
+    moduleId: module.id,
+    tab: activeTab,
+    phraseIndex,
+    dialogueIndex,
+    quizIndex,
+  });
+}, [module?.id, activeTab, phraseIndex, dialogueIndex, quizIndex, onPositionChange]);
+
+useEffect(() => {
+  const studentId = appState.currentStudentId;
+  if (!studentId || !module) return;
+
+  const saved = appState.lastPosition?.[studentId];
+  if (!saved || saved.moduleId !== module.id) return;
+
+  setActiveTab(saved.tab);
+  setPhraseIndex(saved.phraseIndex ?? 0);
+  setDialogueIndex(saved.dialogueIndex ?? 0);
+  setQuizIndex(saved.quizIndex ?? 0);
+}, [appState.currentStudentId, appState.lastPosition, module?.id]);
   
 useEffect(() => {
   if (!module) return;
