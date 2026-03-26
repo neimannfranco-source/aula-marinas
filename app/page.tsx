@@ -541,7 +541,7 @@ await saveRemoteState(appState);
         </div>
       </div>
 
-      ""<button
+      <button
         onClick={() => {
   // forzar cambio para que React re-renderice
   setSelectedModuleId("");
