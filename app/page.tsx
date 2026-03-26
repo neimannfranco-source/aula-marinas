@@ -215,7 +215,7 @@ export default function Home() {
 
         {showProfPanel && profUnlocked && (
           <div style={{ maxWidth: 480, margin: "0 auto", padding: "0 24px 48px" }}>
-            <ProfessorPanel appState={appState} setAppState={setAppState} />
+            <ProgressPanel appState={appState} />
           </div>
         )}
       </>
