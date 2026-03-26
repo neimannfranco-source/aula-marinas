@@ -717,7 +717,7 @@ setQuizIndex(saved.quizIndex ?? 0);
       {activeTab === "quiz" && currentQuiz && (
         <div style={premiumPanel}>
           <div style={sectionLabel}>
-            Quiz {quizIndex + 1} de {module.quiz.length}
+            Quiz {quizIndex + 1} de {module.quiz?.length ?? 0}
           </div>
 
           <div
@@ -732,7 +732,7 @@ setQuizIndex(saved.quizIndex ?? 0);
           >
             <div
               style={{
-                width: `${((quizIndex + 1) / module.quiz.length) * 100}%`,
+                width: `${((quizIndex + 1) / (module.quiz?.length ?? 1)) * 100}%`,
                 height: "100%",
                 background: "linear-gradient(90deg, #D6B36A, #E4C98E)",
                 borderRadius: 999,
@@ -866,10 +866,10 @@ setQuizIndex(saved.quizIndex ?? 0);
             <button
               onClick={() => {
                 setSelectedAnswer(null);
-                setQuizIndex((i) => Math.min(i + 1, module.quiz.length - 1));
+                setQuizIndex((i) => Math.min(i + 1, (module.quiz?.length ?? 1) - 1));
               }}
               style={btnAccent}
-              disabled={quizIndex === module.quiz.length - 1}
+              disabled={quizIndex === (module.quiz?.length ?? 1) - 1}
             >
               Siguiente →
             </button>
