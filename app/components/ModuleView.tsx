@@ -701,11 +701,11 @@ setQuizIndex(saved.quizIndex ?? 0);
             <button
               onClick={() =>
                 setDialogueIndex((i) =>
-                  Math.min(i + 1, module.miniDialogues.length - 1)
+                  Math.min(i + 1, (module.dialogue?.length ?? 1) - 1)
                 )
               }
               style={btnAccent}
-              disabled={dialogueIndex === module.miniDialogues.length - 1}
+              disabled={dialogueIndex === module.dialogue.length - 1}
             >
               Siguiente →
             </button>
