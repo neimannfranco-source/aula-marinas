@@ -3036,8 +3036,8 @@ export const MODULES: ModuleType[] = [
   quiz: [
     {
       question: "¿Qué suele incluir la actividad?",
-      options: ["Solo transporte", "Guia e equipamento", "Solo comida"],
-      answer: "Guia e equipamento",
+      options: ["Solo transporte", "Guia y equipamento", "Solo comida"],
+      answer: "Guia y equipamento",
     },
     {
       question: "¿Para quién puede ser apta?",

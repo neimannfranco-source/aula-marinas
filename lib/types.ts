@@ -21,6 +21,7 @@ export type AppState = {
   progress: Record<string, Record<string, boolean>>;
   dictations: Record<string, string>;
   lastPosition: Record<string, Record<string, ProgressPosition>>;
+  lastVisitedModuleId: Record<string, string>;
 };
 
 export type LoadStatus = "loading" | "ready";
