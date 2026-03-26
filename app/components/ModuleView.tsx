@@ -49,6 +49,8 @@ export default function ModuleView({
   const [speaking, setSpeaking] = useState(false);
   const [didRestorePosition, setDidRestorePosition] = useState(false);
 const [showCelebration, setShowCelebration] = useState(false);
+const [visitedDialogue, setVisitedDialogue] = useState(false);
+const [visitedQuiz, setVisitedQuiz] = useState(false);
 
   const stopSpeak = () => {
     if (typeof window === "undefined") return;
@@ -264,8 +266,8 @@ if (saved) {
 
     const hasReachedEnd =
     phraseIndex === module.phrases.length - 1 &&
-    dialogueIndex === (module.dialogue?.length ?? 1) - 1 &&
-    quizIndex === (module.quiz?.length ?? 1) - 1;
+    visitedDialogue && dialogueIndex === (module.dialogue?.length ?? 1) - 1 &&
+    visitedQuiz && quizIndex === (module.quiz?.length ?? 1) - 1;
 
   const tabs: { id: TabType; label: string }[] = [
     { id: "phrases", label: "Frases" },
@@ -589,6 +591,8 @@ if (saved) {
               onClick={() => {
                 stopSpeak();
                 setActiveTab(tab.id);
+                if (tab.id === "dialogue") setVisitedDialogue(true);
+                if (tab.id === "quiz") setVisitedQuiz(true);
               }}
               style={{
                 padding: "10px 16px",
@@ -709,7 +713,8 @@ if (saved) {
 
             {phraseIndex === module.phrases.length - 1 ? (
               <button
-                onClick={markModuleDone}
+                onClick={hasReachedEnd || isCompleted ? markModuleDone : undefined}
+                disabled={!hasReachedEnd && !isCompleted}
                 style={{
                   ...btnAccent,
                   ...(isCompleted ? {
@@ -717,6 +722,9 @@ if (saved) {
                     color: C.green,
                     border: `1px solid ${C.green}44`,
                     boxShadow: "none",
+                  } : !hasReachedEnd ? {
+                    opacity: 0.35,
+                    cursor: "not-allowed",
                   } : {}),
                 }}
               >

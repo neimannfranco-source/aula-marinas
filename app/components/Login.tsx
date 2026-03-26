@@ -65,7 +65,7 @@ export default function Login({
           width: "100%",
           height: "100%",
           objectFit: "cover",
-          filter: "brightness(0.38) saturate(1.1)",
+          filter: "brightness(0.65) saturate(1.1)",
         }}
       />
       <div
