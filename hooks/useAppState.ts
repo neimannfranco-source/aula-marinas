@@ -9,6 +9,7 @@ function createInitialState(): AppState {
     currentStudentId: null,
     progress: {},
     dictations: {},
+    lastPosition: {},
   };
 }
 
