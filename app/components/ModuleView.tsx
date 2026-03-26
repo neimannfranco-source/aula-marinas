@@ -262,7 +262,10 @@ if (saved) {
     !!module &&
     !!appState.progress?.[appState.currentStudentId]?.[module.id];
 
-    const hasReachedEnd = phraseIndex === module.phrases.length - 1;
+    const hasReachedEnd =
+    phraseIndex === module.phrases.length - 1 &&
+    dialogueIndex === (module.dialogue?.length ?? 1) - 1 &&
+    quizIndex === (module.quiz?.length ?? 1) - 1;
 
   const tabs: { id: TabType; label: string }[] = [
     { id: "phrases", label: "Frases" },

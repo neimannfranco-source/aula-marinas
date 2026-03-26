@@ -48,16 +48,33 @@ export default function Login({
     <div
       style={{
         minHeight: "100vh",
-        background: C.bg,
-        backgroundImage:
-          "radial-gradient(ellipse at 15% 40%, rgba(74,222,128,0.06) 0%, transparent 55%), radial-gradient(ellipse at 85% 15%, rgba(251,191,36,0.04) 0%, transparent 50%)",
+        position: "relative",
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
         padding: 24,
         fontFamily: FONT,
+        overflow: "hidden",
       }}
     >
+      <img
+        src="/villa.jpg"
+        style={{
+          position: "absolute",
+          inset: 0,
+          width: "100%",
+          height: "100%",
+          objectFit: "cover",
+          filter: "brightness(0.38) saturate(1.1)",
+        }}
+      />
+      <div
+        style={{
+          position: "absolute",
+          inset: 0,
+          background: "linear-gradient(160deg, rgba(6,17,14,0.72) 0%, rgba(9,24,18,0.88) 100%)",
+        }}
+      />
       <style>{`
         @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
         * { box-sizing: border-box; }
@@ -69,7 +86,7 @@ export default function Login({
         ::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 99px; }
       `}</style>
 
-      <div style={{ width: "100%", maxWidth: 420 }}>
+      <div style={{ width: "100%", maxWidth: 420, position: "relative" }}>
         <div style={{ textAlign: "center", marginBottom: 48 }}>
           <div
             style={{
