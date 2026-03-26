@@ -1,267 +1,290 @@
 "use client";
 
-import { useMemo, useState } from "react";
 import type { AppState } from "@/lib/types";
 import { MODULES } from "@/lib/modules";
-import { C, FONT, input, btnPrimary, btnGhost, btnDanger } from "@/lib/constants";
+import { C, FONT, DISPLAY, catColor } from "@/lib/constants";
 
-type Props = {
-  appState: AppState;
-  setAppState: React.Dispatch<React.SetStateAction<AppState>>;
-};
+type Props = { appState: AppState };
 
-export default function ProfessorPanel({ appState, setAppState }: Props) {
-  const [studentName, setStudentName] = useState("");
-  const [studentCode, setStudentCode] = useState("");
-  const [msg, setMsg] = useState("");
+const CATEGORIES = [
+  "Comunicación",
+  "Check-in",
+  "Alojamiento",
+  "Gastronomía",
+  "Reservas",
+  "Excursiones",
+  "Reclamos",
+  "Premium",
+];
 
-  const students = appState.students ?? [];
+export default function ProgressPanel({ appState }: Props) {
+  const currentStudent =
+    appState.students.find((s) => s.id === appState.currentStudentId) ?? null;
 
-  const totals = useMemo(() => {
-    return students.map((student) => {
-      const progress = appState.progress?.[student.id] ?? {};
-      const completed = Object.keys(progress).filter((key) => progress[key]).length;
+  if (!currentStudent) return null;
 
-      return {
-        id: student.id,
-        name: student.name,
-        code: student.code,
-        completed,
-        total: MODULES.length,
-      };
-    });
-  }, [students, appState.progress]);
+  const progress = appState.progress?.[currentStudent.id] ?? {};
+  const completed = Object.keys(progress).filter((k) => progress[k]).length;
+  const total = MODULES.length;
+  const percent = total > 0 ? Math.round((completed / total) * 100) : 0;
 
-  const addStudent = () => {
-    const name = studentName.trim();
-    const code = studentCode.trim().toUpperCase();
+  // Ring SVG values
+  const r = 36;
+  const circ = 2 * Math.PI * r;
+  const dash = (percent / 100) * circ;
 
-    if (!name || !code) {
-      setMsg("Complete nombre y contraseña.");
-      return;
-    }
+  // Per-category stats
+  const catStats = CATEGORIES.map((cat) => {
+    const mods = MODULES.filter((m) => m.category === cat);
+    const done = mods.filter((m) => progress[m.id]).length;
+    return { cat, done, total: mods.length };
+  }).filter((c) => c.total > 0);
 
-    const exists = students.some(
-      (s) => s.name.toLowerCase() === name.toLowerCase() || s.code === code
-    );
-
-    if (exists) {
-      setMsg("Ya existe un alumno con ese nombre o contraseña.");
-      return;
-    }
-
-    const id =
-      typeof crypto !== "undefined" && "randomUUID" in crypto
-        ? crypto.randomUUID()
-        : `${Date.now()}-${Math.random().toString(36).slice(2, 8)}`;
-
-    setAppState((prev) => ({
-      ...prev,
-      students: [
-        ...prev.students,
-        {
-          id,
-          name,
-          code,
-        },
-      ],
-    }));
-
-    setStudentName("");
-    setStudentCode("");
-    setMsg("✓ Alumno agregado.");
-  };
-
-  const removeStudent = (studentId: string) => {
-    const confirmed = window.confirm("¿Eliminar este alumno?");
-    if (!confirmed) return;
-
-    setAppState((prev) => {
-      const nextStudents = prev.students.filter((s) => s.id !== studentId);
-
-      const nextProgress = { ...prev.progress };
-      delete nextProgress[studentId];
-
-      const nextDictations = { ...prev.dictations };
-      delete nextDictations[studentId];
-
-      return {
-        ...prev,
-        students: nextStudents,
-        currentStudentId:
-          prev.currentStudentId === studentId ? null : prev.currentStudentId,
-        progress: nextProgress,
-        dictations: nextDictations,
-      };
-    });
-  };
-
-  const resetStudentProgress = (studentId: string) => {
-    const confirmed = window.confirm("¿Resetear progreso de este alumno?");
-    if (!confirmed) return;
-
-    setAppState((prev) => ({
-      ...prev,
-      progress: {
-        ...prev.progress,
-        [studentId]: {},
-      },
-    }));
-  };
-
-  const resetAll = () => {
-    const confirmed = window.confirm("¿Resetear TODO el progreso de todos los alumnos?");
-    if (!confirmed) return;
-
-    setAppState((prev) => ({
-      ...prev,
-      progress: {},
-      dictations: {},
-    }));
-  };
+  // Stat cards
+  const totalPhrases = MODULES.reduce((s, m) => s + (m.phrases?.length ?? 0), 0);
+  const seenPhrases = MODULES.filter((m) => progress[m.id]).reduce(
+    (s, m) => s + (m.phrases?.length ?? 0),
+    0
+  );
 
   return (
-    <div
+    <aside
       style={{
-        marginTop: 16,
-        marginBottom: 20,
         background: C.bg2,
         border: `1px solid ${C.border}`,
-        borderRadius: 24,
+        borderRadius: 20,
         padding: 20,
         fontFamily: FONT,
+        display: "flex",
+        flexDirection: "column",
+        gap: 20,
+        position: "sticky",
+        top: 76,
       }}
     >
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "space-between",
-          alignItems: "center",
-          gap: 12,
-          flexWrap: "wrap",
-          marginBottom: 18,
-        }}
-      >
-        <div>
-          <h3 style={{ margin: 0, fontSize: 22, color: C.text }}>Panel del profesor</h3>
-          <div style={{ fontSize: 13, color: C.textDim, marginTop: 4 }}>
-            Alumnos, accesos y progreso
-          </div>
+      {/* Header */}
+      <div>
+        <div
+          style={{
+            fontSize: 11,
+            fontWeight: 600,
+            letterSpacing: "0.08em",
+            color: C.textDim,
+            textTransform: "uppercase",
+            marginBottom: 14,
+          }}
+        >
+          Mi progreso
         </div>
 
-        <button onClick={resetAll} style={btnDanger}>
-          Reset total
-        </button>
+        {/* Ring + numbers */}
+        <div style={{ display: "flex", alignItems: "center", gap: 16 }}>
+          <svg width="88" height="88" viewBox="0 0 88 88" style={{ flexShrink: 0 }}>
+            {/* Track */}
+            <circle
+              cx="44" cy="44" r={r}
+              fill="none"
+              stroke={C.bg3}
+              strokeWidth="7"
+            />
+            {/* Progress arc */}
+            <circle
+              cx="44" cy="44" r={r}
+              fill="none"
+              stroke={C.accent}
+              strokeWidth="7"
+              strokeDasharray={`${dash} ${circ}`}
+              strokeLinecap="round"
+              transform="rotate(-90 44 44)"
+              style={{ transition: "stroke-dasharray 0.6s ease" }}
+            />
+            {/* Center text */}
+            <text
+              x="44" y="40"
+              textAnchor="middle"
+              fill={C.text}
+              fontSize="17"
+              fontWeight="700"
+              fontFamily={DISPLAY}
+            >
+              {percent}%
+            </text>
+            <text
+              x="44" y="56"
+              textAnchor="middle"
+              fill={C.textDim}
+              fontSize="10"
+              fontFamily={FONT}
+            >
+              completado
+            </text>
+          </svg>
+
+          <div style={{ flex: 1 }}>
+            <div
+              style={{
+                fontFamily: DISPLAY,
+                fontSize: 26,
+                fontWeight: 700,
+                color: C.text,
+                lineHeight: 1,
+              }}
+            >
+              {completed}
+              <span style={{ fontSize: 14, color: C.textDim, fontFamily: FONT, fontWeight: 400 }}>
+                /{total}
+              </span>
+            </div>
+            <div style={{ fontSize: 12, color: C.textDim, marginTop: 4 }}>
+              módulos completados
+            </div>
+            <div
+              style={{
+                marginTop: 10,
+                fontSize: 12,
+                color: C.textMid,
+                background: `${C.accent}12`,
+                border: `1px solid ${C.accent}30`,
+                borderRadius: 8,
+                padding: "4px 10px",
+                display: "inline-block",
+              }}
+            >
+              {currentStudent.name}
+            </div>
+          </div>
+        </div>
       </div>
 
+      {/* Stat mini-grid */}
       <div
         style={{
           display: "grid",
-          gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))",
-          gap: 10,
-          marginBottom: 18,
+          gridTemplateColumns: "1fr 1fr",
+          gap: 8,
         }}
       >
-        <input
-          value={studentName}
-          onChange={(e) => setStudentName(e.target.value)}
-          placeholder="Nombre del alumno"
-          style={input}
-        />
-        <input
-          value={studentCode}
-          onChange={(e) => setStudentCode(e.target.value)}
-          placeholder="Contraseña"
-          style={input}
-        />
-        <button onClick={addStudent} style={btnPrimary}>
-          Agregar alumno
-        </button>
-      </div>
-
-      {msg && (
-        <div
-          style={{
-            marginBottom: 14,
-            fontSize: 13,
-            color: msg.startsWith("✓") ? C.green : C.red,
-          }}
-        >
-          {msg}
-        </div>
-      )}
-
-      <div style={{ display: "grid", gap: 12 }}>
-        {totals.length === 0 && (
+        {[
+          { val: completed, lbl: "Completados" },
+          { val: total - completed, lbl: "Pendientes" },
+          { val: seenPhrases, lbl: "Frases vistas" },
+          { val: totalPhrases - seenPhrases, lbl: "Frases restantes" },
+        ].map(({ val, lbl }) => (
           <div
+            key={lbl}
             style={{
-              border: `1px solid ${C.border}`,
-              borderRadius: 18,
-              padding: 16,
-              color: C.textDim,
               background: C.bg3,
-            }}
-          >
-            Todavía no hay alumnos cargados.
-          </div>
-        )}
-
-        {totals.map((student) => (
-          <div
-            key={student.id}
-            style={{
+              borderRadius: 12,
+              padding: "12px 14px",
               border: `1px solid ${C.border}`,
-              borderRadius: 18,
-              padding: 16,
-              background: C.bg3,
-              display: "grid",
-              gap: 10,
             }}
           >
             <div
               style={{
-                display: "flex",
-                justifyContent: "space-between",
-                alignItems: "center",
-                gap: 12,
-                flexWrap: "wrap",
+                fontFamily: DISPLAY,
+                fontSize: 22,
+                fontWeight: 700,
+                color: C.accent,
+                lineHeight: 1,
               }}
             >
-              <div>
-                <div style={{ fontSize: 18, fontWeight: 700, color: C.text }}>
-                  {student.name}
-                </div>
-                <div style={{ fontSize: 13, color: C.textDim }}>
-                  Contraseña: {student.code}
-                </div>
-              </div>
-
-              <div
-                style={{
-                  fontSize: 13,
-                  fontWeight: 700,
-                  color: C.green,
-                  background: "rgba(74,222,128,0.10)",
-                  border: "1px solid rgba(74,222,128,0.25)",
-                  borderRadius: 999,
-                  padding: "6px 10px",
-                }}
-              >
-                {student.completed}/{student.total} módulos
-              </div>
+              {val}
             </div>
-
-            <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
-              <button onClick={() => resetStudentProgress(student.id)} style={btnGhost}>
-                Reset progreso
-              </button>
-              <button onClick={() => removeStudent(student.id)} style={btnDanger}>
-                Eliminar alumno
-              </button>
+            <div style={{ fontSize: 11, color: C.textDim, marginTop: 4 }}>
+              {lbl}
             </div>
           </div>
         ))}
       </div>
-    </div>
+
+      {/* Category bars */}
+      <div>
+        <div
+          style={{
+            fontSize: 11,
+            fontWeight: 600,
+            letterSpacing: "0.08em",
+            color: C.textDim,
+            textTransform: "uppercase",
+            marginBottom: 12,
+          }}
+        >
+          Por categoría
+        </div>
+
+        <div style={{ display: "flex", flexDirection: "column", gap: 9 }}>
+          {catStats.map(({ cat, done, total: tot }) => {
+            const pct = tot > 0 ? Math.round((done / tot) * 100) : 0;
+            const color = catColor(cat);
+            return (
+              <div key={cat}>
+                <div
+                  style={{
+                    display: "flex",
+                    justifyContent: "space-between",
+                    marginBottom: 4,
+                  }}
+                >
+                  <span style={{ fontSize: 12, color: C.textMid }}>{cat}</span>
+                  <span
+                    style={{
+                      fontSize: 11,
+                      color: C.textDim,
+                      fontFamily: "'JetBrains Mono', monospace",
+                    }}
+                  >
+                    {done}/{tot}
+                  </span>
+                </div>
+                <div
+                  style={{
+                    height: 5,
+                    borderRadius: 99,
+                    background: C.bg3,
+                    overflow: "hidden",
+                  }}
+                >
+                  <div
+                    style={{
+                      width: `${pct}%`,
+                      height: "100%",
+                      borderRadius: 99,
+                      background: color,
+                      transition: "width 0.5s ease",
+                    }}
+                  />
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      </div>
+
+      {/* Tip */}
+      <div
+        style={{
+          background: `${C.accent}0e`,
+          border: `1px solid ${C.accent}28`,
+          borderRadius: 12,
+          padding: "12px 14px",
+        }}
+      >
+        <div
+          style={{
+            fontSize: 10,
+            fontWeight: 600,
+            letterSpacing: "0.08em",
+            color: C.accent,
+            textTransform: "uppercase",
+            marginBottom: 6,
+          }}
+        >
+          Consejo del día
+        </div>
+        <div style={{ fontSize: 12, color: C.textMid, lineHeight: 1.65 }}>
+          Practicá las frases en voz alta — la pronunciación mejora mucho más rápido hablando que leyendo.
+        </div>
+      </div>
+    </aside>
   );
 }

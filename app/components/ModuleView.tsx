@@ -3,7 +3,14 @@
 import { useEffect, useMemo, useState } from "react";
 import { MODULES } from "@/lib/modules";
 import type { AppState } from "@/lib/types";
-import { C, FONT, btnGhost, btnPrimary, btnDanger } from "@/lib/constants";
+import {
+  C,
+  FONT,
+  DISPLAY,
+  catColor,
+  btnGhost,
+  btnDanger,
+} from "@/lib/constants";
 
 type Props = {
   appState: AppState;
@@ -35,19 +42,10 @@ export default function ModuleView({
 
   useEffect(() => {
     if (typeof window === "undefined") return;
-
     const synth = window.speechSynthesis;
-
-    const loadVoices = () => {
-      synth.getVoices();
-    };
-
-    loadVoices();
-    speechSynthesis.onvoiceschanged = loadVoices;
-
-    return () => {
-      speechSynthesis.onvoiceschanged = null;
-    };
+    synth.getVoices();
+    speechSynthesis.onvoiceschanged = () => synth.getVoices();
+    return () => { speechSynthesis.onvoiceschanged = null; };
   }, []);
 
   useEffect(() => {
@@ -59,9 +57,7 @@ export default function ModuleView({
     stopSpeak();
   }, [selectedModuleId]);
 
-  useEffect(() => {
-    stopSpeak();
-  }, [phraseIndex, dialogueIndex, activeTab]);
+  useEffect(() => { stopSpeak(); }, [phraseIndex, dialogueIndex, activeTab]);
 
   const currentPhrase = module?.phrases?.[phraseIndex];
   const currentDialogue = module?.miniDialogues?.[dialogueIndex];
@@ -69,32 +65,21 @@ export default function ModuleView({
 
   const speak = (text: string, slow = false) => {
     if (typeof window === "undefined" || !window.speechSynthesis) return;
-
     const synth = window.speechSynthesis;
     synth.cancel();
-
     const utterance = new SpeechSynthesisUtterance(text);
     const voices = synth.getVoices();
-
     const ptVoice =
       voices.find((v) => v.lang?.toLowerCase() === "pt-br") ||
       voices.find((v) => v.lang?.toLowerCase().startsWith("pt")) ||
       voices.find((v) => v.name?.toLowerCase().includes("portugu")) ||
       null;
-
-    if (ptVoice) {
-      utterance.voice = ptVoice;
-      utterance.lang = ptVoice.lang;
-    } else {
-      utterance.lang = "pt-BR";
-    }
-
+    if (ptVoice) { utterance.voice = ptVoice; utterance.lang = ptVoice.lang; }
+    else { utterance.lang = "pt-BR"; }
     utterance.rate = slow ? 0.78 : 0.95;
     utterance.pitch = 1;
-
     utterance.onend = () => setSpeaking(false);
     utterance.onerror = () => setSpeaking(false);
-
     setSpeaking(true);
     synth.speak(utterance);
   };
@@ -108,45 +93,24 @@ export default function ModuleView({
   const markModuleDone = () => {
     const studentId = appState.currentStudentId;
     if (!studentId || !module) return;
-
-    setAppState((prev) => {
-      const prevProgress = prev.progress?.[studentId] ?? {};
-      return {
-        ...prev,
-        progress: {
-          ...prev.progress,
-          [studentId]: {
-            ...prevProgress,
-            [module.id]: true,
-          },
-        },
-      };
-    });
+    setAppState((prev) => ({
+      ...prev,
+      progress: {
+        ...prev.progress,
+        [studentId]: { ...(prev.progress?.[studentId] ?? {}), [module.id]: true },
+      },
+    }));
   };
 
   const resetModule = () => {
     const studentId = appState.currentStudentId;
     if (!studentId || !module) return;
-
-    setPhraseIndex(0);
-    setDialogueIndex(0);
-    setQuizIndex(0);
-    setSelectedAnswer(null);
-    setActiveTab("phrases");
-    stopSpeak();
-
+    setPhraseIndex(0); setDialogueIndex(0); setQuizIndex(0);
+    setSelectedAnswer(null); setActiveTab("phrases"); stopSpeak();
     setAppState((prev) => {
-      const prevProgress = prev.progress?.[studentId] ?? {};
-      const nextProgress = { ...prevProgress };
-      delete nextProgress[module.id];
-
-      return {
-        ...prev,
-        progress: {
-          ...prev.progress,
-          [studentId]: nextProgress,
-        },
-      };
+      const next = { ...(prev.progress?.[studentId] ?? {}) };
+      delete next[module.id];
+      return { ...prev, progress: { ...prev.progress, [studentId]: next } };
     });
   };
 
@@ -161,217 +125,237 @@ export default function ModuleView({
     { id: "quiz", label: "Quiz" },
   ];
 
-  const cardStyle: React.CSSProperties = {
-    background: "rgba(10, 18, 14, 0.92)",
-    border: "1px solid rgba(255,255,255,0.06)",
-    borderRadius: 24,
+  // Shared styles
+  const card: React.CSSProperties = {
+    background: C.bg2,
+    border: `1px solid ${C.border}`,
+    borderRadius: 20,
     padding: 24,
-    boxShadow: "0 20px 50px rgba(0,0,0,0.4)",
-    backdropFilter: "blur(14px)",
   };
 
   const bigPt: React.CSSProperties = {
-    fontSize: 30,
-    fontWeight: 800,
-    lineHeight: 1.2,
+    fontFamily: DISPLAY,
+    fontSize: 28,
+    fontWeight: 700,
+    lineHeight: 1.25,
     color: C.text,
     marginBottom: 10,
     textAlign: "center",
   };
 
   const esText: React.CSSProperties = {
-    fontSize: 18,
-    lineHeight: 1.4,
-    color: "#9ca3af",
+    fontSize: 17,
+    lineHeight: 1.5,
+    color: C.textMid,
     textAlign: "center",
     minHeight: 28,
   };
 
-  const navBtn: React.CSSProperties = {
-    ...btnGhost,
-    minWidth: 110,
-    justifyContent: "center",
+  // Accent button (golden)
+  const btnAccent: React.CSSProperties = {
+    background: `linear-gradient(135deg, ${C.accent}, #9a7230)`,
+    color: "#0e1410",
+    border: "none",
+    borderRadius: 10,
+    padding: "10px 20px",
+    fontSize: 13,
+    fontWeight: 700,
+    cursor: "pointer",
+    fontFamily: FONT,
   };
 
-  const actionBtn: React.CSSProperties = {
-    ...btnPrimary,
-    minWidth: 120,
-    justifyContent: "center",
+  const btnPrimary: React.CSSProperties = {
+    background: `linear-gradient(135deg, ${C.green}, ${C.greenDim})`,
+    color: "#F5F0E8",
+    border: "none",
+    borderRadius: 10,
+    padding: "10px 20px",
+    fontSize: 13,
+    fontWeight: 700,
+    cursor: "pointer",
+    fontFamily: FONT,
   };
+
+  const navBtn: React.CSSProperties = { ...btnGhost, minWidth: 110 };
+
+  const color = catColor(module?.category ?? "");
 
   if (!module) {
     return (
-      <div style={cardStyle}>
+      <div style={card}>
         <div style={{ color: C.text }}>No hay módulos disponibles.</div>
       </div>
     );
   }
 
   return (
-    <div style={{ display: "grid", gap: 18, fontFamily: FONT }}>
-      <div
-        style={{
-          ...cardStyle,
-          padding: 18,
-          display: "flex",
-          justifyContent: "space-between",
-          gap: 16,
-          alignItems: "center",
-          flexWrap: "wrap",
-        }}
-      >
-        <div>
-          <div style={{ fontSize: 13, color: "#9ca3af", marginBottom: 6 }}>
-            {module.category}
-          </div>
-          <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
-            <span style={{ fontSize: 24 }}>{module.emoji}</span>
-            <h2
-              style={{
-                margin: 0,
-                fontSize: 24,
-                color: C.text,
-                letterSpacing: "0.3px",
-              }}
-            >
-              {module.title}
-            </h2>
-          </div>
-        </div>
+    <div style={{ display: "grid", gap: 16, fontFamily: FONT }}>
 
-        <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
-          {onGoHome && (
-            <button onClick={onGoHome} style={navBtn}>
-              🏠 Inicio
-            </button>
-          )}
-
-          <button
-            onClick={resetModule}
-            style={{
-              ...btnDanger,
-              opacity: 0.7,
-            }}
-          >
-            Reset módulo
-          </button>
-
-          <button
-            onClick={markModuleDone}
-            style={{
-              ...actionBtn,
-              boxShadow:
-                "0 0 0 1px rgba(74,222,128,0.25), 0 8px 20px rgba(34,197,94,0.25)",
-            }}
-          >
-            {isCompleted ? "✓ Completado" : "Marcar completo"}
-          </button>
-        </div>
-      </div>
-
+      {/* ── Module hero ── */}
       <div
         style={{
           position: "relative",
           width: "100%",
-          height: 260,
-          borderRadius: 24,
+          height: 240,
+          borderRadius: 20,
           overflow: "hidden",
-          border: "1px solid rgba(255,255,255,0.08)",
-          boxShadow: "0 20px 50px rgba(0,0,0,0.35)",
-          background: "#1f2937",
+          border: `1px solid ${C.border}`,
         }}
       >
         <img
           src="/villa.jpg"
           alt="Villa"
-          style={{
-            display: "block",
-            width: "100%",
-            height: "100%",
-            objectFit: "cover",
-          }}
+          style={{ display: "block", width: "100%", height: "100%", objectFit: "cover" }}
         />
+        {/* gradient overlay */}
         <div
           style={{
             position: "absolute",
             inset: 0,
-            background:
-              "linear-gradient(to top, rgba(0,0,0,0.55), rgba(0,0,0,0.10))",
+            background: "linear-gradient(to top, rgba(10,18,14,0.90) 0%, rgba(10,18,14,0.25) 55%, transparent 100%)",
           }}
         />
+        {/* action buttons top-right */}
         <div
           style={{
             position: "absolute",
-            left: 20,
-            bottom: 18,
-            color: "white",
+            top: 14,
+            right: 14,
+            display: "flex",
+            gap: 8,
           }}
         >
-          <div style={{ fontSize: 13, opacity: 0.9 }}>{module.category}</div>
+          {onGoHome && (
+            <button onClick={onGoHome} style={{ ...btnGhost, fontSize: 12, padding: "6px 12px", background: "rgba(10,18,14,0.7)" }}>
+              🏠 Inicio
+            </button>
+          )}
+          <button
+            onClick={resetModule}
+            style={{ ...btnDanger, fontSize: 12, padding: "6px 12px", background: "rgba(10,18,14,0.7)" }}
+          >
+            ↺ Reset
+          </button>
+        </div>
+        {/* bottom content */}
+        <div style={{ position: "absolute", left: 20, bottom: 18, right: 20 }}>
+          <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 6 }}>
+            <span
+              style={{
+                fontSize: 11,
+                fontWeight: 600,
+                letterSpacing: "0.06em",
+                padding: "3px 10px",
+                borderRadius: 20,
+                background: `${color}22`,
+                color: color,
+                border: `1px solid ${color}44`,
+              }}
+            >
+              {module.category}
+            </span>
+            <span
+              style={{
+                fontSize: 11,
+                color: "rgba(255,255,255,0.5)",
+                background: "rgba(255,255,255,0.1)",
+                padding: "3px 10px",
+                borderRadius: 20,
+                border: "1px solid rgba(255,255,255,0.12)",
+              }}
+            >
+              {module.phrases?.length ?? 0} frases · {module.quiz?.length ?? 0} quiz
+            </span>
+          </div>
           <div
             style={{
-              fontSize: 28,
-              fontWeight: 800,
-              letterSpacing: "0.3px",
+              fontFamily: DISPLAY,
+              fontSize: 26,
+              fontWeight: 700,
+              color: "#F5F0E8",
+              lineHeight: 1.2,
+              display: "flex",
+              alignItems: "center",
+              gap: 10,
             }}
           >
-            {module.emoji} {module.title}
+            <span style={{ fontSize: 22 }}>{module.emoji}</span>
+            {module.title}
           </div>
         </div>
       </div>
 
-      <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
-        {tabs.map((tab) => (
-          <button
-            key={tab.id}
-            onClick={() => {
-              stopSpeak();
-              setActiveTab(tab.id);
-            }}
-            style={{
-              border: "1px solid rgba(255,255,255,0.05)",
-              borderRadius: 999,
-              padding: "10px 16px",
-              cursor: "pointer",
-              fontWeight: 700,
-              background:
-                activeTab === tab.id ? C.green : "rgba(255,255,255,0.03)",
-              color: activeTab === tab.id ? "#052e16" : C.text,
-            }}
-          >
-            {tab.label}
-          </button>
-        ))}
+      {/* ── Tabs + complete button ── */}
+      <div style={{ display: "flex", alignItems: "center", gap: 8, flexWrap: "wrap" }}>
+        <div style={{ display: "flex", gap: 4, flex: 1 }}>
+          {tabs.map((tab) => (
+            <button
+              key={tab.id}
+              onClick={() => { stopSpeak(); setActiveTab(tab.id); }}
+              style={{
+                borderRadius: 20,
+                padding: "8px 18px",
+                fontSize: 13,
+                fontWeight: 600,
+                border: activeTab === tab.id ? `1px solid ${C.accent}55` : `1px solid ${C.border}`,
+                cursor: "pointer",
+                fontFamily: FONT,
+                background: activeTab === tab.id ? `${C.accent}18` : "transparent",
+                color: activeTab === tab.id ? C.accent : C.textDim,
+                letterSpacing: "0.02em",
+              }}
+            >
+              {tab.label}
+            </button>
+          ))}
+        </div>
+
+        <button
+          onClick={markModuleDone}
+          style={{
+            ...btnAccent,
+            ...(isCompleted
+              ? { background: `${C.green}20`, color: C.green, border: `1px solid ${C.green}44` }
+              : {}),
+          }}
+        >
+          {isCompleted ? "✓ Completado" : "Marcar completo"}
+        </button>
       </div>
 
+      {/* ── Phrases tab ── */}
       {activeTab === "phrases" && currentPhrase && (
-        <div style={cardStyle}>
-          <div
-            style={{
-              fontSize: 13,
-              color: "#9ca3af",
-              textAlign: "center",
-              marginBottom: 14,
-            }}
-          >
+        <div style={card}>
+          <div style={{ fontSize: 12, color: C.textDim, textAlign: "center", marginBottom: 20, letterSpacing: "0.06em" }}>
             Frase {phraseIndex + 1} de {module.phrases.length}
+          </div>
+
+          {/* Progress dots */}
+          <div style={{ display: "flex", justifyContent: "center", gap: 4, marginBottom: 24 }}>
+            {module.phrases.map((_, i) => (
+              <div
+                key={i}
+                onClick={() => setPhraseIndex(i)}
+                style={{
+                  width: i === phraseIndex ? 20 : 6,
+                  height: 6,
+                  borderRadius: 99,
+                  background: i === phraseIndex ? C.accent : i < phraseIndex ? `${C.accent}50` : C.bg3,
+                  cursor: "pointer",
+                  transition: "all 0.2s ease",
+                  border: `1px solid ${i === phraseIndex ? C.accent : C.border}`,
+                }}
+              />
+            ))}
           </div>
 
           <div style={bigPt}>{currentPhrase.pt}</div>
           <div style={esText}>
-            {showTranslation ? currentPhrase.es : "••••••••••••••••"}
+            {showTranslation ? currentPhrase.es : "· · · · · · · · · · · · ·"}
           </div>
 
-          <div
-            style={{
-              display: "flex",
-              justifyContent: "center",
-              gap: 10,
-              flexWrap: "wrap",
-              marginTop: 22,
-            }}
-          >
-            <button onClick={() => speak(currentPhrase.pt)} style={actionBtn}>
+          <div style={{ display: "flex", justifyContent: "center", gap: 8, flexWrap: "wrap", marginTop: 24 }}>
+            <button onClick={() => speak(currentPhrase.pt)} style={btnPrimary}>
               🔊 Escuchar
             </button>
             <button onClick={() => speak(currentPhrase.pt, true)} style={navBtn}>
@@ -380,151 +364,103 @@ export default function ModuleView({
             <button onClick={stopSpeak} style={btnDanger}>
               ⏹ Parar
             </button>
-            <button
-              onClick={() => setShowTranslation((v) => !v)}
-              style={navBtn}
-            >
+            <button onClick={() => setShowTranslation((v) => !v)} style={{ ...navBtn, color: C.accent, borderColor: `${C.accent}44` }}>
               {showTranslation ? "Ocultar ES" : "Mostrar ES"}
             </button>
           </div>
 
-          <div
-            style={{
-              display: "flex",
-              justifyContent: "space-between",
-              gap: 10,
-              marginTop: 24,
-            }}
-          >
-            <button
-              onClick={() => setPhraseIndex((i) => Math.max(i - 1, 0))}
-              style={navBtn}
-              disabled={phraseIndex === 0}
-            >
-              ⬅ Anterior
+          <div style={{ display: "flex", justifyContent: "space-between", gap: 10, marginTop: 24 }}>
+            <button onClick={() => setPhraseIndex((i) => Math.max(i - 1, 0))} style={navBtn} disabled={phraseIndex === 0}>
+              ← Anterior
             </button>
-            <button
-              onClick={() =>
-                setPhraseIndex((i) => Math.min(i + 1, module.phrases.length - 1))
-              }
-              style={actionBtn}
-              disabled={phraseIndex === module.phrases.length - 1}
-            >
-              Siguiente ➡
+            <button onClick={() => setPhraseIndex((i) => Math.min(i + 1, module.phrases.length - 1))} style={btnAccent} disabled={phraseIndex === module.phrases.length - 1}>
+              Siguiente →
             </button>
           </div>
         </div>
       )}
 
+      {/* ── Dialogue tab ── */}
       {activeTab === "dialogue" && currentDialogue && (
-        <div style={cardStyle}>
-          <div
-            style={{
-              fontSize: 13,
-              color: "#9ca3af",
-              textAlign: "center",
-              marginBottom: 14,
-            }}
-          >
+        <div style={card}>
+          <div style={{ fontSize: 12, color: C.textDim, textAlign: "center", marginBottom: 16, letterSpacing: "0.06em" }}>
             Diálogo {dialogueIndex + 1} de {module.miniDialogues.length}
           </div>
 
-          <div
-            style={{
-              display: "inline-block",
-              margin: "0 auto 16px",
-              padding: "6px 12px",
-              borderRadius: 999,
-              background: "rgba(74,222,128,0.12)",
-              color: C.green,
-              fontWeight: 700,
-            }}
-          >
-            {currentDialogue.speaker}
+          <div style={{ textAlign: "center", marginBottom: 16 }}>
+            <span
+              style={{
+                display: "inline-block",
+                padding: "5px 14px",
+                borderRadius: 20,
+                background: `${color}18`,
+                color: color,
+                fontWeight: 600,
+                fontSize: 13,
+                border: `1px solid ${color}44`,
+              }}
+            >
+              {currentDialogue.speaker}
+            </span>
           </div>
 
           <div style={bigPt}>{currentDialogue.pt}</div>
           <div style={esText}>
-            {showTranslation ? currentDialogue.es : "••••••••••••••••"}
+            {showTranslation ? currentDialogue.es : "· · · · · · · · · · · · ·"}
           </div>
 
-          <div
-            style={{
-              display: "flex",
-              justifyContent: "center",
-              gap: 10,
-              flexWrap: "wrap",
-              marginTop: 22,
-            }}
-          >
-            <button onClick={() => speak(currentDialogue.pt)} style={actionBtn}>
+          <div style={{ display: "flex", justifyContent: "center", gap: 8, flexWrap: "wrap", marginTop: 24 }}>
+            <button onClick={() => speak(currentDialogue.pt)} style={btnPrimary}>
               🔊 Escuchar
             </button>
-            <button
-              onClick={() => speak(currentDialogue.pt, true)}
-              style={navBtn}
-            >
+            <button onClick={() => speak(currentDialogue.pt, true)} style={navBtn}>
               🐢 Lento
             </button>
             <button onClick={stopSpeak} style={btnDanger}>
               ⏹ Parar
             </button>
-            <button
-              onClick={() => setShowTranslation((v) => !v)}
-              style={navBtn}
-            >
+            <button onClick={() => setShowTranslation((v) => !v)} style={{ ...navBtn, color: C.accent, borderColor: `${C.accent}44` }}>
               {showTranslation ? "Ocultar ES" : "Mostrar ES"}
             </button>
           </div>
 
-          <div
-            style={{
-              display: "flex",
-              justifyContent: "space-between",
-              gap: 10,
-              marginTop: 24,
-            }}
-          >
-            <button
-              onClick={() => setDialogueIndex((i) => Math.max(i - 1, 0))}
-              style={navBtn}
-              disabled={dialogueIndex === 0}
-            >
-              ⬅ Anterior
+          <div style={{ display: "flex", justifyContent: "space-between", gap: 10, marginTop: 24 }}>
+            <button onClick={() => setDialogueIndex((i) => Math.max(i - 1, 0))} style={navBtn} disabled={dialogueIndex === 0}>
+              ← Anterior
             </button>
-            <button
-              onClick={() =>
-                setDialogueIndex((i) =>
-                  Math.min(i + 1, module.miniDialogues.length - 1)
-                )
-              }
-              style={actionBtn}
-              disabled={dialogueIndex === module.miniDialogues.length - 1}
-            >
-              Siguiente ➡
+            <button onClick={() => setDialogueIndex((i) => Math.min(i + 1, module.miniDialogues.length - 1))} style={btnAccent} disabled={dialogueIndex === module.miniDialogues.length - 1}>
+              Siguiente →
             </button>
           </div>
         </div>
       )}
 
+      {/* ── Quiz tab ── */}
       {activeTab === "quiz" && currentQuiz && (
-        <div style={cardStyle}>
-          <div
-            style={{
-              fontSize: 13,
-              color: "#9ca3af",
-              textAlign: "center",
-              marginBottom: 14,
-            }}
-          >
+        <div style={card}>
+          <div style={{ fontSize: 12, color: C.textDim, textAlign: "center", marginBottom: 16, letterSpacing: "0.06em" }}>
             Quiz {quizIndex + 1} de {module.quiz.length}
+          </div>
+
+          {/* Quiz progress bar */}
+          <div style={{ height: 3, background: C.bg3, borderRadius: 99, marginBottom: 24, overflow: "hidden" }}>
+            <div
+              style={{
+                width: `${((quizIndex + 1) / module.quiz.length) * 100}%`,
+                height: "100%",
+                background: C.accent,
+                borderRadius: 99,
+                transition: "width 0.3s ease",
+              }}
+            />
           </div>
 
           <div
             style={{
-              fontSize: 24,
-              fontWeight: 800,
-              lineHeight: 1.3,
+              fontFamily: DISPLAY,
+              fontSize: 22,
+              fontWeight: 700,
+              lineHeight: 1.35,
               color: C.text,
               textAlign: "center",
               marginBottom: 24,
@@ -533,37 +469,54 @@ export default function ModuleView({
             {currentQuiz.question}
           </div>
 
-          <div style={{ display: "grid", gap: 12 }}>
+          <div style={{ display: "grid", gap: 10 }}>
             {currentQuiz.options.map((opt) => {
               const isCorrect = !!selectedAnswer && opt === currentQuiz.answer;
-              const isWrong =
-                selectedAnswer === opt && opt !== currentQuiz.answer;
-
+              const isWrong = selectedAnswer === opt && opt !== currentQuiz.answer;
               return (
                 <button
                   key={opt}
                   onClick={() => setSelectedAnswer(opt)}
                   style={{
                     textAlign: "left",
-                    borderRadius: 18,
-                    padding: "14px 16px",
+                    borderRadius: 14,
+                    padding: "13px 16px",
                     border: `1px solid ${
-                      isCorrect
-                        ? "rgba(74,222,128,0.45)"
-                        : isWrong
-                        ? "rgba(248,113,113,0.45)"
-                        : "rgba(255,255,255,0.06)"
+                      isCorrect ? `${C.green}60`
+                      : isWrong ? `${C.red}60`
+                      : C.border
                     }`,
                     background: isCorrect
-                      ? "rgba(74,222,128,0.10)"
+                      ? `${C.green}12`
                       : isWrong
-                      ? "rgba(248,113,113,0.10)"
-                      : "rgba(255,255,255,0.03)",
-                    color: C.text,
+                      ? `${C.red}12`
+                      : C.bg3,
+                    color: isCorrect ? C.green : isWrong ? C.red : C.textMid,
                     cursor: "pointer",
-                    fontWeight: 700,
+                    fontWeight: 600,
+                    fontSize: 14,
+                    fontFamily: FONT,
+                    display: "flex",
+                    alignItems: "center",
+                    gap: 10,
+                    transition: "all 0.15s",
                   }}
                 >
+                  <span
+                    style={{
+                      width: 20,
+                      height: 20,
+                      borderRadius: "50%",
+                      border: `1.5px solid ${isCorrect ? C.green : isWrong ? C.red : C.border}`,
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      fontSize: 11,
+                      flexShrink: 0,
+                    }}
+                  >
+                    {isCorrect ? "✓" : isWrong ? "✗" : ""}
+                  </span>
                   {opt}
                 </button>
               );
@@ -573,47 +526,37 @@ export default function ModuleView({
           {selectedAnswer && (
             <div
               style={{
-                marginTop: 18,
-                fontSize: 15,
-                fontWeight: 700,
-                color:
-                  selectedAnswer === currentQuiz.answer ? C.green : "#f87171",
+                marginTop: 16,
+                padding: "12px 16px",
+                borderRadius: 12,
+                background: selectedAnswer === currentQuiz.answer ? `${C.green}10` : `${C.red}10`,
+                border: `1px solid ${selectedAnswer === currentQuiz.answer ? `${C.green}40` : `${C.red}40`}`,
+                fontSize: 14,
+                fontWeight: 600,
+                color: selectedAnswer === currentQuiz.answer ? C.green : C.red,
                 textAlign: "center",
               }}
             >
               {selectedAnswer === currentQuiz.answer
-                ? "✓ Correcto"
-                : `✗ Correcta: ${currentQuiz.answer}`}
+                ? "✓ ¡Correcto!"
+                : `✗ Respuesta correcta: ${currentQuiz.answer}`}
             </div>
           )}
 
-          <div
-            style={{
-              display: "flex",
-              justifyContent: "space-between",
-              gap: 10,
-              marginTop: 24,
-            }}
-          >
+          <div style={{ display: "flex", justifyContent: "space-between", gap: 10, marginTop: 20 }}>
             <button
-              onClick={() => {
-                setSelectedAnswer(null);
-                setQuizIndex((i) => Math.max(i - 1, 0));
-              }}
+              onClick={() => { setSelectedAnswer(null); setQuizIndex((i) => Math.max(i - 1, 0)); }}
               style={navBtn}
               disabled={quizIndex === 0}
             >
-              ⬅ Anterior
+              ← Anterior
             </button>
             <button
-              onClick={() => {
-                setSelectedAnswer(null);
-                setQuizIndex((i) => Math.min(i + 1, module.quiz.length - 1));
-              }}
-              style={actionBtn}
+              onClick={() => { setSelectedAnswer(null); setQuizIndex((i) => Math.min(i + 1, module.quiz.length - 1)); }}
+              style={btnAccent}
               disabled={quizIndex === module.quiz.length - 1}
             >
-              Siguiente ➡
+              Siguiente →
             </button>
           </div>
         </div>
