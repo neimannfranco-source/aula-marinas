@@ -54,9 +54,9 @@ export default function Home() {
   const currentStudent =
     appState.students.find((s) => s.id === appState.currentStudentId) ?? null;
 
-  const lastPosition = currentStudent
-    ? appState.lastPosition?.[currentStudent.id]
-    : null;
+  const lastPosition = currentStudent && selectedModuleId
+  ? appState.lastPosition?.[currentStudent.id]?.[selectedModuleId] ?? null
+  : null;
 
   const continueModule = lastPosition
     ? MODULES.find((m) => m.id === lastPosition.moduleId)

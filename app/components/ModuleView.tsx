@@ -81,9 +81,8 @@ export default function ModuleView({
     const studentId = appState.currentStudentId;
     if (!studentId || !module) return;
 
-    const saved = appState.lastPosition?.[studentId];
-
-    if (saved && saved.moduleId === module.id) {
+    const saved = appState.lastPosition?.[studentId]?.[module.id];
+if (saved) {
       const safeTab: TabType =
         saved.tab === "phrases" ||
         saved.tab === "dialogue" ||
@@ -141,9 +140,12 @@ export default function ModuleView({
       return {
         ...prev,
         lastPosition: {
-          ...prev.lastPosition,
-          [studentId]: nextPosition,
-        },
+  ...prev.lastPosition,
+  [studentId]: {
+    ...(prev.lastPosition?.[studentId] ?? {}),
+    [module.id]: nextPosition,
+  },
+},
       };
     });
   }, [
@@ -234,16 +236,19 @@ export default function ModuleView({
           [studentId]: nextProgress,
         },
         lastPosition: {
-          ...prev.lastPosition,
-          [studentId]: {
-            moduleId: module.id,
-            tab: "phrases",
-            phraseIndex: 0,
-            vocabIndex: 0,
-            dialogueIndex: 0,
-            quizIndex: 0,
-          },
-        },
+  ...prev.lastPosition,
+  [studentId]: {
+    ...(prev.lastPosition?.[studentId] ?? {}),
+    [module.id]: {
+      moduleId: module.id,
+      tab: "phrases",
+      phraseIndex: 0,
+      vocabIndex: 0,
+      dialogueIndex: 0,
+      quizIndex: 0,
+    },
+  },
+},
       };
     });
   };

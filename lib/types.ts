@@ -20,7 +20,7 @@ export type AppState = {
   currentStudentId: string | null;
   progress: Record<string, Record<string, boolean>>;
   dictations: Record<string, string>;
-  lastPosition: Record<string, ProgressPosition>;
+  lastPosition: Record<string, Record<string, ProgressPosition>>;
 };
 
 export type LoadStatus = "loading" | "ready";
