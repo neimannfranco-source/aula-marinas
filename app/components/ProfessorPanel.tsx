@@ -6,7 +6,6 @@ import { C, FONT, DISPLAY, catColor } from "@/lib/constants";
 
 type Props = {
   appState: AppState;
-  setAppState: React.Dispatch<React.SetStateAction<AppState>>;
 };
 
 const CATEGORIES = [
