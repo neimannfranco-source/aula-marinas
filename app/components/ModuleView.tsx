@@ -33,6 +33,7 @@ export default function ModuleView({
   setAppState,
   selectedModuleId,
   onGoHome,
+  onPositionChange,
 }: Props) {
   const module = useMemo(
     () => MODULES.find((m) => m.id === selectedModuleId) ?? MODULES[0],
@@ -56,17 +57,7 @@ export default function ModuleView({
       speechSynthesis.onvoiceschanged = null;
     };
   }, []);
-  useEffect(() => {
-  if (!module) return;
-
-  onPositionChange?.({
-    moduleId: module.id,
-    tab: activeTab,
-    phraseIndex,
-    dialogueIndex,
-    quizIndex,
-  });
-}, [module?.id, activeTab, phraseIndex, dialogueIndex, quizIndex, onPositionChange]);
+  
 useEffect(() => {
   if (!module) return;
 
