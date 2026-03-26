@@ -63,9 +63,17 @@ const lastPosition = currentStudent
   ? appState.lastPosition?.[currentStudent.id]?.[lastVisitedId] ?? null
   : null;
 
-const continueModule = lastPosition
-  ? MODULES.find((m) => m.id === lastPosition.moduleId)
-  : null;
+const hasRealProgress =
+  lastPosition !== null &&
+  (lastPosition.tab !== "phrases" ||
+    lastPosition.phraseIndex > 0 ||
+    lastPosition.dialogueIndex > 0 ||
+    lastPosition.quizIndex > 0);
+
+const continueModule =
+  hasRealProgress
+    ? MODULES.find((m) => m.id === lastPosition!.moduleId)
+    : null;
 
   useEffect(() => {
     let mounted = true;
@@ -569,7 +577,7 @@ const continueModule = lastPosition
             </button>
           )}
 
-          {lastPosition && continueModule && (
+          {hasRealProgress && continueModule && (
             <div
               style={{
                 marginBottom: 16,
