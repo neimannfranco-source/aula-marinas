@@ -71,27 +71,8 @@ useEffect(() => {
   const studentId = appState.currentStudentId;
   if (!studentId || !module) return;
 
-  const saved = appState.lastPosition?.[studentId];
-  if (!saved || saved.moduleId !== module.id) return;
-
-const safeTab: TabType =
-  saved.tab === "phrases" ||
-  saved.tab === "dialogue" ||
-  saved.tab === "quiz"
-    ? saved.tab
-    : "phrases";
-
-setActiveTab(safeTab);
-setPhraseIndex(saved.phraseIndex ?? 0);
-setDialogueIndex(saved.dialogueIndex ?? 0);
-setQuizIndex(saved.quizIndex ?? 0);
-}, [appState.currentStudentId, appState.lastPosition, module?.id]);
-useEffect(() => {
-  const studentId = appState.currentStudentId;
-  if (!studentId || !module) return;
-
   setAppState((prev) => {
-    const currentSaved = prev.lastPosition?.[studentId];
+    const prevPosition = prev.lastPosition?.[studentId];
 
     const nextPosition = {
       moduleId: module.id,
@@ -103,13 +84,13 @@ useEffect(() => {
     };
 
     if (
-      currentSaved &&
-      currentSaved.moduleId === nextPosition.moduleId &&
-      currentSaved.tab === nextPosition.tab &&
-      currentSaved.phraseIndex === nextPosition.phraseIndex &&
-      currentSaved.vocabIndex === nextPosition.vocabIndex &&
-      currentSaved.dialogueIndex === nextPosition.dialogueIndex &&
-      currentSaved.quizIndex === nextPosition.quizIndex
+      prevPosition &&
+      prevPosition.moduleId === nextPosition.moduleId &&
+      prevPosition.tab === nextPosition.tab &&
+      prevPosition.phraseIndex === nextPosition.phraseIndex &&
+      prevPosition.vocabIndex === nextPosition.vocabIndex &&
+      prevPosition.dialogueIndex === nextPosition.dialogueIndex &&
+      prevPosition.quizIndex === nextPosition.quizIndex
     ) {
       return prev;
     }

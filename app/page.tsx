@@ -60,15 +60,6 @@ const lastPosition = currentStudent
   ? MODULES.find((m) => m.id === lastPosition.moduleId)
   : null;
 
-useEffect(() => {
-  if (!currentStudent) return;
-
-  const saved = appState.lastPosition?.[currentStudent.id];
-
-  if (saved?.moduleId && saved.moduleId !== selectedModuleId) {
-    setSelectedModuleId(saved.moduleId);
-  }
-}, [currentStudent?.id, appState.lastPosition, selectedModuleId]);
 
   useEffect(() => {
     let mounted = true;
