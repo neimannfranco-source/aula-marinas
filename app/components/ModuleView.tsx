@@ -48,9 +48,11 @@ export default function ModuleView({
   const [showTranslation, setShowTranslation] = useState(true);
   const [speaking, setSpeaking] = useState(false);
   const [didRestorePosition, setDidRestorePosition] = useState(false);
-const [showCelebration, setShowCelebration] = useState(false);
-const [visitedDialogue, setVisitedDialogue] = useState(false);
-const [visitedQuiz, setVisitedQuiz] = useState(false);
+  const [showCelebration, setShowCelebration] = useState(false);
+  const [visitedDialogue, setVisitedDialogue] = useState(false);
+  const [visitedQuiz, setVisitedQuiz] = useState(false);
+  // FIX: guardar voces en estado para que estén disponibles cuando el usuario hace click
+  const [voices, setVoices] = useState<SpeechSynthesisVoice[]>([]);
 
   const stopSpeak = () => {
     if (typeof window === "undefined") return;
@@ -58,13 +60,21 @@ const [visitedQuiz, setVisitedQuiz] = useState(false);
     setSpeaking(false);
   };
 
+  // FIX: cargar voces correctamente y guardarlas en estado
   useEffect(() => {
     if (typeof window === "undefined") return;
     const synth = window.speechSynthesis;
-    synth.getVoices();
-    speechSynthesis.onvoiceschanged = () => synth.getVoices();
+
+    const loadVoices = () => {
+      const v = synth.getVoices();
+      if (v.length > 0) setVoices(v);
+    };
+
+    loadVoices();
+    synth.onvoiceschanged = loadVoices;
+
     return () => {
-      speechSynthesis.onvoiceschanged = null;
+      synth.onvoiceschanged = null;
     };
   }, []);
 
@@ -85,7 +95,7 @@ const [visitedQuiz, setVisitedQuiz] = useState(false);
     if (!studentId || !module) return;
 
     const saved = appState.lastPosition?.[studentId]?.[module.id];
-if (saved) {
+    if (saved) {
       const safeTab: TabType =
         saved.tab === "phrases" ||
         saved.tab === "dialogue" ||
@@ -143,12 +153,12 @@ if (saved) {
       return {
         ...prev,
         lastPosition: {
-  ...prev.lastPosition,
-  [studentId]: {
-    ...(prev.lastPosition?.[studentId] ?? {}),
-    [module.id]: nextPosition,
-  },
-},
+          ...prev.lastPosition,
+          [studentId]: {
+            ...(prev.lastPosition?.[studentId] ?? {}),
+            [module.id]: nextPosition,
+          },
+        },
       };
     });
   }, [
@@ -176,8 +186,8 @@ if (saved) {
     synth.cancel();
 
     const utterance = new SpeechSynthesisUtterance(text);
-    const voices = synth.getVoices();
 
+    // FIX: usar voces del estado en lugar de getVoices() en el momento del click
     const ptVoice =
       voices.find((v) => v.lang?.toLowerCase() === "pt-br") ||
       voices.find((v) => v.lang?.toLowerCase().startsWith("pt")) ||
@@ -242,19 +252,19 @@ if (saved) {
           [studentId]: nextProgress,
         },
         lastPosition: {
-  ...prev.lastPosition,
-  [studentId]: {
-    ...(prev.lastPosition?.[studentId] ?? {}),
-    [module.id]: {
-      moduleId: module.id,
-      tab: "phrases",
-      phraseIndex: 0,
-      vocabIndex: 0,
-      dialogueIndex: 0,
-      quizIndex: 0,
-    },
-  },
-},
+          ...prev.lastPosition,
+          [studentId]: {
+            ...(prev.lastPosition?.[studentId] ?? {}),
+            [module.id]: {
+              moduleId: module.id,
+              tab: "phrases",
+              phraseIndex: 0,
+              vocabIndex: 0,
+              dialogueIndex: 0,
+              quizIndex: 0,
+            },
+          },
+        },
       };
     });
   };
@@ -264,7 +274,7 @@ if (saved) {
     !!module &&
     !!appState.progress?.[appState.currentStudentId]?.[module.id];
 
-    const hasReachedEnd =
+  const hasReachedEnd =
     phraseIndex === module.phrases.length - 1 &&
     visitedDialogue && dialogueIndex === (module.dialogue?.length ?? 1) - 1 &&
     visitedQuiz && quizIndex === (module.quiz?.length ?? 1) - 1;
