@@ -265,8 +265,49 @@ const continueModule = lastPosition
         background: "transparent",
         color: C.text,
         fontFamily: FONT,
+        position: "relative",
       }}
     >
+      <img
+        src="/villa.jpg"
+        style={{
+          position: "fixed",
+          inset: 0,
+          width: "100%",
+          height: "100%",
+          objectFit: "cover",
+          filter: "brightness(0.22) saturate(1.05)",
+          zIndex: 0,
+        }}
+      />
+      <div
+        style={{
+          position: "fixed",
+          inset: 0,
+          background: "linear-gradient(160deg, rgba(6,17,14,0.60) 0%, rgba(9,24,18,0.80) 100%)",
+          zIndex: 0,
+        }}
+      />
+      <img
+        src="/villa.jpg"
+        style={{
+          position: "fixed",
+          inset: 0,
+          width: "100%",
+          height: "100%",
+          objectFit: "cover",
+          filter: "brightness(0.22) saturate(1.05)",
+          zIndex: 0,
+        }}
+      />
+      <div
+        style={{
+          position: "fixed",
+          inset: 0,
+          background: "linear-gradient(160deg, rgba(6,17,14,0.60) 0%, rgba(9,24,18,0.80) 100%)",
+          zIndex: 0,
+        }}
+      />
       <style>{`
         @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
         * { box-sizing: border-box; }
@@ -479,6 +520,8 @@ const continueModule = lastPosition
           gridTemplateColumns: sidebarOpen ? "264px 1fr 284px" : "1fr 284px",
           gap: 20,
           alignItems: "start",
+          position: "relative",
+          zIndex: 1,
         }}
       >
         {sidebarOpen && (

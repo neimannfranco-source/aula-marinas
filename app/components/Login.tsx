@@ -65,14 +65,14 @@ export default function Login({
           width: "100%",
           height: "100%",
           objectFit: "cover",
-          filter: "brightness(0.65) saturate(1.1)",
+          filter: "brightness(0.90) saturate(1.15) contrast(1.05)",
         }}
       />
       <div
         style={{
           position: "absolute",
           inset: 0,
-          background: "linear-gradient(160deg, rgba(6,17,14,0.72) 0%, rgba(9,24,18,0.88) 100%)",
+          background: "linear-gradient(160deg, rgba(6,17,14,0.45) 0%, rgba(9,24,18,0.55) 100%)",
         }}
       />
       <style>{`
@@ -88,22 +88,7 @@ export default function Login({
 
       <div style={{ width: "100%", maxWidth: 420, position: "relative" }}>
         <div style={{ textAlign: "center", marginBottom: 48 }}>
-          <div
-            style={{
-              width: 80,
-              height: 80,
-              borderRadius: 24,
-              background: "rgba(74,222,128,0.08)",
-              border: `1px solid rgba(74,222,128,0.22)`,
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              fontSize: 36,
-              margin: "0 auto 20px",
-            }}
-          >
-            🏨
-          </div>
+          <div style={{ marginBottom: 20 }} />
 
           <h1
             style={{
@@ -120,10 +105,11 @@ export default function Login({
 
           <p
             style={{
-              color: C.textMid,
-              fontSize: 14,
-              margin: "0 0 4px",
+              color: "rgba(255,255,255,0.90)",
+              fontSize: 15,
+              margin: "0 0 12px",
               fontFamily: FONT,
+              fontWeight: 500,
             }}
           >
             Portugués hotelero profesional
@@ -131,10 +117,11 @@ export default function Login({
 
           <p
             style={{
-              color: C.textDim,
+              color: "rgba(255,255,255,0.70)",
               fontSize: 12,
               margin: 0,
               fontFamily: MONO,
+              letterSpacing: "0.06em",
             }}
           >
             Marinas Alto Manzano · Villa La Angostura
