@@ -56,6 +56,9 @@ export default function Home() {
 const lastPosition = currentStudent
   ? appState.lastPosition?.[currentStudent.id]
   : null;
+  const continueModule = lastPosition
+  ? MODULES.find((m) => m.id === lastPosition.moduleId)
+  : null;
 
 useEffect(() => {
   if (!currentStudent) return;
@@ -490,27 +493,92 @@ await saveRemoteState(appState);
         )}
 
         <div>
-          {!sidebarOpen && (
-            <button
-              onClick={() => setSidebarOpen(true)}
-              style={{ ...btnGhost, marginBottom: 16, fontSize: 12 }}
-            >
-              ▶ Módulos
-            </button>
-          )}
+  {!sidebarOpen && (
+    <button
+      onClick={() => setSidebarOpen(true)}
+      style={{ ...btnGhost, marginBottom: 16, fontSize: 12 }}
+    >
+      ▶ Módulos
+    </button>
+  )}
 
-          <ModuleView
-            appState={appState}
-            setAppState={setAppState}
-            selectedModuleId={selectedModuleId}
-            onGoHome={() => {
-              setSelectedModuleId(MODULES[0]?.id ?? "");
-              setActiveCategory("Todos");
-              setShowProfPanel(false);
-              setSidebarOpen(true);
-            }}
-          />
+  {lastPosition && continueModule && (
+    <div
+      style={{
+        marginBottom: 16,
+        background: C.bg2,
+        border: `1px solid ${C.border}`,
+        borderRadius: 18,
+        padding: 16,
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "space-between",
+        gap: 16,
+        flexWrap: "wrap",
+      }}
+    >
+      <div>
+        <div
+          style={{
+            fontSize: 12,
+            color: C.textDim,
+            marginBottom: 4,
+            fontWeight: 600,
+          }}
+        >
+          Continuar donde dejaste
         </div>
+
+        <div
+          style={{
+            fontSize: 18,
+            fontWeight: 800,
+            color: C.text,
+            marginBottom: 4,
+          }}
+        >
+          {continueModule.emoji} {continueModule.title}
+        </div>
+
+        <div
+          style={{
+            fontSize: 13,
+            color: C.textDim,
+          }}
+        >
+          Sección: {lastPosition.tab} · Frase {lastPosition.phraseIndex + 1} · Diálogo {lastPosition.dialogueIndex + 1} · Quiz {lastPosition.quizIndex + 1}
+        </div>
+      </div>
+
+      <button
+        onClick={() => {
+          setSelectedModuleId(lastPosition.moduleId);
+          setActiveCategory("Todos");
+          if (!sidebarOpen) setSidebarOpen(true);
+        }}
+        style={{
+          ...btnGhost,
+          fontWeight: 700,
+          whiteSpace: "nowrap",
+        }}
+      >
+        ▶ Continuar
+      </button>
+    </div>
+  )}
+
+  <ModuleView
+    appState={appState}
+    setAppState={setAppState}
+    selectedModuleId={selectedModuleId}
+    onGoHome={() => {
+      setSelectedModuleId(MODULES[0]?.id ?? "");
+      setActiveCategory("Todos");
+      setShowProfPanel(false);
+      setSidebarOpen(true);
+    }}
+  />
+</div>
 
         <ProgressPanel appState={appState} />
       </div>
