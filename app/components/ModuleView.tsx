@@ -86,17 +86,40 @@ setPhraseIndex(saved.phraseIndex ?? 0);
 setDialogueIndex(saved.dialogueIndex ?? 0);
 setQuizIndex(saved.quizIndex ?? 0);
 }, [appState.currentStudentId, appState.lastPosition, module?.id]);
+useEffect(() => {
+  const studentId = appState.currentStudentId;
+  if (!studentId || !module) return;
+
+  setAppState((prev) => ({
+    ...prev,
+    lastPosition: {
+      ...prev.lastPosition,
+      [studentId]: {
+        moduleId: module.id,
+        tab: activeTab,
+        phraseIndex,
+        vocabIndex: 0,
+        dialogueIndex,
+        quizIndex,
+      },
+    },
+  }));
+}, [
+  appState.currentStudentId,
+  module?.id,
+  activeTab,
+  phraseIndex,
+  dialogueIndex,
+  quizIndex,
+  setAppState,
+]);
   
 
   useEffect(() => {
-    setActiveTab("phrases");
-    setPhraseIndex(0);
-    setDialogueIndex(0);
-    setQuizIndex(0);
-    setSelectedAnswer(null);
-    setShowTranslation(true);
-    stopSpeak();
-  }, [selectedModuleId]);
+  setSelectedAnswer(null);
+  setShowTranslation(true);
+  stopSpeak();
+}, [selectedModuleId]);
 
   useEffect(() => {
     stopSpeak();
