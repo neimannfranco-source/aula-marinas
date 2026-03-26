@@ -211,23 +211,25 @@ export default function Home() {
   }
 
   if (!currentStudent) {
-    return (
-      <>
-        <Login
+  return (
+    <>
+      <Login
+        appState={appState}
+        setAppState={setAppState}
+        onProfessor={handleProfessorClick}
+        showProfPanel={showProfPanel}
+      />
+
+      {showProfPanel && profUnlocked && (
+        <ProfessorPanel
           appState={appState}
           setAppState={setAppState}
-          onProfessor={handleProfessorClick}
-          showProfPanel={showProfPanel}
+          onClose={() => setShowProfPanel(false)}
         />
-
-        {showProfPanel && profUnlocked && (
-          <div style={{ maxWidth: 480, margin: "0 auto", padding: "0 24px 48px" }}>
-            <ProgressPanel appState={appState} />
-          </div>
-        )}
-      </>
-    );
-  }
+      )}
+    </>
+  );
+}
 
   return (
     <div style={{ minHeight: "100vh", background: "transparent", color: C.text, fontFamily: FONT }}>
