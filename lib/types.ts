@@ -4,21 +4,23 @@ export type Student = {
   code: string;
 };
 
+export type TabType = "phrases" | "vocab" | "dialogue" | "quiz";
+
+export type ProgressPosition = {
+  moduleId: string;
+  tab: TabType;
+  phraseIndex: number;
+  vocabIndex: number;
+  dialogueIndex: number;
+  quizIndex: number;
+};
+
 export type AppState = {
   students: Student[];
   currentStudentId: string | null;
   progress: Record<string, Record<string, boolean>>;
   dictations: Record<string, string>;
-  lastPosition?: Record<
-    string,
-    {
-      moduleId: string;
-      tab: "phrases" | "dialogue" | "quiz";
-      phraseIndex: number;
-      dialogueIndex: number;
-      quizIndex: number;
-    }
-  >;
+  lastPosition: Record<string, ProgressPosition>;
 };
 
 export type LoadStatus = "loading" | "ready";
@@ -30,6 +32,10 @@ export type ModuleType = {
   emoji: string;
   phrases: { pt: string; es: string }[];
   vocab: { pt: string; es: string }[];
-  miniDialogues: { speaker: string; pt: string; es: string }[];
-  quiz: { question: string; options: string[]; answer: string }[];
+  dialogue?: { pt: string; es: string }[];
+  quiz?: {
+    question: string;
+    options: string[];
+    answer: string;
+  }[];
 };

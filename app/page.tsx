@@ -51,15 +51,21 @@ export default function Home() {
   const [pwdMsg, setPwdMsg] = useState("");
 
   const currentStudent =
-    appState.students.find((s) => s.id === appState.currentStudentId) ?? null;
-    useEffect(() => {
+  appState.students.find((s) => s.id === appState.currentStudentId) ?? null;
+
+const lastPosition = currentStudent
+  ? appState.lastPosition?.[currentStudent.id]
+  : null;
+
+useEffect(() => {
   if (!currentStudent) return;
 
   const saved = appState.lastPosition?.[currentStudent.id];
-  if (saved?.moduleId) {
+
+  if (saved?.moduleId && saved.moduleId !== selectedModuleId) {
     setSelectedModuleId(saved.moduleId);
   }
-}, [currentStudent?.id, appState.lastPosition]);
+}, [currentStudent?.id, appState.lastPosition, selectedModuleId]);
 
   useEffect(() => {
     let mounted = true;
