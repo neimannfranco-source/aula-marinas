@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { MODULES } from "@/lib/modules";
 import type { AppState, TabType } from "@/lib/types";
 import {

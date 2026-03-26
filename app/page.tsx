@@ -54,13 +54,18 @@ export default function Home() {
   const currentStudent =
     appState.students.find((s) => s.id === appState.currentStudentId) ?? null;
 
-  const lastPosition = currentStudent && selectedModuleId
-  ? appState.lastPosition?.[currentStudent.id]?.[selectedModuleId] ?? null
-  : null;
+  const studentPositions = currentStudent
+  ? appState.lastPosition?.[currentStudent.id] ?? {}
+  : {};
 
-  const continueModule = lastPosition
-    ? MODULES.find((m) => m.id === lastPosition.moduleId)
+const lastPosition =
+  Object.values(studentPositions).length > 0
+    ? Object.values(studentPositions)[Object.values(studentPositions).length - 1]
     : null;
+
+const continueModule = lastPosition
+  ? MODULES.find((m) => m.id === lastPosition.moduleId)
+  : null;
 
   useEffect(() => {
     let mounted = true;
