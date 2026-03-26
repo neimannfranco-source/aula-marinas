@@ -90,20 +90,38 @@ useEffect(() => {
   const studentId = appState.currentStudentId;
   if (!studentId || !module) return;
 
-  setAppState((prev) => ({
-    ...prev,
-    lastPosition: {
-      ...prev.lastPosition,
-      [studentId]: {
-        moduleId: module.id,
-        tab: activeTab,
-        phraseIndex,
-        vocabIndex: 0,
-        dialogueIndex,
-        quizIndex,
+  setAppState((prev) => {
+    const currentSaved = prev.lastPosition?.[studentId];
+
+    const nextPosition = {
+      moduleId: module.id,
+      tab: activeTab,
+      phraseIndex,
+      vocabIndex: 0,
+      dialogueIndex,
+      quizIndex,
+    };
+
+    if (
+      currentSaved &&
+      currentSaved.moduleId === nextPosition.moduleId &&
+      currentSaved.tab === nextPosition.tab &&
+      currentSaved.phraseIndex === nextPosition.phraseIndex &&
+      currentSaved.vocabIndex === nextPosition.vocabIndex &&
+      currentSaved.dialogueIndex === nextPosition.dialogueIndex &&
+      currentSaved.quizIndex === nextPosition.quizIndex
+    ) {
+      return prev;
+    }
+
+    return {
+      ...prev,
+      lastPosition: {
+        ...prev.lastPosition,
+        [studentId]: nextPosition,
       },
-    },
-  }));
+    };
+  });
 }, [
   appState.currentStudentId,
   module?.id,
