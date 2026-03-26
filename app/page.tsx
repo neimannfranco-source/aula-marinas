@@ -359,8 +359,8 @@ await saveRemoteState(appState);
             </div>
 
             <button onClick={logout} style={btnDanger}>
-              Sair
-            </button>
+  Cerrar sesión
+</button>
           </div>
         </div>
 
