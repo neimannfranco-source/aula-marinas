@@ -262,6 +262,8 @@ if (saved) {
     !!module &&
     !!appState.progress?.[appState.currentStudentId]?.[module.id];
 
+    const hasReachedEnd = phraseIndex === module.phrases.length - 1;
+
   const tabs: { id: TabType; label: string }[] = [
     { id: "phrases", label: "Frases" },
     { id: "dialogue", label: "Diálogo" },
@@ -611,7 +613,8 @@ if (saved) {
 
         {(activeTab !== "phrases" || phraseIndex !== module.phrases.length - 1) && (
           <button
-            onClick={markModuleDone}
+            onClick={hasReachedEnd || isCompleted ? markModuleDone : undefined}
+            disabled={!hasReachedEnd && !isCompleted}
             style={{
               ...btnAccent,
               ...(isCompleted
@@ -620,6 +623,11 @@ if (saved) {
                     color: C.green,
                     border: `1px solid ${C.green}44`,
                     boxShadow: "none",
+                  }
+                : !hasReachedEnd
+                ? {
+                    opacity: 0.35,
+                    cursor: "not-allowed",
                   }
                 : {}),
             }}
