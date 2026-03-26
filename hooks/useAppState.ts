@@ -10,6 +10,7 @@ function createInitialState(): AppState {
     progress: {},
     dictations: {},
     lastPosition: {},
+    lastVisitedModuleId: {},
   };
 }
 
