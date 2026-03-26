@@ -32,7 +32,11 @@ export type ModuleType = {
   emoji: string;
   phrases: { pt: string; es: string }[];
   vocab: { pt: string; es: string }[];
-  dialogue?: { pt: string; es: string }[];
+  dialogue?: {
+  speaker: string;
+  pt: string;
+  es: string;
+}[];
   quiz?: {
     question: string;
     options: string[];
