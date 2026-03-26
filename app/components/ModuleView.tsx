@@ -2,7 +2,7 @@
 
 import { useEffect, useMemo, useState } from "react";
 import { MODULES } from "@/lib/modules";
-import type { AppState } from "@/lib/types";
+import type { AppState, TabType } from "@/lib/types";
 import {
   C,
   FONT,
@@ -25,8 +25,6 @@ type Props = {
     quizIndex: number;
   }) => void;
 };
-
-type TabType = "phrases" | "dialogue" | "quiz";
 
 export default function ModuleView({
   appState,
@@ -76,23 +74,19 @@ useEffect(() => {
   const saved = appState.lastPosition?.[studentId];
   if (!saved || saved.moduleId !== module.id) return;
 
-  setActiveTab(saved.tab);
-  setPhraseIndex(saved.phraseIndex ?? 0);
-  setDialogueIndex(saved.dialogueIndex ?? 0);
-  setQuizIndex(saved.quizIndex ?? 0);
+const safeTab: TabType =
+  saved.tab === "phrases" ||
+  saved.tab === "dialogue" ||
+  saved.tab === "quiz"
+    ? saved.tab
+    : "phrases";
+
+setActiveTab(safeTab);
+setPhraseIndex(saved.phraseIndex ?? 0);
+setDialogueIndex(saved.dialogueIndex ?? 0);
+setQuizIndex(saved.quizIndex ?? 0);
 }, [appState.currentStudentId, appState.lastPosition, module?.id]);
   
-useEffect(() => {
-  if (!module) return;
-
-  onPositionChange?.({
-    moduleId: module.id,
-    tab: activeTab,
-    phraseIndex,
-    dialogueIndex,
-    quizIndex,
-  });
-}, [module?.id, activeTab, phraseIndex, dialogueIndex, quizIndex, onPositionChange]);
 
   useEffect(() => {
     setActiveTab("phrases");
