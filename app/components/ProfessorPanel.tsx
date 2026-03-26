@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import type { AppState } from "@/lib/types";
 import { MODULES } from "@/lib/modules";
 import { C, FONT, DISPLAY } from "@/lib/constants";
@@ -15,6 +16,10 @@ export default function ProfessorPanel({
   setAppState,
   onClose,
 }: Props) {
+  const [newStudentName, setNewStudentName] = useState("");
+  const [newStudentCode, setNewStudentCode] = useState("");
+  const [studentMsg, setStudentMsg] = useState("");
+
   const currentStudent =
     appState.students.find((s) => s.id === appState.currentStudentId) ?? null;
 
@@ -27,6 +32,83 @@ export default function ProfessorPanel({
       ...prev,
       currentStudentId: studentId,
     }));
+  };
+
+  const createStudent = () => {
+    const name = newStudentName.trim();
+    const code = newStudentCode.trim().toUpperCase();
+
+    if (!name) {
+      setStudentMsg("Ingresá un nombre.");
+      return;
+    }
+
+    if (!code) {
+      setStudentMsg("Ingresá una contraseña.");
+      return;
+    }
+
+    const existingName = appState.students.some(
+      (s) => s.name.trim().toLowerCase() === name.toLowerCase()
+    );
+
+    if (existingName) {
+      setStudentMsg("Ya existe un alumno con ese nombre.");
+      return;
+    }
+
+    const newId =
+      typeof crypto !== "undefined" && "randomUUID" in crypto
+        ? crypto.randomUUID()
+        : `student-${Date.now()}`;
+
+    const newStudent = {
+      id: newId,
+      name,
+      code,
+    };
+
+    setAppState((prev) => ({
+      ...prev,
+      students: [...prev.students, newStudent],
+      currentStudentId: newId,
+      progress: {
+        ...prev.progress,
+        [newId]: {},
+      },
+    }));
+
+    setNewStudentName("");
+    setNewStudentCode("");
+    setStudentMsg("✓ Alumno creado correctamente.");
+  };
+
+  const deleteCurrentStudent = () => {
+    if (!currentStudent) {
+      setStudentMsg("No hay alumno seleccionado.");
+      return;
+    }
+
+    const ok = window.confirm(
+      `¿Eliminar a ${currentStudent.name}? Esta acción borrará también su progreso.`
+    );
+
+    if (!ok) return;
+
+    setAppState((prev) => {
+      const nextStudents = prev.students.filter((s) => s.id !== currentStudent.id);
+      const nextProgress = { ...prev.progress };
+      delete nextProgress[currentStudent.id];
+
+      return {
+        ...prev,
+        students: nextStudents,
+        currentStudentId: nextStudents[0]?.id ?? null,
+        progress: nextProgress,
+      };
+    });
+
+    setStudentMsg(`✓ Alumno eliminado: ${currentStudent.name}`);
   };
 
   const toggleModule = (moduleId: string) => {
@@ -170,6 +252,105 @@ export default function ProfessorPanel({
 
         <div
           style={{
+            background: "rgba(255,255,255,0.02)",
+            border: `1px solid ${C.border}`,
+            borderRadius: 20,
+            padding: 16,
+            marginBottom: 16,
+          }}
+        >
+          <div
+            style={{
+              fontSize: 11,
+              color: C.textDim,
+              textTransform: "uppercase",
+              letterSpacing: "0.08em",
+              marginBottom: 12,
+              fontWeight: 700,
+            }}
+          >
+            Crear alumno
+          </div>
+
+          <div
+            style={{
+              display: "grid",
+              gridTemplateColumns: "1fr 1fr auto",
+              gap: 10,
+              alignItems: "center",
+            }}
+          >
+            <input
+              value={newStudentName}
+              onChange={(e) => {
+                setNewStudentName(e.target.value);
+                setStudentMsg("");
+              }}
+              placeholder="Nombre del alumno"
+              style={{
+                width: "100%",
+                background: C.bg3,
+                border: `1px solid ${C.border}`,
+                borderRadius: 12,
+                padding: "12px 14px",
+                color: C.text,
+                fontSize: 14,
+                outline: "none",
+              }}
+            />
+
+            <input
+              value={newStudentCode}
+              onChange={(e) => {
+                setNewStudentCode(e.target.value);
+                setStudentMsg("");
+              }}
+              placeholder="Contraseña"
+              style={{
+                width: "100%",
+                background: C.bg3,
+                border: `1px solid ${C.border}`,
+                borderRadius: 12,
+                padding: "12px 14px",
+                color: C.text,
+                fontSize: 14,
+                outline: "none",
+              }}
+            />
+
+            <button
+              onClick={createStudent}
+              style={{
+                background: "linear-gradient(180deg, #D6B36A, #B88B3A)",
+                color: "#16110A",
+                border: "1px solid rgba(255,255,255,0.10)",
+                borderRadius: 12,
+                padding: "12px 16px",
+                fontWeight: 700,
+                cursor: "pointer",
+                fontFamily: FONT,
+                whiteSpace: "nowrap",
+              }}
+            >
+              Crear alumno
+            </button>
+          </div>
+
+          {studentMsg && (
+            <div
+              style={{
+                marginTop: 10,
+                fontSize: 13,
+                color: studentMsg.startsWith("✓") ? C.green : C.red,
+              }}
+            >
+              {studentMsg}
+            </div>
+          )}
+        </div>
+
+        <div
+          style={{
             display: "grid",
             gridTemplateColumns: "1.2fr 0.8fr",
             gap: 16,
@@ -204,7 +385,10 @@ export default function ProfessorPanel({
                 return (
                   <button
                     key={student.id}
-                    onClick={() => setCurrentStudent(student.id)}
+                    onClick={() => {
+                      setCurrentStudent(student.id);
+                      setStudentMsg("");
+                    }}
                     style={{
                       padding: "10px 14px",
                       borderRadius: 999,
@@ -339,6 +523,24 @@ export default function ProfessorPanel({
             }}
           >
             Resetear todo
+          </button>
+
+          <button
+            onClick={deleteCurrentStudent}
+            disabled={!currentStudent}
+            style={{
+              background: "rgba(224,112,112,0.10)",
+              color: C.red,
+              border: `1px solid ${C.redBorder}`,
+              borderRadius: 12,
+              padding: "10px 14px",
+              fontWeight: 700,
+              cursor: currentStudent ? "pointer" : "not-allowed",
+              fontFamily: FONT,
+              opacity: currentStudent ? 1 : 0.5,
+            }}
+          >
+            Eliminar alumno
           </button>
         </div>
 
