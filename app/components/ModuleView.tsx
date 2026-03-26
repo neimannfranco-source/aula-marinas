@@ -114,7 +114,7 @@ if (saved) {
     if (!studentId || !module) return;
 
     setAppState((prev) => {
-      const prevPosition = prev.lastPosition?.[studentId];
+      const prevPosition = prev.lastPosition?.[studentId]?.[module.id];
 
       const nextPosition = {
         moduleId: module.id,
