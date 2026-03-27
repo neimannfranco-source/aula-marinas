@@ -225,13 +225,14 @@ export default function Login({
             border: `1px solid ${C.border}`,
             borderRadius: 14,
             padding: "11px 16px",
-            color: C.textDim,
+            color: "#FFFFFF",
             fontSize: 13,
+            fontWeight: 700,
             cursor: "pointer",
             fontFamily: FONT,
           }}
         >
-          👨‍🏫 Panel del profesor
+      Panel del profesor
         </button>
       </div>
     </div>
