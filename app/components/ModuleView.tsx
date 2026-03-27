@@ -185,29 +185,33 @@ export default function ModuleView({
     const synth = window.speechSynthesis;
     synth.cancel();
 
-    const utterance = new SpeechSynthesisUtterance(text);
+    setTimeout(() => {
+      const utterance = new SpeechSynthesisUtterance(text);
 
-    // FIX: usar voces del estado en lugar de getVoices() en el momento del click
-    const ptVoice =
-      voices.find((v) => v.lang?.toLowerCase() === "pt-br") ||
-      voices.find((v) => v.lang?.toLowerCase().startsWith("pt")) ||
-      voices.find((v) => v.name?.toLowerCase().includes("portugu")) ||
-      null;
+      const ptVoice =
+        voices.find((v) => v.lang?.toLowerCase() === "pt-br") ||
+        voices.find((v) => v.lang?.toLowerCase() === "pt-pt") ||
+        voices.find((v) => v.lang?.toLowerCase().startsWith("pt")) ||
+        voices.find((v) => v.name?.toLowerCase().includes("portugu")) ||
+        voices.find((v) => v.name?.toLowerCase().includes("brazil")) ||
+        voices.find((v) => v.name?.toLowerCase().includes("brasil")) ||
+        null;
 
-    if (ptVoice) {
-      utterance.voice = ptVoice;
-      utterance.lang = ptVoice.lang;
-    } else {
-      utterance.lang = "pt-BR";
-    }
+      if (ptVoice) {
+        utterance.voice = ptVoice;
+        utterance.lang = ptVoice.lang;
+      } else {
+        utterance.lang = "pt-BR";
+      }
 
-    utterance.rate = slow ? 0.78 : 0.95;
-    utterance.pitch = 1;
-    utterance.onend = () => setSpeaking(false);
-    utterance.onerror = () => setSpeaking(false);
+      utterance.rate = slow ? 0.78 : 0.95;
+      utterance.pitch = 1;
+      utterance.onend = () => setSpeaking(false);
+      utterance.onerror = () => setSpeaking(false);
 
-    setSpeaking(true);
-    synth.speak(utterance);
+      setSpeaking(true);
+      synth.speak(utterance);
+    }, 120);
   };
 
   const markModuleDone = () => {
